@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameGridBuilder {
-    private int rows, columns;
+    private int rows;
+    private int columns;
     private List<GridCell> cells = new ArrayList<>();
 
     public GameGridBuilder() {}
@@ -38,19 +39,20 @@ public class GameGridBuilder {
     }
 
     private void validateDimensions() throws IllegalStateException {
-        if (cells.size() != rows * columns)
+        if (cells.size() != rows * columns) {
             throw new IllegalStateException("The number of cells must match the grid dimensions: " + rows + "*" + columns);
+        }
     }
 
     private GridCell[][] buildCellMatrixFromCellFlattenList() {
         GridCell[][] matrix = new GridCell[rows][columns];
         int cellsFromListAlreadyAdded = 0;
         for (int r = 0; r < rows; r++) {
-            int c;
-            for (c = 0; c < columns; c++) {
-                matrix[r][c] = cells.get(cellsFromListAlreadyAdded + (r+c));
+            int col;
+            for (col = 0; col < columns; col++) {
+                matrix[r][col] = cells.get(cellsFromListAlreadyAdded + (r + col));
             }
-            cellsFromListAlreadyAdded += c-1;
+            cellsFromListAlreadyAdded += col - 1;
         }
         return matrix;
     }
