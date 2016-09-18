@@ -1,19 +1,26 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-public abstract class GridCell<T extends CellContent> {
+public abstract class GridCell {
     private CellState cellState;
-    private T content;
 
     public GridCell(CellState cellState) {
         this.cellState = cellState;
     }
 
-    public void setContent(T content) {
-        this.content = content;
+    public void setState(CellState state) {
+        this.cellState = state;
     }
 
-    public T getContent() {
-        return content;
+    public void setContent(CellContent content) {
+        cellState.setContent(content, this);
+    }
+
+    public CellContent getContent() {
+        return cellState.getContent();
+    }
+
+    public void clearContent() {
+        cellState.clearContent(this);
     }
 
     public abstract boolean isContentEditable();

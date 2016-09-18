@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-public interface CellState<T extends CellContent> {
+public interface CellState {
 
-    T getContent();
+    CellContent getContent();
 
-    void setContent(T content);
+    void setContent(CellContent content, GridCell context);
 
-    void clearContent();
+    void clearContent(GridCell cell);
 
 }
