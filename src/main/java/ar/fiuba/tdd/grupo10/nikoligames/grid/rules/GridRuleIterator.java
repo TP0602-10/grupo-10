@@ -1,15 +1,15 @@
-package ar.fiuba.tdd.grupo10.nikoligames.rules;
+package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class RuleIterator implements Iterator {
+public class GridRuleIterator implements Iterator {
     private final List<GridCell> cells;
     private int actualIndex = -1;
 
-    public RuleIterator(List<GridCell> cells) {
+    public GridRuleIterator(List<GridCell> cells) {
         this.cells = cells;
     }
 

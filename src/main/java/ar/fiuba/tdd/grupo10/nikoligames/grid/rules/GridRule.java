@@ -1,15 +1,15 @@
-package ar.fiuba.tdd.grupo10.nikoligames.rules;
+package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import java.util.List;
 
-public abstract class Rule<T> {
-    private final RuleOperation<T> operation;
+public abstract class GridRule<T> {
+    private final GridRuleOperation<T> operation;
     private T goal;
 
-    public Rule(RuleOperation<T> operation, T goal) {
+    public GridRule(GridRuleOperation<T> operation, T goal) {
         this.operation = operation;
         this.goal = goal;
     }
@@ -23,14 +23,14 @@ public abstract class Rule<T> {
     }
 
     public void verifyRule(List<List<GridCell>> cells) throws RuleNotSatisfiedException {
-        RuleIterator iterator = getRuleIterator(cells);
+        GridRuleIterator iterator = getRuleIterator(cells);
         T operationResult = this.operation.perform(iterator);
         if ( !doesOperationResultMatchesWithRuleGoal(operationResult) ) {
             throw new RuleNotSatisfiedException(getRuleExplanation());
         }
     }
 
-    protected abstract RuleIterator getRuleIterator(List<List<GridCell>> cells);
+    protected abstract GridRuleIterator getRuleIterator(List<List<GridCell>> cells);
 
     protected abstract boolean doesOperationResultMatchesWithRuleGoal(T result);
 

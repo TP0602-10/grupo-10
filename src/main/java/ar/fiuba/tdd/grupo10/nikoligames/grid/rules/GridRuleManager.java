@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.rules;
+package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GameGrid;
@@ -7,22 +7,22 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RuleManager implements OnGridUpdatedObserver {
-    private Collection<Rule> rules;
+public class GridRuleManager implements OnGridUpdatedObserver {
+    private Collection<GridRule> rules;
 
-    public RuleManager() {
+    public GridRuleManager() {
         rules = new ArrayList<>();
     }
 
-    public RuleManager(Collection<Rule> rules) {
+    public GridRuleManager(Collection<GridRule> rules) {
         this.rules = rules;
     }
 
-    public boolean addRule(Rule rule) {
+    public boolean addRule(GridRule rule) {
         return this.rules.add(rule);
     }
 
-    public boolean removeRule(Rule rule) {
+    public boolean removeRule(GridRule rule) {
         return this.rules.remove(rule);
     }
 
