@@ -27,7 +27,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     }
 
     @Override
-    public void onUpdate(GameGrid grid) {
+    public void onGridUpdated(GameGrid grid) {
         this.rules.forEach(rule -> {
             try {
                 rule.verifyRule(grid.getCells());

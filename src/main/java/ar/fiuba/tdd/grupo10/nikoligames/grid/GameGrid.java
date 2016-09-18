@@ -32,6 +32,6 @@ public class GameGrid {
     }
 
     public void notifyGridUpdated() {
-        this.observers.forEach(o -> o.onUpdate(this));
+        this.observers.forEach(o -> o.onGridUpdated(this));
     }
 }
