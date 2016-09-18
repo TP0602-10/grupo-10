@@ -34,7 +34,7 @@ public class GameGridBuilder {
 
     public GameGrid buildGrid() {
         validateDimensions();
-        GridCell[][] grid = buildCellMatrixFromCellFlattenList();
+        List<List<GridCell>> grid = buildCellGridFromCellFlattenList();
         return new GameGrid(grid);
     }
 
@@ -44,17 +44,19 @@ public class GameGridBuilder {
         }
     }
 
-    private GridCell[][] buildCellMatrixFromCellFlattenList() {
-        GridCell[][] matrix = new GridCell[rows][columns];
+    private List<List<GridCell>> buildCellGridFromCellFlattenList() {
+        List<List<GridCell>> grid = new ArrayList<>(rows);
         int cellsFromListAlreadyAdded = 0;
         for (int r = 0; r < rows; r++) {
+            List<GridCell> row = new ArrayList<>(columns);
             int col;
             for (col = 0; col < columns; col++) {
-                matrix[r][col] = cells.get(cellsFromListAlreadyAdded + (r + col));
+                row.add( cells.get(cellsFromListAlreadyAdded + (r + col)) );
             }
+            grid.add(row);
             cellsFromListAlreadyAdded += col - 1;
         }
-        return matrix;
+        return grid;
     }
 
 }
