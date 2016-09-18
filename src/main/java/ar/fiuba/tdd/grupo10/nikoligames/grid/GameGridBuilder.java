@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+
 import java.util.ArrayList;
 import java.util.List;
 
