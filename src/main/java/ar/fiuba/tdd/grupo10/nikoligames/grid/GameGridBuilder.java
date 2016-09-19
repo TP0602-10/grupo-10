@@ -1,10 +1,14 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Builder for making the game grid setting easier.
+ */
 public class GameGridBuilder {
     private int rows;
     private int columns;
@@ -33,14 +37,18 @@ public class GameGridBuilder {
     }
 
     public GameGrid buildGrid() {
-        validateDimensions();
+        try {
+            validateDimensions();
+        } catch (WrongNumberOfGridCellsException e) {
+            // TODO: 18/09/16 Decide what to do in this case.
+        }
         List<List<GridCell>> grid = buildCellGridFromCellFlattenList();
         return new GameGrid(grid);
     }
 
-    private void validateDimensions() throws IllegalStateException {
+    private void validateDimensions() throws WrongNumberOfGridCellsException {
         if (cells.size() != rows * columns) {
-            throw new IllegalStateException("The number of cells must match the grid dimensions: " + rows + "*" + columns);
+            throw new WrongNumberOfGridCellsException("The number of cells must match the grid dimensions: " + rows + "*" + columns);
         }
     }
 

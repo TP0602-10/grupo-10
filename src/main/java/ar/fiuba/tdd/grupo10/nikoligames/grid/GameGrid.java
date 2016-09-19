@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Game main board. It contains cells organized by rows and columns.
+ * It can also subscribe to new observers and notify them when a change it is made on the grid.
+ */
 public class GameGrid {
     private final List<List<GridCell>> cells;
     private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
