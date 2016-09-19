@@ -7,6 +7,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Used Observer pattern. Verify all the specified rules on any grid update.
+ */
 public class GridRuleManager implements OnGridUpdatedObserver {
     private Collection<GridRule<?>> rules;
 

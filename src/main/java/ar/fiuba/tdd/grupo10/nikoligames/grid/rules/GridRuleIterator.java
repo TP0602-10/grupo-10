@@ -5,6 +5,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Iterator that contains all the cells of matter for the rule that use it.
+ */
 public class GridRuleIterator implements Iterator {
     private final List<GridCell> cells;
     private int actualIndex = -1;

@@ -5,6 +5,13 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import java.util.List;
 
+/**
+ * A rule that must be satisfied within the game grid.
+ * Used Template Method pattern.
+ * The concrete rules must know how to iterate over the cells. For example, a RowRule would
+ * iterate all the cells of a row and check if the goal is fulfilled.
+ * @param <T> The type supported by the rule operation to perform.
+ */
 public abstract class GridRule<T> {
     private final GridRuleOperation<T> operation;
     private T goal;
