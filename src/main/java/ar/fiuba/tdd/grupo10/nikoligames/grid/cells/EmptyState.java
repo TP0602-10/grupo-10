@@ -1,5 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
+/**
+ * State of an empty cell.
+ * When content is setted, the cell state changes to Filled{@link FilledState}.
+ */
 public class EmptyState implements CellState {
 
     @Override

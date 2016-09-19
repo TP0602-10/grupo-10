@@ -1,5 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
+/**
+ * State of a filled cell.
+ * When its content is cleared, the cell state changes to Empty{@link EmptyState}.
+ */
 public class FilledState implements CellState {
     private CellContent content;
 
