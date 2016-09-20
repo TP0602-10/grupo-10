@@ -3,6 +3,9 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Helper for simplifying the common operations of generic lists.
+ */
 public class ListsHelper {
     public static boolean equals(List<?> list1, List<?> list2) {
         return list1.size() == list2.size()

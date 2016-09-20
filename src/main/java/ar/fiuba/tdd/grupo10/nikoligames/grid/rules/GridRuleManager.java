@@ -9,6 +9,7 @@ import java.util.Collection;
 
 /**
  * Used Observer pattern. Verify all the specified rules on any grid update.
+ * Handle all the logic associated to the game rules.
  */
 public class GridRuleManager implements OnGridUpdatedObserver {
     private Collection<GridRule<?>> rules;

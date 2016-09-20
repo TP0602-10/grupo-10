@@ -8,6 +8,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorHelper;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Rule operation that checks if all the cells of matter for the rule are distinct between them.
+ * It uses the generic Object#equals() so it may not know the actual content type of the cell.
+ */
 public class DistinctOperation implements GridRuleOperation<Boolean> {
 
     @Override

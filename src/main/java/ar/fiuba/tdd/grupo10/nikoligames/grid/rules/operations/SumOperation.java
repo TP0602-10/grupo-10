@@ -3,6 +3,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
+/**
+ * Rule operation that returns the sum of all the content cells.
+ * Content cells evaluated must be Integer and the operation result is Integer as well.
+ */
 public class SumOperation implements GridRuleOperation<Integer> {
 
     @Override

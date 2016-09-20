@@ -5,6 +5,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 
 import java.util.List;
 
+/**
+ * Equals rule that iterate over a specified row to apply conditions.
+ * @param <T> Type of the rule operation result.
+ */
 public class RowEqualsRule<T> extends EqualsRule<T> {
     private final int rowNumber;
 
