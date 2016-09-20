@@ -2,6 +2,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
 import com.sun.istack.internal.NotNull;
 
+import java.util.Objects;
+
 /**
  * Content of a grid cell.
  * Works as a container for generic values.
@@ -23,4 +25,16 @@ public class CellContent<T> {
         this.value = value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CellContent<?> that = (CellContent<?>) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }
