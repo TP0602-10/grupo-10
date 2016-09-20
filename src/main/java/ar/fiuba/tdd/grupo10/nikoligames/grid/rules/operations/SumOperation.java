@@ -10,12 +10,18 @@ public class SumOperation implements GridRuleOperation<Integer> {
         Integer accSum = 0;
         while (iterator.hasNext()) {
             GridCell cell = iterator.next();
-            if (cell.getContent() != null
-                    && cell.getContent().getValue() instanceof Integer) {
+            if (isApplicableOn(cell)) {
                 accSum += (Integer) cell.getContent().getValue();
             }
         }
         return accSum;
+    }
+
+    @Override
+    public boolean isApplicableOn(GridCell cell) {
+        return cell.areRulesApplicable()
+                && cell.getContent() != null
+                && cell.getContent().getValue() instanceof Integer;
     }
 
     @Override

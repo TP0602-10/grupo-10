@@ -14,6 +14,6 @@ public interface CellState {
 
     void clearContent(GridCell cell);
 
-    boolean isRuleApplicable(GridRule rule);
+    boolean areRulesApplicable();
 
 }

@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
-
 /**
  * State of a filled cell.
  * When its content is cleared, the cell state changes to Empty{@link EmptyState}.
@@ -30,7 +28,7 @@ public class FilledState implements CellState {
     }
 
     @Override
-    public boolean isRuleApplicable(GridRule rule) {
+    public boolean areRulesApplicable() {
         return true;
     }
 }

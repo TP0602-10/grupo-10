@@ -1,13 +1,26 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
+import com.sun.istack.internal.NotNull;
+
 /**
- * Generic content for a grid cell.
+ * Content of a grid cell.
+ * Works as a container for generic values.
+ * Value cannot be null! Set the CellContent as null for this purpose instead.
  * @param <T> Type of the content that the cell can have
  */
-public interface CellContent<T> {
+public class CellContent<T> {
+    private T value;
 
-    T getValue();
+    public CellContent(@NotNull T value) {
+        this.value = value;
+    }
 
-    void setValue(T value);
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(@NotNull T value) {
+        this.value = value;
+    }
 
 }

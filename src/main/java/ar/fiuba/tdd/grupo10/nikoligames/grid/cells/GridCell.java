@@ -28,5 +28,9 @@ public abstract class GridCell {
         cellState.clearContent(this);
     }
 
+    public boolean areRulesApplicable() {
+        return cellState.areRulesApplicable();
+    }
+
     public abstract boolean isContentEditable();
 }
