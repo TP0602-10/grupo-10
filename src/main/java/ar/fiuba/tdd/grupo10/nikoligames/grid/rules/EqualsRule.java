@@ -2,10 +2,9 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 
-public class EqualsRowRule<T> extends RowRule<T> {
-
-    public EqualsRowRule(GridRuleOperation<T> operation, T goal, int rowNumber) {
-        super(operation, goal, rowNumber);
+public abstract class EqualsRule<T> extends GridRule<T> {
+    public EqualsRule(GridRuleOperation<T> operation, T goal) {
+        super(operation, goal);
     }
 
     @Override

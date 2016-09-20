@@ -5,10 +5,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 
 import java.util.List;
 
-public abstract class RowRule<T> extends GridRule<T> {
+public class RowEqualsRule<T> extends EqualsRule<T> {
     private final int rowNumber;
 
-    public RowRule(GridRuleOperation<T> operation, T goal, int rowNumber) {
+    public RowEqualsRule(GridRuleOperation<T> operation, T goal, int rowNumber) {
         super(operation, goal);
         this.rowNumber = rowNumber;
     }

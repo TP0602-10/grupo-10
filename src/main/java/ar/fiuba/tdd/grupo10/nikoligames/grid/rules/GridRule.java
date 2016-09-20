@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * A rule that must be satisfied within the game grid.
  * Used Template Method pattern.
- * The concrete rules must know how to iterate over the cells. For example, a RowRule would
+ * The concrete rules must know how to iterate over the cells. For example, a RowEqualsRule would
  * iterate all the cells of a row and check if the goal is fulfilled.
  * @param <T> The type of the result expected by the rule operation to compare it with the goal.
  */
