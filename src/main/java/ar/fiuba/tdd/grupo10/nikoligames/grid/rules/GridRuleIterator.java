@@ -27,7 +27,7 @@ public class GridRuleIterator implements Iterator {
     }
 
     @Override
-    public Object next() {
+    public GridCell next() {
         actualIndex++;
         return cells.get(actualIndex);
     }
