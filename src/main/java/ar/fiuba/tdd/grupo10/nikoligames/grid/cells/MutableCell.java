@@ -14,8 +14,4 @@ public class MutableCell extends GridCell {
         return true;
     }
 
-    @Override
-    public boolean areRulesApplicable() {
-        return true;
-    }
 }

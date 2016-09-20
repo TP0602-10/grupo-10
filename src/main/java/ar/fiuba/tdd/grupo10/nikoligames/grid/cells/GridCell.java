@@ -29,6 +29,4 @@ public abstract class GridCell {
     }
 
     public abstract boolean isContentEditable();
-
-    public abstract boolean areRulesApplicable();
 }

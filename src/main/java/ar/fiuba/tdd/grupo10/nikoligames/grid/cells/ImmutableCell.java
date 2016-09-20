@@ -13,9 +13,4 @@ public class ImmutableCell extends GridCell {
     public boolean isContentEditable() {
         return false;
     }
-
-    @Override
-    public boolean areRulesApplicable() {
-        return true;
-    }
 }
