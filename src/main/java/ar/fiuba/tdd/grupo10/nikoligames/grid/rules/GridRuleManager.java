@@ -41,4 +41,5 @@ public class GridRuleManager implements OnGridUpdatedObserver {
             }
         );
     }
+
 }
