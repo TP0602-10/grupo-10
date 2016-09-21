@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class DistinctOperation implements GridRuleOperation<Boolean> {
 
     @Override
-    public Boolean perform(GridRuleIterator iterator) {
+    public Boolean perform(GridRuleIterator iterator, Object... params) {
         List<GridCell> cellsToEvaluate = getAllCellsToEvaluate(iterator);
         return areAllCellsDistinct(cellsToEvaluate);
     }

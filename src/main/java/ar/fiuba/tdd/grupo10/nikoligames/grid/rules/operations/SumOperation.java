@@ -10,7 +10,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 public class SumOperation implements GridRuleOperation<Integer> {
 
     @Override
-    public java.lang.Integer perform(GridRuleIterator iterator) {
+    public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
         Integer accSum = 0;
         while (iterator.hasNext()) {
             GridCell cell = iterator.next();
