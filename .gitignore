@@ -1,5 +1,5 @@
 *.class
-libraries/
+.idea/libraries/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
