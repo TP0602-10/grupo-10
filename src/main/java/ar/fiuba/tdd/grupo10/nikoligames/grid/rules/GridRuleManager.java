@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.GameGrid;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     }
 
     @Override
-    public void onGridUpdated(GameGrid grid) {
+    public void onGridUpdated(Grid grid) {
         this.rules.forEach(rule -> {
                 try {
                     rule.verifyRule();

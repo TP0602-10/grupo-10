@@ -9,41 +9,41 @@ import java.util.List;
 /**
  * Builder for making the game grid setting easier.
  */
-public class GameGridBuilder {
+public class GridBuilder {
     private int rows;
     private int columns;
     private List<GridCell> cells = new ArrayList<>();
 
-    public GameGridBuilder() {}
+    public GridBuilder() {}
 
-    public GameGridBuilder setRows(int rows) {
+    public GridBuilder setRows(int rows) {
         this.rows = rows;
         return this;
     }
 
-    public GameGridBuilder setColumns(int columns) {
+    public GridBuilder setColumns(int columns) {
         this.columns = columns;
         return this;
     }
 
-    public GameGridBuilder setCells(List<GridCell> cells) {
+    public GridBuilder setCells(List<GridCell> cells) {
         this.cells = cells;
         return this;
     }
 
-    public GameGridBuilder addCell(GridCell cell) {
+    public GridBuilder addCell(GridCell cell) {
         this.cells.add(cell);
         return this;
     }
 
-    public GameGrid buildGrid() {
+    public Grid buildGrid() {
         try {
             validateDimensions();
         } catch (WrongNumberOfGridCellsException e) {
             // TODO: 18/09/16 Decide what to do in this case.
         }
         List<List<GridCell>> grid = buildCellGridFromCellFlattenList();
-        return new GameGrid(grid);
+        return new Grid(grid);
     }
 
     private void validateDimensions() throws WrongNumberOfGridCellsException {

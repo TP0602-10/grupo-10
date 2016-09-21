@@ -10,15 +10,15 @@ import java.util.List;
  * Game main board. It contains cells organized by rows and columns.
  * Used Observable pattern. It can subscribe to new observers and notify them when a change it is made on the grid.
  */
-public class GameGrid {
+public class Grid {
     private final List<List<GridCell>> cells;
     private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
 
-    public GameGrid(List<List<GridCell>> cells) {
+    public Grid(List<List<GridCell>> cells) {
         this.cells = cells;
     }
 
-    public GameGrid(List<List<GridCell>> cells, Collection<OnGridUpdatedObserver> observers) {
+    public Grid(List<List<GridCell>> cells, Collection<OnGridUpdatedObserver> observers) {
         this.cells = cells;
         this.observers = observers;
     }
