@@ -15,10 +15,12 @@ import java.util.List;
  * @param <T> The type of the result expected by the rule operation to compare it with the goal.
  */
 public abstract class GridRule<T> {
+    private final GridRuleIterator iterator;
     private final GridRuleOperation<T> operation;
     private T goal;
 
-    public GridRule(GridRuleOperation<T> operation, T goal) {
+    public GridRule(GridRuleIterator iterator, GridRuleOperation<T> operation, T goal) {
+        this.iterator = iterator;
         this.operation = operation;
         this.goal = goal;
     }
@@ -35,25 +37,24 @@ public abstract class GridRule<T> {
         this.goal = goal;
     }
 
-    public void verifyRule(List<List<GridCell>> cells) throws RuleNotSatisfiedException {
-        GridRuleIterator iterator = getRuleIterator(cells);
+    public void verifyRule() throws RuleNotSatisfiedException {
         T operationResult = this.operation.perform(iterator);
         if ( !doesOperationResultMatchesWithRuleGoal(operationResult) ) {
             throw new RuleNotSatisfiedException(getRuleExplanation());
         }
     }
 
-    protected abstract GridRuleIterator getRuleIterator(List<List<GridCell>> cells);
+    public GridRuleIterator getRuleIterator() {
+        return this.iterator;
+    }
 
     protected abstract boolean doesOperationResultMatchesWithRuleGoal(T result);
 
     private String getRuleExplanation() {
-        return getCellsInvolvedExplanation()
+        return iterator.getCellsInvolvedExplanation()
                 + " " + operation.getOperationExplanation()
                 + " " + getResultExpectedExplanation();
     }
-
-    protected abstract String getCellsInvolvedExplanation();
 
     protected abstract String getResultExpectedExplanation();
 }

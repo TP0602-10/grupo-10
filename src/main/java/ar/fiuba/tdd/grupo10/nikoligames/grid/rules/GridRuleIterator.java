@@ -10,10 +10,12 @@ import java.util.List;
  */
 public class GridRuleIterator implements Iterator {
     private final List<GridCell> cells;
+    private final String explanation;
     private int actualIndex = -1;
 
-    public GridRuleIterator(List<GridCell> cells) {
+    public GridRuleIterator(List<GridCell> cells, String explanation) {
         this.cells = cells;
+        this.explanation = explanation;
     }
 
     @Override
@@ -30,5 +32,9 @@ public class GridRuleIterator implements Iterator {
     public GridCell next() {
         actualIndex++;
         return cells.get(actualIndex);
+    }
+
+    public String getCellsInvolvedExplanation() {
+        return this.explanation;
     }
 }

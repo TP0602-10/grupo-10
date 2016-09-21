@@ -7,8 +7,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
  * @param <T> Type of the rule operation result.
  */
 public abstract class EqualsRule<T> extends GridRule<T> {
-    public EqualsRule(GridRuleOperation<T> operation, T goal) {
-        super(operation, goal);
+    public EqualsRule(GridRuleIterator iterator, GridRuleOperation<T> operation, T goal) {
+        super(iterator, operation, goal);
     }
 
     @Override

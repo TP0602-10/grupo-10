@@ -34,7 +34,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     public void onGridUpdated(GameGrid grid) {
         this.rules.forEach(rule -> {
                 try {
-                    rule.verifyRule(grid.getCells());
+                    rule.verifyRule();
                 } catch (RuleNotSatisfiedException e) {
                     // TODO: 18/09/16 Decide what to do here.
                 }
