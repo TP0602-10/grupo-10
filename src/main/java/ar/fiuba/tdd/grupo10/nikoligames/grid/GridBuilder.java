@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsExcepti
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public class GridBuilder {
     private int rows;
     private int columns;
     private List<GridCell> cells = new ArrayList<>();
+    private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
 
     public GridBuilder() {}
 
@@ -26,13 +28,23 @@ public class GridBuilder {
         return this;
     }
 
-    public GridBuilder setCells(List<GridCell> cells) {
-        this.cells = cells;
+    public GridBuilder addCells(List<GridCell> cells) {
+        this.cells.addAll(cells);
         return this;
     }
 
     public GridBuilder addCell(GridCell cell) {
         this.cells.add(cell);
+        return this;
+    }
+
+    public GridBuilder addObservers(Collection<OnGridUpdatedObserver> observers) {
+        this.observers.addAll(observers);
+        return this;
+    }
+
+    public GridBuilder addObserver(OnGridUpdatedObserver observer) {
+        this.observers.add(observer);
         return this;
     }
 
