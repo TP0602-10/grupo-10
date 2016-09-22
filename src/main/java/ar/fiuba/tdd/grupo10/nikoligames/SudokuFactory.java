@@ -73,7 +73,8 @@ public class SudokuFactory {
                 GridRuleIteratorFactory.iteratorsForAllCellBlocks(grid, ROW_DIVISIONS, COLUMN_DIVISIONS);
         List<GridRuleIterator> allIterators =
                 ListHelper.merge(
-                        ListHelper.merge(iteratorsForAllRows, iteratorsForAllColumns), iteratorsForAllCellBlocks
+                        ListHelper.merge(iteratorsForAllRows, iteratorsForAllColumns),
+                        iteratorsForAllCellBlocks
                 );
         allIterators.forEach(i -> sudokuRules.add(new EqualsRule<>(i, distinctOperation, Boolean.TRUE)));
         return sudokuRules;
