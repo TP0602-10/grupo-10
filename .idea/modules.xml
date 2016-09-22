@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/nikoli-games.iml" filepath="$PROJECT_DIR$/.idea/modules/nikoli-games.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nikoli-games_main.iml" filepath="$PROJECT_DIR$/.idea/modules/nikoli-games_main.iml" group="template" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nikoli-games_test.iml" filepath="$PROJECT_DIR$/.idea/modules/nikoli-games_test.iml" group="template" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nikoli-games_main.iml" filepath="$PROJECT_DIR$/.idea/modules/nikoli-games_main.iml" group="nikoli-games" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nikoli-games_test.iml" filepath="$PROJECT_DIR$/.idea/modules/nikoli-games_test.iml" group="nikoli-games" />
     </modules>
   </component>
 </project>
