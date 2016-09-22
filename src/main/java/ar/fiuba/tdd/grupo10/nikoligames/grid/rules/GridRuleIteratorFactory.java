@@ -48,7 +48,8 @@ public class GridRuleIteratorFactory {
         return new GridRuleIterator(column, "Iterate over the column " + columnNumber);
     }
 
-    public static GridRuleIterator iteratorForCellBlock(List<List<GridCell>> grid, int startRow, int startColumn, int endRow, int endColumn) {
+    public static GridRuleIterator iteratorForCellBlock(List<List<GridCell>> grid, int startRow,
+                                                        int startColumn, int endRow, int endColumn) {
         List<GridCell> cellBlock = new ArrayList<>();
         for (int r = startRow; r < endRow; r++) {
             for (int c = startColumn; c < endColumn; c++) {
