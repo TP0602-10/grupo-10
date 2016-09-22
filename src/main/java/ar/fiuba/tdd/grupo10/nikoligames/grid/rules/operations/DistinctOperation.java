@@ -3,7 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorHelper;
-import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListsHelper;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,9 +37,9 @@ public class DistinctOperation implements GridRuleOperation<Boolean> {
     }
 
     private boolean areAllCellsDistinct(List<GridCell> allCells) {
-        return ListsHelper.equals(
+        return ListHelper.equals(
                 allCells,
-                ListsHelper.rejectDuplicateElements(allCells)
+                ListHelper.rejectDuplicateElements(allCells)
         );
     }
 }

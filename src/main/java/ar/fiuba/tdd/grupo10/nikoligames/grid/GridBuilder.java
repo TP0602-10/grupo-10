@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,7 +55,7 @@ public class GridBuilder {
         } catch (WrongNumberOfGridCellsException e) {
             // TODO: 18/09/16 Decide what to do in this case.
         }
-        List<List<GridCell>> grid = buildCellGridFromCellFlattenList();
+        List<List<GridCell>> grid = ListHelper.buildMatrixFromFlattenList(cells, rows, columns);
         return new Grid(grid);
     }
 
@@ -62,21 +63,6 @@ public class GridBuilder {
         if (cells.size() != rows * columns) {
             throw new WrongNumberOfGridCellsException("The number of cells must match the grid dimensions: " + rows + "*" + columns);
         }
-    }
-
-    private List<List<GridCell>> buildCellGridFromCellFlattenList() {
-        List<List<GridCell>> grid = new ArrayList<>(rows);
-        int cellsFromListAlreadyAdded = 0;
-        for (int r = 0; r < rows; r++) {
-            List<GridCell> row = new ArrayList<>(columns);
-            int col;
-            for (col = 0; col < columns; col++) {
-                row.add( cells.get(cellsFromListAlreadyAdded + (r + col)) );
-            }
-            grid.add(row);
-            cellsFromListAlreadyAdded += col - 1;
-        }
-        return grid;
     }
 
 }

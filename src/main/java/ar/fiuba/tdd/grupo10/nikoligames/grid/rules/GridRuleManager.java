@@ -12,13 +12,13 @@ import java.util.Collection;
  * Handle all the logic associated to the game rules.
  */
 public class GridRuleManager implements OnGridUpdatedObserver {
-    private Collection<GridRule<?>> rules;
+    private Collection<GridRule> rules;
 
     public GridRuleManager() {
         rules = new ArrayList<>();
     }
 
-    public GridRuleManager(Collection<GridRule<?>> rules) {
+    public GridRuleManager(Collection<GridRule> rules) {
         this.rules = rules;
     }
 

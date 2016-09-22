@@ -6,7 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
  * Rule that checks for equality between operation result and rule goal to know if the rule is satisfied.
  * @param <T> Type of the rule operation result.
  */
-public abstract class EqualsRule<T> extends GridRule<T> {
+public class EqualsRule<T> extends GridRule<T> {
     public EqualsRule(GridRuleIterator iterator, GridRuleOperation<T> operation, T goal) {
         super(iterator, operation, goal);
     }
