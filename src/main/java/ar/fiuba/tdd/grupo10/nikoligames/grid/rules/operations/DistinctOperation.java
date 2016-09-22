@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.ListsHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorHelper;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListsHelper;
 
 import java.util.List;
 import java.util.stream.Collectors;

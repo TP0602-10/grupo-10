@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames;
+package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
 import java.util.List;
 import java.util.stream.Collectors;
