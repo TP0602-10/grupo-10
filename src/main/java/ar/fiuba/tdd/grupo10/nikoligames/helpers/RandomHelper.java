@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Helper for handling operations with random numbers.
+ */
 public class RandomHelper {
 
     public static List<Integer> getRandomNumbersInRange(int cant, int min, int max) {

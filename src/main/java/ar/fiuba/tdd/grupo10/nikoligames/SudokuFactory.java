@@ -16,6 +16,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Factory for creating a new game of Sudoku.
+ * It builds the grid and define the rules.
+ */
 public class SudokuFactory {
 
     private static final int ROWS = 9;
