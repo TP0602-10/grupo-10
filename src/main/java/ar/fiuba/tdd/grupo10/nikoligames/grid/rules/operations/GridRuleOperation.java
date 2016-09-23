@@ -15,6 +15,6 @@ public interface GridRuleOperation<R> {
 
     boolean isApplicableOn(GridCell cell);
 
-    String getOperationExplanation();
+    String getOperationExplanation(R result);
 
 }

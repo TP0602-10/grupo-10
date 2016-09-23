@@ -5,6 +5,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
@@ -67,6 +68,10 @@ public class SudokuFactory {
     private static Collection<GridRule> buildSudokuRules(List<List<GridCell>> grid) {
         Collection<GridRule> sudokuRules = new ArrayList<>();
         final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation();
+        final GridRuleCondition<Boolean> ruleCondition = new GridRuleCondition<>(
+                new EqualsMatcher<>(),
+                Boolean.TRUE
+        );
         List<GridRuleIterator> iteratorsForAllRows = GridRuleIteratorFactory.iteratorsForAllRows(grid);
         List<GridRuleIterator> iteratorsForAllColumns = GridRuleIteratorFactory.iteratorsForAllColumns(grid);
         List<GridRuleIterator> iteratorsForAllCellBlocks =
@@ -76,7 +81,7 @@ public class SudokuFactory {
                         ListHelper.merge(iteratorsForAllRows, iteratorsForAllColumns),
                         iteratorsForAllCellBlocks
                 );
-        allIterators.forEach(i -> sudokuRules.add(new EqualsRule<>(i, distinctOperation, Boolean.TRUE)));
+        allIterators.forEach(i -> sudokuRules.add(new GridRule<>(i, distinctOperation, ruleCondition)));
         return sudokuRules;
     }
 

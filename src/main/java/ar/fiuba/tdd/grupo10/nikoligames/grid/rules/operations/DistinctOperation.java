@@ -27,8 +27,8 @@ public class DistinctOperation implements GridRuleOperation<Boolean> {
     }
 
     @Override
-    public String getOperationExplanation() {
-        return "The operation returns TRUE if all the cells are distinct.";
+    public String getOperationExplanation(Boolean result) {
+        return "The operation returns TRUE if all the cells are distinct. The result is " + result.toString() + ".";
     }
 
     private List<GridCell> getAllCellsToEvaluate(GridRuleIterator iterator) {

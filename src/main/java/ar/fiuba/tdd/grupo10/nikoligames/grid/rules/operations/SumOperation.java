@@ -29,7 +29,7 @@ public class SumOperation implements GridRuleOperation<Integer> {
     }
 
     @Override
-    public String getOperationExplanation() {
-        return "The operation sums all the Integer cells.";
+    public String getOperationExplanation(Integer result) {
+        return "The operation sums all the Integer cells. The result is " + result.toString() + ".";
     }
 }
