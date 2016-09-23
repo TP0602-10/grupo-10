@@ -1,13 +1,11 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellContent;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Rule operation that checks if all the cell contents of matter for the rule are distinct between them.
@@ -23,7 +21,7 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
     public Boolean perform(GridRuleIterator iterator, Object... params) {
         Boolean allDistinct = Boolean.TRUE;
         while (iterator.hasNext()) {
-            GridCell cell = iterator.next();
+            Cell cell = iterator.next();
             if (isApplicableOn(cell)) {
                 allDistinct = areAllContentsDistinct(cell.getContents(getContentTags()));
             }
@@ -35,9 +33,8 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
     }
 
     @Override
-    public boolean isApplicableOn(GridCell cell) {
-        return cell.areRulesApplicable()
-                && ! cell.getContents(getContentTags()).isEmpty();
+    public boolean isApplicableOn(Cell cell) {
+        return ! cell.getContents(getContentTags()).isEmpty();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
         return "The operation returns TRUE if all the cell contents are distinct. The result is " + result.toString() + ".";
     }
 
-    private boolean areAllContentsDistinct(List<CellContent> contents) {
+    private boolean areAllContentsDistinct(List<Content> contents) {
         return ListHelper.equals(
                 contents,
                 ListHelper.rejectDuplicateElements(contents)

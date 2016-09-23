@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class GridRuleIteratorHelper {
 
-    public static List<GridCell> listAllCells(GridRuleIterator iterator) {
-        List<GridCell> allCells = new ArrayList<>();
+    public static List<Cell> listAllCells(GridRuleIterator iterator) {
+        List<Cell> allCells = new ArrayList<>();
         while (iterator.hasNext()) {
-            GridCell cell = iterator.next();
+            Cell cell = iterator.next();
             allCells.add(cell);
         }
         return allCells;

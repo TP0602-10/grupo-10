@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,23 +11,23 @@ import java.util.List;
  * Used Observable pattern. It can subscribe to new observers and notify them when a change it is made on the grid.
  */
 public class Grid {
-    private final List<List<GridCell>> cells;
+    private final List<List<Cell>> cells;
     private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
 
-    public Grid(List<List<GridCell>> cells) {
+    public Grid(List<List<Cell>> cells) {
         this.cells = cells;
     }
 
-    public Grid(List<List<GridCell>> cells, Collection<OnGridUpdatedObserver> observers) {
+    public Grid(List<List<Cell>> cells, Collection<OnGridUpdatedObserver> observers) {
         this.cells = cells;
         this.observers = observers;
     }
 
-    public List<List<GridCell>> getCells() {
+    public List<List<Cell>> getCells() {
         return cells;
     }
 
-    public GridCell getCellAt(int row, int column) {
+    public Cell getCellAt(int row, int column) {
         return this.cells.get(row).get(column);
     }
 

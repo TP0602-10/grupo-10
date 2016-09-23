@@ -1,10 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
-
-import java.util.List;
 
 /**
  * A rule that must be satisfied within the game grid.

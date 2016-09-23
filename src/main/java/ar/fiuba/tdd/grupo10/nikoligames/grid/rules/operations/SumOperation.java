@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class SumOperation extends GridRuleOperation<Integer> {
     public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
         Integer accSum = 0;
         while (iterator.hasNext()) {
-            GridCell cell = iterator.next();
+            Cell cell = iterator.next();
             if (isApplicableOn(cell)) {
                 accSum = sumContentValueToAccumulativeSum(accSum, cell);
             }
@@ -28,9 +28,8 @@ public class SumOperation extends GridRuleOperation<Integer> {
     }
 
     @Override
-    public boolean isApplicableOn(GridCell cell) {
-        return cell.areRulesApplicable()
-                && cell.getContents(getContentTags()).stream().allMatch(content -> content.getValue() instanceof Integer);
+    public boolean isApplicableOn(Cell cell) {
+        return cell.getContents(getContentTags()).stream().allMatch(content -> content.getValue() instanceof Integer);
     }
 
     @Override
@@ -38,13 +37,13 @@ public class SumOperation extends GridRuleOperation<Integer> {
         return "The operation sums all the Integer cell contents. The result is " + result.toString() + ".";
     }
 
-    private Integer sumContentValueToAccumulativeSum(Integer accSum, GridCell cell) {
+    private Integer sumContentValueToAccumulativeSum(Integer accSum, Cell cell) {
         if (getContentTags() != null) {
             for (String tag : getContentTags()) {
                 accSum += (Integer) cell.getContent(tag).getValue();
             }
         } else {
-            accSum += (Integer) cell.getContent().getValue();
+            //accSum += (Integer) cell.getContent().getValue();
         }
         return accSum;
     }

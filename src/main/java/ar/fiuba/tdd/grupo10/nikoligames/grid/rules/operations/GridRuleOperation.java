@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellContent;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public abstract class GridRuleOperation<R> {
 
     public abstract R perform(GridRuleIterator iterator, Object... params);
 
-    public abstract boolean isApplicableOn(GridCell cell);
+    public abstract boolean isApplicableOn(Cell cell);
 
     public abstract String getOperationExplanation(R result);
 
