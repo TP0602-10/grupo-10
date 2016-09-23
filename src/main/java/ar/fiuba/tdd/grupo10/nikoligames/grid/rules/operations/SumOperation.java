@@ -30,8 +30,7 @@ public class SumOperation extends GridRuleOperation<Integer> {
     @Override
     public boolean isApplicableOn(GridCell cell) {
         return cell.areRulesApplicable()
-                && cell.getContent() != null
-                && cell.getContent().getValue() instanceof Integer;
+                && cell.getContents(getContentTags()).stream().allMatch(content -> content.getValue() instanceof Integer);
     }
 
     @Override
