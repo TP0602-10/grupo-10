@@ -3,11 +3,17 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
+import java.util.List;
+
 /**
  * Rule operation that returns the sum of all the content cells.
  * Content cells evaluated must be Integer and the operation result is Integer as well.
  */
-public class SumOperation implements GridRuleOperation<Integer> {
+public class SumOperation extends GridRuleOperation<Integer> {
+
+    public SumOperation(List<String> contentTags) {
+        super(contentTags);
+    }
 
     @Override
     public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
@@ -15,6 +21,7 @@ public class SumOperation implements GridRuleOperation<Integer> {
         while (iterator.hasNext()) {
             GridCell cell = iterator.next();
             if (isApplicableOn(cell)) {
+                getContentTags().stream().forEach(tag -> cell.getContent(tag));
                 accSum += (Integer) cell.getContent().getValue();
             }
         }

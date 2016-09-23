@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
  * Rule operation that checks if all the cells of matter for the rule are distinct between them.
  * It uses the generic Object#equals() so it may not know the actual content type of the cell.
  */
-public class DistinctOperation implements GridRuleOperation<Boolean> {
+public class DistinctOperation extends GridRuleOperation<Boolean> {
+
+    public DistinctOperation(List<String> contentTags) {
+        super(contentTags);
+    }
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
