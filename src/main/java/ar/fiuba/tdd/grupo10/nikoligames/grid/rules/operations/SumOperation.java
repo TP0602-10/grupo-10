@@ -21,8 +21,7 @@ public class SumOperation extends GridRuleOperation<Integer> {
         while (iterator.hasNext()) {
             GridCell cell = iterator.next();
             if (isApplicableOn(cell)) {
-                getContentTags().stream().forEach(tag -> cell.getContent(tag));
-                accSum += (Integer) cell.getContent().getValue();
+                accSum = sumContentValueToAccumulativeSum(accSum, cell);
             }
         }
         return accSum;
@@ -37,6 +36,17 @@ public class SumOperation extends GridRuleOperation<Integer> {
 
     @Override
     public String getOperationExplanation(Integer result) {
-        return "The operation sums all the Integer cells. The result is " + result.toString() + ".";
+        return "The operation sums all the Integer cell contents. The result is " + result.toString() + ".";
+    }
+
+    private Integer sumContentValueToAccumulativeSum(Integer accSum, GridCell cell) {
+        if (getContentTags() != null) {
+            for (String tag : getContentTags()) {
+                accSum += (Integer) cell.getContent(tag).getValue();
+            }
+        } else {
+            accSum += (Integer) cell.getContent().getValue();
+        }
+        return accSum;
     }
 }
