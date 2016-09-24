@@ -12,20 +12,18 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class NikoliView extends JFrame implements Observer {
 
-    private JTable table;
+    private GridView table;
 
     public NikoliView(GridModel gridModel) {
 
         super("Grupo 10 - Nikoli");
         setWindowPreferences();
-        table = new JTable(gridModel);
-        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-        cellRenderer.setHorizontalAlignment( SwingConstants.CENTER );
-        cellRenderer.setBackground(Color.blue);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        table.setGridColor(Color.red);
-        table.setDefaultRenderer(String.class, cellRenderer);
+
+        table = new GridView(gridModel);
         this.add(table);
+
+        // Actualiza la configuracion de la grilla
+        table.updateUI();
     }
 
     private void setWindowPreferences() {

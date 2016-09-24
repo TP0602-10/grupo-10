@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.mvc.model;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -28,11 +30,13 @@ public class GridModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return grid.getCellAt(rowIndex, columnIndex).getContent().getValue();
+
+        CellContent content = grid.getCellAt(rowIndex, columnIndex).getContent();
+        return (content == null? "" : content.getValue());
     }
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        return true;
+        return this.grid.getCellAt(row,col).isContentEditable();
     }
 }
