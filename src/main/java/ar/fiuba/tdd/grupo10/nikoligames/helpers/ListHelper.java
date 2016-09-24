@@ -39,4 +39,12 @@ public class ListHelper {
         }
         return matrix;
     }
+
+    public static <T> List<Integer> createFromRange(int initialValue, int endValue) {
+        List<Integer> theList = new ArrayList<Integer>();
+        for (int i = initialValue; i <= endValue; i++) {
+            theList.add(i);
+        }
+        return theList;
+    }
 }
