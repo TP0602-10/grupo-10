@@ -18,7 +18,7 @@ public class ListHelperTest {
         listOne.add("foo");
 
         ArrayList<String> listTwo = new ArrayList<String>();
-        listOne.add("bar");
+        listTwo.add("bar");
 
         ArrayList<String> expectedList = new ArrayList<String>();
         expectedList.add("foo");
@@ -77,10 +77,10 @@ public class ListHelperTest {
         ArrayList<Integer> firstRow = new ArrayList<Integer>();
         firstRow.add(1);
         firstRow.add(2);
+        expectedMatrix.add(firstRow);
         ArrayList<Integer> secondRow = new ArrayList<Integer>();
         secondRow.add(3);
         secondRow.add(4);
-        expectedMatrix.add(firstRow);
         expectedMatrix.add(secondRow);
 
         assertEquals(expectedMatrix, ListHelper.buildMatrixFromFlattenList(plainList,2,2) );

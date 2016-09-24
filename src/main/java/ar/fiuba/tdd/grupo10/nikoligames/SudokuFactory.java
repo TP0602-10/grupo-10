@@ -10,7 +10,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
-import com.sun.istack.internal.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,18 +30,15 @@ public class SudokuFactory {
     private static final int MIN_CELL_CONTENT = 1;
     private static final int MAX_CELL_CONTENT = 9;
 
-    @Nullable
-    private static List<List<Integer>> backTrackingSudokuConstructor(List<List<Integer>> temporalGrid, int step) {
+    private static List<List<Integer>> backtrackingConstructor(List<List<Integer>> temporalGrid, int step) {
         int rowIndex    = step / ROWS;
         int columnIndex = step % ROWS;
         int rowBlockIndex    = rowIndex - rowIndex % ROW_DIVISIONS;
         int columnBlockIndex = columnIndex - columnIndex % COLUMN_DIVISIONS;
         List<Integer> randomNumbers = ListHelper.createFromRange(MIN_CELL_CONTENT,MAX_CELL_CONTENT);
         Collections.shuffle(randomNumbers);
-        for ( int number : randomNumbers){
+        for ( int number : randomNumbers) {
             boolean checkRow = !temporalGrid.get(rowIndex).contains(number);
-
-
             List<Integer> theColumn = temporalGrid.stream().map(row -> row.get(columnIndex)).collect(Collectors.toList());
             boolean checkColumn = !theColumn.contains(number);
 
@@ -58,7 +54,7 @@ public class SudokuFactory {
             }
             if (checkBlock && checkColumn && checkRow) {
                 temporalGrid.get(rowIndex).set(columnIndex,number);
-                if ( step + 1 >= ROWS*COLUMNS || ( backTrackingSudokuConstructor(temporalGrid, step + 1) != null )) {
+                if ( step + 1 >= ROWS * COLUMNS || ( backtrackingConstructor(temporalGrid, step + 1) != null )) {
                     return temporalGrid;
                 }
             }
@@ -67,7 +63,7 @@ public class SudokuFactory {
         return null;
     }
 
-    public static List<List<Integer>> ConstructorAlgorithm() {
+    public static List<List<Integer>> constructorAlgorithm() {
         List<List<Integer>> temporalGrid = new ArrayList<List<Integer>>();
 
         //TODO: How initializate array of arrays of integers with default values?
@@ -78,7 +74,7 @@ public class SudokuFactory {
             }
             temporalGrid.add( column );
         }
-        return backTrackingSudokuConstructor(temporalGrid,0);
+        return backtrackingConstructor(temporalGrid,0);
     }
 
     public static Grid createFromScratch(int numberOfHints) {
