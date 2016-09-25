@@ -1,20 +1,19 @@
-package ar.fiuba.tdd.grupo10.nikoligames.mvc.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.mvc.model.GridModel;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridModel;
 
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 
 
-public class NikoliView extends JFrame implements Observer {
+public class SudokuView extends JFrame implements Observer {
 
     private GridView table;
 
-    public NikoliView(GridModel gridModel) {
+    public SudokuView(GridModel gridModel) {
 
         super("Grupo 10 - Nikoli");
         setWindowPreferences();

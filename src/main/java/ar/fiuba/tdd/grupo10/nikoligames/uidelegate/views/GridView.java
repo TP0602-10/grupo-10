@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.grupo10.nikoligames.mvc.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import ar.fiuba.tdd.grupo10.nikoligames.mvc.model.GridModel;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridModel;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -16,9 +16,6 @@ public class GridView extends JTable {
 
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-        if (this.getModel().isCellEditable(row, column)) {
-            return super.getCellRenderer(row, column);
-        }
-        return new CellView();
+        return new CellView(this.getModel().isCellEditable(row, column));
     }
 }

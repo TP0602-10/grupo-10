@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.mvc.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -6,8 +6,11 @@ import java.awt.*;
 
 public class CellView extends JLabel implements TableCellRenderer {
 
-    public CellView() {
+    private boolean enabled;
+
+    public CellView(boolean enabled) {
         setOpaque(true);
+        this.enabled = enabled;
     }
 
     @Override
@@ -15,9 +18,9 @@ public class CellView extends JLabel implements TableCellRenderer {
 
         String text = value.toString();
         setText(text);
-        setEnabled(false);
+        setEnabled(this.enabled);
         setHorizontalAlignment(SwingConstants.CENTER);
-        setBackground(Color.lightGray);
+        setBackground(this.enabled ? Color.white : Color.lightGray);
         setForeground(Color.black);
 
         return this;

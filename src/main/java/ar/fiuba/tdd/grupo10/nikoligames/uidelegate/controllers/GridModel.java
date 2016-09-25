@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.mvc.model;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellContent;
@@ -34,5 +34,16 @@ public class GridModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int row, int col) {
         return this.grid.getCellAt(row,col).isContentEditable();
+    }
+
+    @Override
+    public void setValueAt(Object value, int row, int column) {
+        GridCell cell = grid.getCellAt(row, column);
+        if (value != null) {
+            cell.setContent(new CellContent(value));
+        } else {
+            cell.clearContent();
+        }
+        fireTableCellUpdated(row, column);
     }
 }
