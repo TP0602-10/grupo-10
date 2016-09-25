@@ -6,9 +6,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
 
 import javax.swing.table.AbstractTableModel;
 
-/**
- * Created by tinchop on 23/09/16.
- */
 public class GridModel extends AbstractTableModel {
 
     private Grid grid;
@@ -30,9 +27,8 @@ public class GridModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-
         CellContent content = grid.getCellAt(rowIndex, columnIndex).getContent();
-        return (content == null? "" : content.getValue());
+        return (content == null ? "" : content.getValue());
     }
 
     @Override
