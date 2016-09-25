@@ -11,10 +11,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -32,6 +29,53 @@ public class SudokuFactory {
 
     private static final int MIN_CELL_CONTENT = 1;
     private static final int MAX_CELL_CONTENT = 9;
+
+    private static List<List<Integer>> backtrackingConstructor(List<List<Integer>> temporalGrid, int step) {
+        int rowIndex    = step / ROWS;
+        int columnIndex = step % ROWS;
+        int rowBlockIndex    = rowIndex - rowIndex % ROW_DIVISIONS;
+        int columnBlockIndex = columnIndex - columnIndex % COLUMN_DIVISIONS;
+        List<Integer> randomNumbers = ListHelper.createFromRange(MIN_CELL_CONTENT,MAX_CELL_CONTENT);
+        Collections.shuffle(randomNumbers);
+        for ( int number : randomNumbers) {
+            boolean checkRow = !temporalGrid.get(rowIndex).contains(number);
+            List<Integer> theColumn = temporalGrid.stream().map(row -> row.get(columnIndex)).collect(Collectors.toList());
+            boolean checkColumn = !theColumn.contains(number);
+
+            boolean checkBlock = true;
+            //TODO: This is what I could do. It can be with "stream"?
+            List<List<Integer>> actualRowBlock = temporalGrid.subList(rowBlockIndex,rowIndex);
+            for ( List<Integer> column : actualRowBlock ) {
+                List<Integer> actualColumnBlock = column.subList(columnBlockIndex,columnBlockIndex + COLUMN_DIVISIONS);
+                if ( actualColumnBlock.contains(number) ) {
+                    checkBlock = false;
+                    break;
+                }
+            }
+            if (checkBlock && checkColumn && checkRow) {
+                temporalGrid.get(rowIndex).set(columnIndex,number);
+                if ( step + 1 >= ROWS * COLUMNS || ( backtrackingConstructor(temporalGrid, step + 1) != null )) {
+                    return temporalGrid;
+                }
+            }
+        }
+        temporalGrid.get(rowIndex).set(columnIndex,0);
+        return null;
+    }
+
+    public static List<List<Integer>> constructorAlgorithm() {
+        List<List<Integer>> temporalGrid = new ArrayList<List<Integer>>();
+
+        //TODO: How initializate array of arrays of integers with default values?
+        for ( int i = 0; i < ROWS; i++ ) {
+            List<Integer> column = new ArrayList<Integer>();
+            for ( int j = 0; j < COLUMNS; j++ ) {
+                column.add(0);
+            }
+            temporalGrid.add( column );
+        }
+        return backtrackingConstructor(temporalGrid,0);
+    }
 
     public static Grid createFromScratch(int numberOfHints) {
         List<GridCell> cells = generateCellsInGridForm(numberOfHints);
