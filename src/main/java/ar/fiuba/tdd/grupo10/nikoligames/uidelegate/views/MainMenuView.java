@@ -4,10 +4,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class MainMenuView extends JPanel {
     private JComboBox gameCombo;
@@ -37,7 +37,7 @@ public class MainMenuView extends JPanel {
         startButton = new JButton("Jugar");
         startButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
                 if (GameEnum.SUDOKU.equals(game)) {
                     new SudokuController(SudokuFactory.createFromScratch(70));
