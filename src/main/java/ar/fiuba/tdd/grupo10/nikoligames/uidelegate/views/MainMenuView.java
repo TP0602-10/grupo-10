@@ -4,10 +4,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;

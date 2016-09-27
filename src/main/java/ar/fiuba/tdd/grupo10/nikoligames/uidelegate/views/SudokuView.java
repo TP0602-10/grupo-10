@@ -3,8 +3,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridModel;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 
 public class SudokuView extends JFrame {
