@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 public class GridBuilder {
     private int rows;
     private int columns;
-    private List<GridCell> cells = new ArrayList<>();
+    private List<Cell> cells = new ArrayList<>();
     private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
 
     public GridBuilder() {}
@@ -29,12 +29,12 @@ public class GridBuilder {
         return this;
     }
 
-    public GridBuilder addCells(List<GridCell> cells) {
+    public GridBuilder addCells(List<Cell> cells) {
         this.cells.addAll(cells);
         return this;
     }
 
-    public GridBuilder addCell(GridCell cell) {
+    public GridBuilder addCell(Cell cell) {
         this.cells.add(cell);
         return this;
     }
@@ -55,7 +55,7 @@ public class GridBuilder {
         } catch (WrongNumberOfGridCellsException e) {
             // TODO: 18/09/16 Decide what to do in this case.
         }
-        List<List<GridCell>> grid = ListHelper.buildMatrixFromFlattenList(cells, rows, columns);
+        List<List<Cell>> grid = ListHelper.buildMatrixFromFlattenList(cells, rows, columns);
         return new Grid(grid);
     }
 

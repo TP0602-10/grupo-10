@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
@@ -78,38 +79,38 @@ public class SudokuFactory {
     }
 
     public static Grid createFromScratch(int numberOfHints) {
-        List<GridCell> cells = generateCellsInGridForm(numberOfHints);
+        List<Cell> cells = generateCellsInGridForm(numberOfHints);
         OnGridUpdatedObserver observer = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
         return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(observer).buildGrid();
     }
 
-    private static List<GridCell> generateCellsInGridForm(int numberOfHints) {
-        List<GridCell> hintCells = generateHintCells(numberOfHints);
-        List<GridCell> emptyCells = generateEmptyCells(TOTAL_CELLS - numberOfHints);
-        List<GridCell> allCells = ListHelper.merge(hintCells, emptyCells);
+    private static List<Cell> generateCellsInGridForm(int numberOfHints) {
+        List<Cell> hintCells = generateHintCells(numberOfHints);
+        List<Cell> emptyCells = generateEmptyCells(TOTAL_CELLS - numberOfHints);
+        List<Cell> allCells = ListHelper.merge(hintCells, emptyCells);
         Collections.shuffle(allCells);  // Random sort
         return allCells;
     }
 
-    private static GridRuleManager createSudokuRuleManager(List<List<GridCell>> grid) {
+    private static GridRuleManager createSudokuRuleManager(List<List<Cell>> grid) {
         Collection<GridRule> sudokuRules = buildSudokuRules(grid);
         return new GridRuleManager(sudokuRules);
     }
 
-    private static List<GridCell> generateHintCells(int numberOfHints) {
+    private static List<Cell> generateHintCells(int numberOfHints) {
         List<Integer> hints = RandomHelper.getRandomNumbersInRange(numberOfHints, MIN_CELL_CONTENT, MAX_CELL_CONTENT);
         return hints.stream().map(SudokuFactory::createHintCell).collect(Collectors.toList());
     }
 
-    private static List<GridCell> generateEmptyCells(int cant) {
-        List<GridCell> emptyCells = new ArrayList<>();
+    private static List<Cell> generateEmptyCells(int cant) {
+        List<Cell> emptyCells = new ArrayList<>();
         for (int i = 0; i < cant; i++) {
             emptyCells.add(createEmptyCell());
         }
         return emptyCells;
     }
 
-    private static Collection<GridRule> buildSudokuRules(List<List<GridCell>> grid) {
+    private static Collection<GridRule> buildSudokuRules(List<List<Cell>> grid) {
         Collection<GridRule> sudokuRules = new ArrayList<>();
         final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation();
         final GridRuleCondition<Boolean> ruleCondition = new GridRuleCondition<>(
@@ -130,10 +131,11 @@ public class SudokuFactory {
     }
 
     private static ImmutableCell createHintCell(Integer value) {
-        return new ImmutableCell(new FilledState(new CellContent<>(value)));
+        //TODO: add tag
+        return new ImmutableCell(new ImmutableContent(value,"tag"));
     }
 
     private static MutableCell createEmptyCell() {
-        return new MutableCell(new EmptyState());
+        return new MutableCell();
     }
 }
