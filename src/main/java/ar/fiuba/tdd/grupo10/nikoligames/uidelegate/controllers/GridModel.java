@@ -38,7 +38,11 @@ public class GridModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object value, int row, int column) {
+        boolean valueIsEmpty = value.toString().isEmpty();
         GridCell cell = grid.getCellAt(row, column);
+        if (valueIsEmpty) {
+            value = null;
+        }
         if (value != null) {
             cell.setContent(new CellContent(value));
         } else {

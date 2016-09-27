@@ -2,9 +2,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridModel;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+
 
 public class GridView extends JTable {
 

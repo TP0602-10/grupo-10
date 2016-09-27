@@ -1,8 +1,10 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+
+
 
 public class CellView extends JLabel implements TableCellRenderer {
 
