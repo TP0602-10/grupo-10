@@ -19,9 +19,7 @@ public class MainMenuView extends JFrame {
 
     public MainMenuView() {
         gameCombo = createGameCombo();
-
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
         setContentPane(createMainPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -73,14 +71,14 @@ public class MainMenuView extends JFrame {
                 if (GameEnum.SUDOKU.equals(game)) {
                     new SudokuController(SudokuFactory.createFromScratch(70));
                 } else if (GameEnum.KAKURO.equals(game)) {
-                    showGameUnavailableDialog();
+                    showUnavailableGameDialog();
                 }
             }
         });
         return startButton;
     }
 
-    private void showGameUnavailableDialog() {
+    private void showUnavailableGameDialog() {
         JOptionPane.showMessageDialog(this,
                 "Juego no disponible.",
                 "Nikoli Games",
