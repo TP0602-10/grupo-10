@@ -56,7 +56,7 @@ public class GridBuilder {
             // TODO: 18/09/16 Decide what to do in this case.
         }
         List<List<GridCell>> grid = ListHelper.buildMatrixFromFlattenList(cells, rows, columns);
-        return new Grid(grid);
+        return new Grid(grid, observers);
     }
 
     private void validateDimensions() throws WrongNumberOfGridCellsException {
