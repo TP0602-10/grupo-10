@@ -49,5 +49,6 @@ public class GridModel extends AbstractTableModel {
             cell.clearContent();
         }
         fireTableCellUpdated(row, column);
+        grid.notifyGridUpdated();
     }
 }
