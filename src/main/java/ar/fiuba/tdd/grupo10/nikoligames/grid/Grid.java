@@ -12,11 +12,7 @@ import java.util.List;
  */
 public class Grid {
     private final List<List<Cell>> cells;
-    private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
-
-    public Grid(List<List<Cell>> cells) {
-        this.cells = cells;
-    }
+    private Collection<OnGridUpdatedObserver> observers;
 
     public Grid(List<List<Cell>> cells, Collection<OnGridUpdatedObserver> observers) {
         this.cells = cells;
