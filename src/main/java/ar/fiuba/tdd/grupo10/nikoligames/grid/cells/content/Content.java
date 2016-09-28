@@ -17,7 +17,6 @@ public interface Content<T> {
 
     boolean isValueEditable();
 
-    //TODO: [Tomi-Sep27] Why is boolean? If it is clean-empty, it can be cleaned (the method does nothing).
     boolean clearValue();
 
     boolean isEmpty();
