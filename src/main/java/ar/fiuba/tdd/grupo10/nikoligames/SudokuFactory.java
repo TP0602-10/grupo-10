@@ -33,7 +33,7 @@ public class SudokuFactory {
     private static final int MIN_CELL_CONTENT = 1;
     private static final int MAX_CELL_CONTENT = 9;
 
-    private static final String globalTag = "tag";
+    private static final String GLOBAL_TAG = "Tag";
 
     private static boolean checkInsertNumberInTemporalGrid(List<List<Integer>> temporalGrid,
                                                            int number, int rowIndex, int colIndex,
@@ -44,9 +44,8 @@ public class SudokuFactory {
                 .collect(Collectors.toList())
                 .contains(number);
 
-        //TODO: [Tomi] This is what I could do. It can be with "stream"?
         List<List<Integer>> actualRowsBlock = temporalGrid.subList(rowBlockIndex,rowIndex);
-        List<Integer> valuesInActualBlock = new ArrayList<Integer>();
+        List<Integer> valuesInActualBlock = new ArrayList<>();
         for ( List<Integer> column : actualRowsBlock ) {
             valuesInActualBlock.addAll(column.subList(colBlockIndex, colBlockIndex + COLUMN_DIVISIONS));
         }
@@ -56,12 +55,11 @@ public class SudokuFactory {
     }
 
     private static List<List<Integer>> backtrackingConstructor(List<List<Integer>> temporalGrid, int step) {
-        // TODO: This function has more than 20 lines.
         int rowIndex      = step / ROWS;
         int colIndex      = step % ROWS;
         int rowBlockIndex = rowIndex - rowIndex % ROW_DIVISIONS;
         int colBlockIndex = colIndex - colIndex % COLUMN_DIVISIONS;
-        List<Integer> randomNumbers = ListHelper.createFromRange(MIN_CELL_CONTENT,MAX_CELL_CONTENT);
+        List<Integer> randomNumbers = ListHelper.createFromRange(MIN_CELL_CONTENT, MAX_CELL_CONTENT);
         Collections.shuffle(randomNumbers);
         for ( int number : randomNumbers) {
             if ( checkInsertNumberInTemporalGrid(temporalGrid, number,
@@ -76,18 +74,12 @@ public class SudokuFactory {
         return null;
     }
 
-    public static List<List<Integer>> constructorAlgorithm() {
-        List<List<Integer>> temporalGrid = new ArrayList<List<Integer>>();
-
-        //TODO: How initializate array of arrays of integers with default values?
-        for ( int i = 0; i < ROWS; i++ ) {
-            List<Integer> column = new ArrayList<Integer>();
-            for ( int j = 0; j < COLUMNS; j++ ) {
-                column.add(0);
-            }
-            temporalGrid.add( column );
+    private static List<List<Integer>> constructorAlgorithm() {
+        List<List<Integer>> temporalGrid = new ArrayList<>();
+        for (int i = 0; i < ROWS; i++) {
+            temporalGrid.add(new ArrayList<>(Collections.nCopies(COLUMNS, 0)));
         }
-        return backtrackingConstructor(temporalGrid,0);
+        return backtrackingConstructor(temporalGrid, 0);
     }
 
     public static Grid createFromScratch(int numberOfHints) throws WrongNumberOfGridCellsException {
@@ -104,7 +96,7 @@ public class SudokuFactory {
         while ( createdHints < numberOfHints ) {
             int randomRow = RandomHelper.getRandomNumberInRange(0, ROWS - 1);
             if (!selectedHints.containsKey(randomRow)) {
-                selectedHints.put(randomRow, new ArrayList<Integer>());
+                selectedHints.put(randomRow, new ArrayList<>());
             }
 
             int randomCol = RandomHelper.getRandomNumberInRange(0, COLUMNS - 1);
@@ -137,8 +129,8 @@ public class SudokuFactory {
 
     private static Collection<GridRule> buildSudokuRules(List<List<Cell>> grid) {
         Collection<GridRule> sudokuRules = new ArrayList<>();
-        String[] tags = {globalTag};
-        List<String> cellTag = new ArrayList<String>( Arrays.asList(tags) );
+        String[] tags = {GLOBAL_TAG};
+        List<String> cellTag = new ArrayList<>( Arrays.asList(tags) );
         final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation(cellTag);
         final GridRuleCondition<Boolean> ruleCondition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
@@ -158,11 +150,10 @@ public class SudokuFactory {
     }
 
     private static ImmutableCell createHintCell(Integer value) {
-        //TODO: add tag
-        return new ImmutableCell(new ImmutableContent(value,globalTag));
+        return new ImmutableCell(new ImmutableContent<>(value, GLOBAL_TAG));
     }
 
     private static MutableCell createEmptyCell() {
-        return new MutableCell(new MutableContent(null,globalTag));
+        return new MutableCell(new MutableContent<>(null, GLOBAL_TAG));
     }
 }
