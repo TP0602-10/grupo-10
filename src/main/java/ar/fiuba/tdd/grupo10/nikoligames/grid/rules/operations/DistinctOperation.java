@@ -1,45 +1,51 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * Rule operation that checks if all the cells of matter for the rule are distinct between them.
+ * Rule operation that checks if all the cell contents of matter for the rule are distinct between them.
  * It uses the generic Object#equals() so it may not know the actual content type of the cell.
  */
-public class DistinctOperation implements GridRuleOperation<Boolean> {
+public class DistinctOperation extends GridRuleOperation<Boolean> {
 
-    @Override
-    public Boolean perform(GridRuleIterator iterator, Object... params) {
-        List<GridCell> cellsToEvaluate = getAllCellsToEvaluate(iterator);
-        return areAllCellsDistinct(cellsToEvaluate);
+    public DistinctOperation(List<String> contentTags) {
+        super(contentTags);
     }
 
     @Override
-    public boolean isApplicableOn(GridCell cell) {
-        return cell.areRulesApplicable()
-                && cell.getContent() != null;
+    public Boolean perform(GridRuleIterator iterator, Object... params) {
+        Boolean allDistinct = Boolean.TRUE;
+        while (iterator.hasNext()) {
+            Cell cell = iterator.next();
+            if (isApplicableOn(cell)) {
+                allDistinct = areAllContentsDistinct(cell.getContents(getContentTags()));
+            }
+            if (! allDistinct) {
+                break;
+            }
+        }
+        return allDistinct;
+    }
+
+    @Override
+    public boolean isApplicableOn(Cell cell) {
+        return ! cell.getContents(getContentTags()).isEmpty();
     }
 
     @Override
     public String getOperationExplanation(Boolean result) {
-        return "The operation returns TRUE if all the cells are distinct. The result is " + result.toString() + ".";
+        return "The operation returns TRUE if all the cell contents are distinct. The result is " + result.toString() + ".";
     }
 
-    private List<GridCell> getAllCellsToEvaluate(GridRuleIterator iterator) {
-        return GridRuleIteratorHelper.listAllCells(iterator)
-                .stream().filter(this::isApplicableOn).collect(Collectors.toList());
-    }
-
-    private boolean areAllCellsDistinct(List<GridCell> allCells) {
+    private boolean areAllContentsDistinct(List<Content> contents) {
         return ListHelper.equals(
-                allCells,
-                ListHelper.rejectDuplicateElements(allCells)
+                contents,
+                ListHelper.rejectDuplicateElements(contents)
         );
     }
 }

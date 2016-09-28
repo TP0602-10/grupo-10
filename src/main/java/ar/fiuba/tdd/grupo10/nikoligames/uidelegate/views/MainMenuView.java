@@ -69,7 +69,7 @@ public class MainMenuView extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
                 if (GameEnum.SUDOKU.equals(game)) {
-                    SudokuFactory.createGameFromScratch(70);
+                    new SudokuController(SudokuFactory.createGridFromScratch(15));
                 } else if (GameEnum.KAKURO.equals(game)) {
                     showUnavailableGameDialog();
                 }

@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class GridRuleIteratorFactory {
 
-    public static List<GridRuleIterator> iteratorsForAllRows(List<List<GridCell>> grid) {
+    public static List<GridRuleIterator> iteratorsForAllRows(List<List<Cell>> grid) {
         List<GridRuleIterator> allRows = new ArrayList<>();
         for (int r = 0; r < getNumberOfRows(grid); r++) {
             allRows.add(iteratorForRow(grid, r));
@@ -18,7 +18,7 @@ public class GridRuleIteratorFactory {
         return allRows;
     }
 
-    public static List<GridRuleIterator> iteratorsForAllColumns(List<List<GridCell>> grid) {
+    public static List<GridRuleIterator> iteratorsForAllColumns(List<List<Cell>> grid) {
         List<GridRuleIterator> allColumns = new ArrayList<>();
         for (int c = 0; c < getNumberOfColumns(grid); c++) {
             allColumns.add(iteratorForColumn(grid, c));
@@ -26,7 +26,7 @@ public class GridRuleIteratorFactory {
         return allColumns;
     }
 
-    public static List<GridRuleIterator> iteratorsForAllCellBlocks(List<List<GridCell>> grid, int rowDivisions, int columnsDivisions) {
+    public static List<GridRuleIterator> iteratorsForAllCellBlocks(List<List<Cell>> grid, int rowDivisions, int columnsDivisions) {
         List<GridRuleIterator> allCellBlocks = new ArrayList<>();
         int rowBlockSize = getRowBlockSize(grid, rowDivisions);
         int columnBlockSize = getColumnBlockSize(grid, columnsDivisions);
@@ -38,19 +38,19 @@ public class GridRuleIteratorFactory {
         return allCellBlocks;
     }
 
-    public static GridRuleIterator iteratorForRow(List<List<GridCell>> grid, int rowNumber) {
+    public static GridRuleIterator iteratorForRow(List<List<Cell>> grid, int rowNumber) {
         return new GridRuleIterator(grid.get(rowNumber), "Iterate over the row " + rowNumber);
     }
 
-    public static GridRuleIterator iteratorForColumn(List<List<GridCell>> grid, int columnNumber) {
-        List<GridCell> column = new ArrayList<>();
+    public static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
+        List<Cell> column = new ArrayList<>();
         grid.forEach(row -> column.add(row.get(columnNumber)));
         return new GridRuleIterator(column, "Iterate over the column " + columnNumber);
     }
 
-    public static GridRuleIterator iteratorForCellBlock(List<List<GridCell>> grid, int startRow,
+    public static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
                                                         int startColumn, int endRow, int endColumn) {
-        List<GridCell> cellBlock = new ArrayList<>();
+        List<Cell> cellBlock = new ArrayList<>();
         for (int r = startRow; r < endRow; r++) {
             for (int c = startColumn; c < endColumn; c++) {
                 cellBlock.add(grid.get(r).get(c));
@@ -61,20 +61,20 @@ public class GridRuleIteratorFactory {
                 + endRow + "," + endColumn + "]");
     }
 
-    private static int getNumberOfRows(List<List<GridCell>> grid) {
+    private static int getNumberOfRows(List<List<Cell>> grid) {
         return grid.size();
     }
 
-    private static int getNumberOfColumns(List<List<GridCell>> grid) {
+    private static int getNumberOfColumns(List<List<Cell>> grid) {
         // All rows must have the same size.
         return grid.get(0).size();
     }
 
-    private static int getRowBlockSize(List<List<GridCell>> grid, int rowDivisions) {
+    private static int getRowBlockSize(List<List<Cell>> grid, int rowDivisions) {
         return grid.size() / rowDivisions;
     }
 
-    private static int getColumnBlockSize(List<List<GridCell>> grid, int columnsDivisions) {
+    private static int getColumnBlockSize(List<List<Cell>> grid, int columnsDivisions) {
         // All rows must have the same size.
         return grid.get(0).size() / columnsDivisions;
     }

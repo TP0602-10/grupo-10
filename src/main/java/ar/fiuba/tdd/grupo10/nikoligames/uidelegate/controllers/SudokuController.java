@@ -13,6 +13,7 @@ public class SudokuController implements TableModelListener, OnRuleUnsatisfiedOb
     private SudokuView view;
 
     public SudokuController(Grid grid) {
+        grid.addRuleObserver(this);
         model = new GridModel(grid);
         model.addTableModelListener(this);
         view = new SudokuView(model);

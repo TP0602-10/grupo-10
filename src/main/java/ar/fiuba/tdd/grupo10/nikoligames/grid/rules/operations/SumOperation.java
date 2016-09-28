@@ -1,35 +1,50 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.GridCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
+
+import java.util.List;
 
 /**
  * Rule operation that returns the sum of all the content cells.
  * Content cells evaluated must be Integer and the operation result is Integer as well.
  */
-public class SumOperation implements GridRuleOperation<Integer> {
+public class SumOperation extends GridRuleOperation<Integer> {
+
+    public SumOperation(List<String> contentTags) {
+        super(contentTags);
+    }
 
     @Override
     public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
         Integer accSum = 0;
         while (iterator.hasNext()) {
-            GridCell cell = iterator.next();
+            Cell cell = iterator.next();
             if (isApplicableOn(cell)) {
-                accSum += (Integer) cell.getContent().getValue();
+                accSum = sumContentValueToAccumulativeSum(accSum, cell);
             }
         }
         return accSum;
     }
 
     @Override
-    public boolean isApplicableOn(GridCell cell) {
-        return cell.areRulesApplicable()
-                && cell.getContent() != null
-                && cell.getContent().getValue() instanceof Integer;
+    public boolean isApplicableOn(Cell cell) {
+        return cell.getContents(getContentTags()).stream().allMatch(content -> content.getValue() instanceof Integer);
     }
 
     @Override
     public String getOperationExplanation(Integer result) {
-        return "The operation sums all the Integer cells. The result is " + result.toString() + ".";
+        return "The operation sums all the Integer cell contents. The result is " + result.toString() + ".";
+    }
+
+    private Integer sumContentValueToAccumulativeSum(Integer accSum, Cell cell) {
+        if (getContentTags() != null) {
+            for (String tag : getContentTags()) {
+                accSum += (Integer) cell.getContent(tag).getValue();
+            }
+        } else {
+            //accSum += (Integer) cell.getContent().getValue();
+        }
+        return accSum;
     }
 }
