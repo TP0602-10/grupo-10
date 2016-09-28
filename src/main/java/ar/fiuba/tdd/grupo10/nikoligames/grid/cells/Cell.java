@@ -74,5 +74,4 @@ public abstract class Cell {
         Content content = contents.entrySet().iterator().next().getValue();
         return content.getValue();
     }
-
 }

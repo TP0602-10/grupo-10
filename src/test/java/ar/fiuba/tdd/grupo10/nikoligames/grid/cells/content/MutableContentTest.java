@@ -29,22 +29,36 @@ public class MutableContentTest {
     @Test
     public void isValueEditable() throws Exception {
         MutableContent<Integer> content = new MutableContent<>(1,"value1");
-        assertEquals(content.isValueEditable(),true);
+        assertTrue(content.isValueEditable());
     }
 
     @Test
     public void clearValue() throws Exception {
         MutableContent<Integer> content = new MutableContent<>(1,"value1");
-        assertEquals(content.clearValue(),true);
-        assertEquals(content.isEmpty(),true);
+        assertTrue(content.clearValue());
+        assertTrue(content.isEmpty());
     }
 
     @Test
     public void isEmpty() throws Exception {
         MutableContent<Integer> content = new MutableContent<>(null,"value1");
-        assertEquals(content.isEmpty(),true);
+        assertTrue(content.isEmpty());
         content.setValue(2);
-        assertEquals(content.isEmpty(),false);
+        assertFalse(content.isEmpty());
+    }
+
+    @Test
+    public void equals() throws Exception {
+        MutableContent<Integer> content1 = new MutableContent<>(1,"value1");
+        MutableContent<Integer> content2 = new MutableContent<>(1,"value1");
+        MutableContent<Integer> content3 = new MutableContent<>(1,"value2");
+        MutableContent<Integer> content4 = new MutableContent<>(2,"value1");
+
+        assertTrue(content1.equals(content2));
+
+        assertFalse(content1.equals(content3));
+
+        assertFalse(content2.equals(content4));
     }
 
 }

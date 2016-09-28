@@ -7,17 +7,51 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueExceptio
  * Works as a container for generic values.
  * @param <T> Type of the content.
  */
-public interface Content<T> {
+public abstract class Content<T> {
 
-    T getValue();
+    protected T value;
+    protected String tag;
 
-    void setValue(T value) throws ImmutableContentValueException;
+    public Content(T value, String tag) {
+        this.value = value;
+        this.tag = tag;
+    }
 
-    String getTag();
+    public T getValue() {
+        return value;
+    }
 
-    boolean isValueEditable();
+    public abstract void setValue(T value) throws ImmutableContentValueException;
 
-    boolean clearValue();
+    public String getTag() {
+        return tag;
+    }
 
-    boolean isEmpty();
+    public abstract boolean isValueEditable();
+
+    public abstract boolean clearValue();
+
+    public boolean isEmpty() {
+        return value == null;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Content)) {
+            return false;
+        }
+        Content otherContent = (Content)other;
+        if (tag.equals(otherContent.getTag())) {
+            if (value.equals(otherContent.getValue())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }
