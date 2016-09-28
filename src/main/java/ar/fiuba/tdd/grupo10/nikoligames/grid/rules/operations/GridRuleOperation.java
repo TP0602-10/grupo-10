@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,11 @@ public abstract class GridRuleOperation<R> {
 
     public GridRuleOperation(List<String> contentTags) {
         this.contentTags = contentTags;
+    }
+
+    public GridRuleOperation(String tag) {
+        this.contentTags = new ArrayList<String>();
+        this.contentTags.add(tag);
     }
 
     protected List<String> getContentTags() {

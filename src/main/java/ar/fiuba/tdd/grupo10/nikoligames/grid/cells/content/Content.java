@@ -2,23 +2,56 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
 
+import java.util.Objects;
+
 /**
  * Content of a grid cell.
  * Works as a container for generic values.
  * @param <T> Type of the content.
  */
-public interface Content<T> {
+public abstract class Content<T> {
 
-    T getValue();
+    protected T value;
+    protected String tag;
 
-    void setValue(T value) throws ImmutableContentValueException;
+    public Content(T value, String tag) {
+        this.value = value;
+        this.tag = tag;
+    }
 
-    String getTag();
+    public T getValue() {
+        return value;
+    }
 
-    boolean isValueEditable();
+    public abstract void setValue(T value) throws ImmutableContentValueException;
 
-    //TODO: [Tomi-Sep27] Why is boolean? If it is clean-empty, it can be cleaned (the method does nothing).
-    boolean clearValue();
+    public String getTag() {
+        return tag;
+    }
 
-    boolean isEmpty();
+    public abstract boolean isValueEditable();
+
+    public abstract boolean clearValue();
+
+    public boolean isEmpty() {
+        return value == null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Content<?> content = (Content<?>) obj;
+        return Objects.equals(value, content.value)
+                && Objects.equals(tag, content.tag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, tag);
+    }
 }

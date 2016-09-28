@@ -5,29 +5,15 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueExceptio
 /**
  * Content whose content cannot be changed.
  */
-public class ImmutableContent<T> implements Content<T> {
-
-    private String tag;
-    private T value;
+public class ImmutableContent<T> extends Content<T> {
 
     public ImmutableContent(T value, String tag) {
-        this.value = value;
-        this.tag = tag;
-    }
-
-    @Override
-    public T getValue() {
-        return value;
+        super(value,tag);
     }
 
     @Override
     public void setValue(T value) throws ImmutableContentValueException {
         throw new ImmutableContentValueException("value of content immutable.");
-    }
-
-    @Override
-    public String getTag() {
-        return tag;
     }
 
     @Override
@@ -40,8 +26,4 @@ public class ImmutableContent<T> implements Content<T> {
         return false;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return value == null;
-    }
 }
