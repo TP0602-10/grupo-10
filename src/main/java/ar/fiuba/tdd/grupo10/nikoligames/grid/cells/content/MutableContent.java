@@ -3,12 +3,12 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content;
 /**
  * Content whose content can be changed.
  */
-public class MutableContent<T> implements Content<T>{
+public class MutableContent<T> implements Content<T> {
 
     private T value;
     private String tag;
 
-    public MutableContent(T value, String tag){
+    public MutableContent(T value, String tag) {
         this.value = value;
         this.tag = tag;
     }
@@ -35,7 +35,7 @@ public class MutableContent<T> implements Content<T>{
 
     @Override
     public boolean clearValue() {
-        if (value != null){
+        if (value != null) {
             value = null;
             return true;
         }

@@ -10,7 +10,7 @@ public class ImmutableContent<T> implements Content<T> {
     private String tag;
     private T value;
 
-    public ImmutableContent(T value, String tag){
+    public ImmutableContent(T value, String tag) {
         this.value = value;
         this.tag = tag;
     }

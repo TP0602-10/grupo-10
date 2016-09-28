@@ -4,23 +4,57 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableCellException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.NoFindContentbyTagException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Basic structure of the cell.
  */
-public interface Cell {
+public abstract class Cell {
 
-    List<Content> getAllContent();
+    protected Map<String,Content> contents = new HashMap<>();
 
-    void setContent(Content content) throws ImmutableCellException;
+    public Cell(List<Content> contentsList) {
+        for (Content content : contentsList) {
+            contents.put(content.getTag(), content);
+        }
+    }
 
-    void setValue(Object value,String contentTag) throws ImmutableContentValueException, ImmutableCellException, NoFindContentbyTagException;
+    public Cell(Content content) {
+        this.contents.put(content.getTag(),content);
+    }
 
-    Content getContent(String tag);
+    public List<Content> getAllContent() {
+        return new ArrayList<>(contents.values());
+    }
 
-    List<Content> getContents(List<String> tags);
+    public abstract void setContent(Content content) throws ImmutableCellException;
 
-    boolean isEmpty();
+    public abstract void setValue(Object value,String contentTag) throws ImmutableContentValueException,
+            ImmutableCellException,
+            NoFindContentbyTagException;
+
+    public Content getContent(String tag) {
+        return contents.get(tag);
+    }
+
+    public List<Content> getContents(List<String> tagsList) {
+        List<Content> contentsList = new ArrayList<>();
+        for (String tag : tagsList) {
+            Content content = contents.get(tag);
+            if (content == null) {
+                continue;
+            }
+            contentsList.add(content);
+        }
+        return contentsList;
+    }
+
+    public boolean isEmpty() {
+        return contents.isEmpty();
+    }
 
 }

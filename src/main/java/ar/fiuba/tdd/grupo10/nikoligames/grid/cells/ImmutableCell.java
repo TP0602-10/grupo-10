@@ -11,25 +11,14 @@ import java.util.Map;
 /**
  * Cell whose content cannot be changed.
  */
-public class ImmutableCell implements Cell{
-
-    private Map<String,Content> contents;
+public class ImmutableCell extends Cell{
 
     public ImmutableCell(List<Content> contentsList) {
-        for (Content content : contentsList) {
-            contents.put(content.getTag(), content);
-        }
+        super(contentsList);
     }
 
     public ImmutableCell(Content content) {
-        contents.put(content.getTag(),content);
-    }
-
-    public ImmutableCell(){}
-
-    @Override
-    public List<Content> getAllContent() {
-        return new ArrayList<>(contents.values());
+        super(content);
     }
 
     @Override
@@ -42,24 +31,4 @@ public class ImmutableCell implements Cell{
         throw new ImmutableCellException("Immutable cell");
     }
 
-    @Override
-    public Content getContent(String tag) {
-        return contents.get(tag);
-    }
-
-    @Override
-    public List<Content> getContents(List<String> tagsList) {
-        List<Content> contentsList = new ArrayList<>();
-        for (String aTagsList : tagsList) {
-            Content content = contents.get(aTagsList);
-            if (content == null) continue;
-            contentsList.add(content);
-        }
-        return contentsList;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return contents.isEmpty();
-    }
 }

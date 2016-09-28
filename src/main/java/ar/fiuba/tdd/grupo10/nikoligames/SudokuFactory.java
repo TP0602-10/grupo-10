@@ -5,6 +5,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
@@ -31,36 +32,46 @@ public class SudokuFactory {
     private static final int MIN_CELL_CONTENT = 1;
     private static final int MAX_CELL_CONTENT = 9;
 
+    private static final String globalTag = "tag";
+
+    private static boolean checkInsertNumberInTemporalGrid(List<List<Integer>> temporalGrid,
+                                                           int number, int rowIndex, int colIndex,
+                                                           int rowBlockIndex, int colBlockIndex) {
+        boolean checkRow = !temporalGrid.get(rowIndex).contains(number);
+
+        boolean checkColumn = !temporalGrid.stream().map(row -> row.get(colIndex))
+                .collect(Collectors.toList())
+                .contains(number);
+
+        //TODO: [Tomi] This is what I could do. It can be with "stream"?
+        List<List<Integer>> actualRowsBlock = temporalGrid.subList(rowBlockIndex,rowIndex);
+        List<Integer> valuesInActualBlock = new ArrayList<Integer>();
+        for ( List<Integer> column : actualRowsBlock ) {
+            valuesInActualBlock.addAll(column.subList(colBlockIndex, colBlockIndex + COLUMN_DIVISIONS));
+        }
+        boolean checkBlock = !valuesInActualBlock.contains(number);
+
+        return (checkBlock && checkColumn && checkRow);
+    }
+
     private static List<List<Integer>> backtrackingConstructor(List<List<Integer>> temporalGrid, int step) {
-        int rowIndex    = step / ROWS;
-        int columnIndex = step % ROWS;
-        int rowBlockIndex    = rowIndex - rowIndex % ROW_DIVISIONS;
-        int columnBlockIndex = columnIndex - columnIndex % COLUMN_DIVISIONS;
+        // TODO: This function has more than 20 lines.
+        int rowIndex      = step / ROWS;
+        int colIndex      = step % ROWS;
+        int rowBlockIndex = rowIndex - rowIndex % ROW_DIVISIONS;
+        int colBlockIndex = colIndex - colIndex % COLUMN_DIVISIONS;
         List<Integer> randomNumbers = ListHelper.createFromRange(MIN_CELL_CONTENT,MAX_CELL_CONTENT);
         Collections.shuffle(randomNumbers);
         for ( int number : randomNumbers) {
-            boolean checkRow = !temporalGrid.get(rowIndex).contains(number);
-            List<Integer> theColumn = temporalGrid.stream().map(row -> row.get(columnIndex)).collect(Collectors.toList());
-            boolean checkColumn = !theColumn.contains(number);
-
-            boolean checkBlock = true;
-            //TODO: This is what I could do. It can be with "stream"?
-            List<List<Integer>> actualRowBlock = temporalGrid.subList(rowBlockIndex,rowIndex);
-            for ( List<Integer> column : actualRowBlock ) {
-                List<Integer> actualColumnBlock = column.subList(columnBlockIndex,columnBlockIndex + COLUMN_DIVISIONS);
-                if ( actualColumnBlock.contains(number) ) {
-                    checkBlock = false;
-                    break;
-                }
-            }
-            if (checkBlock && checkColumn && checkRow) {
-                temporalGrid.get(rowIndex).set(columnIndex,number);
+            if ( checkInsertNumberInTemporalGrid(temporalGrid, number,
+                    rowIndex, colIndex, rowBlockIndex, colBlockIndex) ) {
+                temporalGrid.get(rowIndex).set(colIndex,number);
                 if ( step + 1 >= ROWS * COLUMNS || ( backtrackingConstructor(temporalGrid, step + 1) != null )) {
                     return temporalGrid;
                 }
             }
         }
-        temporalGrid.get(rowIndex).set(columnIndex,0);
+        temporalGrid.get(rowIndex).set(colIndex,0);
         return null;
     }
 
@@ -85,10 +96,23 @@ public class SudokuFactory {
     }
 
     private static List<Cell> generateCellsInGridForm(int numberOfHints) {
-        List<Cell> hintCells = generateHintCells(numberOfHints);
-        List<Cell> emptyCells = generateEmptyCells(TOTAL_CELLS - numberOfHints);
-        List<Cell> allCells = ListHelper.merge(hintCells, emptyCells);
-        Collections.shuffle(allCells);  // Random sort
+        List<List<Integer>> solution = constructorAlgorithm();
+        List<Cell> allCells = generateEmptyCells(TOTAL_CELLS);
+        Map<Integer,List<Integer>> selectedHints = new HashMap<>();
+        int createdHints = 0;
+        while ( createdHints < numberOfHints ) {
+            int randomRow = RandomHelper.getRandomNumberInRange(0, ROWS - 1);
+            if (!selectedHints.containsKey(randomRow)) {
+                selectedHints.put(randomRow, new ArrayList<Integer>());
+            }
+
+            int randomCol = RandomHelper.getRandomNumberInRange(0, COLUMNS - 1);
+            if (!selectedHints.get(randomRow).contains(randomCol)) {
+                selectedHints.get(randomRow).add(randomCol);
+                allCells.set((ROWS * randomRow) + randomCol , createHintCell( solution.get(randomRow).get(randomCol) ) );
+                createdHints++;
+            }
+        }
         return allCells;
     }
 
@@ -112,7 +136,9 @@ public class SudokuFactory {
 
     private static Collection<GridRule> buildSudokuRules(List<List<Cell>> grid) {
         Collection<GridRule> sudokuRules = new ArrayList<>();
-        final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation();
+        String[] tags = {globalTag};
+        List<String> cellTag = new ArrayList<String>( Arrays.asList(tags) );
+        final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation(cellTag);
         final GridRuleCondition<Boolean> ruleCondition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
                 Boolean.TRUE
@@ -132,10 +158,10 @@ public class SudokuFactory {
 
     private static ImmutableCell createHintCell(Integer value) {
         //TODO: add tag
-        return new ImmutableCell(new ImmutableContent(value,"tag"));
+        return new ImmutableCell(new ImmutableContent(value,globalTag));
     }
 
     private static MutableCell createEmptyCell() {
-        return new MutableCell();
+        return new MutableCell(new MutableContent(null,globalTag));
     }
 }
