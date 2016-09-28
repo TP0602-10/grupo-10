@@ -7,11 +7,11 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 
 import javax.swing.table.AbstractTableModel;
 
-public class GridModel extends AbstractTableModel {
+public class GridAdapter extends AbstractTableModel {
 
     private Grid grid;
 
-    public GridModel(Grid grid) {
+    public GridAdapter(Grid grid) {
         super();
         this.grid = grid;
     }
@@ -34,8 +34,7 @@ public class GridModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-//        return this.grid.getCellAt(row,col).isContentEditable();
-        return false;
+        return this.grid.getCellAt(row,col).isContentEditable();
     }
 
     @Override

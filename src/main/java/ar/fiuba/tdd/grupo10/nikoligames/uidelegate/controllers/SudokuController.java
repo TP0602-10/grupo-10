@@ -9,12 +9,12 @@ import javax.swing.event.TableModelListener;
 
 public class SudokuController implements TableModelListener, OnRuleUnsatisfiedObserver {
 
-    private GridModel model;
+    private GridAdapter model;
     private SudokuView view;
 
     public SudokuController(Grid grid) {
         grid.addRuleObserver(this);
-        model = new GridModel(grid);
+        model = new GridAdapter(grid);
         model.addTableModelListener(this);
         view = new SudokuView(model);
     }
