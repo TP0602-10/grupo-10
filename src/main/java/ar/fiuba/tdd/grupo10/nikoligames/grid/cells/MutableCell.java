@@ -46,7 +46,10 @@ public class MutableCell extends Cell{
         content.setValue(value);
     }
 
-
+    @Override
+    public boolean isContentEditable() {
+        return true;
+    }
 
 
 }
