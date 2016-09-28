@@ -1,12 +1,13 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.OnRuleUnsatisfiedObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.SudokuView;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-public class SudokuController implements TableModelListener {
+public class SudokuController implements TableModelListener, OnRuleUnsatisfiedObserver {
 
     private GridModel model;
     private SudokuView view;
@@ -22,5 +23,10 @@ public class SudokuController implements TableModelListener {
         //TODO maybe do extra work here, maybe this whole class is unnecessary
         model.toString();
         view.toString();
+    }
+
+    @Override
+    public void onRuleUnsatisfied(String message) {
+        view.updateConsole(message);
     }
 }

@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Used Observer pattern. Verify all the specified rules on any grid update.
@@ -13,6 +14,7 @@ import java.util.Collection;
  */
 public class GridRuleManager implements OnGridUpdatedObserver {
     private Collection<GridRule> rules;
+    private Collection<OnRuleUnsatisfiedObserver> observers = new ArrayList<>();
 
     public GridRuleManager() {
         rules = new ArrayList<>();
@@ -35,10 +37,20 @@ public class GridRuleManager implements OnGridUpdatedObserver {
         this.rules.forEach(rule -> {
                 try {
                     rule.verifyRule();
+                    //TODO remove next line when done testing rules
+                    notifyRuleUnsatisfied(rule.toString() + " satisfecha");
                 } catch (RuleNotSatisfiedException e) {
-                    // TODO: 18/09/16 Decide what to do here.
+                    notifyRuleUnsatisfied(e.getMessage());
                 }
             }
         );
+    }
+
+    public boolean addObserver(OnRuleUnsatisfiedObserver observer) {
+        return this.observers.add(observer);
+    }
+
+    private void notifyRuleUnsatisfied(String message) {
+        this.observers.forEach(o -> o.onRuleUnsatisfied(message));
     }
 }

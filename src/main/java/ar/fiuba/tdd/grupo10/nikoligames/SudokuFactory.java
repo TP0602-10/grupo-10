@@ -10,6 +10,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -81,6 +82,14 @@ public class SudokuFactory {
         List<GridCell> cells = generateCellsInGridForm(numberOfHints);
         OnGridUpdatedObserver observer = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
         return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(observer).buildGrid();
+    }
+
+    public static void createGameFromScratch(int numberOfHints) {
+        List<GridCell> cells = generateCellsInGridForm(numberOfHints);
+        GridRuleManager ruleManager = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
+        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
+        SudokuController controller = new SudokuController(grid);
+        ruleManager.addObserver(controller);
     }
 
     private static List<GridCell> generateCellsInGridForm(int numberOfHints) {
