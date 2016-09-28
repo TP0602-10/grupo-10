@@ -2,6 +2,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
 
+import java.util.Objects;
+
 /**
  * Content of a grid cell.
  * Works as a container for generic values.
@@ -36,22 +38,20 @@ public abstract class Content<T> {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Content)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Content otherContent = (Content)other;
-        if (tag.equals(otherContent.getTag())) {
-            if (value.equals(otherContent.getValue())) {
-                return true;
-            }
-        }
-        return false;
+        Content<?> content = (Content<?>) obj;
+        return Objects.equals(value, content.value)
+                && Objects.equals(tag, content.tag);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(value, tag);
     }
-
 }

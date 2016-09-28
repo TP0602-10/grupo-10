@@ -26,7 +26,7 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
-        List<Content> contentsOfCells = new ArrayList<Content>();
+        List<Content> contentsOfCells = new ArrayList<>();
 
         while (iterator.hasNext()) {
             Cell cell = iterator.next();
@@ -46,7 +46,7 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
     }
 
     private boolean areAllContentsDistinct(List<Content> contents) {
-        List<Object> valuesOfContents = contents.stream().map( c -> c.getValue() ).collect(Collectors.toList());
+        List<Object> valuesOfContents = contents.stream().map(Content::getValue).collect(Collectors.toList());
         return ListHelper.equals(
                 valuesOfContents,
                 ListHelper.rejectDuplicateElements(valuesOfContents)
