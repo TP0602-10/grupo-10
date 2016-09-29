@@ -2,24 +2,20 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleCondition;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIteratorFactory;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.*;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 public class KakuroFactory {
     private static final int ROWS = 9;
@@ -56,121 +52,184 @@ public class KakuroFactory {
         return randomGrid;
     }
 
-    private static List<Cell> generateCellListEasy(){
+    private static List<Cell> generateCellListEasy() {
         List<Cell> returnableList = new ArrayList<>();
-        for (int i = 0; i < TOTAL_CELLS;i++){
+        for (int i = 0; i < TOTAL_CELLS; i++) {
             returnableList.add(createMutableCell(0));
         }
-        returnableList.set(0,createImmutableCell());
-        returnableList.set(1,createImmutableCell());
-        returnableList.set(2,createDownSidedImmutableCell(35));
-        for(int i = 72; i<TOTAL_CELLS;i++){
-            returnableList.set(i,createImmutableCell());
+        returnableList.set(0, createImmutableCell());
+        returnableList.set(1, createImmutableCell());
+        returnableList.set(2, createDownSidedImmutableCell(35));
+        for (int i = 72; i < TOTAL_CELLS; i++) {
+            returnableList.set(i, createImmutableCell());
         }
-        returnableList.set(63,createUpSidedImmutableCell(5));
-        returnableList.set(54,createUpSidedImmutableCell(14));
-        returnableList.set(46,createDoubleSidedImmutableCell(10,6));
-        returnableList.set(37,createUpSidedImmutableCell(28));
-        returnableList.set(27,createUpSidedImmutableCell(5));
-        returnableList.set(18,createUpSidedImmutableCell(20));
-        returnableList.set(10,createDoubleSidedImmutableCell(16,11));
-        returnableList.set(3,createDownSidedImmutableCell(15));
-        returnableList.set(4,createImmutableCell());
-        returnableList.set(5,createImmutableCell());
-        returnableList.set(6,createDownSidedImmutableCell(39));
-        returnableList.set(7,createDownSidedImmutableCell(14));
-        returnableList.set(8,createImmutableCell());
-        returnableList.set(13,createImmutableCell());
-        returnableList.set(14,createUpSidedImmutableCell(12));
-        returnableList.set(17,createImmutableCell());
-        returnableList.set(23,createDownSidedImmutableCell(7));
-        returnableList.set(24,createDoubleSidedImmutableCell(17,12));
-        returnableList.set(26,createImmutableCell());
-        returnableList.set(30,createDoubleSidedImmutableCell(12,15));
-        returnableList.set(34,createImmutableCell());
-        returnableList.set(35,createImmutableCell());
-        returnableList.set(43,createDownSidedImmutableCell(13));
-        returnableList.set(44,createImmutableCell());
-        returnableList.set(50,createDoubleSidedImmutableCell(5,13));
-        returnableList.set(53,createImmutableCell());
-        returnableList.set(57,createImmutableCell());
-        returnableList.set(58,createUpSidedImmutableCell(20));
-        returnableList.set(62,createImmutableCell());
-        returnableList.set(66,createImmutableCell());
-        returnableList.set(67,createUpSidedImmutableCell(16));
-        returnableList.set(70,createImmutableCell());
-        returnableList.set(71,createImmutableCell());
-
-        return returnableList;
-    }
-    private static List<Cell> generateCellListMedium(){
-        List<Cell> returnableList = new ArrayList<>();
-        for (int i = 0; i< TOTAL_CELLS;i++){
-            returnableList.add(createMutableCell(0));
-        }
-        for (int i = 72; i < TOTAL_CELLS;i++){
-            returnableList.set(i,createImmutableCell());
-        }
-        for (int i = 0;i < ROWS;i++){
-            returnableList.set(8+(i*ROWS),createImmutableCell());
-        }
-        returnableList.set(0,createImmutableCell());
-        returnableList.set(1,createImmutableCell());
-        returnableList.set(2,createDownSidedImmutableCell(39));
-        returnableList.set(3,createDownSidedImmutableCell(29));
-        returnableList.set(4,createImmutableCell());
-        returnableList.set(5,createDownSidedImmutableCell(12));
-        returnableList.set(6,createDownSidedImmutableCell(33));
-        returnableList.set(7,createImmutableCell());
-        returnableList.set(9,createImmutableCell());
-        returnableList.set(10,createUpSidedImmutableCell(11));
-        returnableList.set(13,createDoubleSidedImmutableCell(15,4));
-        returnableList.set(16,createImmutableCell());
-        returnableList.set(18,createImmutableCell());
-        returnableList.set(19,createUpSidedImmutableCell(19));
-        returnableList.set(25,createDownSidedImmutableCell(14));
-        returnableList.set(27,createImmutableCell());
-        returnableList.set(28,createDoubleSidedImmutableCell(9,9));
-        returnableList.set(32,createDoubleSidedImmutableCell(16,11));
-        returnableList.set(36,createUpSidedImmutableCell(19));
-        returnableList.set(40,createDoubleSidedImmutableCell(12,3));
-        returnableList.set(45,createUpSidedImmutableCell(16));
-        returnableList.set(48,createDoubleSidedImmutableCell(7,4));
-        returnableList.set(52,createImmutableCell());
-        returnableList.set(54,createImmutableCell());
-        returnableList.set(55,createUpSidedImmutableCell(18));
-        returnableList.set(61,createImmutableCell());
-        returnableList.set(63,createImmutableCell());
-        returnableList.set(64,createUpSidedImmutableCell(9));
-        returnableList.set(67,createUpSidedImmutableCell(7));
-        returnableList.set(70,createImmutableCell());
+        returnableList.set(63, createUpSidedImmutableCell(5));
+        returnableList.set(54, createUpSidedImmutableCell(14));
+        returnableList.set(46, createDoubleSidedImmutableCell(10, 6));
+        returnableList.set(37, createUpSidedImmutableCell(28));
+        returnableList.set(27, createUpSidedImmutableCell(5));
+        returnableList.set(18, createUpSidedImmutableCell(20));
+        returnableList.set(10, createDoubleSidedImmutableCell(16, 11));
+        returnableList.set(3, createDownSidedImmutableCell(15));
+        returnableList.set(4, createImmutableCell());
+        returnableList.set(5, createImmutableCell());
+        returnableList.set(6, createDownSidedImmutableCell(39));
+        returnableList.set(7, createDownSidedImmutableCell(14));
+        returnableList.set(8, createImmutableCell());
+        returnableList.set(13, createImmutableCell());
+        returnableList.set(14, createUpSidedImmutableCell(12));
+        returnableList.set(17, createImmutableCell());
+        returnableList.set(23, createDownSidedImmutableCell(7));
+        returnableList.set(24, createDoubleSidedImmutableCell(17, 12));
+        returnableList.set(26, createImmutableCell());
+        returnableList.set(30, createDoubleSidedImmutableCell(12, 15));
+        returnableList.set(34, createImmutableCell());
+        returnableList.set(35, createImmutableCell());
+        returnableList.set(43, createDownSidedImmutableCell(13));
+        returnableList.set(44, createImmutableCell());
+        returnableList.set(50, createDoubleSidedImmutableCell(5, 13));
+        returnableList.set(53, createImmutableCell());
+        returnableList.set(57, createImmutableCell());
+        returnableList.set(58, createUpSidedImmutableCell(20));
+        returnableList.set(62, createImmutableCell());
+        returnableList.set(66, createImmutableCell());
+        returnableList.set(67, createUpSidedImmutableCell(16));
+        returnableList.set(70, createImmutableCell());
+        returnableList.set(71, createImmutableCell());
 
         return returnableList;
     }
 
-    public static Grid createGrid(int difficulty){
+    private static List<Cell> generateCellListMedium() {
+        List<Cell> returnableList = new ArrayList<>();
+        for (int i = 0; i < TOTAL_CELLS; i++) {
+            returnableList.add(createMutableCell(0));
+        }
+        for (int i = 72; i < TOTAL_CELLS; i++) {
+            returnableList.set(i, createImmutableCell());
+        }
+        for (int i = 0; i < ROWS; i++) {
+            returnableList.set(8 + (i * ROWS), createImmutableCell());
+        }
+        returnableList.set(0, createImmutableCell());
+        returnableList.set(1, createImmutableCell());
+        returnableList.set(2, createDownSidedImmutableCell(39));
+        returnableList.set(3, createDownSidedImmutableCell(29));
+        returnableList.set(4, createImmutableCell());
+        returnableList.set(5, createDownSidedImmutableCell(12));
+        returnableList.set(6, createDownSidedImmutableCell(33));
+        returnableList.set(7, createImmutableCell());
+        returnableList.set(9, createImmutableCell());
+        returnableList.set(10, createUpSidedImmutableCell(11));
+        returnableList.set(13, createDoubleSidedImmutableCell(15, 4));
+        returnableList.set(16, createImmutableCell());
+        returnableList.set(18, createImmutableCell());
+        returnableList.set(19, createUpSidedImmutableCell(19));
+        returnableList.set(25, createDownSidedImmutableCell(14));
+        returnableList.set(27, createImmutableCell());
+        returnableList.set(28, createDoubleSidedImmutableCell(9, 9));
+        returnableList.set(32, createDoubleSidedImmutableCell(16, 11));
+        returnableList.set(36, createUpSidedImmutableCell(19));
+        returnableList.set(40, createDoubleSidedImmutableCell(12, 3));
+        returnableList.set(45, createUpSidedImmutableCell(16));
+        returnableList.set(48, createDoubleSidedImmutableCell(7, 4));
+        returnableList.set(52, createImmutableCell());
+        returnableList.set(54, createImmutableCell());
+        returnableList.set(55, createUpSidedImmutableCell(18));
+        returnableList.set(61, createImmutableCell());
+        returnableList.set(63, createImmutableCell());
+        returnableList.set(64, createUpSidedImmutableCell(9));
+        returnableList.set(67, createUpSidedImmutableCell(7));
+        returnableList.set(70, createImmutableCell());
+
+        return returnableList;
+    }
+
+    public static Grid createGrid(int difficulty) {
         List<Cell> cells = new ArrayList<>();
-        if (difficulty == 1) cells = generateCellListEasy();
-        if (difficulty == 2) cells = generateCellListMedium();
-        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).buildGrid();
+        if (difficulty == 1) {
+            cells = generateCellListEasy();
+        }
+        if (difficulty == 2) {
+            cells = generateCellListMedium();
+        }
+        GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells,ROWS,COLUMNS));
+        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
         return grid;
     }
-    private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid){
+
+    private static GridRuleManager createKakuroRuleManager(List<List<Cell>> grid) {
+        Collection<GridRule> kakuroRules = buildKakuroRules(grid);
+        return new GridRuleManager(kakuroRules);
+    }
+
+    private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid) {
         Collection<GridRule> kakuroRules = new ArrayList<>();
-
+        String[] tags = {kakuroTags};
+        String[] upperTag = {"CompareToRight"};
+        String[] downTag = {"CompareToDown"};
+        List<String> cellTag = new ArrayList<>(Arrays.asList(tags));
+        List<String> upperCellTag = new ArrayList<>(Arrays.asList(upperTag));
+        List<String> downCellTag = new ArrayList<>(Arrays.asList(downTag));
         //iterate over rows and create distinct and sum rules
-        for(int i=0;i<ROWS;i++){
-
+        for (int i = 0; i < ROWS; i++) {
+            List<Cell> row = grid.get(i);
+            int j = 0;
+            while (j < COLUMNS) {
+                Cell element = row.get(j);
+                int startPos;
+                if (element.getContents(upperCellTag).isEmpty()) {
+                    j++;
+                    continue;
+                } else {
+                    j++;
+                    startPos = j;
+                    int goalValue = (int) element.getContent("CompareToRight").getValue();
+                    element = row.get(j);
+                    while (j < COLUMNS && element.isContentEditable()) {
+                        j++;
+                        element = row.get(j);
+                    }
+                    GridRuleIterator subRowIterator = GridRuleIteratorFactory.iteratorForCustomRow(
+                            grid, i, startPos, j);
+                    kakuroRules.add(new GridRule<>(subRowIterator, new DistinctOperation("Number"),
+                            new GridRuleCondition<Boolean>(new EqualsMatcher<>(), Boolean.TRUE)));
+                    kakuroRules.add(new GridRule<>(subRowIterator, new SumOperation("CompareToRight"),
+                            new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
+                }
+            }
         }
 
+        for (int j = 0; j < COLUMNS; j++) {
+            Integer rowIndex = 0;
+            while (rowIndex < ROWS) {
+                int startPos = 0;
+                List<Cell> row = grid.get(rowIndex);
+                Cell element = row.get(j);
+                if (element.getContents(downCellTag).isEmpty()) {
+                    rowIndex++;
+                    continue;
+                } else {
+                    rowIndex++;
+                    startPos = rowIndex;
+                    row = grid.get(rowIndex);
+                    int goalValue = (int) element.getContent("CompareToDown").getValue();
+                    element = row.get(j);
+                    while (rowIndex < ROWS && element.isContentEditable()) {
+                        rowIndex++;
+                        row = grid.get(rowIndex);
+                        element = row.get(j);
+                    }
+                    GridRuleIterator subColumnIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, j,
+                            startPos, rowIndex);
+                    kakuroRules.add(new GridRule<>(subColumnIterator, new DistinctOperation("Number"),
+                            new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
+                    kakuroRules.add(new GridRule<>(subColumnIterator, new SumOperation("CompareToDown"),
+                            new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
+                }
 
-        String[] tags = {kakuroTags};
-        List<String> cellTag = new ArrayList<>(Arrays.asList(tags));
-
-        final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation(cellTag);
-
-        final GridRuleOperation sumOperation= new SumOperation(cellTag);
-
+            }
+        }
 
 
         return kakuroRules;
@@ -183,25 +242,25 @@ public class KakuroFactory {
     }
 
     private static Cell createMutableCell(int number) {
-        return new MutableCell(new MutableContent(number, "Number"));
+        return new MutableCell(new MutableContent<>(number, "Number"));
     }
 
-    private static Cell createImmutableCell(){
-        return new ImmutableCell(new ImmutableContent(null,"BlackBLock"));
+    private static Cell createImmutableCell() {
+        return new ImmutableCell(new ImmutableContent<>(null, "BlackBLock"));
     }
 
-    private static Cell createUpSidedImmutableCell(int result){
-        return new ImmutableCell(new ImmutableContent(result,"CompareToRight"));
+    private static Cell createUpSidedImmutableCell(int result) {
+        return new ImmutableCell(new ImmutableContent<>(result, "CompareToRight"));
     }
 
-    private static Cell createDownSidedImmutableCell(int result){
-        return new ImmutableCell(new ImmutableContent(result,"CompareToDown"));
+    private static Cell createDownSidedImmutableCell(int result) {
+        return new ImmutableCell(new ImmutableContent<>(result, "CompareToDown"));
     }
 
-    private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult){
+    private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult) {
         List<Content> lista = new ArrayList<Content>();
-        lista.add(new ImmutableContent(upperResult,"CompareToRight"));
-        lista.add(new ImmutableContent(bottomResult,"CompareToDown"));
+        lista.add(new ImmutableContent<>(upperResult, "CompareToRight"));
+        lista.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
         return new ImmutableCell(lista);
     }
 }
