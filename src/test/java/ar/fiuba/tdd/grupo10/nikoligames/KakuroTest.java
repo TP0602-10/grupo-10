@@ -14,7 +14,7 @@ import java.util.List;
 public class KakuroTest {
 
     @Test
-    public void createKakuroGame(){
+    public void createKakuroGame() {
         Grid kakuroGrid = KakuroFactory.createGrid(1);
         Assert.assertNotNull(kakuroGrid);
     }
