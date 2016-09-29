@@ -9,8 +9,11 @@ import javax.swing.table.TableCellRenderer;
 
 public class GridView extends JTable {
 
+    private static int RowHeightDefault = 50;
+
     public GridView(GridModel grid) {
         super(grid);
+        this.setRowHeight(RowHeightDefault);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         this.setGridColor(Color.red);
     }

@@ -35,14 +35,13 @@ public class SudokuView extends JFrame {
 
         getContentPane().add(panel);
 
-        // Actualiza la configuracion de la grilla
+        // Update grid settings
         table.updateUI();
     }
 
     private void setWindowPreferences() {
         setVisible(true);
-        setSize(new Dimension(700, 500));
-        setLocation(420, 220);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
     public void updateConsole(String message) {
