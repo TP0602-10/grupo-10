@@ -62,15 +62,15 @@ public class GridRuleIteratorFactory {
     public static GridRuleIterator iteratorForCustomRow(List<List<Cell>> grid, int rowNumber, int startPos, int endPos) {
         List<Cell> row = new ArrayList<>();
         List<Cell> rowToBeIterated = grid.get(rowNumber);
-        for (int i = startPos; i < endPos; i++) {
+        for (int i = startPos;i < endPos;i++) {
             row.add(rowToBeIterated.get(i));
         }
-        return new GridRuleIterator(row, "Iterate over row" + rowNumber + "From position"
+        return new GridRuleIterator(row,"Iterate over row" + rowNumber + "From position"
                 + startPos + "to position" + endPos);
     }
 
-    private static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
-                                                         int startColumn, int endRow, int endColumn) {
+    public static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
+                                                        int startColumn, int endRow, int endColumn) {
         List<Cell> cellBlock = new ArrayList<>();
         for (int r = startRow; r <= endRow; r++) {
             for (int c = startColumn; c <= endColumn; c++) {
