@@ -34,4 +34,13 @@ public class Grid {
     public void notifyGridUpdated() {
         this.observers.forEach(o -> o.onGridUpdated(this));
     }
+
+    public boolean isComplete() {
+        return cells.stream()
+                .allMatch(row ->
+                        row.stream()
+                                .filter(Cell::isContentEditable)
+                                .allMatch(Cell::isCompletelyFilled)
+                );
+    }
 }

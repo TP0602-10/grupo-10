@@ -68,6 +68,12 @@ public abstract class Cell {
         return contents.isEmpty();
     }
 
+    public boolean isCompletelyFilled() {
+        return contents.keySet().stream()
+                .filter( k -> contents.get(k).isValueEditable() )
+                .allMatch( k -> ! contents.get(k).isEmpty() );
+    }
+
     public Object getValue(String tag) throws NoFindContentbyTagException {
         if (!contents.containsKey(tag)) {
             throw new NoFindContentbyTagException("no find content by tag:" + tag);
