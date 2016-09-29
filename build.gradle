@@ -2,7 +2,7 @@ plugins {
     id 'de.aaschmid.cpd' version '0.4'
 }
 
-group 'ar.fiuba.tdd.template'
+group 'ar.fiuba.tdd.grupo10.nikoligames'
 version '1.0'
 
 apply plugin: 'java'

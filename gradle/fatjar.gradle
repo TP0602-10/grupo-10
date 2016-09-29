@@ -3,7 +3,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Template Project fiuba tecnicas',
                 'Implementation-Version': version,
-                'Main-Class': 'ar.fiuba.tdd.template.Main'
+                'Main-Class': 'ar.fiuba.tdd.grupo10.nikoligames.Main'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
