@@ -42,30 +42,30 @@ public class GridRuleIteratorFactory {
         return new GridRuleIterator(grid.get(rowNumber), "Iterate over the row " + rowNumber);
     }
 
-    private static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
+    private static List<Cell> getColumn(List<List<Cell>> grid, int columnNumber) {
         List<Cell> column = new ArrayList<>();
         grid.forEach(row -> column.add(row.get(columnNumber)));
-        return new GridRuleIterator(column, "Iterate over the column " + columnNumber);
+        return column;
+    }
+
+    public static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
+        return new GridRuleIterator(
+                getColumn(grid,columnNumber),
+                "Iterate over the column " + columnNumber
+        );
     }
 
     public static GridRuleIterator iteratorForCustomColumn(List<List<Cell>> grid, int columnNumber, int startPos, int endPos) {
-        List<Cell> column = new ArrayList<>();
-        for (int i = startPos; i < endPos; i++) {
-            List<Cell> row = grid.get(i); //grid[i]
-            Cell element = row.get(columnNumber);//grid[i][columnNumber]
-            column.add(element);
-        }
-        return new GridRuleIterator(column, "Iterate over the column" + columnNumber + "From position"
-                + startPos + "to" + "position" + endPos);
+        List<Cell> customColumn = getColumn(grid, columnNumber).subList(startPos,endPos);
+        return new GridRuleIterator(customColumn,
+                "Iterate over the column" + columnNumber + "From position"
+                + startPos + "to" + "position" + endPos
+        );
     }
 
     public static GridRuleIterator iteratorForCustomRow(List<List<Cell>> grid, int rowNumber, int startPos, int endPos) {
-        List<Cell> row = new ArrayList<>();
-        List<Cell> rowToBeIterated = grid.get(rowNumber);
-        for (int i = startPos;i < endPos;i++) {
-            row.add(rowToBeIterated.get(i));
-        }
-        return new GridRuleIterator(row,"Iterate over row" + rowNumber + "From position"
+        List<Cell> customRowToBeIterated = grid.get(rowNumber).subList(startPos,endPos);
+        return new GridRuleIterator(customRowToBeIterated,"Iterate over row" + rowNumber + "From position"
                 + startPos + "to position" + endPos);
     }
 
