@@ -72,8 +72,8 @@ public class GridRuleIteratorFactory {
     private static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
                                                          int startColumn, int endRow, int endColumn) {
         List<Cell> cellBlock = new ArrayList<>();
-        for (int r = startRow; r < endRow; r++) {
-            for (int c = startColumn; c < endColumn; c++) {
+        for (int r = startRow; r <= endRow; r++) {
+            for (int c = startColumn; c <= endColumn; c++) {
                 cellBlock.add(grid.get(r).get(c));
             }
         }
