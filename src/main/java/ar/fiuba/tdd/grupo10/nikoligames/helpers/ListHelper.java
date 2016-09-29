@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 /**
  * Helper for simplifying the common operations of generic lists.
  */
-public class ListHelper {
+public final class ListHelper {
     public static <T> boolean equals(List<T> list1, List<T> list2) {
         return list1.size() == list2.size()
                 && list1.containsAll(list2)

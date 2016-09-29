@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Factory for creating common grid iterators such as row or column iterators.
  */
-public class GridRuleIteratorFactory {
+public final class GridRuleIteratorFactory {
 
     public static List<GridRuleIterator> iteratorsForAllRows(List<List<Cell>> grid) {
         List<GridRuleIterator> allRows = new ArrayList<>();

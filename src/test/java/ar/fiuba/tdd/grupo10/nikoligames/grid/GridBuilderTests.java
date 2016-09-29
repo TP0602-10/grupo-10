@@ -5,14 +5,17 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleManager;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class GridBuilderTests {
     private List<Cell> flattenCells;
@@ -48,6 +51,20 @@ public class GridBuilderTests {
     @Test(expected = WrongNumberOfGridCellsException.class)
     public void buildGridWithIncorrectRowNumber() throws WrongNumberOfGridCellsException {
         new GridBuilder().setRows(5).setColumns(2).addCells(flattenCells).buildGrid();
+    }
+
+    @Test
+    public void addCell() {
+        GridBuilder gridBuilder = new GridBuilder();
+        assertNotNull(gridBuilder.addCell(new ImmutableCell(new ImmutableContent<>(1,"_"))));
+    }
+
+    @Test
+    public void addObservers() {
+        GridBuilder gridBuilder = new GridBuilder();
+        Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
+        observers.add(new GridRuleManager());
+        assertNotNull(gridBuilder.addObservers(observers));
     }
 
 }

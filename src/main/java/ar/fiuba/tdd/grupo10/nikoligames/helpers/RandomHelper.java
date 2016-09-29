@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Helper for handling operations with random numbers.
  */
-public class RandomHelper {
+public final class RandomHelper {
 
     public static List<Integer> getRandomNumbersInRange(int cant, int min, int max) {
         List<Integer> randomNumbers = new ArrayList<>();
