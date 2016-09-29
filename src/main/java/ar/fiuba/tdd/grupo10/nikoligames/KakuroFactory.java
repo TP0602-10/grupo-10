@@ -133,7 +133,7 @@ public class KakuroFactory {
         generateEasyDoubleSidedPositions(doubleSidedPositions);
 
         List<Integer> blackPositions = new ArrayList<>(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
-                70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 90));
+                70, 71, 72, 73, 74, 75, 76, 77, 78, 79,80));
         setImmutableCells(returnableList, blackPositions);
         setSingleSidedImmutableCells(returnableList, downSidedPositions, "CompareToDown");
         setSingleSidedImmutableCells(returnableList, upSidedPositions, "CompareToRight");
@@ -242,7 +242,10 @@ public class KakuroFactory {
                         columnIndex++;
                         element = row.get(columnIndex);
                     }
-                    generateKakuroRules(grid, i, startPos, columnIndex, kakuroRules, goalValue, upperCellTag);
+                    GridRuleIterator anIterator = GridRuleIteratorFactory.iteratorForCustomRow(grid,i,startPos,
+                            columnIndex);
+                    generateKakuroRules(grid, i, startPos, columnIndex, kakuroRules, goalValue,
+                            upperCellTag,anIterator);
                 }
             }
         }
@@ -269,7 +272,9 @@ public class KakuroFactory {
                         row = grid.get(rowIndex);
                         element = row.get(j);
                     }
-                    generateKakuroRules(grid, j, startPos, rowIndex, kakuroRules, goalValue, downCellTag);
+                    GridRuleIterator anIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, j,
+                            startPos, rowIndex);
+                    generateKakuroRules(grid, j, startPos, rowIndex, kakuroRules, goalValue, downCellTag,anIterator);
                 }
 
             }
@@ -279,12 +284,12 @@ public class KakuroFactory {
 
 
     private static void generateKakuroRules(List<List<Cell>> grid, int columnIndex, int startPos, int endPos,
-                                            Collection<GridRule> kakuroRules, int goalValue, List<String> tag) {
-        GridRuleIterator subColumnIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, columnIndex,
-                startPos, endPos);
-        kakuroRules.add(new GridRule<>(subColumnIterator, new DistinctOperation("Number"),
+                                            Collection<GridRule> kakuroRules, int goalValue, List<String> tag,
+                                            GridRuleIterator anIterator) {
+
+        kakuroRules.add(new GridRule<>(anIterator, new DistinctOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
-        kakuroRules.add(new GridRule<>(subColumnIterator, new SumOperation(tag),
+        kakuroRules.add(new GridRule<>(anIterator, new SumOperation(tag),
                 new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
     }
 
