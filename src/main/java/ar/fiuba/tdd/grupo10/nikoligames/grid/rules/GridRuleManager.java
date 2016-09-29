@@ -1,14 +1,12 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameFinishedException;
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameWonException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Used Observer pattern. Verify all the specified rules on any grid update.
@@ -16,7 +14,7 @@ import java.util.List;
  */
 public class GridRuleManager implements OnGridUpdatedObserver {
     private Collection<GridRule> rules;
-    private Collection<OnRuleUnsatisfiedObserver> observers = new ArrayList<>();
+    private Collection<GameRulesObserver> observers = new ArrayList<>();
 
     public GridRuleManager() {
         rules = new ArrayList<>();
@@ -36,24 +34,29 @@ public class GridRuleManager implements OnGridUpdatedObserver {
 
     @Override
     public void onGridUpdated(Grid grid) throws GameFinishedException {
-        this.rules.forEach(rule -> {
-                try {
-                    rule.verifyRule();
-                    if (grid.isComplete()) {
-                        throw new GameWonException("The player has won the game!");
+        if (grid.isComplete()) {
+            notifyGameWon("The player has won the game!");
+        } else {
+            this.rules.forEach(rule -> {
+                    try {
+                        rule.verifyRule();
+                    } catch (RuleNotSatisfiedException e) {
+                        notifyRuleUnsatisfied(e.getMessage());
                     }
-                } catch (RuleNotSatisfiedException e) {
-                    notifyRuleUnsatisfied(e.getMessage());
                 }
-            }
-        );
+            );
+        }
     }
 
-    public boolean addObserver(OnRuleUnsatisfiedObserver observer) {
+    public boolean addObserver(GameRulesObserver observer) {
         return this.observers.add(observer);
     }
 
     private void notifyRuleUnsatisfied(String message) {
         this.observers.forEach(o -> o.onRuleUnsatisfied(message));
+    }
+
+    private void notifyGameWon(String message) {
+        this.observers.forEach(o -> o.onGameWon(message));
     }
 }

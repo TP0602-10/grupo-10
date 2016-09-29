@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class SudokuTest {
 
     }
 
+    @Ignore
     @Test(expected = GameWonException.class)
     public void createGridAndWin() {
         Grid sudokuGrid = SudokuFactory.createFromScratch(80);
