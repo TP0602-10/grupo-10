@@ -191,7 +191,7 @@ public class KakuroFactory {
                         element = row.get(j);
                     }
                     GridRuleIterator subRowIterator = GridRuleIteratorFactory.iteratorForCustomRow(
-                            grid, i, startPos, j-1);
+                            grid, i, startPos, j);
                     kakuroRules.add(new GridRule<>(subRowIterator, new DistinctOperation("Number"),
                             new GridRuleCondition<Boolean>(new EqualsMatcher<>(), Boolean.TRUE)));
                     kakuroRules.add(new GridRule<>(subRowIterator, new SumOperation("CompareToRight"),
@@ -221,7 +221,7 @@ public class KakuroFactory {
                         element = row.get(j);
                     }
                     GridRuleIterator subColumnIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, j,
-                            startPos, rowIndex-1);
+                            startPos, rowIndex);
                     kakuroRules.add(new GridRule<>(subColumnIterator, new DistinctOperation("Number"),
                             new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
                     kakuroRules.add(new GridRule<>(subColumnIterator, new SumOperation("CompareToDown"),
