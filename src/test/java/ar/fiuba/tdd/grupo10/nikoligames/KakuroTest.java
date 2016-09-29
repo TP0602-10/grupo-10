@@ -18,4 +18,10 @@ public class KakuroTest {
         Grid kakuroGrid = KakuroFactory.createGrid(1);
         Assert.assertNotNull(kakuroGrid);
     }
+
+    @Test
+    public void playKakuroGame() {
+        Grid kakuroGrid = KakuroFactory.createGrid(1);
+        Assert.assertEquals(kakuroGrid.getCellAt(1, 3).getContent().getValue(), 0);
+    }
 }
