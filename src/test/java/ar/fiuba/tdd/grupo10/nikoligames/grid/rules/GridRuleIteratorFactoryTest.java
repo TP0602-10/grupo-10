@@ -55,6 +55,7 @@ public class GridRuleIteratorFactoryTest {
             Assert.assertEquals(expectedFirstRow[index],(int)theCell.getValue());
             index++;
         }
+        Assert.assertEquals(index,expectedFirstRow.length);
 
     }
 
@@ -70,6 +71,7 @@ public class GridRuleIteratorFactoryTest {
             Assert.assertEquals(expectedSecondColumn[index],(int)theCell.getValue());
             index++;
         }
+        Assert.assertEquals(index,expectedSecondColumn.length);
     }
 
     @Test
@@ -93,8 +95,10 @@ public class GridRuleIteratorFactoryTest {
                 Assert.assertEquals(expectedCol[index],(int)theCell.getValue());
                 index++;
             }
+            Assert.assertEquals(index,expectedCol.length);
             colIndex++;
         }
+        Assert.assertEquals(colIndex,expectedCols.length);
 
     }
 
@@ -123,8 +127,10 @@ public class GridRuleIteratorFactoryTest {
                 Assert.assertEquals(expectedBlock[index],(int)theCell.getValue());
                 index++;
             }
+            Assert.assertEquals(index,expectedBlock.length);
             blockIndex++;
         }
+        Assert.assertEquals(blockIndex,expectedBlocks.length);
 
     }
 
@@ -144,6 +150,7 @@ public class GridRuleIteratorFactoryTest {
             Assert.assertEquals(expectedCustomCol[index],(int)theCell.getValue());
             index++;
         }
+        Assert.assertEquals(index,expectedCustomCol.length);
     }
 
     @Test
@@ -162,6 +169,7 @@ public class GridRuleIteratorFactoryTest {
             Assert.assertEquals(expectedCustomRow[index],(int)theCell.getValue());
             index++;
         }
+        Assert.assertEquals(index,expectedCustomRow.length);
     }
 
 }
