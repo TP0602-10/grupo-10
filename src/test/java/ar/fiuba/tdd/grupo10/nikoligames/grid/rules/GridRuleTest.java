@@ -20,6 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 /*
  This tests the integration of everything related to the rules
  */
@@ -73,6 +77,7 @@ public class GridRuleTest {
 
     private GridRule<Boolean> createRuleFirstRowOnlyTagAreDistinct() {
         final GridRuleOperation<Boolean> operation = new DistinctOperation(ONLY_TAG);
+        assertTrue(!operation.isApplicableOn(new MutableCell(new MutableContent<>(1,"value"))));
         final GridRuleCondition<Boolean> condition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
                 Boolean.TRUE
@@ -181,6 +186,33 @@ public class GridRuleTest {
     @Test(expected = Test.None.class)
     public void gridOfStringAndSumEqualGoal() throws WrongNumberOfGridCellsException, RuleNotSatisfiedException {
         List<Cell> allCells = new ArrayList<>();
+        Cell celltest = new MutableCell( new MutableContent<>("M", ONLY_TAG) );
+        allCells.add(celltest);
+        allCells.add(new MutableCell( new MutableContent<>("A", ONLY_TAG) ));
+        allCells.add(new MutableCell( new MutableContent<>("N", ONLY_TAG) ));
+        allCells.add(new MutableCell( new MutableContent<>("Y", ONLY_TAG) ));
+        new GridBuilder().setColumns(2).setRows(2).addCells( allCells ).buildGrid();
+
+        final GridRuleOperation<Boolean> operation = new DistinctOperation(ONLY_TAG);
+        assertTrue(operation.isApplicableOn(celltest));
+        final GridRuleCondition<Boolean> condition = new GridRuleCondition<>(
+                new EqualsMatcher<>(),
+                Boolean.TRUE
+        );
+
+        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+
+        GridRule<Boolean> theRule = new GridRule<>(
+                simpleIterator,
+                operation,
+                condition
+        );
+        theRule.verifyRule();
+    }
+
+    @Test
+    public void getIterator() {
+        List<Cell> allCells = new ArrayList<>();
         allCells.add(new MutableCell( new MutableContent<>("M", ONLY_TAG) ));
         allCells.add(new MutableCell( new MutableContent<>("A", ONLY_TAG) ));
         allCells.add(new MutableCell( new MutableContent<>("N", ONLY_TAG) ));
@@ -200,6 +232,7 @@ public class GridRuleTest {
                 operation,
                 condition
         );
-        theRule.verifyRule();
+
+        assertEquals(simpleIterator,theRule.getRuleIterator());
     }
 }

@@ -33,10 +33,10 @@ public class GridRuleIteratorFactoryTest {
          *  12  13  14  15  *
          ********************
         */
-        List<Cell> allCells = new ArrayList<Cell>();
+        List<Cell> allCells = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
             allCells.add( new MutableCell(
-                    new MutableContent(i,"tag")
+                    new MutableContent<>(i,"tag")
             ));
         }
         theGridToTest = ListHelper.buildMatrixFromFlattenList(allCells,ROWS,COLS);
