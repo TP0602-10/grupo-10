@@ -119,11 +119,6 @@ public class SudokuFactory {
         return new GridRuleManager(sudokuRules);
     }
 
-    private static List<Cell> generateHintCells(int numberOfHints) {
-        List<Integer> hints = RandomHelper.getRandomNumbersInRange(numberOfHints, MIN_CELL_CONTENT, MAX_CELL_CONTENT);
-        return hints.stream().map(SudokuFactory::createHintCell).collect(Collectors.toList());
-    }
-
     private static List<Cell> generateEmptyCells(int cant) {
         List<Cell> emptyCells = new ArrayList<>();
         for (int i = 0; i < cant; i++) {
