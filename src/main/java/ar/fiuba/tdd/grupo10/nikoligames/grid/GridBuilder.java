@@ -51,13 +51,6 @@ public class GridBuilder {
 
     public Grid buildGrid() throws WrongNumberOfGridCellsException {
         validateDimensions();
-        /*
-        try {
-        } catch (WrongNumberOfGridCellsException e) {
-            // TODO: 18/09/16 Decide what to do in this case.
-            //  [TOMI-28Sep]. Don't catch or initialize Grid only with observers.
-        }
-        */
         List<List<Cell>> grid = ListHelper.buildMatrixFromFlattenList(cells, rows, columns);
         return new Grid(grid, observers);
     }

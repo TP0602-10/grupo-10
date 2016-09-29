@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Grid implements OnRuleUnsatisfiedObserver {
     private final List<List<Cell>> cells;
-    private Collection<OnGridUpdatedObserver> observers = new ArrayList<>();
+    private Collection<OnGridUpdatedObserver> observers;
     private Collection<OnRuleUnsatisfiedObserver> ruleObservers = new ArrayList<>();
 
     public Grid(List<List<Cell>> cells) {
