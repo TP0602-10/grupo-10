@@ -11,6 +11,7 @@ import javax.swing.*;
 
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
+    private static final String TITLE = "Nikoli Games";
 
     private enum GameEnum {
         SUDOKU,
@@ -23,7 +24,7 @@ public class MainMenuView extends JFrame {
         setContentPane(createMainPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setTitle("Nikoli Games");
+        setTitle(TITLE);
         setVisible(true);
         setResizable(false);
     }
@@ -86,7 +87,7 @@ public class MainMenuView extends JFrame {
     private void showUnavailableGameDialog() {
         JOptionPane.showMessageDialog(this,
                 "Juego no disponible.",
-                "Nikoli Games",
+                TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
