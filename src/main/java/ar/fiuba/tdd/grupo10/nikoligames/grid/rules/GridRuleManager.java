@@ -33,18 +33,19 @@ public class GridRuleManager implements OnGridUpdatedObserver {
 
     @Override
     public void onGridUpdated(Grid grid) {
-        this.rules.forEach(rule -> {
-                try {
-                    rule.verifyRule();
-                } catch (RuleNotSatisfiedException e) {
-                    notifyRuleUnsatisfied(e.getMessage());
-                } finally {
-                    rule.getRuleIterator().restart();
-                }
+        boolean rulesOK = true;
+        for (GridRule rule : rules) {
+            try {
+                rule.verifyRule();
+            } catch (RuleNotSatisfiedException e) {
+                rulesOK = false;
+                notifyRuleUnsatisfied(e.getMessage());
+            } finally {
+                rule.getRuleIterator().restart();
             }
-        );
+        }
 
-        if (grid.isComplete()) {
+        if (rulesOK && grid.isComplete()) {
             notifyGameWon("The player has won the game!");
         }
     }
