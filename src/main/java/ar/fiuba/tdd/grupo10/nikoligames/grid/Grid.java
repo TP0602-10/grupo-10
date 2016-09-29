@@ -16,10 +16,6 @@ public class Grid implements OnRuleUnsatisfiedObserver {
     private Collection<OnGridUpdatedObserver> observers;
     private Collection<OnRuleUnsatisfiedObserver> ruleObservers = new ArrayList<>();
 
-    public Grid(List<List<Cell>> cells) {
-        this.cells = cells;
-    }
-
     public Grid(List<List<Cell>> cells, Collection<OnGridUpdatedObserver> observers) {
         this.cells = cells;
         this.observers = observers;
