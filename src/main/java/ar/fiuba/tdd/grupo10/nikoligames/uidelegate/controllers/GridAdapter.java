@@ -32,7 +32,7 @@ public class GridAdapter extends AbstractTableModel {
         try {
             value = grid.getCellAt(rowIndex, columnIndex).getValue();
         } catch (Exception exception) {
-            value = "";
+            value = null;
         }
         return value;
     }
@@ -47,7 +47,7 @@ public class GridAdapter extends AbstractTableModel {
         try {
             Cell cell = grid.getCellAt(row, column);
             if (value != null) {
-                cell.setValue(value);
+                cell.setValue(Integer.valueOf(String.valueOf(value)));
             } else {
                 cell.setValue(null);
             }
