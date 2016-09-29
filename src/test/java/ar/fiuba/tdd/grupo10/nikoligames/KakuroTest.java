@@ -26,10 +26,5 @@ public class KakuroTest {
         Assert.assertEquals(kakuroGrid.getCellAt(0, 2).getContent().getValue(), 35);
         Assert.assertEquals(kakuroGrid.getCellAt(0, 6).getContent().getValue(), 39);
     }
-    @Ignore
-    @Test
-    public void checkKakuroTestGameRulesComputeOK() {
-        Grid testKakuroGrid = KakuroFactory.createGrid(0);
 
-    }
 }

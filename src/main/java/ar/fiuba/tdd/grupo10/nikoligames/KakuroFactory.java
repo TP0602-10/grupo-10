@@ -211,7 +211,7 @@ public class KakuroFactory {
         List<List<Integer>> upSidedPositions = new ArrayList<>();
         List<List<Integer>> downSidedPositions = new ArrayList<>();
         List<List<Integer>> doubleSidedPositions = new ArrayList<>();
-        if (difficulty == 0) {
+        if (difficulty == 2) {
             buildTemporalGridTest(upSidedPositions, downSidedPositions, doubleSidedPositions);
             blackPositions.addAll(Arrays.asList(
                     0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78));
