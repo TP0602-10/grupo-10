@@ -3,14 +3,15 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 
 import javax.swing.table.AbstractTableModel;
 
-public class GridModel extends AbstractTableModel {
+public class GridAdapter extends AbstractTableModel {
 
     private Grid grid;
 
-    public GridModel(Grid grid) {
+    public GridAdapter(Grid grid) {
         super();
         this.grid = grid;
     }
@@ -33,23 +34,22 @@ public class GridModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-//        return this.grid.getCellAt(row,col).isContentEditable();
-        return true;
+        return this.grid.getCellAt(row,col).isContentEditable();
     }
 
     @Override
     public void setValueAt(Object value, int row, int column) {
-        boolean valueIsEmpty = value.toString().isEmpty();
-//        Cell cell = grid.getCellAt(row, column);
-        if (valueIsEmpty) {
-            value = null;
+        try {
+            Cell cell = grid.getCellAt(row, column);
+            if (value != null) {
+                cell.setValue(value);
+            } else {
+                cell.setValue(null);
+            }
+            fireTableCellUpdated(row, column);
+            grid.notifyGridUpdated();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (value != null) {
-//            cell.setContent(new MutableContent(value);
-        } else {
-//            cell.clearContent();
-        }
-        fireTableCellUpdated(row, column);
-        grid.notifyGridUpdated();
     }
 }

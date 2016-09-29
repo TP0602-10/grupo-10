@@ -31,4 +31,13 @@ public class ImmutableCell extends Cell{
         throw new ImmutableCellException("Immutable cell");
     }
 
+    @Override
+    public void setValue(Object value) throws ImmutableCellException {
+        throw new ImmutableCellException("Immutable cell");
+    }
+
+    @Override
+    public boolean isContentEditable() {
+        return false;
+    }
 }

@@ -28,7 +28,7 @@ public abstract class Cell {
     }
 
     public List<Content> getAllContent() {
-        return new ArrayList<>(contents.values());
+        return (List<Content>) contents.values();
     }
 
     public abstract void setContent(Content content) throws ImmutableCellException;
@@ -37,8 +37,17 @@ public abstract class Cell {
             ImmutableCellException,
             NoFindContentbyTagException;
 
+    public abstract void setValue(Object value) throws ImmutableContentValueException,ImmutableCellException,NoFindContentbyTagException;
+
     public Content getContent(String tag) {
         return contents.get(tag);
+    }
+
+    public Content getContent() throws NoFindContentbyTagException {
+        if (contents.size() > 1) {
+            throw new NoFindContentbyTagException("Not specified tag, cell contain more than one content.");
+        }
+        return contents.entrySet().iterator().next().getValue();
     }
 
     public List<Content> getContents(List<String> tagsList) {
@@ -53,8 +62,21 @@ public abstract class Cell {
         return contentsList;
     }
 
+    public abstract boolean isContentEditable();
+
     public boolean isEmpty() {
         return contents.isEmpty();
     }
 
+    public Object getValue(String tag) throws NoFindContentbyTagException {
+        if (!contents.containsKey(tag)) {
+            throw new NoFindContentbyTagException("no find content by tag:" + tag);
+        }
+        Content content = contents.get(tag);
+        return content.getValue();
+    }
+
+    public Object getValue() throws NoFindContentbyTagException {
+        return this.getContent().getValue();
+    }
 }

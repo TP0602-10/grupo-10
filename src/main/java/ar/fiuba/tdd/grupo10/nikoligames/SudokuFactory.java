@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
@@ -92,13 +93,13 @@ public class SudokuFactory {
         return backtrackingConstructor(temporalGrid,0);
     }
 
-    public static Grid createFromScratch(int numberOfHints) {
+    public static Grid createFromScratch(int numberOfHints) throws WrongNumberOfGridCellsException {
         List<Cell> cells = generateCellsInGridForm(numberOfHints);
         OnGridUpdatedObserver observer = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
         return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(observer).buildGrid();
     }
 
-    public static Grid createGridFromScratch(int numberOfHints) {
+    public static Grid createGridFromScratch(int numberOfHints) throws WrongNumberOfGridCellsException {
         List<Cell> cells = generateCellsInGridForm(numberOfHints);
         GridRuleManager ruleManager = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
         Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();

@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridModel;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
 
 import java.awt.*;
 import javax.swing.*;
@@ -11,7 +11,7 @@ public class GridView extends JTable {
 
     private static int RowHeightDefault = 50;
 
-    public GridView(GridModel grid) {
+    public GridView(GridAdapter grid) {
         super(grid);
         this.setRowHeight(RowHeightDefault);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);

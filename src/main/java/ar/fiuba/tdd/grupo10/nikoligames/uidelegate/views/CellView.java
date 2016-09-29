@@ -18,8 +18,10 @@ public class CellView extends JLabel implements TableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-        String text = value.toString();
-        setText(text);
+        if (value != null) {
+            String text = value.toString();
+            setText(text);
+        }
         setEnabled(this.enabled);
         setHorizontalAlignment(SwingConstants.CENTER);
         setBackground(this.enabled ? Color.white : Color.lightGray);

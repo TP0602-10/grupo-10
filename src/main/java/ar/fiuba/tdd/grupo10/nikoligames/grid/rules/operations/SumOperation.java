@@ -15,6 +15,10 @@ public class SumOperation extends GridRuleOperation<Integer> {
         super(contentTags);
     }
 
+    public SumOperation(String contentTag) {
+        super(contentTag);
+    }
+
     @Override
     public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
         Integer accSum = 0;

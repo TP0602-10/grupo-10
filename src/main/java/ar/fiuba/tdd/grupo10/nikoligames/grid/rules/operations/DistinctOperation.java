@@ -5,7 +5,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Rule operation that checks if all the cell contents of matter for the rule are distinct between them.
@@ -17,19 +20,19 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
         super(contentTags);
     }
 
+    public DistinctOperation(String tag) {
+        super(tag);
+    }
+
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
-        Boolean allDistinct = Boolean.TRUE;
+        List<Content> contentsOfCells = new ArrayList<>();
+
         while (iterator.hasNext()) {
             Cell cell = iterator.next();
-            if (isApplicableOn(cell)) {
-                allDistinct = areAllContentsDistinct(cell.getContents(getContentTags()));
-            }
-            if (! allDistinct) {
-                break;
-            }
+            contentsOfCells.addAll( cell.getContents(getContentTags()) );
         }
-        return allDistinct;
+        return areAllContentsDistinct(contentsOfCells);
     }
 
     @Override
@@ -43,9 +46,10 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
     }
 
     private boolean areAllContentsDistinct(List<Content> contents) {
+        List<Object> valuesOfContents = contents.stream().map(Content::getValue).collect(Collectors.toList());
         return ListHelper.equals(
-                contents,
-                ListHelper.rejectDuplicateElements(contents)
+                valuesOfContents,
+                ListHelper.rejectDuplicateElements(valuesOfContents)
         );
     }
 }
