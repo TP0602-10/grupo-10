@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -29,7 +30,31 @@ public class GridAdapter  extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return null;
+
+        if(!isCellEditable(rowIndex,columnIndex)){
+           return grid.getCellAt(rowIndex, columnIndex);
+        }
+
+        Cell cell = grid.getCellAt(rowIndex, columnIndex);
+        return cell.getValue();
     }
+
+    @Override
+    public void setValueAt(Object value, int row, int column) {
+
+        try {
+            String stringValue = String.valueOf(value);
+            Cell cell = grid.getCellAt(row, column);
+            if (value != null && stringValue.matches("^[1-9]")) {
+                cell.setValue(Integer.valueOf(stringValue));
+            } else {
+                cell.setValue(null);
+            }
+            fireTableCellUpdated(row, column);
+            grid.notifyGridUpdated();
+       } catch (Exception e) {
+            e.printStackTrace();
+        }
+   }
 
 }

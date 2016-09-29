@@ -2,21 +2,21 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.SudokuView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.GameView;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-public class SudokuController implements TableModelListener, GameRulesObserver {
+public class GridController implements TableModelListener, GameRulesObserver {
 
-    private SudokuGridAdapter model;
-    private SudokuView view;
+    private GridAdapter model;
+    private GameView view;
 
-    public SudokuController(Grid grid) {
+    public GridController(Grid grid) {
         grid.addRuleObserver(this);
-        model = new SudokuGridAdapter(grid);
+        model = new GridAdapter(grid);
         model.addTableModelListener(this);
-        view = new SudokuView(model);
+        view = new GameView(model);
     }
 
     @Override

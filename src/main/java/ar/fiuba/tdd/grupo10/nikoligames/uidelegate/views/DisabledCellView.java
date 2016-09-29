@@ -1,6 +1,11 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+
 import java.awt.*;
+
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.MARGIN_CELL;
 
 public class DisabledCellView extends CellView {
 
@@ -27,19 +32,27 @@ public class DisabledCellView extends CellView {
     @Override
     public void paintComponent(Graphics graphics) {
 
-        //Cell cell = (Cell)this.value;
+        Content content = null;
+        Cell cell = (Cell)this.value;
 
-        String text = (this.value == null)?"": this.value.toString();
-
-        setText(text);
+        content = cell.getContent("Tag");
+        if(content != null){
+            setText(content.getValue().toString());
+        }
 
         super.paintComponent(graphics);
 
-        // TODO: Renderizado Kakuro
-        /*graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+        content = cell.getContent("CompareToRight");
+        if(content != null){
+            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            graphics.drawString(content.getValue().toString(), (this.getWidth()/2)+ MARGIN_CELL, this.getHeight() / 2);
+        }
 
-        graphics.drawString(text, 5, (this.getHeight() / 2) + 5);
-        graphics.drawString("?", this.getWidth() - 10, this.getHeight() / 2);*/
+        content = cell.getContent("CompareToDown");
+        if(content != null){
+            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            graphics.drawString(content.getValue().toString(), 6, (this.getHeight() / 2) + + MARGIN_CELL);
+        }
     }
 
 }
