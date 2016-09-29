@@ -12,6 +12,10 @@ public class KakuroController implements TableModelListener, GameRulesObserver {
     private KakuroView view;
 
     public KakuroController(Grid grid) {
+        initComponents(grid);
+    }
+
+    private void initComponents(Grid grid) {
         grid.addRuleObserver(this);
         model = new KakuroGridAdapter(grid);
         model.addTableModelListener(this);
@@ -20,7 +24,6 @@ public class KakuroController implements TableModelListener, GameRulesObserver {
 
     @Override
     public void tableChanged(TableModelEvent event) {
-        model.toString();
         view.toString();
     }
 
