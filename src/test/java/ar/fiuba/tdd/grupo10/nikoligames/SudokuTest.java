@@ -34,15 +34,20 @@ public class SudokuTest {
         return mutableCellPosition;
     }
 
-    @Test
-    public void createGridWithOneMutableCell() {
-        Grid sudokuGrid = SudokuFactory.createFromScratch(80);
+    @Test(expected = Test.None.class)
+    public void createGridWithOneMutableCellAndDontWon() {
+        Grid sudokuGrid = SudokuFactory.createFromScratch(79);
 
         Assert.assertFalse(sudokuGrid.isComplete());
 
         List<int[]> incompleteCellsPos = getMutableCellsOfSudoku(sudokuGrid);
 
-        Assert.assertEquals(incompleteCellsPos.size(),1);
+        Assert.assertEquals(incompleteCellsPos.size(),2);
+
+        int[] pos = incompleteCellsPos.get(0);
+        sudokuGrid.getCellAt(pos[0],pos[1]).setValue(7);
+
+        sudokuGrid.notifyGridUpdated();
 
     }
 
