@@ -32,7 +32,7 @@ public class GridRuleIteratorFactory {
         int columnBlockSize = getColumnBlockSize(grid, columnsDivisions);
         for (int r = 0; r < getNumberOfRows(grid); r += rowBlockSize) {
             for (int c = 0; c < getNumberOfColumns(grid); c += columnBlockSize) {
-                allCellBlocks.add(iteratorForCellBlock(grid, r, c, rowBlockSize - 1, columnBlockSize - 1));
+                allCellBlocks.add(iteratorForCellBlock(grid, r, c, r + rowBlockSize - 1, c + columnBlockSize - 1));
             }
         }
         return allCellBlocks;
