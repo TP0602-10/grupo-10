@@ -47,7 +47,7 @@ public class GridAdapter extends AbstractTableModel {
         try {
             String stringValue = String.valueOf(value);
             Cell cell = grid.getCellAt(row, column);
-            if (value != null && stringValue.matches("\\d{1}")) {
+            if (value != null && stringValue.matches("^[1-9]")) {
                 cell.setValue(Integer.valueOf(stringValue));
             } else {
                 cell.setValue(null);
