@@ -22,7 +22,6 @@ public class KakuroFactory {
     private static final int COLUMNS = 9;
     private static final int TOTAL_CELLS = ROWS * COLUMNS;
 
-    private static final String kakuroTags = "Number";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 9;
 
@@ -59,25 +58,12 @@ public class KakuroFactory {
     }
 
 
-    /*
-    private static void setRightImmutableCells(List<Cell> grid, List<List<Integer>> positions,List<String> tag) {
 
-        for (List<Integer> info : positions) {
-            grid.set(info.get(0), createUpSidedImmutableCell(info.get(1)));
-        }
-    }
-    */
     private static void setSingleSidedImmutableCells(List<Cell> grid, List<List<Integer>> positions, String tag) {
         for (List<Integer> info : positions) {
             grid.set(info.get(0), createSingleValuedImmutableCell(info.get(1), tag));
         }
     }
-    /*
-    private static void setDownImmutableCells(List<Cell> grid, List<List<Integer>> positions) {
-        for (List<Integer> info : positions) {
-            grid.set(info.get(0), createDownSidedImmutableCell(info.get(1)));
-        }
-    }*/
 
     private static void setDoubleSidedImmutableCells(List<Cell> grid, List<List<Integer>> positions) {
         for (List<Integer> info : positions) {
@@ -88,7 +74,7 @@ public class KakuroFactory {
     private static List<Cell> populateGrid() {
         List<Cell> grid = new ArrayList<>();
         for (int i = 0; i < TOTAL_CELLS; i++) {
-            grid.add(createMutableCell(0));
+            grid.add(createMutableCell());
         }
         return grid;
     }
@@ -190,20 +176,7 @@ public class KakuroFactory {
 
     }
 
-   /* private static List<Cell> generateCellListTest() {
-        List<Cell> returnableList = populateGrid();
-        List<List<Integer>> upSidedPositions = new ArrayList<>();
-        List<List<Integer>> downSidedPositions = new ArrayList<>();
-        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
-        buildTemporalGridTest(upSidedPositions,downSidedPositions,doubleSidedPositions);
-        List<Integer> blackPositions = new ArrayList<>(Arrays.asList(
-                0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78
-        ));
 
-        initializeGame(blackPositions, upSidedPositions, downSidedPositions, doubleSidedPositions, returnableList);
-
-        return returnableList;
-    }*/
 
     private static List<Cell> generateCellList(int difficulty) {
         List<Cell> returnableList = populateGrid();
@@ -214,7 +187,7 @@ public class KakuroFactory {
         if (difficulty == 2) {
             buildTemporalGridTest(upSidedPositions, downSidedPositions, doubleSidedPositions);
             blackPositions.addAll(Arrays.asList(
-                    0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78));
+                    0, 3, 4, 7, 8, 27, 28, 36, 53, 76, 77, 78));
         } else {
             buildTemporalEasyGrid(upSidedPositions, downSidedPositions, doubleSidedPositions);
             blackPositions.addAll(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
@@ -225,58 +198,19 @@ public class KakuroFactory {
         return returnableList;
     }
 
-    private static List<Cell> generateCellListMedium() {
-        List<Cell> returnableList = new ArrayList<>();
-        for (int i = 0; i < TOTAL_CELLS; i++) {
-            returnableList.add(createMutableCell(0));
-        }
-        /*
-        for (int i = 72; i < TOTAL_CELLS; i++) {
-            returnableList.set(i, createImmutableCell());
-        }
-        for (int i = 0; i < ROWS; i++) {
-            returnableList.set(8 + (i * ROWS), createImmutableCell());
-        }
-        returnableList.set(0, createImmutableCell());
-        returnableList.set(1, createImmutableCell());
-        returnableList.set(2, createDownSidedImmutableCell(39));
-        returnableList.set(3, createDownSidedImmutableCell(29));
-        returnableList.set(4, createImmutableCell());
-        returnableList.set(5, createDownSidedImmutableCell(12));
-        returnableList.set(6, createDownSidedImmutableCell(33));
-        returnableList.set(7, createImmutableCell());
-        returnableList.set(9, createImmutableCell());
-        returnableList.set(10, createUpSidedImmutableCell(11));
-        returnableList.set(13, createDoubleSidedImmutableCell(15, 4));
-        returnableList.set(16, createImmutableCell());
-        returnableList.set(18, createImmutableCell());
-        returnableList.set(19, createUpSidedImmutableCell(19));
-        returnableList.set(25, createDownSidedImmutableCell(14));
-        returnableList.set(27, createImmutableCell());
-        returnableList.set(28, createDoubleSidedImmutableCell(9, 9));
-        returnableList.set(32, createDoubleSidedImmutableCell(16, 11));
-        returnableList.set(36, createUpSidedImmutableCell(19));
-        returnableList.set(40, createDoubleSidedImmutableCell(12, 3));
-        returnableList.set(45, createUpSidedImmutableCell(16));
-        returnableList.set(48, createDoubleSidedImmutableCell(7, 4));
-        returnableList.set(52, createImmutableCell());
-        returnableList.set(54, createImmutableCell());
-        returnableList.set(55, createUpSidedImmutableCell(18));
-        returnableList.set(61, createImmutableCell());
-        returnableList.set(63, createImmutableCell());
-        returnableList.set(64, createUpSidedImmutableCell(9));
-        returnableList.set(67, createUpSidedImmutableCell(7));
-        returnableList.set(70, createImmutableCell());
-        */
-        return returnableList;
-    }
+
 
     public static Grid createGrid(int difficulty) {
-        List<Cell> cells;
-        cells = generateCellList(difficulty);
+        List<Cell> cells = generateCellList(difficulty);
         GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
-        return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
+        Grid returnableGrid = returnGrid(cells,ruleManager);
+        return returnableGrid;
+    }
 
+    public static Grid returnGrid(List<Cell> cells,GridRuleManager ruleManager) {
+        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
+        ruleManager.addObserver(grid);
+        return grid;
     }
 
     private static GridRuleManager createKakuroRuleManager(List<List<Cell>> grid) {
@@ -315,7 +249,8 @@ public class KakuroFactory {
                     startPos = columnIndex;
                     int goalValue = (int) element.getContent("CompareToRight").getValue();
                     element = row.get(columnIndex);
-                    while (columnIndex < COLUMNS && element.isContentEditable()) {
+                    while (columnIndex < COLUMNS - 1 && element.isContentEditable()) {
+
                         columnIndex++;
                         element = row.get(columnIndex);
                     }
@@ -344,7 +279,7 @@ public class KakuroFactory {
                     List<Cell> row = grid.get(rowIndex);
                     int goalValue = (int) element.getContent("CompareToDown").getValue();
                     element = row.get(j);
-                    while (rowIndex < ROWS && element.isContentEditable()) {
+                    while (rowIndex < ROWS - 1 && element.isContentEditable()) {
                         rowIndex++;
                         row = grid.get(rowIndex);
                         element = row.get(j);
@@ -366,7 +301,7 @@ public class KakuroFactory {
 
         kakuroRules.add(new GridRule<>(anIterator, new DistinctOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
-        kakuroRules.add(new GridRule<>(anIterator, new SumOperation(tag),
+        kakuroRules.add(new GridRule<>(anIterator, new SumOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
     }
 
@@ -376,8 +311,8 @@ public class KakuroFactory {
         anArray.add(0, lastElement);
     }
 
-    private static Cell createMutableCell(int number) {
-        return new MutableCell(new MutableContent<>(number, "Number"));
+    private static Cell createMutableCell() {
+        return new MutableCell(new MutableContent<>(null, "Number"));
     }
 
     private static Cell createSingleValuedImmutableCell(int result, String tag) {

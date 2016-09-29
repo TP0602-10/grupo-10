@@ -80,7 +80,7 @@ public class MainMenuView extends JFrame {
                     }
                 } else if (GameEnum.KAKURO.equals(game)) {
                     try {
-                        new GridController(KakuroFactory.createGrid(1));
+                        new GridController(KakuroFactory.createGrid(2));
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
