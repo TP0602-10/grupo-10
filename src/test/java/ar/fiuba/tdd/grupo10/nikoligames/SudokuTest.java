@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameWonException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
@@ -51,7 +50,7 @@ public class SudokuTest {
     }
 
     @Ignore
-    @Test(expected = GameWonException.class)
+    @Test
     public void createGridAndWin() {
         Grid sudokuGrid = SudokuFactory.createGridFromScratch(80);
 

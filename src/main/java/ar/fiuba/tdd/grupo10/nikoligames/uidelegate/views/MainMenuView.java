@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
+
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
 
@@ -23,7 +25,7 @@ public class MainMenuView extends JFrame {
         setContentPane(createMainPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setTitle("Nikoli Games");
+        setTitle(TITLE);
         setVisible(true);
         setResizable(false);
     }
@@ -86,7 +88,7 @@ public class MainMenuView extends JFrame {
     private void showUnavailableGameDialog() {
         JOptionPane.showMessageDialog(this,
                 "Juego no disponible.",
-                "Nikoli Games",
+                TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
