@@ -4,11 +4,11 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
 
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
 
