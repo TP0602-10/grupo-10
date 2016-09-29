@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.List;
@@ -33,7 +34,12 @@ public class SumOperation extends GridRuleOperation<Integer> {
 
     @Override
     public boolean isApplicableOn(Cell cell) {
-        return cell.getContents(getContentTags()).stream().allMatch(content -> content.getValue() instanceof Integer);
+        return ! cell.getContents(getContentTags()).isEmpty();
+    }
+
+    @Override
+    public boolean isApplicableOn(Content content) {
+        return !content.isEmpty() && content.getValue() instanceof Integer;
     }
 
     @Override
@@ -44,10 +50,10 @@ public class SumOperation extends GridRuleOperation<Integer> {
     private Integer sumContentValueToAccumulativeSum(Integer accSum, Cell cell) {
         if (getContentTags() != null) {
             for (String tag : getContentTags()) {
-                accSum += (Integer) cell.getContent(tag).getValue();
+                if (isApplicableOn(cell.getContent(tag))) {
+                    accSum += (Integer) cell.getContent(tag).getValue();
+                }
             }
-        } else {
-            //accSum += (Integer) cell.getContent().getValue();
         }
         return accSum;
     }

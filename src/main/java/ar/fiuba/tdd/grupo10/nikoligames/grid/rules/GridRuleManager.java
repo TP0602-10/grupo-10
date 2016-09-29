@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameFinishedException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
@@ -33,18 +32,18 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     }
 
     @Override
-    public void onGridUpdated(Grid grid) throws GameFinishedException {
+    public void onGridUpdated(Grid grid) {
+        this.rules.forEach(rule -> {
+                try {
+                    rule.verifyRule();
+                } catch (RuleNotSatisfiedException e) {
+                    notifyRuleUnsatisfied(e.getMessage());
+                }
+            }
+        );
+
         if (grid.isComplete()) {
             notifyGameWon("The player has won the game!");
-        } else {
-            this.rules.forEach(rule -> {
-                    try {
-                        rule.verifyRule();
-                    } catch (RuleNotSatisfiedException e) {
-                        notifyRuleUnsatisfied(e.getMessage());
-                    }
-                }
-            );
         }
     }
 
