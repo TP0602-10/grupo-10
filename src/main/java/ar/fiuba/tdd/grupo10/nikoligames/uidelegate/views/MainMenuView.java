@@ -9,9 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
+
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
-    private static final String TITLE = "Nikoli Games";
 
     private enum GameEnum {
         SUDOKU,
