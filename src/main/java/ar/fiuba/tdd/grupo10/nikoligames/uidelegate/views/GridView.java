@@ -20,6 +20,10 @@ public class GridView extends JTable {
 
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-        return new CellView(this.getModel().isCellEditable(row, column));
+
+        if(this.getModel().isCellEditable(row, column))
+            return new EnableCellView();
+
+        return new DisableCellView();
     }
 }
