@@ -5,7 +5,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.ROW_HEIGHT_DEFAULT;
 
 public class GridView extends JTable {

@@ -8,12 +8,12 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 public class KakuroController implements TableModelListener, GameRulesObserver {
-    private GridAdapter model;
+    private KakuroGridAdapter model;
     private KakuroView view;
 
     public KakuroController(Grid grid) {
         grid.addRuleObserver(this);
-        model = new GridAdapter(grid);
+        model = new KakuroGridAdapter(grid);
         model.addTableModelListener(this);
         view = new KakuroView(model);
     }

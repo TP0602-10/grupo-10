@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.KakuroGridAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class KakuroView extends JFrame {
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
-    public KakuroView(GridAdapter gridAdapter) {
+    public KakuroView(KakuroGridAdapter gridAdapter) {
 
         super(TITLE);
         setWindowPreferences();
