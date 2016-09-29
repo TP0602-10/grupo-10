@@ -35,8 +35,10 @@ public class MutableContentTest {
     @Test
     public void clearValue() throws Exception {
         MutableContent<Integer> content = new MutableContent<>(1,"value1");
+        assertFalse(content.isEmpty());
         assertTrue(content.clearValue());
         assertTrue(content.isEmpty());
+        assertFalse(content.clearValue());
     }
 
     @Test
@@ -55,10 +57,17 @@ public class MutableContentTest {
         MutableContent<Integer> content4 = new MutableContent<>(2,"value1");
 
         assertTrue(content1.equals(content2));
-
         assertFalse(content1.equals(content3));
-
         assertFalse(content2.equals(content4));
+        assertTrue(content1.equals(content1));
+        assertFalse(content1.equals(null));
+        assertFalse(content1.equals("OtherClass"));
+    }
+
+    @Test
+    public void hashCodeContent() {
+        MutableContent<Integer> content1 = new MutableContent<>(1,"value1");
+        assertNotNull(content1.hashCode());
     }
 
 }

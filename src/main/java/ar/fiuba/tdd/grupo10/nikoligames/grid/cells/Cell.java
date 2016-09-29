@@ -28,7 +28,7 @@ public abstract class Cell {
     }
 
     public List<Content> getAllContent() {
-        return (List<Content>) contents.values();
+        return new ArrayList<>(contents.values());
     }
 
     public abstract void setContent(Content content) throws ImmutableCellException;

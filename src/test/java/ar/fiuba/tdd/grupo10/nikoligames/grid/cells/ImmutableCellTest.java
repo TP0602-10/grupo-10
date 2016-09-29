@@ -7,6 +7,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ImmutableCellTest {
@@ -28,5 +31,14 @@ public class ImmutableCellTest {
         ImmutableCell cell = new ImmutableCell(new MutableContent<>(1,"value"));
         assertEquals(1,cell.getValue("value"));
         assertEquals(1,cell.getValue());
+    }
+
+    @Test(expected = ImmutableCellException.class)
+    public void setValueWithoutTag() {
+        List<Content> list = new ArrayList<>();
+        list.add(new MutableContent<>(1,"value1"));
+        ImmutableCell cell = new ImmutableCell(list);
+
+        cell.setValue(2);
     }
 }
