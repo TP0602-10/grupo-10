@@ -67,9 +67,9 @@ public class KakuroFactory {
         }
     }
     */
-    private static void setSingleSidedImmutableCells(List<Cell> grid, List<List<Integer>> positions, String tag){
-        for (List<Integer> info : positions ) {
-            grid.set(info.get(0),createSingleValuedImmutableCell(info.get(1),tag));
+    private static void setSingleSidedImmutableCells(List<Cell> grid, List<List<Integer>> positions, String tag) {
+        for (List<Integer> info : positions) {
+            grid.set(info.get(0), createSingleValuedImmutableCell(info.get(1), tag));
         }
     }
     /*
@@ -85,11 +85,49 @@ public class KakuroFactory {
         }
     }
 
-    private static void populateGrid(List<Cell> grid) {
+    private static List<Cell> populateGrid() {
+        List<Cell> grid = new ArrayList<>();
         for (int i = 0; i < TOTAL_CELLS; i++) {
             grid.add(createMutableCell(0));
         }
+        return grid;
     }
+
+    private static void generateTestUpSidedPositions(List<List<Integer>> upSidedPositions) {
+        upSidedPositions.add(Arrays.asList(9, 16));
+        upSidedPositions.add(Arrays.asList(13, 4));
+        upSidedPositions.add(Arrays.asList(18, 23));
+        upSidedPositions.add(Arrays.asList(33, 17));
+        upSidedPositions.add(Arrays.asList(45, 9));
+        upSidedPositions.add(Arrays.asList(48, 24));
+        upSidedPositions.add(Arrays.asList(54, 4));
+        upSidedPositions.add(Arrays.asList(63, 22));
+        upSidedPositions.add(Arrays.asList(68, 23));
+        upSidedPositions.add(Arrays.asList(72, 24));
+        upSidedPositions.add(Arrays.asList(78, 16));
+    }
+
+    private static void generateTestDownSidedPositions(List<List<Integer>> downSidedPositions) {
+        downSidedPositions.add(Arrays.asList(1, 17));
+        downSidedPositions.add(Arrays.asList(2, 16));
+        downSidedPositions.add(Arrays.asList(5, 12));
+        downSidedPositions.add(Arrays.asList(6, 6));
+        downSidedPositions.add(Arrays.asList(12, 23));
+        downSidedPositions.add(Arrays.asList(16, 26));
+        downSidedPositions.add(Arrays.asList(17, 23));
+        downSidedPositions.add(Arrays.asList(32, 23));
+        downSidedPositions.add(Arrays.asList(61, 17));
+        downSidedPositions.add(Arrays.asList(62, 16));
+    }
+
+    private static void generateTestDoubleSidedPositions(List<List<Integer>> doubleSidedPositions) {
+        doubleSidedPositions.add(Arrays.asList(22, 29, 29));
+        doubleSidedPositions.add(Arrays.asList(29, 17, 18));
+        doubleSidedPositions.add(Arrays.asList(37, 27, 27));
+        doubleSidedPositions.add(Arrays.asList(42, 8, 23));
+        doubleSidedPositions.add(Arrays.asList(57, 21, 8));
+    }
+
 
     private static void generateEasyUpSidedPositions(List<List<Integer>> upSidedPositions) {
 
@@ -122,31 +160,77 @@ public class KakuroFactory {
         doubleSidedPositions.add(Arrays.asList(10, 16, 11));
     }
 
-    private static List<Cell> generateCellListEasy() {
-        List<Cell> returnableList = new ArrayList<>();
-        populateGrid(returnableList);
-        List<List<Integer>> upSidedPositions = new ArrayList<>();
-        List<List<Integer>> downSidedPositions = new ArrayList<>();
-        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+    private static void buildTemporalGridTest(List<List<Integer>> upSidedPositions,
+                                              List<List<Integer>> downSidedPositions,
+                                              List<List<Integer>> doubleSidedPositions) {
+        generateTestUpSidedPositions(upSidedPositions);
+        generateTestDownSidedPositions(downSidedPositions);
+        generateTestDoubleSidedPositions(doubleSidedPositions);
+    }
+
+    private static void buildTemporalEasyGrid(List<List<Integer>> upSidedPositions,
+                                              List<List<Integer>> downSidedPositions,
+                                              List<List<Integer>> doubleSidedPositions) {
+
         generateEasyUpSidedPositions(upSidedPositions);
         generateEasyDownSidedPositions(downSidedPositions);
         generateEasyDoubleSidedPositions(doubleSidedPositions);
 
-        List<Integer> blackPositions = new ArrayList<>(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
-                70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 90));
+    }
+
+    private static void initializeGame(List<Integer> blackPositions, List<List<Integer>> upSidedPositions,
+                                       List<List<Integer>> downSidedPositions,
+                                       List<List<Integer>> doubleSidedPositions,
+                                       List<Cell> returnableList) {
         setImmutableCells(returnableList, blackPositions);
-        setSingleSidedImmutableCells(returnableList, downSidedPositions,"CompareToDown");
-        setSingleSidedImmutableCells(returnableList, upSidedPositions,"CompareToRight");
+        setSingleSidedImmutableCells(returnableList, downSidedPositions, "CompareToDown");
+        setSingleSidedImmutableCells(returnableList, upSidedPositions, "CompareToRight");
         setDoubleSidedImmutableCells(returnableList, doubleSidedPositions);
 
+
+    }
+
+   /* private static List<Cell> generateCellListTest() {
+        List<Cell> returnableList = populateGrid();
+        List<List<Integer>> upSidedPositions = new ArrayList<>();
+        List<List<Integer>> downSidedPositions = new ArrayList<>();
+        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+        buildTemporalGridTest(upSidedPositions,downSidedPositions,doubleSidedPositions);
+        List<Integer> blackPositions = new ArrayList<>(Arrays.asList(
+                0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78
+        ));
+
+        initializeGame(blackPositions, upSidedPositions, downSidedPositions, doubleSidedPositions, returnableList);
+
+        return returnableList;
+    }*/
+
+    private static List<Cell> generateCellList(int difficulty) {
+        List<Cell> returnableList = populateGrid();
+        List<Integer> blackPositions = new ArrayList<>();
+        List<List<Integer>> upSidedPositions = new ArrayList<>();
+        List<List<Integer>> downSidedPositions = new ArrayList<>();
+        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+        if (difficulty == 2) {
+            buildTemporalGridTest(upSidedPositions, downSidedPositions, doubleSidedPositions);
+            blackPositions.addAll(Arrays.asList(
+                    0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78));
+        } else {
+            buildTemporalEasyGrid(upSidedPositions, downSidedPositions, doubleSidedPositions);
+            blackPositions.addAll(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
+                    70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80));
+        }
+
+        initializeGame(blackPositions, upSidedPositions, downSidedPositions, doubleSidedPositions, returnableList);
         return returnableList;
     }
 
     private static List<Cell> generateCellListMedium() {
         List<Cell> returnableList = new ArrayList<>();
-        /*for (int i = 0; i < TOTAL_CELLS; i++) {
+        for (int i = 0; i < TOTAL_CELLS; i++) {
             returnableList.add(createMutableCell(0));
         }
+        /*
         for (int i = 72; i < TOTAL_CELLS; i++) {
             returnableList.set(i, createImmutableCell());
         }
@@ -188,16 +272,11 @@ public class KakuroFactory {
     }
 
     public static Grid createGrid(int difficulty) {
-        List<Cell> cells = new ArrayList<>();
-        if (difficulty == 1) {
-            cells = generateCellListEasy();
-        }
-        if (difficulty == 2) {
-            cells = generateCellListMedium();
-        }
+        List<Cell> cells;
+        cells = generateCellList(difficulty);
         GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
-        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
-        return grid;
+        return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
+
     }
 
     private static GridRuleManager createKakuroRuleManager(List<List<Cell>> grid) {
@@ -207,13 +286,16 @@ public class KakuroFactory {
 
     private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid) {
         Collection<GridRule> kakuroRules = new ArrayList<>();
+
         String[] upperTag = {"CompareToRight"};
         String[] downTag = {"CompareToDown"};
+
         List<String> upperCellTag = new ArrayList<>(Arrays.asList(upperTag));
         List<String> downCellTag = new ArrayList<>(Arrays.asList(downTag));
         //iterate over rows and create distinct and sum rules
         iterateRowKakuroRules(grid, upperCellTag, kakuroRules);
         iterateColumnKakuroRules(grid, downCellTag, kakuroRules);
+
 
         return kakuroRules;
     }
@@ -222,23 +304,25 @@ public class KakuroFactory {
                                               Collection<GridRule> kakuroRules) {
         for (int i = 0; i < ROWS; i++) {
             List<Cell> row = grid.get(i);
-            int jIndex = 0;
-            while (jIndex < COLUMNS) {
-                Cell element = row.get(jIndex);
+            Integer columnIndex = 0;
+            while (columnIndex < COLUMNS) {
+                Cell element = row.get(columnIndex);
                 int startPos;
                 if (element.getContents(upperCellTag).isEmpty()) {
-                    jIndex++;
-                    continue;
+                    columnIndex++;
                 } else {
-                    jIndex++;
-                    startPos = jIndex;
+                    columnIndex++;
+                    startPos = columnIndex;
                     int goalValue = (int) element.getContent("CompareToRight").getValue();
-                    element = row.get(jIndex);
-                    while (jIndex < COLUMNS && element.isContentEditable()) {
-                        jIndex++;
-                        element = row.get(jIndex);
+                    element = row.get(columnIndex);
+                    while (columnIndex < COLUMNS && element.isContentEditable()) {
+                        columnIndex++;
+                        element = row.get(columnIndex);
                     }
-                    generateKakuroRules(grid, i, startPos, jIndex, kakuroRules, goalValue,upperCellTag);
+
+                    generateKakuroRules(grid, i, startPos, columnIndex, kakuroRules, goalValue,
+                            upperCellTag, GridRuleIteratorFactory.iteratorForCustomRow(grid, i, startPos,
+                                    columnIndex));
                 }
             }
         }
@@ -246,27 +330,28 @@ public class KakuroFactory {
 
     private static void iterateColumnKakuroRules(List<List<Cell>> grid, List<String> downCellTag,
                                                  Collection<GridRule> kakuroRules) {
-        for (int jIndex = 0; jIndex < COLUMNS; jIndex++) {
+        for (int j = 0; j < COLUMNS; j++) {
             Integer rowIndex = 0;
             while (rowIndex < ROWS) {
-                int startPos = 0;
-                List<Cell> row = grid.get(rowIndex);
-                Cell element = row.get(jIndex);
+                int startPos;
+                //List<Cell> row = grid.get(rowIndex);
+                Cell element = grid.get(rowIndex).get(j);
                 if (element.getContents(downCellTag).isEmpty()) {
                     rowIndex++;
-                    continue;
                 } else {
                     rowIndex++;
                     startPos = rowIndex;
-                    row = grid.get(rowIndex);
+                    List<Cell> row = grid.get(rowIndex);
                     int goalValue = (int) element.getContent("CompareToDown").getValue();
-                    element = row.get(jIndex);
+                    element = row.get(j);
                     while (rowIndex < ROWS && element.isContentEditable()) {
                         rowIndex++;
                         row = grid.get(rowIndex);
-                        element = row.get(jIndex);
+                        element = row.get(j);
                     }
-                    generateKakuroRules(grid, jIndex, startPos, rowIndex, kakuroRules, goalValue,downCellTag);
+                    GridRuleIterator anIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, j,
+                            startPos, rowIndex);
+                    generateKakuroRules(grid, j, startPos, rowIndex, kakuroRules, goalValue, downCellTag, anIterator);
                 }
 
             }
@@ -275,36 +360,15 @@ public class KakuroFactory {
     }
 
 
+    private static void generateKakuroRules(List<List<Cell>> grid, int columnIndex, int startPos, int endPos,
+                                            Collection<GridRule> kakuroRules, int goalValue, List<String> tag,
+                                            GridRuleIterator anIterator) {
 
-    private static void generateKakuroRules(List<List<Cell>> grid, int jIndex, int startPos, int endPos,
-                                                  Collection<GridRule> kakuroRules, int goalValue,List<String> tag) {
-        GridRuleIterator subColumnIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, jIndex,
-                startPos, endPos);
-        kakuroRules.add(new GridRule<>(subColumnIterator, new DistinctOperation("Number"),
+        kakuroRules.add(new GridRule<>(anIterator, new DistinctOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
-        kakuroRules.add(new GridRule<>(subColumnIterator, new SumOperation(tag),
+        kakuroRules.add(new GridRule<>(anIterator, new SumOperation(tag),
                 new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
     }
-//    private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid){
-//        Collection<GridRule> kakuroRules = new ArrayList<>();
-//
-//        //iterate over rows and create distinct and sum rules
-//        for(int i=0;i<ROWS;i++){
-//
-//        }
-//
-//
-//        String[] tags = {kakuroTags};
-//        List<String> cellTag = new ArrayList<>(Arrays.asList(tags));
-//
-//        final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation(cellTag);
-//
-//        final GridRuleOperation sumOperation= new SumOperation(cellTag);
-//
-//
-//
-//        return kakuroRules;
-//    }
 
     private static <T> void cycleArray(List<T> anArray) {
         T lastElement = anArray.get(anArray.size() - 1);
@@ -315,9 +379,11 @@ public class KakuroFactory {
     private static Cell createMutableCell(int number) {
         return new MutableCell(new MutableContent<>(number, "Number"));
     }
-    private static Cell createSingleValuedImmutableCell(int result, String tag){
-        return new ImmutableCell(new ImmutableContent<>(result,tag));
+
+    private static Cell createSingleValuedImmutableCell(int result, String tag) {
+        return new ImmutableCell(new ImmutableContent<>(result, tag));
     }
+
     private static Cell createImmutableCell() {
         return new ImmutableCell(new ImmutableContent<>(null, "BlackBLock"));
     }
@@ -331,10 +397,10 @@ public class KakuroFactory {
     }
 
     private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult) {
-        List<Content> lista = new ArrayList<Content>();
-        lista.add(new ImmutableContent<>(upperResult, "CompareToRight"));
-        lista.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
-        return new ImmutableCell(lista);
+        List<Content> contentList = new ArrayList<>();
+        contentList.add(new ImmutableContent<>(upperResult, "CompareToRight"));
+        contentList.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
+        return new ImmutableCell(contentList);
     }
 }
 
