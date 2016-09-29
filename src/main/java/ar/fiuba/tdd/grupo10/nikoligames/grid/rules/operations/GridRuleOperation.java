@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.ArrayList;
@@ -14,14 +15,13 @@ import java.util.List;
  * @param <R> The type of the operation result.
  */
 public abstract class GridRuleOperation<R> {
-    private final List<String> contentTags;
+    private List<String> contentTags = new ArrayList<>();
 
     public GridRuleOperation(List<String> contentTags) {
         this.contentTags = contentTags;
     }
 
     public GridRuleOperation(String tag) {
-        this.contentTags = new ArrayList<String>();
         this.contentTags.add(tag);
     }
 
@@ -32,6 +32,8 @@ public abstract class GridRuleOperation<R> {
     public abstract R perform(GridRuleIterator iterator, Object... params);
 
     public abstract boolean isApplicableOn(Cell cell);
+
+    public abstract boolean isApplicableOn(Content content);
 
     public abstract String getOperationExplanation(R result);
 
