@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuGridAdapter;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,11 +18,11 @@ public class SudokuView extends JFrame {
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
-    public SudokuView(GridAdapter gridAdapter) {
+    public SudokuView(SudokuGridAdapter sudokuGridAdapter) {
         super(TITLE);
         setWindowPreferences();
 
-        GridView table = new GridView(gridAdapter);
+        GridView table = new GridView(sudokuGridAdapter);
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

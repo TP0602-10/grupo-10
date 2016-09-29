@@ -7,11 +7,11 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 
 import javax.swing.table.AbstractTableModel;
 
-public class GridAdapter extends AbstractTableModel {
+public class SudokuGridAdapter extends AbstractTableModel {
 
     private Grid grid;
 
-    public GridAdapter(Grid grid) {
+    public SudokuGridAdapter(Grid grid) {
         super();
         this.grid = grid;
     }

@@ -26,13 +26,13 @@ public class DisabledCellView extends CellView {
     }
 
     @Override
-    public void paintComponent(Graphics grapichs) {
+    public void paintComponent(Graphics graphics) {
         // TODO: Value debería ser un array de valores? Como identificamos si hay que renderizar un solo valor o varios en la misma celda
         String text = (this.value != null) ? this.value.toString() : "";
 
         setText(text);
 
-        super.paintComponent(grapichs);
+        super.paintComponent(graphics);
 
         // TODO: Renderizado Kakuro
         /*g.drawLine(this.getWidth(), this.getHeight(), 0, 0);
