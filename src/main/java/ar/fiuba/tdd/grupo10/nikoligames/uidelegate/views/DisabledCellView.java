@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class DisabledCellView extends CellView {
 
@@ -11,7 +11,7 @@ public class DisabledCellView extends CellView {
         super();
     }
 
-    public void setValue(Object value){
+    public void setValue(Object value) {
         this.value = value;
     }
 
@@ -26,14 +26,13 @@ public class DisabledCellView extends CellView {
     }
 
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics grapichs) {
         // TODO: Value debería ser un array de valores? Como identificamos si hay que renderizar un solo valor o varios en la misma celda
-        String text = (this.value != null)?this.value.toString(): "";
+        String text = (this.value != null) ? this.value.toString() : "";
 
         setText(text);
 
-        super.paintComponent(g);
+        super.paintComponent(grapichs);
 
         // TODO: Renderizado Kakuro
         /*g.drawLine(this.getWidth(), this.getHeight(), 0, 0);

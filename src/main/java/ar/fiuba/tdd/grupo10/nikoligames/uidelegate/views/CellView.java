@@ -16,7 +16,7 @@ public class CellView extends JLabel implements TableCellRenderer {
         return this;
     }
 
-    protected void setCustomRender(Object value){
+    protected void setCustomRender(Object value) {
         setHorizontalAlignment(SwingConstants.CENTER);
         setForeground(Color.black);
     }
