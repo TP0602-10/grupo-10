@@ -9,7 +9,7 @@ Estos se caracterizan por ocurrir en una grilla, en la que el jugador analiz
 
 Para poder utilizar el programa se debe correr la clase Main y luego seleccionar el juego a utilizar en la interfaz de usuario. Presionar sobre el botón Jugar y el juego comienza.
 
-Para ver más detalles, haga clic aqui: https://github.com/swandelow/template-tp-grupal/wiki
+Para ver más detalles, haga clic aqui: https://github.com/TP0602-10/grupo-10/wiki
 
 
  
