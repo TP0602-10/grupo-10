@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.OnRuleUnsatisfiedObserver;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,10 +11,10 @@ import java.util.List;
  * Game main board. It contains cells organized by rows and columns.
  * Used Observable pattern. It can subscribe to new observers and notify them when a change it is made on the grid.
  */
-public class Grid implements OnRuleUnsatisfiedObserver {
+public class Grid implements GameRulesObserver {
     private final List<List<Cell>> cells;
     private Collection<OnGridUpdatedObserver> observers;
-    private Collection<OnRuleUnsatisfiedObserver> ruleObservers = new ArrayList<>();
+    private Collection<GameRulesObserver> ruleObservers = new ArrayList<>();
 
     public Grid(List<List<Cell>> cells, Collection<OnGridUpdatedObserver> observers) {
         this.cells = cells;
@@ -41,12 +41,21 @@ public class Grid implements OnRuleUnsatisfiedObserver {
         this.ruleObservers.forEach(o -> o.onRuleUnsatisfied(message));
     }
 
+    public void notifyGameWon(String message) {
+        this.ruleObservers.forEach(o -> o.onGameWon(message));
+    }
+
     @Override
     public void onRuleUnsatisfied(String message) {
         notifyRuleUnsatisfied(message);
     }
 
-    public void addRuleObserver(OnRuleUnsatisfiedObserver ruleObserver) {
+    @Override
+    public void onGameWon(String message) {
+        notifyGameWon(message);
+    }
+
+    public void addRuleObserver(GameRulesObserver ruleObserver) {
         this.ruleObservers.add(ruleObserver);
     }
 
