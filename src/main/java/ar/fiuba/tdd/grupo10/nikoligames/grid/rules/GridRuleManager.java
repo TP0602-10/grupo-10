@@ -37,8 +37,6 @@ public class GridRuleManager implements OnGridUpdatedObserver {
         this.rules.forEach(rule -> {
                 try {
                     rule.verifyRule();
-                    //TODO remove next line when done testing rules
-                    notifyRuleUnsatisfied(rule.toString() + " satisfecha");
                 } catch (RuleNotSatisfiedException e) {
                     notifyRuleUnsatisfied(e.getMessage());
                 }

@@ -25,6 +25,7 @@ public class MainMenuView extends JFrame {
         pack();
         setTitle("Nikoli Games");
         setVisible(true);
+        setResizable(false);
     }
 
     private JPanel createMainPanel() {
