@@ -38,6 +38,8 @@ public class GridRuleManager implements OnGridUpdatedObserver {
                     rule.verifyRule();
                 } catch (RuleNotSatisfiedException e) {
                     notifyRuleUnsatisfied(e.getMessage());
+                } finally {
+                    rule.getRuleIterator().restart();
                 }
             }
         );

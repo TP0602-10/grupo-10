@@ -9,14 +9,22 @@ import javax.swing.table.TableCellRenderer;
 
 public class GridView extends JTable {
 
+    private static int RowHeightDefault = 50;
+
     public GridView(GridAdapter grid) {
         super(grid);
+        this.setRowHeight(RowHeightDefault);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         this.setGridColor(Color.red);
     }
 
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-        return new CellView(this.getModel().isCellEditable(row, column));
+
+        if (this.getModel().isCellEditable(row, column)) {
+            return new EnabledCellView();
+        }
+
+        return new DisabledCellView();
     }
 }

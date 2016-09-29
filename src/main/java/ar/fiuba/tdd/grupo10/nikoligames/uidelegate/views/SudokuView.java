@@ -10,18 +10,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
+
 
 public class SudokuView extends JFrame {
 
-    private GridView table;
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
     public SudokuView(GridAdapter gridAdapter) {
-        super("Grupo 10 - Nikoli");
+        super(TITLE);
         setWindowPreferences();
 
-        table = new GridView(gridAdapter);
+        GridView table = new GridView(gridAdapter);
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -63,8 +64,7 @@ public class SudokuView extends JFrame {
 
     private void setWindowPreferences() {
         setVisible(true);
-        setSize(new Dimension(700, 500));
-        setLocation(420, 220);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
     public void updateConsole(String message) {
