@@ -242,10 +242,10 @@ public class KakuroFactory {
                         columnIndex++;
                         element = row.get(columnIndex);
                     }
-                    GridRuleIterator anIterator = GridRuleIteratorFactory.iteratorForCustomRow(grid,i,startPos,
-                            columnIndex);
+
                     generateKakuroRules(grid, i, startPos, columnIndex, kakuroRules, goalValue,
-                            upperCellTag,anIterator);
+                            upperCellTag,GridRuleIteratorFactory.iteratorForCustomRow(grid,i,startPos,
+                                    columnIndex));
                 }
             }
         }
