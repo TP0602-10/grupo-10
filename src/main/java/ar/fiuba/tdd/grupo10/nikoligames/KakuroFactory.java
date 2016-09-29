@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
@@ -145,25 +147,31 @@ public class KakuroFactory {
 
         return returnableList;
     }
+
+    public static Grid createGrid(int difficulty){
+        List<Cell> cells = new ArrayList<>();
+        if (difficulty == 1) cells = generateCellListEasy();
+        if (difficulty == 2) cells = generateCellListMedium();
+        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).buildGrid();
+        return grid;
+    }
     private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid){
         Collection<GridRule> kakuroRules = new ArrayList<>();
+
+        //iterate over rows and create distinct and sum rules
+        for(int i=0;i<ROWS;i++){
+
+        }
+
+
         String[] tags = {kakuroTags};
-        List<String> cellTag = new ArrayList<String>(Arrays.asList(tags));
+        List<String> cellTag = new ArrayList<>(Arrays.asList(tags));
 
         final GridRuleOperation<Boolean> distinctOperation = new DistinctOperation(cellTag);
 
         final GridRuleOperation sumOperation= new SumOperation(cellTag);
 
-        final GridRuleCondition<Boolean> ruleCondition = new GridRuleCondition<>(
-                new EqualsMatcher<>(),Boolean.TRUE
-        );
-        List<GridRuleIterator> iteratorForAllRows = GridRuleIteratorFactory.iteratorsForAllRows(grid);
-        List<GridRuleIterator> iteratorForAllColumns=GridRuleIteratorFactory.iteratorsForAllColumns(grid);
-        List<GridRuleIterator> iteratorForAllCells=
-                GridRuleIteratorFactory.iteratorsForAllCellBlocks(grid,ROWS,COLUMNS);
-        List<GridRuleIterator> allIterators=
-                ListHelper.merge(ListHelper.merge(iteratorForAllRows,iteratorForAllColumns),iteratorForAllCells);
-        allIterators.forEach(i-> kakuroRules.add(new GridRule(i,distinctOperation,ruleCondition)));
+
 
         return kakuroRules;
     }
