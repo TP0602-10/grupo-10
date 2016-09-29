@@ -85,11 +85,49 @@ public class KakuroFactory {
         }
     }
 
-    private static void populateGrid(List<Cell> grid) {
+    private static List<Cell> populateGrid() {
+        List<Cell> grid = new ArrayList<>();
         for (int i = 0; i < TOTAL_CELLS; i++) {
             grid.add(createMutableCell(0));
         }
+        return grid;
     }
+
+    private static void generateTestUpSidedPositions(List<List<Integer>> upSidedPositions) {
+        upSidedPositions.add(Arrays.asList(9, 16));
+        upSidedPositions.add(Arrays.asList(13, 4));
+        upSidedPositions.add(Arrays.asList(18, 23));
+        upSidedPositions.add(Arrays.asList(33, 17));
+        upSidedPositions.add(Arrays.asList(45, 9));
+        upSidedPositions.add(Arrays.asList(48, 24));
+        upSidedPositions.add(Arrays.asList(54, 4));
+        upSidedPositions.add(Arrays.asList(63, 22));
+        upSidedPositions.add(Arrays.asList(68, 23));
+        upSidedPositions.add(Arrays.asList(72, 24));
+        upSidedPositions.add(Arrays.asList(78, 16));
+    }
+
+    private static void generateTestDownSidedPositions(List<List<Integer>> downSidedPositions) {
+        downSidedPositions.add(Arrays.asList(1, 17));
+        downSidedPositions.add(Arrays.asList(2, 16));
+        downSidedPositions.add(Arrays.asList(5, 12));
+        downSidedPositions.add(Arrays.asList(6, 6));
+        downSidedPositions.add(Arrays.asList(12, 23));
+        downSidedPositions.add(Arrays.asList(16, 26));
+        downSidedPositions.add(Arrays.asList(17, 23));
+        downSidedPositions.add(Arrays.asList(32, 23));
+        downSidedPositions.add(Arrays.asList(61, 17));
+        downSidedPositions.add(Arrays.asList(62, 16));
+    }
+
+    private static void generateTestDoubleSidedPositions(List<List<Integer>> doubleSidedPositions) {
+        doubleSidedPositions.add(Arrays.asList(22, 29, 29));
+        doubleSidedPositions.add(Arrays.asList(29, 17, 18));
+        doubleSidedPositions.add(Arrays.asList(37, 27, 27));
+        doubleSidedPositions.add(Arrays.asList(42, 8, 23));
+        doubleSidedPositions.add(Arrays.asList(57, 21, 8));
+    }
+
 
     private static void generateEasyUpSidedPositions(List<List<Integer>> upSidedPositions) {
 
@@ -122,24 +160,68 @@ public class KakuroFactory {
         doubleSidedPositions.add(Arrays.asList(10, 16, 11));
     }
 
-    private static List<Cell> generateCellListEasy() {
-        List<Cell> returnableList = new ArrayList<>();
-        populateGrid(returnableList);
-        List<List<Integer>> upSidedPositions = new ArrayList<>();
-        List<List<Integer>> downSidedPositions = new ArrayList<>();
-        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+    private static void buildTemporalGridTest(List<List<Integer>> upSidedPositions,
+                                              List<List<Integer>> downSidedPositions,
+                                              List<List<Integer>> doubleSidedPositions) {
+        generateTestUpSidedPositions(upSidedPositions);
+        generateTestDownSidedPositions(downSidedPositions);
+        generateTestDoubleSidedPositions(doubleSidedPositions);
+    }
+
+    private static void buildTemporalEasyGrid(List<List<Integer>> upSidedPositions,
+                                              List<List<Integer>> downSidedPositions,
+                                              List<List<Integer>> doubleSidedPositions) {
+
         generateEasyUpSidedPositions(upSidedPositions);
         generateEasyDownSidedPositions(downSidedPositions);
         generateEasyDoubleSidedPositions(doubleSidedPositions);
 
-        List<Integer> blackPositions = new ArrayList<>(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
-                70, 71, 72, 73, 74, 75, 76, 77, 78, 79,80));
+    }
+
+    private static void initializeGame(List<Integer> blackPositions, List<List<Integer>> upSidedPositions,
+                                       List<List<Integer>> downSidedPositions,
+                                       List<List<Integer>> doubleSidedPositions,
+                                       List<Cell> returnableList) {
         setImmutableCells(returnableList, blackPositions);
         setSingleSidedImmutableCells(returnableList, downSidedPositions, "CompareToDown");
         setSingleSidedImmutableCells(returnableList, upSidedPositions, "CompareToRight");
         setDoubleSidedImmutableCells(returnableList, doubleSidedPositions);
 
 
+    }
+
+   /* private static List<Cell> generateCellListTest() {
+        List<Cell> returnableList = populateGrid();
+        List<List<Integer>> upSidedPositions = new ArrayList<>();
+        List<List<Integer>> downSidedPositions = new ArrayList<>();
+        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+        buildTemporalGridTest(upSidedPositions,downSidedPositions,doubleSidedPositions);
+        List<Integer> blackPositions = new ArrayList<>(Arrays.asList(
+                0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78
+        ));
+
+        initializeGame(blackPositions, upSidedPositions, downSidedPositions, doubleSidedPositions, returnableList);
+
+        return returnableList;
+    }*/
+
+    private static List<Cell> generateCellList(int difficulty) {
+        List<Cell> returnableList = populateGrid();
+        List<Integer> blackPositions = new ArrayList<>();
+        List<List<Integer>> upSidedPositions = new ArrayList<>();
+        List<List<Integer>> downSidedPositions = new ArrayList<>();
+        List<List<Integer>> doubleSidedPositions = new ArrayList<>();
+        if (difficulty == 0) {
+            buildTemporalGridTest(upSidedPositions, downSidedPositions, doubleSidedPositions);
+            blackPositions.addAll(Arrays.asList(
+                    0, 3, 4, 7, 8, 27, 28, 36, 53, 77, 78));
+        } else {
+            buildTemporalEasyGrid(upSidedPositions, downSidedPositions, doubleSidedPositions);
+            blackPositions.addAll(Arrays.asList(0, 1, 4, 5, 8, 13, 17, 26, 34, 35, 44, 53, 57, 62, 66,
+                    70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80));
+        }
+
+        initializeGame(blackPositions, upSidedPositions, downSidedPositions, doubleSidedPositions, returnableList);
         return returnableList;
     }
 
@@ -190,13 +272,8 @@ public class KakuroFactory {
     }
 
     public static Grid createGrid(int difficulty) {
-        List<Cell> cells = new ArrayList<>();
-        if (difficulty == 1) {
-            cells = generateCellListEasy();
-        }
-        if (difficulty == 2) {
-            cells = generateCellListMedium();
-        }
+        List<Cell> cells;
+        cells = generateCellList(difficulty);
         GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
         return new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
 
@@ -244,7 +321,7 @@ public class KakuroFactory {
                     }
 
                     generateKakuroRules(grid, i, startPos, columnIndex, kakuroRules, goalValue,
-                            upperCellTag,GridRuleIteratorFactory.iteratorForCustomRow(grid,i,startPos,
+                            upperCellTag, GridRuleIteratorFactory.iteratorForCustomRow(grid, i, startPos,
                                     columnIndex));
                 }
             }
@@ -274,7 +351,7 @@ public class KakuroFactory {
                     }
                     GridRuleIterator anIterator = GridRuleIteratorFactory.iteratorForCustomColumn(grid, j,
                             startPos, rowIndex);
-                    generateKakuroRules(grid, j, startPos, rowIndex, kakuroRules, goalValue, downCellTag,anIterator);
+                    generateKakuroRules(grid, j, startPos, rowIndex, kakuroRules, goalValue, downCellTag, anIterator);
                 }
 
             }
