@@ -22,8 +22,8 @@ public class GridView extends JTable {
     public TableCellRenderer getCellRenderer(int row, int column) {
 
         if(this.getModel().isCellEditable(row, column))
-            return new EnableCellView();
+            return new EnabledCellView();
 
-        return new DisableCellView();
+        return new DisabledCellView();
     }
 }

@@ -3,11 +3,11 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 import javax.swing.*;
 import java.awt.*;
 
-public class DisableCellView extends CellView {
+public class DisabledCellView extends CellView {
 
     private Object value;
 
-    public DisableCellView() {
+    public DisabledCellView() {
         super();
     }
 

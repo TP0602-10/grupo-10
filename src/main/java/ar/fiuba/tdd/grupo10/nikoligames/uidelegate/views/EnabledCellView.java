@@ -3,9 +3,9 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 import javax.swing.*;
 import java.awt.*;
 
-public class EnableCellView extends CellView{
+public class EnabledCellView extends CellView{
 
-    public EnableCellView() {
+    public EnabledCellView() {
         super();
     }
 
