@@ -171,6 +171,15 @@ public class GridRuleTest {
     }
 
     @Test(expected = Test.None.class)
+    public void productOfAllCellsOfGrid() throws RuleNotSatisfiedException {
+        GridRule<Integer> theRule = createRuleAllCellWithManyIntegerContentsAndOperationAndGoal(
+                new ProductOperation( Arrays.asList(TAGS_FOR_MANY_CONTENTS) ),
+                16 * 81 * 256
+        );
+        theRule.verifyRule();
+    }
+
+    @Test(expected = Test.None.class)
     public void productOfAllCells() throws RuleNotSatisfiedException {
         GridRule<Integer> theRule = createRuleAllCellAndEspecificProductOperationAndGoal(24);
         theRule.verifyRule();
@@ -182,6 +191,27 @@ public class GridRuleTest {
         theRule.verifyRule();
     }
 
+    private GridRule<Integer> createRuleAllCellWithManyIntegerContentsAndOperationAndGoal(
+            GridRuleOperation<Integer> operation,
+            Integer goal) {
+
+        final GridRuleCondition<Integer> condition = new GridRuleCondition<>(
+                new EqualsMatcher<>(),
+                goal
+        );
+
+        List<Cell> allCells = gridWithManyTagContents.getCells().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+
+        return new GridRule<>(
+                simpleIterator,
+                operation,
+                condition
+        );
+    }
 
     private GridRule<Integer> createRuleAllCellWithManyContentsAndEspecificSumOperationAndGoal(Integer goal) {
 

@@ -10,7 +10,7 @@ import java.util.List;
  * Rule operation that returns the sum of all the content cells.
  * Content cells evaluated must be Integer and the operation result is Integer as well.
  */
-public class SumOperation extends GridRuleOperation<Integer> {
+public class SumOperation extends IntegerMathOperation {
 
     public SumOperation(List<String> contentTags) {
         super(contentTags);
@@ -21,25 +21,13 @@ public class SumOperation extends GridRuleOperation<Integer> {
     }
 
     @Override
-    public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
-        Integer accSum = 0;
-        while (iterator.hasNext()) {
-            Cell cell = iterator.next();
-            if (isApplicableOn(cell)) {
-                accSum = sumContentValueToAccumulativeSum(accSum, cell);
-            }
-        }
-        return accSum;
+    protected Integer getInitialAccValue() {
+        return 0;
     }
 
     @Override
-    public boolean isApplicableOn(Cell cell) {
-        return ! cell.getContents(getContentTags()).isEmpty();
-    }
-
-    @Override
-    public boolean isApplicableOn(Content content) {
-        return !content.isEmpty() && content.getValue() instanceof Integer;
+    protected Integer operateOnAccValue(Integer accValue, Integer operationValue) {
+        return accValue + operationValue;
     }
 
     @Override
@@ -47,14 +35,4 @@ public class SumOperation extends GridRuleOperation<Integer> {
         return "The operation sums all the Integer cell contents. The result is " + result.toString() + ".";
     }
 
-    private Integer sumContentValueToAccumulativeSum(Integer accSum, Cell cell) {
-        if (getContentTags() != null) {
-            for (String tag : getContentTags()) {
-                if (isApplicableOn(cell.getContent(tag))) {
-                    accSum += (Integer) cell.getContent(tag).getValue();
-                }
-            }
-        }
-        return accSum;
-    }
 }
