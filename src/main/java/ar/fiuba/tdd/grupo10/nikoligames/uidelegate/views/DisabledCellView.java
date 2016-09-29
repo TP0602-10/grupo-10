@@ -30,15 +30,15 @@ public class DisabledCellView extends CellView {
         // TODO: Value debería ser un array de valores? Como identificamos si hay que renderizar un solo valor o varios en la misma celda
         String text = (this.value != null) ? this.value.toString() : "";
 
-        setText(text);
+        //setText(text);
 
         super.paintComponent(grapichs);
 
         // TODO: Renderizado Kakuro
-        /*g.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+        grapichs.drawLine(this.getWidth(), this.getHeight(), 0, 0);
 
-        g.drawString(text, 5, (this.getHeight() / 2) + 5);
-        g.drawString("?", this.getWidth() - 10, this.getHeight() / 2);*/
+        grapichs.drawString(text, 5, (this.getHeight() / 2) + 5);
+        grapichs.drawString("?", this.getWidth() - 10, this.getHeight() / 2);
     }
 
 }

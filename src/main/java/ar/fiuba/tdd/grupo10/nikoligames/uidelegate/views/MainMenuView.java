@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.KakuroController;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
 import java.awt.*;
@@ -78,7 +79,11 @@ public class MainMenuView extends JFrame {
                         exception.printStackTrace();
                     }
                 } else if (GameEnum.KAKURO.equals(game)) {
-                    showUnavailableGameDialog();
+                    try {
+                        new KakuroController(SudokuFactory.createGridFromScratch(15));
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
                 }
             }
         });
