@@ -53,4 +53,13 @@ public class Grid implements OnRuleUnsatisfiedObserver {
     public void addRuleObserver(OnRuleUnsatisfiedObserver ruleObserver) {
         this.ruleObservers.add(ruleObserver);
     }
+
+    public boolean isComplete() {
+        return cells.stream()
+                .allMatch(row ->
+                        row.stream()
+                                .filter(Cell::isContentEditable)
+                                .allMatch(Cell::isCompletelyFilled)
+                );
+    }
 }
