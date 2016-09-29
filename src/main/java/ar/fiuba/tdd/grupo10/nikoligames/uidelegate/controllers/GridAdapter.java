@@ -28,8 +28,13 @@ public class GridAdapter extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Content content = grid.getCellAt(rowIndex, columnIndex).getContent("tag");
-        return (content == null ? "" : content.getValue());
+        Object value;
+        try {
+            value = grid.getCellAt(rowIndex, columnIndex).getValue();
+        } catch (Exception exception) {
+            value = "";
+        }
+        return value;
     }
 
     @Override
