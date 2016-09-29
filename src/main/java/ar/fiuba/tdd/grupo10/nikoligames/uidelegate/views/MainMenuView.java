@@ -1,8 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.KakuroFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridController;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -73,12 +74,16 @@ public class MainMenuView extends JFrame {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
                 if (GameEnum.SUDOKU.equals(game)) {
                     try {
-                        new SudokuController(SudokuFactory.createGridFromScratch(15));
+                        new GridController(SudokuFactory.createGridFromScratch(15));
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
                 } else if (GameEnum.KAKURO.equals(game)) {
-                    showUnavailableGameDialog();
+                    try {
+                        new GridController(KakuroFactory.createGrid(1));
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
                 }
             }
         });
@@ -91,5 +96,4 @@ public class MainMenuView extends JFrame {
                 TITLE,
                 JOptionPane.INFORMATION_MESSAGE);
     }
-
 }

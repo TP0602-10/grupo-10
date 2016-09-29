@@ -1,9 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 import java.awt.*;
-import javax.swing.*;
 
-public class EnabledCellView extends CellView{
+public class EnabledCellView extends CellView {
 
     public EnabledCellView() {
         super();
@@ -15,8 +14,7 @@ public class EnabledCellView extends CellView{
         super.setCustomRender(value);
 
         if (value != null) {
-            String text = value.toString();
-            setText(text);
+            setText(value.toString());
         }
 
         setEnabled(true);

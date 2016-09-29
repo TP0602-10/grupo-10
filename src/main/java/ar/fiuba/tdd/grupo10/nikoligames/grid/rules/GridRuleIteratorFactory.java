@@ -38,11 +38,11 @@ public class GridRuleIteratorFactory {
         return allCellBlocks;
     }
 
-    public static GridRuleIterator iteratorForRow(List<List<Cell>> grid, int rowNumber) {
+    static GridRuleIterator iteratorForRow(List<List<Cell>> grid, int rowNumber) {
         return new GridRuleIterator(grid.get(rowNumber), "Iterate over the row " + rowNumber);
     }
 
-    public static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
+    private static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
         List<Cell> column = new ArrayList<>();
         grid.forEach(row -> column.add(row.get(columnNumber)));
         return new GridRuleIterator(column, "Iterate over the column " + columnNumber);
@@ -50,13 +50,13 @@ public class GridRuleIteratorFactory {
 
     public static GridRuleIterator iteratorForCustomColumn(List<List<Cell>> grid, int columnNumber, int startPos, int endPos) {
         List<Cell> column = new ArrayList<>();
-        for (int i = startPos; i < endPos;i++) {
+        for (int i = startPos; i < endPos; i++) {
             List<Cell> row = grid.get(i); //grid[i]
             Cell element = row.get(columnNumber);//grid[i][columnNumber]
             column.add(element);
         }
-        return new GridRuleIterator(column,"Iterate over the column" + columnNumber + "From position" + startPos + "to"
-                + "position" + endPos);
+        return new GridRuleIterator(column, "Iterate over the column" + columnNumber + "From position"
+                + startPos + "to" + "position" + endPos);
     }
 
     public static GridRuleIterator iteratorForCustomRow(List<List<Cell>> grid, int rowNumber, int startPos, int endPos) {
@@ -72,8 +72,8 @@ public class GridRuleIteratorFactory {
     public static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
                                                         int startColumn, int endRow, int endColumn) {
         List<Cell> cellBlock = new ArrayList<>();
-        for (int r = startRow; r < endRow; r++) {
-            for (int c = startColumn; c < endColumn; c++) {
+        for (int r = startRow; r <= endRow; r++) {
+            for (int c = startColumn; c <= endColumn; c++) {
                 cellBlock.add(grid.get(r).get(c));
             }
         }

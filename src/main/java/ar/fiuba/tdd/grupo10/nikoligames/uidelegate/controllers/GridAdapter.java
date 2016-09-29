@@ -2,13 +2,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 
 import javax.swing.table.AbstractTableModel;
 
 public class GridAdapter extends AbstractTableModel {
-
     private Grid grid;
 
     public GridAdapter(Grid grid) {
@@ -27,27 +24,26 @@ public class GridAdapter extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        Object value;
-        try {
-            value = grid.getCellAt(rowIndex, columnIndex).getValue();
-        } catch (Exception exception) {
-            value = null;
-        }
-        return value;
+    public boolean isCellEditable(int row, int col) {
+        return this.grid.getCellAt(row, col).isContentEditable();
     }
 
     @Override
-    public boolean isCellEditable(int row, int col) {
-        return this.grid.getCellAt(row,col).isContentEditable();
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Cell cell = grid.getCellAt(rowIndex, columnIndex);
+        if (!isCellEditable(rowIndex, columnIndex)) {
+            return cell;
+        }
+        return cell.getValue();
     }
 
     @Override
     public void setValueAt(Object value, int row, int column) {
+
         try {
             String stringValue = String.valueOf(value);
             Cell cell = grid.getCellAt(row, column);
-            if (value != null && stringValue.matches("\\d{1}")) {
+            if (value != null && stringValue.matches("^[0-9]")) {
                 cell.setValue(Integer.valueOf(stringValue));
             } else {
                 cell.setValue(null);
@@ -58,4 +54,5 @@ public class GridAdapter extends AbstractTableModel {
             e.printStackTrace();
         }
     }
+
 }

@@ -1,13 +1,17 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import java.awt.*;
-import javax.swing.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
-public class DisabledCellView extends CellView {
+import java.awt.*;
+
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.MARGIN_CELL;
+
+class DisabledCellView extends CellView {
 
     private Object value;
 
-    public DisabledCellView() {
+    DisabledCellView() {
         super();
     }
 
@@ -26,19 +30,32 @@ public class DisabledCellView extends CellView {
     }
 
     @Override
-    public void paintComponent(Graphics grapichs) {
-        // TODO: Value debería ser un array de valores? Como identificamos si hay que renderizar un solo valor o varios en la misma celda
-        String text = (this.value != null) ? this.value.toString() : "";
+    public void paintComponent(Graphics graphics) {
 
-        setText(text);
+        Cell cell = (Cell) this.value;
 
-        super.paintComponent(grapichs);
+        Content content = cell.getContent("Tag");
+        if (content != null) {
+            setText(content.getValue().toString());
+        }
 
-        // TODO: Renderizado Kakuro
-        /*g.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+        super.paintComponent(graphics);
 
-        g.drawString(text, 5, (this.getHeight() / 2) + 5);
-        g.drawString("?", this.getWidth() - 10, this.getHeight() / 2);*/
+        drawLines(cell, graphics);
+    }
+
+    private void drawLines(Cell cell, Graphics graphics) {
+        Content content = cell.getContent("CompareToRight");
+        if (content != null) {
+            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            graphics.drawString(content.getValue().toString(), (this.getWidth() / 2) + MARGIN_CELL, this.getHeight() / 2);
+        }
+
+        content = cell.getContent("CompareToDown");
+        if (content != null) {
+            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            graphics.drawString(content.getValue().toString(), 6, (this.getHeight() / 2) + +MARGIN_CELL);
+        }
     }
 
 }

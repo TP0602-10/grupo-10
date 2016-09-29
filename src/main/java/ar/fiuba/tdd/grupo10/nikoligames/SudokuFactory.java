@@ -3,7 +3,6 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.OnGridUpdatedObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
@@ -15,7 +14,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
 import java.util.*;
 import java.util.stream.Collectors;

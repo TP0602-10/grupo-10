@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
 
 import java.awt.*;
@@ -12,19 +11,23 @@ import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
 
+public class GameView extends JFrame {
 
-public class SudokuView extends JFrame {
+    private GridView table;
+    private JPanel panel;
+    private GridBagConstraints gbc;
 
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
-    public SudokuView(GridAdapter gridAdapter) {
+    public GameView(GridAdapter gridAdapter) {
+
         super(TITLE);
         setWindowPreferences();
 
-        GridView table = new GridView(gridAdapter);
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        table = new GridView(gridAdapter);
+        panel = new JPanel(new GridBagLayout());
+        gbc = new GridBagConstraints();
 
         gbc.gridy = 0;//change the y location
         gbc.insets = new Insets(3, 3, 3, 3);
@@ -43,15 +46,16 @@ public class SudokuView extends JFrame {
         getContentPane().add(panel);
         setResizable(false);
         table.updateUI();
+
     }
 
-    private JTextArea createConsole() {
+    protected JTextArea createConsole() {
         console = new JTextArea(10, 60);
         console.setEnabled(false);
         return console;
     }
 
-    private JButton createClearConsoleButton() {
+    protected JButton createClearConsoleButton() {
         JButton button = new JButton("Limpiar consola");
         button.addActionListener(new ActionListener() {
             @Override
@@ -62,7 +66,7 @@ public class SudokuView extends JFrame {
         return button;
     }
 
-    private void setWindowPreferences() {
+    protected void setWindowPreferences() {
         setVisible(true);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
@@ -71,5 +75,4 @@ public class SudokuView extends JFrame {
         String formattedDate = dateFormatter.format(new Date());
         console.append(formattedDate + ": " + message + "\n");
     }
-
 }
