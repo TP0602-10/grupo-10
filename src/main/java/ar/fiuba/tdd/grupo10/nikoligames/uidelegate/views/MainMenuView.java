@@ -74,7 +74,7 @@ public class MainMenuView extends JFrame {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
                 if (GameEnum.SUDOKU.equals(game)) {
                     try {
-                        new GridController(SudokuFactory.createGridFromScratch(15));
+                        new GridController(SudokuFactory.createGridFromScratch(79));
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
