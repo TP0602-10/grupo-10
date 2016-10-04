@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridController;

@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 class UnavailableGameLink extends GameLink {
 

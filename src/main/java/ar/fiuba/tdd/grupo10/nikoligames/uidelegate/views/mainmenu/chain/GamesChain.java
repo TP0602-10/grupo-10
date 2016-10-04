@@ -1,10 +1,10 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
-class GamesChain {
+public class GamesChain {
 
     private GameLink firstLink;
 
-    GamesChain() {
+    public GamesChain() {
         firstLink = new SudokuLink();
         GameLink kakuroLink = new KakuroLink();
         firstLink.setNext(kakuroLink);
