@@ -1,24 +1,16 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.KakuroFactory;
-import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridController;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
 
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
-
-    private enum GameEnum {
-        SUDOKU,
-        KAKURO;
-    }
+    private GamesChain chain;
 
     public MainMenuView() {
         gameCombo = createGameCombo();
@@ -29,6 +21,7 @@ public class MainMenuView extends JFrame {
         setTitle(TITLE);
         setVisible(true);
         setResizable(false);
+        chain = new GamesChain();
     }
 
     private JPanel createMainPanel() {
@@ -47,7 +40,7 @@ public class MainMenuView extends JFrame {
         comboPanel.setLayout(new BoxLayout(comboPanel,
                 BoxLayout.PAGE_AXIS));
         comboPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboPanel.add(new JLabel("Seleccione un juego:"));
+        comboPanel.add(new JLabel("Choose game:"));
         comboPanel.add(gameCombo);
         return comboPanel;
     }
@@ -67,33 +60,15 @@ public class MainMenuView extends JFrame {
     }
 
     private JButton createStartButton() {
-        JButton startButton = new JButton("Jugar");
+        JButton startButton = new JButton("Play");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
-                if (GameEnum.SUDOKU.equals(game)) {
-                    try {
-                        new GridController(SudokuFactory.createGridFromScratch(79));
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-                } else if (GameEnum.KAKURO.equals(game)) {
-                    try {
-                        new GridController(KakuroFactory.createGrid(2));
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-                }
+                chain.execute(game);
             }
         });
         return startButton;
     }
 
-    private void showUnavailableGameDialog() {
-        JOptionPane.showMessageDialog(this,
-                "Juego no disponible.",
-                TITLE,
-                JOptionPane.INFORMATION_MESSAGE);
-    }
 }
