@@ -4,10 +4,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GamesChain;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
 
