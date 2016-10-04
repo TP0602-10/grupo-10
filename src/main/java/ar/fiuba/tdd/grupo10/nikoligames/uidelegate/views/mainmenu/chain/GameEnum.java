@@ -1,6 +1,20 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 public enum GameEnum {
-    SUDOKU,
-    KAKURO
+
+    SUDOKU("Sudoku"),
+    KAKURO("Kakuro"),
+    INSHI_NO_HEYA("Inshi no heya");
+
+    private String description;
+
+    GameEnum(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
+    }
+
 }

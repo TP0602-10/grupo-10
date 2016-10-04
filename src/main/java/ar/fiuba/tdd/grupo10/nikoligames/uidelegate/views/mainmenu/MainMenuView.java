@@ -24,7 +24,7 @@ public class MainMenuView extends JFrame {
         setTitle(TITLE);
         setVisible(true);
         setResizable(false);
-        chain = new GamesChain();
+        chain = new GamesChain(this);
     }
 
     private JPanel createMainPanel() {

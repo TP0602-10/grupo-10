@@ -2,7 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 abstract class GameLink {
 
-    GameLink next;
+    protected GameLink next;
 
     public void setNext(GameLink next) {
         this.next = next;
