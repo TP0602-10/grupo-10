@@ -1,0 +1,40 @@
+{ 
+	"board": {
+	 
+		"values": [{
+			"position": [1,1],
+			"value": "6",
+			"readonly": true},{
+			"position": [1,2],
+			"value": "4",
+			"readonly": true},{
+			"position": [1,4],
+			"value": "5",
+			"readonly": true},{
+			"position": [2,2],
+			"value": "3",
+			"readonly": true},{
+			"position": [2,4],
+			"value": "4",
+			"readonly": true},{
+			"position": [3,2],
+			"value": "15",
+			"readonly": true},{
+			"position": [3,3],
+			"value": "40",
+			"readonly": true},{
+			"position": [4,1],
+			"value": "4",
+			"readonly": true},{
+			"position": [4,2],
+			"value": "10",
+			"readonly": true},{
+			"position": [4,4],
+			"value": "6",
+			"readonly": true},{
+			"position": [5,4],
+			"value": "3",
+			"readonly": true}
+		]
+	}
+} 
