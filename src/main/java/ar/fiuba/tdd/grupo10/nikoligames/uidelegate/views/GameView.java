@@ -56,7 +56,7 @@ public class GameView extends JFrame {
     }
 
     protected JButton createClearConsoleButton() {
-        JButton button = new JButton("Limpiar consola");
+        JButton button = new JButton("Clear console");
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
