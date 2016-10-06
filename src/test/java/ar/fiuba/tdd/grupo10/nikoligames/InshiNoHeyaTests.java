@@ -121,9 +121,8 @@ public class InshiNoHeyaTests {
             outputPlays.add(new OutputPlay(playNumber, getBoardStatus(true)));
             playNumber++;
         }
-        OutputBoard outputBoard = createOutputBoard(inshiGrid);
         InshiNoHeyaOutput output = new InshiNoHeyaOutput();
-        output.setBoard(outputBoard);
+        output.setBoard(createOutputBoard(inshiGrid));
         output.setPlays(outputPlays);
         writeToFile(output, "src/test/resources/inshi_output.json");
     }
