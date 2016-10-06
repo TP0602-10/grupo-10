@@ -2,13 +2,15 @@ package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
 import com.google.gson.Gson;
 
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper to json's files.
+ * Helper to json files.
  */
 public final class FileHelper {
 
@@ -27,5 +29,18 @@ public final class FileHelper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void writeToFile(Object output, String location) {
+        Gson gson = new Gson();
+        Path path = Paths.get(location);
+        String json = gson.toJson(output);
+        List<String> lines = new ArrayList<>();
+        lines.add(json);
+        try {
+            Files.write(path, lines, Charset.forName("UTF-8"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

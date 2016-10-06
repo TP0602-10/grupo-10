@@ -11,10 +11,9 @@ public class InshiTest {
 
     @Test
     public void readFiles() {
-
-        InputBoard initialBoard = (InputBoard) getFileContent("src/inshi_board.json", InputBoard.class);
+        InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/inshi_board.json", InputBoard.class);
         Assert.assertTrue(initialBoard != null);
-        InshiNoHeyaInput inputFile = (InshiNoHeyaInput) getFileContent("src/inshi_play.json", InshiNoHeyaInput.class);
+        InshiNoHeyaInput inputFile = (InshiNoHeyaInput) getFileContent("src/test/resources/inshi_play.json", InshiNoHeyaInput.class);
         Assert.assertTrue(inputFile != null);
     }
 

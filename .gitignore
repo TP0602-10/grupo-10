@@ -19,3 +19,6 @@ hs_err_pid*
 .gradle/
 build/
 
+#Generated files
+*inshi_output.json
+
