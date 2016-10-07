@@ -10,6 +10,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
@@ -203,8 +204,7 @@ public class KakuroFactory {
     public static Grid createGrid(int difficulty) {
         List<Cell> cells = generateCellList(difficulty);
         GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
-        Grid returnableGrid = returnGrid(cells,ruleManager);
-        return returnableGrid;
+        return returnGrid(cells,ruleManager);
     }
 
     public static Grid returnGrid(List<Cell> cells,GridRuleManager ruleManager) {
@@ -301,6 +301,8 @@ public class KakuroFactory {
 
         kakuroRules.add(new AlwaysVerifiableRule<>(anIterator, new DistinctOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
+        kakuroRules.add(new AlwaysVerifiableRule<>(anIterator, new SumOperation("Number"),
+                new GridRuleCondition<>(new LessOrEqualToIntegerMatcher<>(), goalValue)));
         kakuroRules.add(new CompleteIteratorRule<>(anIterator, new SumOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
     }
