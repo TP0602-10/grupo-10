@@ -3,7 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 
 /**
- * This rule should ONLY be verified when all the editable contents of the iterator are filled.
+ * This rule should be verified ONLY when all the editable contents of the iterator are filled.
  * @param <T> The type of the result expected by the rule operation to compare it with the goal.
  */
 public class CompleteIteratorRule<T> extends GridRule<T> {
@@ -21,6 +21,6 @@ public class CompleteIteratorRule<T> extends GridRule<T> {
 
     @Override
     protected String getRuleVerificationConditionExplanation() {
-        return "This rule should ONLY be verified when all the editable contents of the iterator are filled.";
+        return "This rule should be verified ONLY when all the editable contents of the iterator are filled.";
     }
 }
