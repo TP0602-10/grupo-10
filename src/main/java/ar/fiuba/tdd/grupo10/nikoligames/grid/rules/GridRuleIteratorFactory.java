@@ -39,7 +39,7 @@ public final class GridRuleIteratorFactory {
     }
 
     static GridRuleIterator iteratorForRow(List<List<Cell>> grid, int rowNumber) {
-        return new GridRuleIterator(grid.get(rowNumber), "Iterate over the row " + rowNumber);
+        return new GridRuleIterator(grid.get(rowNumber), "Iterate over the row " + rowNumber + ".");
     }
 
     private static List<Cell> getColumn(List<List<Cell>> grid, int columnNumber) {
@@ -51,7 +51,7 @@ public final class GridRuleIteratorFactory {
     public static GridRuleIterator iteratorForColumn(List<List<Cell>> grid, int columnNumber) {
         return new GridRuleIterator(
                 getColumn(grid, columnNumber),
-                "Iterate over the column " + columnNumber
+                "Iterate over the column " + columnNumber + "."
         );
     }
 
@@ -59,14 +59,14 @@ public final class GridRuleIteratorFactory {
         List<Cell> customColumn = getColumn(grid, columnNumber).subList(startPos, endPos + 1);
         return new GridRuleIterator(customColumn,
                 "Iterate over the column" + columnNumber + "From position"
-                        + startPos + "to" + "position" + endPos
+                        + startPos + "to" + "position" + endPos + "."
         );
     }
 
     public static GridRuleIterator iteratorForCustomRow(List<List<Cell>> grid, int rowNumber, int startPos, int endPos) {
         List<Cell> customRowToBeIterated = grid.get(rowNumber).subList(startPos, endPos + 1);
         return new GridRuleIterator(customRowToBeIterated, "Iterate over row" + rowNumber + "From position"
-                + (startPos + 1) + "to position" + endPos);
+                + (startPos + 1) + "to position" + endPos + ".");
     }
 
     public static GridRuleIterator iteratorForCellBlock(List<List<Cell>> grid, int startRow,
@@ -79,7 +79,7 @@ public final class GridRuleIteratorFactory {
         }
         return new GridRuleIterator(cellBlock, "Iterate over the cell block started in ["
                 + startRow + "," + startColumn + "] and ended in ["
-                + endRow + "," + endColumn + "]");
+                + endRow + "," + endColumn + "].");
     }
 
     private static int getNumberOfRows(List<List<Cell>> grid) {

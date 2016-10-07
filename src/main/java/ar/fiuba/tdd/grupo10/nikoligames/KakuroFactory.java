@@ -299,9 +299,9 @@ public class KakuroFactory {
                                             Collection<GridRule> kakuroRules, int goalValue, List<String> tag,
                                             GridRuleIterator anIterator) {
 
-        kakuroRules.add(new GridRule<>(anIterator, new DistinctOperation("Number"),
+        kakuroRules.add(new AlwaysVerifiableRule<>(anIterator, new DistinctOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), Boolean.TRUE)));
-        kakuroRules.add(new GridRule<>(anIterator, new SumOperation("Number"),
+        kakuroRules.add(new CompleteIteratorRule<>(anIterator, new SumOperation("Number"),
                 new GridRuleCondition<>(new EqualsMatcher<>(), goalValue)));
     }
 

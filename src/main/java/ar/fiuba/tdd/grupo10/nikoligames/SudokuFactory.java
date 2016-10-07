@@ -143,7 +143,7 @@ public final class SudokuFactory {
                         ListHelper.merge(iteratorsForAllRows, iteratorsForAllColumns),
                         iteratorsForAllCellBlocks
                 );
-        allIterators.forEach(i -> sudokuRules.add(new GridRule<>(i, distinctOperation, ruleCondition)));
+        allIterators.forEach(i -> sudokuRules.add(new AlwaysVerifiableRule<>(i, distinctOperation, ruleCondition)));
         return sudokuRules;
     }
 

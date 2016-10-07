@@ -111,7 +111,7 @@ public final class InshiNoHeyaFactory {
                     "Iterate Room [" + toStringPostionsRoom(room) + "] for goal value: " + value
             );
 
-            GridRule<Integer> rule = new GridRule<>(iterator,operation,condition);
+            GridRule<Integer> rule = new AlwaysVerifiableRule<>(iterator,operation,condition);
             RULE_MANAGER.addRule(rule);
         }
 
@@ -160,10 +160,10 @@ public final class InshiNoHeyaFactory {
         iterators.addAll( GridRuleIteratorFactory.iteratorsForAllRows(grid) );
 
         for (GridRuleIterator iterator : iterators) {
-            RULE_MANAGER.addRule( new GridRule<>(
+            RULE_MANAGER.addRule( new CompleteIteratorRule<>(
                     iterator, sumOperation, sumCondition)
             );
-            RULE_MANAGER.addRule( new GridRule<>(
+            RULE_MANAGER.addRule( new AlwaysVerifiableRule<>(
                     iterator, distinctOperation, distinctCondition
             ));
         }

@@ -5,9 +5,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 
 /**
  * A rule that must be satisfied within the game grid.
+ * Each concrete rule must know whether it should be verified or not, accordingly with its context.
  * @param <T> The type of the result expected by the rule operation to compare it with the goal.
  */
-public class GridRule<T> {
+public abstract class GridRule<T> {
     private final GridRuleIterator iterator;
     private final GridRuleOperation<T> operation;
     private GridRuleCondition<T> condition;
@@ -18,12 +19,20 @@ public class GridRule<T> {
         this.condition = condition;
     }
 
+    public GridRuleIterator getIterator() {
+        return iterator;
+    }
+
     public void verifyRule() throws RuleNotSatisfiedException {
-        T operationResult = this.operation.perform(iterator);
-        if ( !doesOperationResultMatchesWithRuleGoal(operationResult) ) {
-            throw new RuleNotSatisfiedException(getRuleExplanation(operationResult));
+        if (shouldBeVerified()) {
+            T operationResult = this.operation.perform(iterator);
+            if (!doesOperationResultMatchesWithRuleGoal(operationResult)) {
+                throw new RuleNotSatisfiedException(getRuleExplanation(operationResult));
+            }
         }
     }
+
+    protected abstract boolean shouldBeVerified();
 
     public GridRuleIterator getRuleIterator() {
         return this.iterator;
@@ -34,8 +43,11 @@ public class GridRule<T> {
     }
 
     private String getRuleExplanation(T operationResult) {
-        return iterator.getCellsInvolvedExplanation()
+        return getRuleVerificationConditionExplanation()
+                + " " + iterator.getCellsInvolvedExplanation()
                 + " " + operation.getOperationExplanation(operationResult)
                 + " " + condition.getConditionExplanation();
     }
+
+    protected abstract String getRuleVerificationConditionExplanation();
 }
