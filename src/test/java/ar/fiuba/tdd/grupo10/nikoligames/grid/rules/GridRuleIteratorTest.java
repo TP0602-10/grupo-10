@@ -55,11 +55,11 @@ public class GridRuleIteratorTest {
     public void iterateAndRestart() {
         GridRuleIterator iterator = createIterator();
         Cell cell = null;
-        int i = 1;
-        while (iterator.hasNext()){
+        int expectedValue = 1;
+        while (iterator.hasNext()) {
             cell = iterator.next();
-            Assert.assertEquals(cell.getValue(),i);
-            i++;
+            Assert.assertEquals(cell.getValue(),expectedValue);
+            expectedValue++;
         }
 
         iterator.restart();
