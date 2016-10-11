@@ -10,6 +10,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -94,6 +95,12 @@ public final class InshiNoHeyaFactory {
         return cells;
     }
 
+    private static GridRuleCondition<Integer> createCondition(GridRuleMatcher<Integer> matcher, int goal) {
+        return new GridRuleCondition<>(
+                matcher,
+                goal
+        );
+    }
 
     private static void createRoomsRules(List<Map<String,Integer>> roomsGoals) {
         for ( Map<String,Integer> goals : roomsGoals ) {
@@ -112,12 +119,12 @@ public final class InshiNoHeyaFactory {
             int[] room = ROOMS_POSITIONS[indexInRoomsPositions];
 
             GridRuleOperation<Integer> operation = new ProductOperation(DEFAULT_TAG);
-            GridRuleCondition<Integer> conditionAlways = new GridRuleCondition<>(
+            GridRuleCondition<Integer> conditionAlways = createCondition(
                     new LessOrEqualToIntegerMatcher<>(),
                     value
             );
 
-            GridRuleCondition<Integer> conditionComplete = new GridRuleCondition<>(
+            GridRuleCondition<Integer> conditionComplete = createCondition(
                     new EqualsMatcher<>(),
                     value
             );
