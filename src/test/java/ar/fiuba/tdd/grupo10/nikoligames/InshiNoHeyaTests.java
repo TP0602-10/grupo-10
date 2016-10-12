@@ -63,8 +63,8 @@ public class InshiNoHeyaTests {
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
             Map<String, Integer> cellPlay = new HashMap<>();
             cellPlay.put(InshiNoHeyaFactory.EXTERN_MAP_VALUE, Integer.valueOf(play.getValue()));
-            cellPlay.put(InshiNoHeyaFactory.EXTERN_MAP_ROW, play.getPosition().get(0));
-            cellPlay.put(InshiNoHeyaFactory.EXTERN_MAP_COL, play.getPosition().get(1));
+            cellPlay.put(InshiNoHeyaFactory.EXTERN_MAP_ROW, play.getPosition().get(0) - 1);
+            cellPlay.put(InshiNoHeyaFactory.EXTERN_MAP_COL, play.getPosition().get(1) - 1);
             plays.add(cellPlay);
         }
     }
