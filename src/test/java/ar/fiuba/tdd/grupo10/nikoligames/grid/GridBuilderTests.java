@@ -7,10 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleCondition;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleManager;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
@@ -90,7 +87,7 @@ public class GridBuilderTests {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        GridRule gridRule = new GridRule<>(
+        GridRule gridRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition

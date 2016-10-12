@@ -95,7 +95,8 @@ public class InshiNoHeyaTests {
                 List<Integer> position = new ArrayList<>(Arrays.asList(rowIndex + 1, columnIndex + 1));
                 BoardValue boardValue = new BoardValue();
                 boardValue.setPosition(position);
-                boardValue.setValue(cell.getValue() != null ? String.valueOf(cell.getValue()) : "");
+                boardValue.setValue(cell.getValue(InshiNoHeyaFactory.DEFAULT_TAG) != null
+                        ? String.valueOf(cell.getValue(InshiNoHeyaFactory.DEFAULT_TAG)) : "");
                 boardValues.add(boardValue);
             }
         }
@@ -115,7 +116,7 @@ public class InshiNoHeyaTests {
             int value = play.get(InshiNoHeyaFactory.EXTERN_MAP_VALUE);
             int row = play.get(InshiNoHeyaFactory.EXTERN_MAP_ROW);
             int col = play.get(InshiNoHeyaFactory.EXTERN_MAP_COL);
-            inshiGrid.getCellAt(row, col).setValue(value);
+            inshiGrid.getCellAt(row, col).getContent(InshiNoHeyaFactory.DEFAULT_TAG).setValue(value);
 
             //FIXME boardStatus should be set according to the board status after the play
             outputPlays.add(new OutputPlay(playNumber, getBoardStatus(true)));

@@ -89,7 +89,7 @@ public class GridRuleTest {
                 0
         );
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -131,7 +131,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -151,7 +151,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -206,7 +206,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -227,7 +227,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -265,7 +265,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        GridRule<Boolean> theRule = new GridRule<>(
+        GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -290,7 +290,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        GridRule<Boolean> theRule = new GridRule<>(
+        GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition

@@ -16,6 +16,7 @@ public class GridRuleIteratorHelper {
             Cell cell = iterator.next();
             allCells.add(cell);
         }
+        iterator.restart();
         return allCells;
     }
 

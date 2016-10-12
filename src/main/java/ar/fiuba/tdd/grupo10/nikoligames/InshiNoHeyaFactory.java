@@ -6,9 +6,12 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.ProductOperation;
@@ -19,6 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Create a Grid of InshiNoHeya Game. A grid it has preset the rooms. (ROOMS_POSITIONS)
+ * The params are
+ * roomsGoals: List of hashMaps who have the goals of the rooms.
+ *  Each hash should have three keys EXTERN_MAP_ROW, EXTERN_MAP_COL and EXTERN_MAP_VALUE.
+ * usePostion: Boolean. if true. ROW and COL are read as positions (first = 1).
+ * If false, are read as index (first = 0). Position = Index + 1
+ */
 public final class InshiNoHeyaFactory {
     private static final int COLS = 5;
     private static final int ROWS = 5;
@@ -67,6 +79,11 @@ public final class InshiNoHeyaFactory {
             searchIndex++;
 
         }
+        String pos = "index: " + index;
+        System.out.print(
+                "Invalid position of the Room Goal (" + pos + "). Cannot find the room in the table"
+        );
+        System.exit(1);
         return -1;
     }
 
@@ -78,30 +95,36 @@ public final class InshiNoHeyaFactory {
         return cells;
     }
 
+    private static GridRuleCondition<Integer> createCondition(GridRuleMatcher<Integer> matcher, int goal) {
+        return new GridRuleCondition<>(
+                matcher,
+                goal
+        );
+    }
+
     private static void createRoomsRules(List<Map<String,Integer>> roomsGoals) {
-        /*
-            [ { row, col, value }, {...} ]
-        */
         for ( Map<String,Integer> goals : roomsGoals ) {
-            int rowIndex = goals.get(EXTERN_MAP_ROW);
-            int colIndex = goals.get(EXTERN_MAP_COL);
+            int row = goals.get(EXTERN_MAP_ROW);
+            int col = goals.get(EXTERN_MAP_COL);
             int value = goals.get(EXTERN_MAP_VALUE);
 
-            int positionToSearch = fromPositionToIndex(rowIndex,colIndex);
+            int positionToSearch = fromPositionToIndex(row,col);
             int indexInRoomsPositions = searchIndexInRoomsPosition(positionToSearch);
 
-            if (indexInRoomsPositions < 0) {
-                String pos = "index: " + positionToSearch + ", row: " + rowIndex + ", col: " + colIndex + ", value: " + value;
-                System.out.print(
-                        "Invalid position of the Room Goal (" + pos + "). Cannot find the room in the table"
-                );
-                System.exit(1);
-            }
+
+            CELLS.get(positionToSearch).setContent( new ImmutableContent(value,"GOAL") );
+
+
 
             int[] room = ROOMS_POSITIONS[indexInRoomsPositions];
 
             GridRuleOperation<Integer> operation = new ProductOperation(DEFAULT_TAG);
-            GridRuleCondition<Integer> condition = new GridRuleCondition<>(
+            GridRuleCondition<Integer> conditionAlways = createCondition(
+                    new LessOrEqualToIntegerMatcher<>(),
+                    value
+            );
+
+            GridRuleCondition<Integer> conditionComplete = createCondition(
                     new EqualsMatcher<>(),
                     value
             );
@@ -111,8 +134,10 @@ public final class InshiNoHeyaFactory {
                     "Iterate Room [" + toStringPostionsRoom(room) + "] for goal value: " + value
             );
 
-            GridRule<Integer> rule = new GridRule<>(iterator,operation,condition);
-            RULE_MANAGER.addRule(rule);
+            GridRule<Integer> ruleAlways = new AlwaysVerifiableRule<>(iterator,operation,conditionAlways);
+            RULE_MANAGER.addRule(ruleAlways);
+            GridRule<Integer> ruleComplete = new CompleteIteratorRule<>(iterator,operation,conditionComplete);
+            RULE_MANAGER.addRule(ruleComplete);
         }
 
     }
@@ -147,10 +172,16 @@ public final class InshiNoHeyaFactory {
         );
 
 
+        int sumGoal = getSumGoal();
         GridRuleOperation<Integer> sumOperation = new SumOperation(DEFAULT_TAG);
-        GridRuleCondition<Integer> sumCondition = new GridRuleCondition<>(
+        GridRuleCondition<Integer> sumConditionAlways = new GridRuleCondition<>(
+                new LessOrEqualToIntegerMatcher<>(),
+                sumGoal
+        );
+
+        GridRuleCondition<Integer> sumConditionComplete = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
-                getSumGoal()
+                sumGoal
         );
 
         List<List<Cell>> grid = ListHelper.buildMatrixFromFlattenList(CELLS,ROWS,COLS);
@@ -160,10 +191,13 @@ public final class InshiNoHeyaFactory {
         iterators.addAll( GridRuleIteratorFactory.iteratorsForAllRows(grid) );
 
         for (GridRuleIterator iterator : iterators) {
-            RULE_MANAGER.addRule( new GridRule<>(
-                    iterator, sumOperation, sumCondition)
+            RULE_MANAGER.addRule( new AlwaysVerifiableRule<>(
+                    iterator, sumOperation, sumConditionAlways)
             );
-            RULE_MANAGER.addRule( new GridRule<>(
+            RULE_MANAGER.addRule( new CompleteIteratorRule<>(
+                    iterator, sumOperation, sumConditionComplete)
+            );
+            RULE_MANAGER.addRule( new AlwaysVerifiableRule<>(
                     iterator, distinctOperation, distinctCondition
             ));
         }
