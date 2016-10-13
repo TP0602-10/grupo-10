@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class GridRuleIteratorTest {
     }
 
     @Test
-    public void iteration() throws Exception {
+    public void iteration() {
         GridRuleIterator iterator = createIterator();
 
         Cell cell = iterator.next();
@@ -48,5 +49,23 @@ public class GridRuleIteratorTest {
 
         cell = iterator.next();
         assertEquals(cell.getValue(),3);
+    }
+
+    @Test
+    public void iterateAndRestart() {
+        GridRuleIterator iterator = createIterator();
+        Cell cell = null;
+        int expectedValue = 1;
+        while (iterator.hasNext()) {
+            cell = iterator.next();
+            Assert.assertEquals(cell.getValue(),expectedValue);
+            expectedValue++;
+        }
+
+        iterator.restart();
+        cell = iterator.next();
+        Assert.assertEquals( cell.getValue(), 1 );
+
+
     }
 }

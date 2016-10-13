@@ -10,6 +10,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.ProductOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 
 import org.junit.Before;
@@ -88,7 +89,7 @@ public class GridRuleTest {
                 0
         );
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -125,12 +126,32 @@ public class GridRuleTest {
         );
 
         List<Cell> allCells = gridWithOneTagContents.getCells().stream()
-                        .flatMap(List::stream)
-                        .collect(Collectors.toList());
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
+                simpleIterator,
+                operation,
+                condition
+        );
+    }
+
+    private GridRule<Integer> createRuleAllCellAndEspecificProductOperationAndGoal(Integer goal) {
+        final GridRuleOperation<Integer> operation = new ProductOperation(ONLY_TAG);
+        final GridRuleCondition<Integer> condition = new GridRuleCondition<>(
+                new EqualsMatcher<>(),
+                goal
+        );
+
+        List<Cell> allCells = gridWithOneTagContents.getCells().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -149,6 +170,48 @@ public class GridRuleTest {
         theRule.verifyRule();
     }
 
+    @Test(expected = Test.None.class)
+    public void productOfAllCellsOfGrid() throws RuleNotSatisfiedException {
+        GridRule<Integer> theRule = createRuleAllCellWithManyIntegerContentsAndOperationAndGoal(
+                new ProductOperation( Arrays.asList(TAGS_FOR_MANY_CONTENTS) ),
+                16 * 81 * 256
+        );
+        theRule.verifyRule();
+    }
+
+    @Test(expected = Test.None.class)
+    public void productOfAllCells() throws RuleNotSatisfiedException {
+        GridRule<Integer> theRule = createRuleAllCellAndEspecificProductOperationAndGoal(24);
+        theRule.verifyRule();
+    }
+
+    @Test(expected = RuleNotSatisfiedException.class)
+    public void productOfAllCellsWithInvalidGoal() throws RuleNotSatisfiedException {
+        GridRule<Integer> theRule = createRuleAllCellAndEspecificProductOperationAndGoal(80751770);
+        theRule.verifyRule();
+    }
+
+    private GridRule<Integer> createRuleAllCellWithManyIntegerContentsAndOperationAndGoal(
+            GridRuleOperation<Integer> operation,
+            Integer goal) {
+
+        final GridRuleCondition<Integer> condition = new GridRuleCondition<>(
+                new EqualsMatcher<>(),
+                goal
+        );
+
+        List<Cell> allCells = gridWithManyTagContents.getCells().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
+        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+
+        return new AlwaysVerifiableRule<>(
+                simpleIterator,
+                operation,
+                condition
+        );
+    }
 
     private GridRule<Integer> createRuleAllCellWithManyContentsAndEspecificSumOperationAndGoal(Integer goal) {
 
@@ -164,7 +227,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        return new GridRule<>(
+        return new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -202,7 +265,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        GridRule<Boolean> theRule = new GridRule<>(
+        GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition
@@ -227,7 +290,7 @@ public class GridRuleTest {
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 
-        GridRule<Boolean> theRule = new GridRule<>(
+        GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
                 operation,
                 condition

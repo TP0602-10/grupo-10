@@ -2,7 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
 import java.awt.*;
 
-public class EnabledCellView extends CellView {
+class EnabledCellView extends CellView {
 
     public EnabledCellView() {
         super();

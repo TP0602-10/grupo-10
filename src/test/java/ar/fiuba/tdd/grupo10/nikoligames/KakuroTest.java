@@ -1,15 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class KakuroTest {
 
@@ -44,6 +38,7 @@ public class KakuroTest {
         kakuroGrid.getCellAt(2, 7).setValue(7);
         kakuroGrid.getCellAt(2, 8).setValue(9);
         Assert.assertEquals(kakuroGrid.isComplete(), Boolean.FALSE);
+        Assert.assertFalse(kakuroGrid.isComplete());
         kakuroGrid.getCellAt(4, 8).setValue(6);
     }
 }
