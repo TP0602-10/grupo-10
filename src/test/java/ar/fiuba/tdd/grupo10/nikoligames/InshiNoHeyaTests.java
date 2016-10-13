@@ -4,6 +4,7 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import org.junit.Assert;
 import org.junit.Before;
@@ -92,7 +93,8 @@ public class InshiNoHeyaTests implements GameRulesObserver {
             int value = play.get(InshiNoHeyaFactory.EXTERN_MAP_VALUE);
             int row = play.get(InshiNoHeyaFactory.EXTERN_MAP_ROW);
             int col = play.get(InshiNoHeyaFactory.EXTERN_MAP_COL);
-            inshiGrid.getCellAt(row, col).getContent(InshiNoHeyaFactory.DEFAULT_TAG).setValue(value);
+            Cell cell = inshiGrid.getCellAt(row, col);
+            cell.setValue(value, InshiNoHeyaFactory.DEFAULT_TAG);
             Map<String, Object> extras = new HashMap<>();
             extras.put("playNumber", playNumber.toString());
             inshiGrid.notifyGridUpdated(extras);
