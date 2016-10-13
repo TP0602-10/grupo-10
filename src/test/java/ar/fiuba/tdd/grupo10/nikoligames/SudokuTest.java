@@ -45,7 +45,7 @@ public class SudokuTest {
         int[] pos = incompleteCellsPos.get(0);
         sudokuGrid.getCellAt(pos[0],pos[1]).setValue(7);
 
-        sudokuGrid.notifyGridUpdated();
+        sudokuGrid.notifyGridUpdated(null);
 
     }
 
@@ -60,7 +60,7 @@ public class SudokuTest {
 
         for (Integer number : ListHelper.createFromRange(1,9)) {
             sudokuGrid.getCellAt(pos[0],pos[1]).setValue(number);
-            sudokuGrid.notifyGridUpdated();
+            sudokuGrid.notifyGridUpdated(null);
         }
     }
 

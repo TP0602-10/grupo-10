@@ -49,7 +49,7 @@ public class GridAdapter extends AbstractTableModel {
                 cell.setValue(null);
             }
             fireTableCellUpdated(row, column);
-            grid.notifyGridUpdated();
+            grid.notifyGridUpdated(null);
         } catch (Exception e) {
             e.printStackTrace();
         }

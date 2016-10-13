@@ -2,9 +2,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.game.inshi;
 
 public class OutputPlay {
 
-    public OutputPlay(Integer number, String boardStatus) {
+    public OutputPlay(Integer number) {
         this.number = number;
-        this.boardStatus = boardStatus;
     }
 
     public Integer getNumber() {

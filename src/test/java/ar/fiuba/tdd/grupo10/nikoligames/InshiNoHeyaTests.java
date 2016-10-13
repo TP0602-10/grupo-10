@@ -4,6 +4,7 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,34 +14,14 @@ import java.util.*;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.getFileContent;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.writeToFile;
 
-public class InshiNoHeyaTests {
+public class InshiNoHeyaTests implements GameRulesObserver {
 
     private List<Map<String, Integer>> theGoalsValues;
     private boolean usePositionToIndex = true;
     private List<Map<String, Integer>> solution;
     private List<Map<String, Integer>> plays;
-
-    private void createSolution() {
-        int[] solutionArray = {
-                3, 4, 1, 5, 2,
-                2, 1, 3, 4, 5,
-                5, 3, 2, 1, 4,
-                1, 5, 4, 2, 3,
-                4, 2, 5, 3, 1
-        };
-        solution = new ArrayList<>();
-        int index = 0;
-        for (int solValue : solutionArray) {
-            Map<String, Integer> cellSolution = new HashMap<>();
-            cellSolution.put(InshiNoHeyaFactory.EXTERN_MAP_VALUE, solValue);
-            int[] rowColPostion = InshiNoHeyaFactory.getPositionFromIndex(index);
-            cellSolution.put(InshiNoHeyaFactory.EXTERN_MAP_ROW, rowColPostion[0]);
-            cellSolution.put(InshiNoHeyaFactory.EXTERN_MAP_COL, rowColPostion[1]);
-            solution.add(cellSolution);
-            index++;
-        }
-
-    }
+    private Map<String, String> playsInvalidity;
+    private String boardValidity = "valid";
 
     private void loadBoard() {
         theGoalsValues = new ArrayList<>();
@@ -73,6 +54,7 @@ public class InshiNoHeyaTests {
     public void setUp() {
         loadBoard();
         loadPlays();
+        playsInvalidity = new HashMap<>();
     }
 
     @Test
@@ -82,12 +64,7 @@ public class InshiNoHeyaTests {
         Assert.assertFalse(inshiGrid.isComplete());
     }
 
-    private String getBoardStatus(boolean value) {
-        return value ? "valid" : "invalid";
-    }
-
     private OutputBoard createOutputBoard(Grid grid) {
-        OutputBoard board = new OutputBoard();
         List<BoardValue> boardValues = new ArrayList<>();
         for (int rowIndex = 0; rowIndex < 5; rowIndex++) {
             for (int columnIndex = 0; columnIndex < 5; columnIndex++) {
@@ -100,31 +77,56 @@ public class InshiNoHeyaTests {
                 boardValues.add(boardValue);
             }
         }
-        board.setValues(boardValues);
-        //FIXME status should be set according to the actual board status
-        board.setStatus(getBoardStatus(true));
-        return board;
+        return new OutputBoard(boardValues, boardValidity);
     }
+
 
     @Test
     public void playTheGame() {
         Grid inshiGrid = InshiNoHeyaFactory.createGrid(theGoalsValues, usePositionToIndex);
+        inshiGrid.addRuleObserver(this);
         Assert.assertFalse(inshiGrid.isComplete());
-        int playNumber = 1;
+        Integer playNumber = 1;
         List<OutputPlay> outputPlays = new ArrayList<>();
         for (Map<String, Integer> play : plays) {
             int value = play.get(InshiNoHeyaFactory.EXTERN_MAP_VALUE);
             int row = play.get(InshiNoHeyaFactory.EXTERN_MAP_ROW);
             int col = play.get(InshiNoHeyaFactory.EXTERN_MAP_COL);
             inshiGrid.getCellAt(row, col).getContent(InshiNoHeyaFactory.DEFAULT_TAG).setValue(value);
-
-            //FIXME boardStatus should be set according to the board status after the play
-            outputPlays.add(new OutputPlay(playNumber, getBoardStatus(true)));
+            Map<String, Object> extras = new HashMap<>();
+            extras.put("playNumber", playNumber.toString());
+            inshiGrid.notifyGridUpdated(extras);
+            outputPlays.add(new OutputPlay(playNumber));
             playNumber++;
         }
+        setPlaysValidity(outputPlays);
+        writeOutput(inshiGrid, outputPlays);
+    }
+
+    private void writeOutput(Grid inshiGrid, List<OutputPlay> outputPlays) {
         InshiNoHeyaOutput output = new InshiNoHeyaOutput();
         output.setBoard(createOutputBoard(inshiGrid));
         output.setPlays(outputPlays);
         writeToFile(output, "src/test/resources/inshi_output.json");
+    }
+
+    private void setPlaysValidity(List<OutputPlay> outputPlays) {
+        if (outputPlays != null) {
+            for (OutputPlay outputPlay : outputPlays) {
+                String invalidity = playsInvalidity.get(outputPlay.getNumber().toString());
+                outputPlay.setBoardStatus(invalidity != null ? invalidity : "valid");
+            }
+        }
+    }
+
+    @Override
+    public void onRuleUnsatisfied(String message, Map<String, Object> extras) {
+        boardValidity = "invalid";
+        playsInvalidity.put((String) extras.get("playNumber"), (String) extras.get("validity"));
+    }
+
+    @Override
+    public void onGameWon(String message) {
+
     }
 }

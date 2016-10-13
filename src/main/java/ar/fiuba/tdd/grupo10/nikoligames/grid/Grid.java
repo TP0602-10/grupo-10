@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Game main board. It contains cells organized by rows and columns.
@@ -33,12 +34,12 @@ public class Grid implements GameRulesObserver {
         return this.observers.add(observer);
     }
 
-    public void notifyGridUpdated() {
-        this.observers.forEach(o -> o.onGridUpdated(this));
+    public void notifyGridUpdated(Map<String, Object> extras) {
+        this.observers.forEach(o -> o.onGridUpdated(this, extras));
     }
 
-    public void notifyRuleUnsatisfied(String message) {
-        this.ruleObservers.forEach(o -> o.onRuleUnsatisfied(message));
+    public void notifyRuleUnsatisfied(String message, Map<String, Object> extras) {
+        this.ruleObservers.forEach(o -> o.onRuleUnsatisfied(message, extras));
     }
 
     public void notifyGameWon(String message) {
@@ -46,8 +47,8 @@ public class Grid implements GameRulesObserver {
     }
 
     @Override
-    public void onRuleUnsatisfied(String message) {
-        notifyRuleUnsatisfied(message);
+    public void onRuleUnsatisfied(String message, Map<String, Object> extras) {
+        notifyRuleUnsatisfied(message, extras);
     }
 
     @Override

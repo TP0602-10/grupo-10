@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.GameView;
 
+import java.util.Map;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
@@ -27,7 +28,7 @@ public class GridController implements TableModelListener, GameRulesObserver {
     }
 
     @Override
-    public void onRuleUnsatisfied(String message) {
+    public void onRuleUnsatisfied(String message, Map<String, Object> extras) {
         view.updateConsole(message);
     }
 
