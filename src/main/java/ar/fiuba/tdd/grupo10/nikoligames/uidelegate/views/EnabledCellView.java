@@ -1,11 +1,14 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.CellAdapter;
+
 import java.awt.*;
 
 class EnabledCellView extends CellView {
 
     public EnabledCellView() {
         super();
+        addMouseListener(new CellAdapter());
     }
 
     @Override
