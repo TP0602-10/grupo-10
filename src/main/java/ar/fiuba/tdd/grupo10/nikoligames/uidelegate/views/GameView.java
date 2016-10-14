@@ -52,6 +52,7 @@ public class GameView extends JFrame {
     protected JTextArea createConsole() {
         console = new JTextArea(10, 60);
         console.setEnabled(false);
+        console.setDisabledTextColor(Color.black);
         return console;
     }
 
