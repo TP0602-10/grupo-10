@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridController;
 
 class SudokuLink extends GameLink {

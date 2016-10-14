@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
-public class CellView extends JLabel implements TableCellRenderer {
+public class CellView extends JTextField implements TableCellRenderer {
 
     public CellView() {
         setOpaque(true);

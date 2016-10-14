@@ -27,6 +27,7 @@ class DisabledCellView extends CellView {
         setValue(value);
         setEnabled(false);
         setBackground(Color.lightGray);
+        setDisabledTextColor(Color.black);
     }
 
     @Override

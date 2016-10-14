@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GameEnum;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GamesChain;
 
 import java.awt.*;

@@ -1,14 +1,13 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.CellAdapter;
-
 import java.awt.*;
 
 class EnabledCellView extends CellView {
 
     public EnabledCellView() {
         super();
-        addMouseListener(new CellAdapter());
+        setEnabled(false);
+        setEditable(false);
     }
 
     @Override
@@ -20,7 +19,11 @@ class EnabledCellView extends CellView {
             setText(value.toString());
         }
 
-        setEnabled(true);
+        setDisabledTextColor(Color.black);
         setBackground(Color.white);
+        //FIXME Class should be renamed since enabled is false now
+        setEnabled(false);
+        setEditable(false);
     }
+
 }
