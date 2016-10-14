@@ -3,7 +3,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 public enum GameEnum {
 
     SUDOKU("Sudoku"),
-    KAKURO("Kakuro");
+    KAKURO("Kakuro"),
+    COUNTRY_ROAD("Country Road"),
+    GOKIGEN_NANAME("Gokigen Naname"),
+    SLITHERLINK("Slitherlink");
 
     private String description;
 
