@@ -2,7 +2,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridController;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GameController;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 
 class SudokuLink extends GameLink {
 
@@ -10,7 +11,7 @@ class SudokuLink extends GameLink {
     public void execute(GameEnum gameEnum) {
         if (GameEnum.SUDOKU.equals(gameEnum)) {
             try {
-                new GridController(SudokuFactory.createGridFromScratch(79));
+                new SudokuController(SudokuFactory.createGridFromScratch(79));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

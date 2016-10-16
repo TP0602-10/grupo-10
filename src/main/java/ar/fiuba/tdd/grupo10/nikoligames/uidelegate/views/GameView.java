@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +18,12 @@ public class GameView extends JFrame {
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
-    public GameView(GridAdapter gridAdapter) {
+    public GameView(GridView gridView) {
 
         super(TITLE);
         setWindowPreferences();
 
-        table = new GridView(gridAdapter);
+        table = gridView;
         panel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
 

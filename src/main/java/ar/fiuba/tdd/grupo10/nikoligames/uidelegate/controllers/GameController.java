@@ -4,27 +4,25 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.GameView;
 
-import java.util.Map;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import java.util.Map;
 
-public class GridController implements TableModelListener, GameRulesObserver {
+public abstract class GameController implements TableModelListener, GameRulesObserver {
 
-    private GridAdapter model;
+    protected void setView(GameView view) {
+        this.view = view;
+    }
+
     private GameView view;
 
-    public GridController(Grid grid) {
+    public GameController(Grid grid) {
         grid.addRuleObserver(this);
-        model = new GridAdapter(grid);
-        model.addTableModelListener(this);
-        view = new GameView(model);
     }
 
     @Override
     public void tableChanged(TableModelEvent event) {
-        //TODO maybe do extra work here, maybe this whole class is unnecessary
-        model.toString();
-        view.toString();
+
     }
 
     @Override
@@ -36,4 +34,5 @@ public class GridController implements TableModelListener, GameRulesObserver {
     public void onGameWon(String message) {
         view.updateConsole(message);
     }
+
 }

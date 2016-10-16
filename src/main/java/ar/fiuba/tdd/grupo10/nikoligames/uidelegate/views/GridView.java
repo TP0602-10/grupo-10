@@ -1,19 +1,23 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters.GridAdapter;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GridAdapter;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellViewFactory;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.ROW_HEIGHT_DEFAULT;
 
 public class GridView extends JTable {
 
-    public GridView(GridAdapter grid) {
+    private GameEnum gameEnum;
+
+    public GridView(GridAdapter grid, GameEnum gameEnum) {
         super(grid);
+        this.gameEnum = gameEnum;
         this.setRowHeight(ROW_HEIGHT_DEFAULT);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         this.setGridColor(Color.red);
@@ -22,13 +26,9 @@ public class GridView extends JTable {
 
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-
-        if (this.getModel().isCellEditable(row, column)) {
-            return new EnabledCellView();
-        }
-
-        return new DisabledCellView();
+        return CellViewFactory.createCellView(gameEnum, this.getModel().isCellEditable(row, column));
     }
+
 
     private MouseAdapter createMouseAdapter() {
         return new java.awt.event.MouseAdapter() {
@@ -41,10 +41,10 @@ public class GridView extends JTable {
                 if (editableCell && row >= 0 && col >= 0) {
                     Object newValue;
                     if (SwingUtilities.isLeftMouseButton(evt)) {
-                        newValue = GameEnum.SUDOKU.getNextValue(currentValue);
+                        newValue = gameEnum.getNextValue(currentValue);
                         updateValue(newValue, row, col);
                     } else if (SwingUtilities.isRightMouseButton(evt)) {
-                        newValue = GameEnum.SUDOKU.getPrevValue(currentValue);
+                        newValue = gameEnum.getPrevValue(currentValue);
                         updateValue(newValue, row, col);
                     }
 

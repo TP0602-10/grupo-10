@@ -1,8 +1,10 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled;
+
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellView;
 
 import java.awt.*;
 
-class EnabledCellView extends CellView {
+public abstract class EnabledCellView extends CellView {
 
     public EnabledCellView() {
         super();
@@ -12,9 +14,7 @@ class EnabledCellView extends CellView {
 
     @Override
     protected void setCustomRender(Object value) {
-
         super.setCustomRender(value);
-
         if (value != null) {
             setText(value.toString());
         }

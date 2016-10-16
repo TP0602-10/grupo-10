@@ -1,19 +1,30 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.DisabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.KakuroDisabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.SudokuDisabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.EnabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.KakuroEnabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.SudokuEnabledCellView;
+
 public enum GameEnum {
 
-    SUDOKU("Sudoku", new Integer[]{null, 1, 2, 3, 4, 5, 6, 7, 8, 9}),
-    KAKURO("Kakuro", null),
-    COUNTRY_ROAD("Country Road", null),
-    GOKIGEN_NANAME("Gokigen Naname", null),
-    SLITHERLINK("Slitherlink", null);
+    SUDOKU("Sudoku", new Integer[]{null, 1, 2, 3, 4, 5, 6, 7, 8, 9}, SudokuDisabledCellView.class, SudokuEnabledCellView.class),
+    KAKURO("Kakuro", new Integer[]{null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, KakuroDisabledCellView.class, KakuroEnabledCellView.class),
+    COUNTRY_ROAD("Country Road", null, null, null),
+    GOKIGEN_NANAME("Gokigen Naname", null, null, null),
+    SLITHERLINK("Slitherlink", null, null, null);
 
     private String description;
     private Object[] possibleValues;
+    private Class<? extends DisabledCellView> disabledCellClass;
+    private Class<? extends EnabledCellView> enabledCellClass;
 
-    GameEnum(String description, Object[] possibleValues) {
+    GameEnum(String description, Object[] possibleValues, Class<? extends DisabledCellView> disabledCellClass, Class<? extends EnabledCellView> enabledCellClass) {
         this.description = description;
         this.possibleValues = possibleValues;
+        this.disabledCellClass = disabledCellClass;
+        this.enabledCellClass = enabledCellClass;
     }
 
     @Override
@@ -21,8 +32,12 @@ public enum GameEnum {
         return description;
     }
 
-    public Object[] getPossibleValues() {
-        return possibleValues;
+    public Class<? extends DisabledCellView> getDisabledCellClass() {
+        return disabledCellClass;
+    }
+
+    public Class<? extends EnabledCellView> getEnabledCellClass() {
+        return enabledCellClass;
     }
 
     public Object getNextValue(Object currentValue) {
