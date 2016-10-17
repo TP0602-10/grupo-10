@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GamesCha
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
@@ -14,14 +15,15 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
     private GamesChain chain;
+    private JTextField fileName;
 
     public MainMenuView() {
-        gameCombo = createGameCombo();
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setContentPane(createMainPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setTitle(TITLE);
+        setSize(400, 400);
         setVisible(true);
         setResizable(false);
         chain = new GamesChain(this);
@@ -30,10 +32,12 @@ public class MainMenuView extends JFrame {
     private JPanel createMainPanel() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel,
-                BoxLayout.PAGE_AXIS));
+                BoxLayout.Y_AXIS));
         mainPanel.add(createComboPanel());
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        mainPanel.add(createButtonPanel());
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(createFileChooserPanel());
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(createPlayButtonPanel());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         return mainPanel;
     }
@@ -44,11 +48,35 @@ public class MainMenuView extends JFrame {
                 BoxLayout.PAGE_AXIS));
         comboPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         comboPanel.add(new JLabel("Choose game:"));
+        gameCombo = createGameCombo();
         comboPanel.add(gameCombo);
         return comboPanel;
     }
 
-    private JPanel createButtonPanel() {
+    private JPanel createFileChooserPanel() {
+        JPanel fileChooserPanel = new JPanel();
+        fileChooserPanel.setLayout(new BoxLayout(fileChooserPanel,
+                BoxLayout.X_AXIS));
+        fileChooserPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JButton chooseFileBtn = new JButton("Choose file");
+        fileChooserPanel.add(chooseFileBtn);
+        fileChooserPanel.add(Box.createHorizontalStrut(10));
+        fileName = new JTextField();
+        fileChooserPanel.add(fileName);
+        chooseFileBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final JFileChooser fileChooser = new JFileChooser();
+                int returnVal = fileChooser.showOpenDialog(MainMenuView.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    fileName.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            }
+        });
+        return fileChooserPanel;
+    }
+
+    private JPanel createPlayButtonPanel() {
         JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
         buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         buttonPanel.add(createStartButton());
