@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
@@ -36,8 +37,8 @@ public abstract class IntegerMathOperation extends GridRuleOperation<Integer> {
     protected abstract Integer getInitialAccValue();
 
     @Override
-    public boolean isApplicableOn(Cell cell) {
-        return ! cell.getContents(getContentTags()).isEmpty();
+    public boolean isApplicableOn(Container container) {
+        return ! container.getContents(getContentTags()).isEmpty();
     }
 
     @Override
