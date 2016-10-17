@@ -1,24 +1,18 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableCellException;
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContainerException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.NoFindContentbyTagException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Cell whose content can be changed.
- */
-public class MutableCell extends Cell{
-
-    public MutableCell(List<Content> contentsList) {
+public class MutableContainer extends ContainerState {
+    public MutableContainer(List<Content> contentsList) {
         super(contentsList);
     }
 
-    public MutableCell(Content content) {
+    public MutableContainer(Content content) {
         super(content);
     }
 
@@ -38,9 +32,9 @@ public class MutableCell extends Cell{
     }
 
     @Override
-    public void setValue(Object value) throws NoFindContentbyTagException, ImmutableCellException, ImmutableContentValueException {
+    public void setValue(Object value) throws NoFindContentbyTagException, ImmutableContainerException, ImmutableContentValueException {
         if (contents.size() > 1) {
-            throw new NoFindContentbyTagException("Not specified tag, cell contain more than one content.");
+            throw new NoFindContentbyTagException("No specified tag, container contains more than one content.");
         }
         Content content = contents.entrySet().iterator().next().getValue();
         content.setValue(value);
@@ -50,6 +44,4 @@ public class MutableCell extends Cell{
     public boolean isContentEditable() {
         return true;
     }
-
-
 }

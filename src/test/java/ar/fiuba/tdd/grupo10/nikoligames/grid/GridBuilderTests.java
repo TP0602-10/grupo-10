@@ -2,8 +2,8 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
@@ -18,8 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newImmutableCell;
+import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutableCell;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -30,12 +31,12 @@ public class GridBuilderTests {
     @Before
     public void setUp() {
         Cell[] theCells = {
-                new ImmutableCell(new ImmutableContent<>(1,"_")),
-                new ImmutableCell(new ImmutableContent<>(2,"_")),
-                new ImmutableCell(new ImmutableContent<>(3,"_")),
-                new ImmutableCell(new ImmutableContent<>(4,"_"))
+                newImmutableCell(new ImmutableContent<>(1,"_")),
+                newImmutableCell(new ImmutableContent<>(2,"_")),
+                newImmutableCell(new ImmutableContent<>(3,"_")),
+                newImmutableCell(new ImmutableContent<>(4,"_"))
         };
-        this.flattenCells = new ArrayList<Cell>(Arrays.asList(theCells));
+        this.flattenCells = new ArrayList<>(Arrays.asList(theCells));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -63,7 +64,7 @@ public class GridBuilderTests {
     @Test
     public void addCell() {
         GridBuilder gridBuilder = new GridBuilder();
-        assertNotNull(gridBuilder.addCell(new ImmutableCell(new ImmutableContent<>(1,"_"))));
+        assertNotNull(gridBuilder.addCell(new Cell(new ImmutableContainer(new ImmutableContent<>(1,"_")))));
     }
 
     @Test
@@ -81,9 +82,9 @@ public class GridBuilderTests {
         );
 
         List<Cell> allCells = new ArrayList<>();
-        allCells.add(new MutableCell(new MutableContent<>(1, "TAG")));
-        allCells.add(new MutableCell(new MutableContent<>(2, "TAG")));
-        allCells.add(new MutableCell(new MutableContent<>(3, "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(1, "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(2, "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(3, "TAG")));
 
         GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
 

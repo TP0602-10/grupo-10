@@ -4,8 +4,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsExcepti
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
@@ -147,11 +147,11 @@ public final class SudokuFactory {
         return sudokuRules;
     }
 
-    private static ImmutableCell createHintCell(Integer value) {
-        return new ImmutableCell(new ImmutableContent<>(value, GLOBAL_TAG));
+    private static Cell createHintCell(Integer value) {
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(value, GLOBAL_TAG)));
     }
 
-    private static MutableCell createEmptyCell() {
-        return new MutableCell(new MutableContent<>(null, GLOBAL_TAG));
+    private static Cell createEmptyCell() {
+        return new Cell(new MutableContainer(new MutableContent<>(null, GLOBAL_TAG)));
     }
 }

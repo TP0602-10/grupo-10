@@ -1,24 +1,23 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutableCell;
 import static org.junit.Assert.*;
 
 public class GridRuleIteratorTest {
 
     private GridRuleIterator createIterator() {
         List<Cell> list = new ArrayList<>();
-        list.add(new MutableCell(new MutableContent<>(1,"number")));
-        list.add(new MutableCell(new MutableContent<>(2,"number")));
-        list.add(new MutableCell(new MutableContent<>(3,"number")));
+        list.add(newMutableCell(new MutableContent<>(1,"number")));
+        list.add(newMutableCell(new MutableContent<>(2,"number")));
+        list.add(newMutableCell(new MutableContent<>(3,"number")));
 
         return new GridRuleIterator(list,"test");
     }
@@ -54,7 +53,7 @@ public class GridRuleIteratorTest {
     @Test
     public void iterateAndRestart() {
         GridRuleIterator iterator = createIterator();
-        Cell cell = null;
+        Cell cell;
         int expectedValue = 1;
         while (iterator.hasNext()) {
             cell = iterator.next();
