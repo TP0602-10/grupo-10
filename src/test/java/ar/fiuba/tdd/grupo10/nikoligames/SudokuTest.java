@@ -63,5 +63,4 @@ public class SudokuTest {
             sudokuGrid.notifyGridUpdated(null);
         }
     }
-
 }
