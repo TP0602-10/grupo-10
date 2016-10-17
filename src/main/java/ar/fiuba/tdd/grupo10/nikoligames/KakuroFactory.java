@@ -3,8 +3,8 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
@@ -314,30 +314,30 @@ public class KakuroFactory {
     }
 
     private static Cell createMutableCell() {
-        return new MutableCell(new MutableContent<>(null, "Number"));
+        return new Cell(new MutableContainer(new MutableContent<>(null, "Number")));
     }
 
     private static Cell createSingleValuedImmutableCell(int result, String tag) {
-        return new ImmutableCell(new ImmutableContent<>(result, tag));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, tag)));
     }
 
     private static Cell createImmutableCell() {
-        return new ImmutableCell(new ImmutableContent<>(null, "BlackBLock"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(null, "BlackBLock")));
     }
 
     private static Cell createUpSidedImmutableCell(int result) {
-        return new ImmutableCell(new ImmutableContent<>(result, "CompareToRight"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, "CompareToRight")));
     }
 
     private static Cell createDownSidedImmutableCell(int result) {
-        return new ImmutableCell(new ImmutableContent<>(result, "CompareToDown"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, "CompareToDown")));
     }
 
     private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult) {
         List<Content> contentList = new ArrayList<>();
         contentList.add(new ImmutableContent<>(upperResult, "CompareToRight"));
         contentList.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
-        return new ImmutableCell(contentList);
+        return new Cell(new ImmutableContainer(contentList));
     }
 }
 

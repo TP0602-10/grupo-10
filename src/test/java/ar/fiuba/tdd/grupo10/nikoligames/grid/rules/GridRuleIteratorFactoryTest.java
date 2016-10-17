@@ -1,10 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import org.junit.Assert;
@@ -13,6 +10,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutableCell;
 
 /*
     This test the ItertorFactory and the Iterator.
@@ -35,7 +34,7 @@ public class GridRuleIteratorFactoryTest {
         */
         List<Cell> allCells = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
-            allCells.add( new MutableCell(
+            allCells.add( newMutableCell(
                     new MutableContent<>(i,"tag")
             ));
         }
