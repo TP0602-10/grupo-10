@@ -24,25 +24,38 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
+        if (!iterator.hasNext()) {
+            return false;
+        }
         Cell actualCell = (Cell)iterator.next();
+        Cell firstCell = actualCell;
+        Cell nextCell = null;
         while (iterator.hasNext()) {
-            Cell nextCell = (Cell)iterator.next();
-            NeighbourType neighbourType = actualCell.getNeighbourFrom(nextCell);
+            nextCell = (Cell)iterator.next();
 
-            Content[] contents = {actualCell.getContent(), nextCell.getContent() };
-            if (!isApplicableOn(contents)) {
+            if (!areValid(actualCell,nextCell)) {
                 return false;
             }
-
-            Line actualLine = (Line)actualCell.getValue();
-            Line nextLine = (Line)nextCell.getValue();
-            if (!neighbourType.isValid(actualLine,nextLine)) {
-                return false;
-            }
-
             actualCell = nextCell;
         }
-        return true;
+        return areValid(actualCell,firstCell);
+    }
+
+    private boolean areValid(Cell fromCell, Cell toCell) {
+        if (fromCell != null && toCell != null) {
+            NeighbourType neighbourType = fromCell.getNeighbourFrom(toCell);
+
+            Content[] contents = {fromCell.getContent(), toCell.getContent() };
+            if ( isApplicableOn(contents) ) {
+                Line actualLine = (Line)fromCell.getValue();
+                Line nextLine = (Line)toCell.getValue();
+                if (neighbourType.isValid(actualLine,nextLine)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public boolean isApplicableOn(Content[] contents) {

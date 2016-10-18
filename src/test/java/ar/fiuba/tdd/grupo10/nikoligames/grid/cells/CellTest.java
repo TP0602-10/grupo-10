@@ -34,7 +34,7 @@ public class CellTest {
 
     @Test(expected = NoFindContentbyTagException.class)
     public void getValueInvalidTag() {
-        Cell cell = newMutableCell(new MutableContent<>(1,"value"));
+        Cell cell = newMutableCell(new MutableContent<Integer>(1,"value"));
 
         cell.getValue("invalidTag");
     }

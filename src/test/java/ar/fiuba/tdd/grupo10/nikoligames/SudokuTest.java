@@ -49,7 +49,6 @@ public class SudokuTest {
 
     }
 
-    @Ignore
     @Test
     public void createGridAndWin() {
         Grid sudokuGrid = SudokuFactory.createGridFromScratch(80);
