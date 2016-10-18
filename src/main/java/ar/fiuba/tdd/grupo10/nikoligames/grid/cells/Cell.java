@@ -17,6 +17,44 @@ public class Cell extends Container {
     private NeighbourContainer rightNeighbour;
     private NeighbourContainer bottomNeighbour;
 
+    private NeighbourContainer topLeftNeighbour;
+    private NeighbourContainer topRightNeighbour;
+    private NeighbourContainer bottomRightNeighbour;
+
+    public NeighbourContainer getTopLeftNeighbour() {
+        return topLeftNeighbour;
+    }
+
+    public void setTopLeftNeighbour(NeighbourContainer topLeftNeighbour) {
+        this.topLeftNeighbour = topLeftNeighbour;
+    }
+
+    public NeighbourContainer getTopRightNeighbour() {
+        return topRightNeighbour;
+    }
+
+    public void setTopRightNeighbour(NeighbourContainer topRightNeighbour) {
+        this.topRightNeighbour = topRightNeighbour;
+    }
+
+    public NeighbourContainer getBottomRightNeighbour() {
+        return bottomRightNeighbour;
+    }
+
+    public void setBottomRightNeighbour(NeighbourContainer bottomRightNeighbour) {
+        this.bottomRightNeighbour = bottomRightNeighbour;
+    }
+
+    public NeighbourContainer getBottomLeftNeighbour() {
+        return bottomLeftNeighbour;
+    }
+
+    public void setBottomLeftNeighbour(NeighbourContainer bottomLeftNeighbour) {
+        this.bottomLeftNeighbour = bottomLeftNeighbour;
+    }
+
+    private NeighbourContainer bottomLeftNeighbour;
+
     private List<Container> borders = new ArrayList<>();
     private List<Container> corners = new ArrayList<>();
 
@@ -66,10 +104,14 @@ public class Cell extends Container {
 
     public NeighbourType getNeighbourFrom(Cell otherCell ) {
         NeighbourContainer[] neighbours = {
+                topLeftNeighbour,
                 topNeighbour,
+                topRightNeighbour,
+                rightNeighbour,
+                bottomRightNeighbour,
                 bottomNeighbour,
-                leftNeighbour,
-                rightNeighbour
+                bottomLeftNeighbour,
+                leftNeighbour
         };
         for (NeighbourContainer neighbour : neighbours) {
             Cell neighbourCell = (Cell)neighbour.getNeighbourContainer();
