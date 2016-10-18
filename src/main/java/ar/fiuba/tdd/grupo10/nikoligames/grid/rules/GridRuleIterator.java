@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,19 +11,19 @@ import java.util.List;
 public class GridRuleIterator implements Iterator {
     private static final int INIT_INDEX = -1;
 
-    private final List<Cell> cells;
+    private final List<Container> containers;
     private final String explanation;
     private int actualIndex = INIT_INDEX;
 
-    public GridRuleIterator(List<Cell> cells, String explanation) {
-        this.cells = cells;
+    public GridRuleIterator(List<Container> containers, String explanation) {
+        this.containers = containers;
         this.explanation = explanation;
     }
 
     @Override
     public boolean hasNext() {
         try {
-            cells.get(actualIndex + 1);
+            containers.get(actualIndex + 1);
             return true;
         } catch (IndexOutOfBoundsException e) {
             return false;
@@ -31,9 +31,9 @@ public class GridRuleIterator implements Iterator {
     }
 
     @Override
-    public Cell next() {
+    public Container next() {
         actualIndex++;
-        return cells.get(actualIndex);
+        return containers.get(actualIndex);
     }
 
     public void restart() {

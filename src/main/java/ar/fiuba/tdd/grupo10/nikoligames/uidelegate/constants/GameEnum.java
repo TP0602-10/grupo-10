@@ -25,55 +25,41 @@ public enum GameEnum {
         return description;
     }
 
-    public Class<? extends CellView> getCellClass()
-    {
+    public Class<? extends CellView> getCellClass() {
         return cellClass;
     }
 
     public Object getNextValue(Object currentValue) {
-        if (possibleValues != null) {
-            if (currentValue == null) {
-                for (int index = 0; index < possibleValues.length; index++) {
-                    if (possibleValues[index] == null && index == (possibleValues.length - 1)) {
-                        return possibleValues[0];
-                    } else if (possibleValues[index] == null) {
-                        return possibleValues[index + 1];
-                    }
-                }
-            } else {
-                for (int index = 0; index < possibleValues.length; index++) {
-                    if (possibleValues[index] != null && possibleValues[index].equals(currentValue) && index == (possibleValues.length - 1)) {
-                        return possibleValues[0];
-                    } else if (possibleValues[index] != null && possibleValues[index].equals(currentValue)) {
-                        return possibleValues[index + 1];
-                    }
-                }
+        for (int index = 0; index < possibleValues.length; index++) {
+            if (currentValue == null && possibleValues[index] == null && index == (possibleValues.length - 1)) {
+                return possibleValues[0];
+            } else if (currentValue == null && possibleValues[index] == null) {
+                return possibleValues[index + 1];
+            } else if (currentValue != null && possibleValues[index] != null && possibleValues[index].equals(currentValue)
+                    && index == (possibleValues.length - 1)) {
+                return possibleValues[0];
+            } else if (currentValue != null && possibleValues[index] != null && possibleValues[index].equals(currentValue)) {
+                return possibleValues[index + 1];
             }
         }
-        return null;
+        throw new RuntimeException("GameEnum:getNextValue not found for game: " + toString()
+                + " currentValue: " + currentValue);
     }
 
     public Object getPrevValue(Object currentValue) {
-        if (possibleValues != null) {
-            if (currentValue == null) {
-                for (int index = 0; index < possibleValues.length; index++) {
-                    if (possibleValues[index] == null && index == 0) {
-                        return possibleValues[possibleValues.length - 1];
-                    } else if (possibleValues[index] == null) {
-                        return possibleValues[index - 1];
-                    }
-                }
-            } else {
-                for (int index = 0; index < possibleValues.length; index++) {
-                    if (possibleValues[index] != null && possibleValues[index].equals(currentValue) && index == 0) {
-                        return possibleValues[possibleValues.length - 1];
-                    } else if (possibleValues[index] != null && possibleValues[index].equals(currentValue)) {
-                        return possibleValues[index - 1];
-                    }
-                }
+        for (int index = 0; index < possibleValues.length; index++) {
+            if (currentValue == null && possibleValues[index] == null && index == 0) {
+                return possibleValues[possibleValues.length - 1];
+            } else if (currentValue == null && possibleValues[index] == null) {
+                return possibleValues[index - 1];
+            } else if (currentValue != null && possibleValues[index] != null && possibleValues[index].equals(currentValue) && index == 0) {
+                return possibleValues[possibleValues.length - 1];
+            } else if (currentValue != null && possibleValues[index] != null && possibleValues[index].equals(currentValue)) {
+                return possibleValues[index - 1];
             }
         }
-        return null;
+        throw new RuntimeException("GameEnum:getPrevValue not found for game: " + toString()
+                + " currentValue: " + currentValue);
     }
 
 

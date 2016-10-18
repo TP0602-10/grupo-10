@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
@@ -25,9 +26,9 @@ public abstract class IntegerMathOperation extends GridRuleOperation<Integer> {
     public java.lang.Integer perform(GridRuleIterator iterator, Object... params) {
         Integer accValue = getInitialAccValue();
         while (iterator.hasNext()) {
-            Cell cell = iterator.next();
-            if (isApplicableOn(cell)) {
-                accValue = operationContentValueToAccumulativeValue(accValue, cell);
+            Container container = iterator.next();
+            if (isApplicableOn(container)) {
+                accValue = operationContentValueToAccumulativeValue(accValue, container);
             }
         }
         return accValue;
@@ -36,8 +37,8 @@ public abstract class IntegerMathOperation extends GridRuleOperation<Integer> {
     protected abstract Integer getInitialAccValue();
 
     @Override
-    public boolean isApplicableOn(Cell cell) {
-        return ! cell.getContents(getContentTags()).isEmpty();
+    public boolean isApplicableOn(Container container) {
+        return ! container.getContents(getContentTags()).isEmpty();
     }
 
     @Override
@@ -45,11 +46,11 @@ public abstract class IntegerMathOperation extends GridRuleOperation<Integer> {
         return !content.isEmpty() && content.getValue() instanceof Integer;
     }
 
-    private Integer operationContentValueToAccumulativeValue(Integer accValue, Cell cell) {
+    private Integer operationContentValueToAccumulativeValue(Integer accValue, Container container) {
         if (getContentTags() != null) {
             for (String tag : getContentTags()) {
-                if (isApplicableOn(cell.getContent(tag))) {
-                    accValue = operateOnAccValue(accValue, (Integer) cell.getContent(tag).getValue());
+                if (isApplicableOn(container.getContent(tag))) {
+                    accValue = operateOnAccValue(accValue, (Integer) container.getContent(tag).getValue());
                 }
             }
         }

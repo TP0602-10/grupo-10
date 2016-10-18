@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
 import java.awt.*;
@@ -18,7 +17,7 @@ public class SudokuCellView extends CellView {
         Cell cell = (Cell) getValue();
         setEnabled(false);
 
-        if (cell instanceof MutableCell) {
+        if (cell.isContentEditable()) {
             graphics.setColor(Color.BLUE);
         } else {
             graphics.setColor(Color.black);
