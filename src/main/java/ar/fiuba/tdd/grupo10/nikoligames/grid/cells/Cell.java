@@ -16,10 +16,17 @@ public class Cell extends Container {
     private NeighbourContainer topNeighbour;
     private NeighbourContainer rightNeighbour;
     private NeighbourContainer bottomNeighbour;
-
     private NeighbourContainer topLeftNeighbour;
     private NeighbourContainer topRightNeighbour;
     private NeighbourContainer bottomRightNeighbour;
+    private NeighbourContainer bottomLeftNeighbour;
+
+    private List<Container> borders = new ArrayList<>();
+    private List<Container> corners = new ArrayList<>();
+
+    public Cell(ContainerState state) {
+        super(state);
+    }
 
     public NeighbourContainer getTopLeftNeighbour() {
         return topLeftNeighbour;
@@ -51,15 +58,6 @@ public class Cell extends Container {
 
     public void setBottomLeftNeighbour(NeighbourContainer bottomLeftNeighbour) {
         this.bottomLeftNeighbour = bottomLeftNeighbour;
-    }
-
-    private NeighbourContainer bottomLeftNeighbour;
-
-    private List<Container> borders = new ArrayList<>();
-    private List<Container> corners = new ArrayList<>();
-
-    public Cell(ContainerState state) {
-        super(state);
     }
 
     public Container getLeftNeighbour() {
