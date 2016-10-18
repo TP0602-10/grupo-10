@@ -16,7 +16,7 @@ class UnavailableGameLink extends GameLink {
     }
 
     @Override
-    public void execute(GameEnum gameEnum) {
+    public void execute(GameEnum gameEnum, String filePath) {
 
         JOptionPane.showMessageDialog(context,
                 "Game not available: " + gameEnum,

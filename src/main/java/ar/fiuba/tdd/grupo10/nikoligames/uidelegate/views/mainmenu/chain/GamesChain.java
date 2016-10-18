@@ -16,8 +16,8 @@ public class GamesChain {
         kakuroLink.setNext(unavailableGameLink);
     }
 
-    public void execute(GameEnum gameEnum) {
-        firstLink.execute(gameEnum);
+    public void execute(GameEnum gameEnum, String filePath) {
+        firstLink.execute(gameEnum, filePath);
     }
 
 }

@@ -7,7 +7,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GamesCha
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
@@ -15,7 +14,7 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
     private GamesChain chain;
-    private JTextField fileName;
+    private JTextField filePathTextField;
 
     public MainMenuView() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -61,15 +60,15 @@ public class MainMenuView extends JFrame {
         JButton chooseFileBtn = new JButton("Choose file");
         fileChooserPanel.add(chooseFileBtn);
         fileChooserPanel.add(Box.createHorizontalStrut(10));
-        fileName = new JTextField();
-        fileChooserPanel.add(fileName);
+        filePathTextField = new JTextField();
+        fileChooserPanel.add(filePathTextField);
         chooseFileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 final JFileChooser fileChooser = new JFileChooser();
                 int returnVal = fileChooser.showOpenDialog(MainMenuView.this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    fileName.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                    filePathTextField.setText(fileChooser.getSelectedFile().getAbsolutePath());
                 }
             }
         });
@@ -96,7 +95,7 @@ public class MainMenuView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
-                chain.execute(game);
+                chain.execute(game, filePathTextField.getText());
             }
         });
         return startButton;

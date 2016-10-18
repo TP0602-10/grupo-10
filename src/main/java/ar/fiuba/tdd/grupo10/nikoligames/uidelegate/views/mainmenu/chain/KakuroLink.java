@@ -8,7 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.KakuroController;
 class KakuroLink extends GameLink {
 
     @Override
-    public void execute(GameEnum gameEnum) {
+    public void execute(GameEnum gameEnum, String filePath) {
         if (GameEnum.KAKURO.equals(gameEnum)) {
             try {
                 new KakuroController(KakuroFactory.createGrid(2));
@@ -16,7 +16,7 @@ class KakuroLink extends GameLink {
                 exception.printStackTrace();
             }
         } else {
-            next.execute(gameEnum);
+            next.execute(gameEnum, filePath);
         }
     }
 

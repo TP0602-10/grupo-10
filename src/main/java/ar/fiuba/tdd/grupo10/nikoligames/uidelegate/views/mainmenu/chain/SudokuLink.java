@@ -8,7 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
 class SudokuLink extends GameLink {
 
     @Override
-    public void execute(GameEnum gameEnum) {
+    public void execute(GameEnum gameEnum, String filePath) {
         if (GameEnum.SUDOKU.equals(gameEnum)) {
             try {
                 new SudokuController(SudokuFactory.createGridFromScratch(79));
@@ -16,7 +16,7 @@ class SudokuLink extends GameLink {
                 exception.printStackTrace();
             }
         } else {
-            next.execute(gameEnum);
+            next.execute(gameEnum, filePath);
         }
     }
 

@@ -10,6 +10,6 @@ abstract class GameLink {
         this.next = next;
     }
 
-    public abstract void execute(GameEnum game);
+    public abstract void execute(GameEnum game, String filePath);
 
 }
