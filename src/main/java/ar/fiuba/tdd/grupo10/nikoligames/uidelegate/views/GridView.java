@@ -5,10 +5,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters.GridAdapter;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellViewFactory;
 
-import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.ROW_HEIGHT_DEFAULT;
 

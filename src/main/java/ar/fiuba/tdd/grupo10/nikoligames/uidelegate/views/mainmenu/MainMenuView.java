@@ -64,7 +64,7 @@ public class MainMenuView extends JFrame {
         fileChooserPanel.add(filePathTextField);
         chooseFileBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 final JFileChooser fileChooser = new JFileChooser();
                 int returnVal = fileChooser.showOpenDialog(MainMenuView.this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {

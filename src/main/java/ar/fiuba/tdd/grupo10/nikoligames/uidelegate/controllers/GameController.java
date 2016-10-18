@@ -4,9 +4,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.GameView;
 
+import java.util.Map;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import java.util.Map;
 
 public abstract class GameController implements TableModelListener, GameRulesObserver {
 
