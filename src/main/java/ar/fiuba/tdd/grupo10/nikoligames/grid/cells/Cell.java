@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,10 @@ import java.util.List;
 public class Cell extends Container {
 
     // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
-    private Container leftNeighbour;
-    private Container topNeighbour;
-    private Container rightNeighbour;
-    private Container bottomNeighbour;
+    private NeighbourContainer leftNeighbour;
+    private NeighbourContainer topNeighbour;
+    private NeighbourContainer rightNeighbour;
+    private NeighbourContainer bottomNeighbour;
 
     private List<Container> borders = new ArrayList<>();
     private List<Container> corners = new ArrayList<>();
@@ -24,35 +25,35 @@ public class Cell extends Container {
     }
 
     public Container getLeftNeighbour() {
-        return this.leftNeighbour;
+        return leftNeighbour.getNeighbourContainer();
     }
 
     public void setLeftNeighbour(Container leftNeighbour) {
-        this.leftNeighbour = leftNeighbour;
+        this.leftNeighbour = new NeighbourContainer(leftNeighbour,new LeftNeighbour());
     }
 
     public Container getTopNeighbour() {
-        return this.topNeighbour;
+        return topNeighbour.getNeighbourContainer();
     }
 
     public void setTopNeighbour(Container topNeighbour) {
-        this.topNeighbour = topNeighbour;
+        this.topNeighbour = new NeighbourContainer(topNeighbour,new TopNeighbour());
     }
 
     public Container getRightNeighbour() {
-        return this.rightNeighbour;
+        return this.rightNeighbour.getNeighbourContainer();
     }
 
     public void setRightNeighbour(Container rightNeighbour) {
-        this.rightNeighbour = rightNeighbour;
+        this.rightNeighbour = new NeighbourContainer(rightNeighbour,new RightNeighbour());
     }
 
     public Container getBottomNeighbour() {
-        return this.bottomNeighbour;
+        return this.bottomNeighbour.getNeighbourContainer();
     }
 
     public void setBottomNeighbour(Container bottomNeighbour) {
-        this.bottomNeighbour = bottomNeighbour;
+        this.bottomNeighbour = new NeighbourContainer(bottomNeighbour,new BottomNeighbour());
     }
 
     public List<Container> getBorders() {
@@ -61,6 +62,22 @@ public class Cell extends Container {
 
     public List<Container> getCorners() {
         return this.corners;
+    }
+
+    public NeighbourType getNeighbourFrom(Cell otherCell ) {
+        NeighbourContainer[] neighbours = {
+                topNeighbour,
+                bottomNeighbour,
+                leftNeighbour,
+                rightNeighbour
+        };
+        for (NeighbourContainer neighbour : neighbours) {
+            Cell neighbourCell = (Cell)neighbour.getNeighbourContainer();
+            if (neighbourCell == otherCell) {
+                return neighbour.getNeighbourType();
+            }
+        }
+        return new InvalidNeighbour();
     }
 
 }
