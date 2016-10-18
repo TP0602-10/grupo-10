@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import org.junit.Assert;
@@ -18,7 +18,7 @@ import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutable
  */
 public class GridRuleIteratorFactoryTest {
 
-    private List<List<Cell>> theGridToTest;
+    private List<List<Container>> theGridToTest;
     private static final Integer COLS = 4;
     private static final Integer ROWS = 4;
 
@@ -32,7 +32,7 @@ public class GridRuleIteratorFactoryTest {
          *  12  13  14  15  *
          ********************
         */
-        List<Cell> allCells = new ArrayList<>();
+        List<Container> allCells = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
             allCells.add( newMutableCell(
                     new MutableContent<>(i,"tag")
@@ -50,7 +50,7 @@ public class GridRuleIteratorFactoryTest {
 
         int index = 0;
         while ( firstRow.hasNext() ) {
-            Cell theCell = firstRow.next();
+            Container theCell = firstRow.next();
             Assert.assertEquals(expectedFirstRow[index],(int)theCell.getValue());
             index++;
         }
@@ -66,7 +66,7 @@ public class GridRuleIteratorFactoryTest {
 
         int index = 0;
         while ( secondColumnIterator.hasNext() ) {
-            Cell theCell = secondColumnIterator.next();
+            Container theCell = secondColumnIterator.next();
             Assert.assertEquals(expectedSecondColumn[index],(int)theCell.getValue());
             index++;
         }
@@ -90,7 +90,7 @@ public class GridRuleIteratorFactoryTest {
             int index = 0;
             int[] expectedCol = expectedCols[colIndex];
             while ( iterator.hasNext() ) {
-                Cell theCell = iterator.next();
+                Container theCell = iterator.next();
                 Assert.assertEquals(expectedCol[index],(int)theCell.getValue());
                 index++;
             }
@@ -122,7 +122,7 @@ public class GridRuleIteratorFactoryTest {
             int[] expectedBlock = expectedBlocks[blockIndex];
             int index = 0;
             while (iterator.hasNext()) {
-                Cell theCell = iterator.next();
+                Container theCell = iterator.next();
                 Assert.assertEquals(expectedBlock[index],(int)theCell.getValue());
                 index++;
             }
@@ -145,7 +145,7 @@ public class GridRuleIteratorFactoryTest {
         int[] expectedCustomCol = {6,10};
         int index = 0;
         while (columnIterator.hasNext()) {
-            Cell theCell = columnIterator.next();
+            Container theCell = columnIterator.next();
             Assert.assertEquals(expectedCustomCol[index],(int)theCell.getValue());
             index++;
         }
@@ -164,7 +164,7 @@ public class GridRuleIteratorFactoryTest {
         int[] expectedCustomRow = {5,6,7};
         int index = 0;
         while (rowIterator.hasNext()) {
-            Cell theCell = rowIterator.next();
+            Container theCell = rowIterator.next();
             Assert.assertEquals(expectedCustomRow[index],(int)theCell.getValue());
             index++;
         }

@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsExcepti
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
@@ -85,7 +86,11 @@ public final class SudokuFactory {
 
     public static Grid createGridFromScratch(int numberOfHints) throws WrongNumberOfGridCellsException {
         List<Cell> cells = generateCellsInGridForm(numberOfHints);
-        GridRuleManager ruleManager = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
+        GridRuleManager ruleManager = createSudokuRuleManager(ListHelper.buildMatrixFromFlattenList(
+                cells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                ROWS,
+                COLUMNS)
+        );
         Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
         ruleManager.addObserver(grid);
         return grid;
@@ -112,7 +117,7 @@ public final class SudokuFactory {
         return allCells;
     }
 
-    private static GridRuleManager createSudokuRuleManager(List<List<Cell>> grid) {
+    private static GridRuleManager createSudokuRuleManager(List<List<Container>> grid) {
         Collection<GridRule> sudokuRules = buildSudokuRules(grid);
         return new GridRuleManager(sudokuRules);
     }
@@ -125,7 +130,7 @@ public final class SudokuFactory {
         return emptyCells;
     }
 
-    private static Collection<GridRule> buildSudokuRules(List<List<Cell>> grid) {
+    private static Collection<GridRule> buildSudokuRules(List<List<Container>> grid) {
         Collection<GridRule> sudokuRules = new ArrayList<>();
         String[] tags = {GLOBAL_TAG};
         List<String> cellTag = new ArrayList<>( Arrays.asList(tags) );

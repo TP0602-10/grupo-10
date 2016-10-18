@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
@@ -86,7 +87,11 @@ public class GridRuleTest {
         );
 
         GridRuleIterator simpleIterator = GridRuleIteratorFactory.iteratorForRow(
-                gridWithOneTagContents.getCells(),
+                gridWithOneTagContents.getCells().stream()
+                        .map(cells ->
+                                cells.stream().map(c -> (Container) c).collect(Collectors.toList())
+                        )
+                        .collect(Collectors.toList()),
                 0
         );
 
@@ -130,7 +135,10 @@ public class GridRuleTest {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         return new AlwaysVerifiableRule<>(
                 simpleIterator,
@@ -150,7 +158,10 @@ public class GridRuleTest {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         return new AlwaysVerifiableRule<>(
                 simpleIterator,
@@ -205,7 +216,10 @@ public class GridRuleTest {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         return new AlwaysVerifiableRule<>(
                 simpleIterator,
@@ -226,7 +240,10 @@ public class GridRuleTest {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         return new AlwaysVerifiableRule<>(
                 simpleIterator,
@@ -264,7 +281,10 @@ public class GridRuleTest {
                 Boolean.TRUE
         );
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,
@@ -289,7 +309,10 @@ public class GridRuleTest {
                 Boolean.TRUE
         );
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         GridRule<Boolean> theRule = new AlwaysVerifiableRule<>(
                 simpleIterator,

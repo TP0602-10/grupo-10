@@ -40,8 +40,17 @@ public final class ListHelper {
         return matrix;
     }
 
+    public static <S extends T, T> List<List<T>> buildMatrixWithCastedElementsFromFlattenList(
+            List<S> subclassList, int rows, int columns, Class<T> superclassToCastTo) {
+        return buildMatrixFromFlattenList(
+                subclassList.stream().map(e -> (T) e).collect(Collectors.toList()),
+                rows,
+                columns
+        );
+    }
+
     public static <T> List<Integer> createFromRange(int initialValue, int endValue) {
-        List<Integer> theList = new ArrayList<Integer>();
+        List<Integer> theList = new ArrayList<>();
         for (int i = initialValue; i <= endValue; i++) {
             theList.add(i);
         }

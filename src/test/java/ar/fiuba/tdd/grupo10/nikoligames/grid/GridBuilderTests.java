@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newImmutableCell;
 import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutableCell;
@@ -86,7 +88,10 @@ public class GridBuilderTests {
         allCells.add(newMutableCell(new MutableContent<>(2, "TAG")));
         allCells.add(newMutableCell(new MutableContent<>(3, "TAG")));
 
-        GridRuleIterator simpleIterator = new GridRuleIterator(allCells,"Iterate over all cells");
+        GridRuleIterator simpleIterator = new GridRuleIterator(
+                allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                "Iterate over all cells"
+        );
 
         GridRule gridRule = new AlwaysVerifiableRule<>(
                 simpleIterator,

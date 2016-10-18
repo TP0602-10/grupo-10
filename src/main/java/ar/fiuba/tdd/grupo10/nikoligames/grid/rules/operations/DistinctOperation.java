@@ -27,13 +27,13 @@ public class DistinctOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
-        List<Content> contentsOfCells = new ArrayList<>();
+        List<Content> contentsOfContainers = new ArrayList<>();
 
         while (iterator.hasNext()) {
-            Cell cell = iterator.next();
-            contentsOfCells.addAll( cell.getContents(getContentTags()) );
+            Container container = iterator.next();
+            contentsOfContainers.addAll( container.getContents(getContentTags()) );
         }
-        return areAllContentsDistinct(contentsOfCells);
+        return areAllContentsDistinct(contentsOfContainers);
     }
 
     @Override

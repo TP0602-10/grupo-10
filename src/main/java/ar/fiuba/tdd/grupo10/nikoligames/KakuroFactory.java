@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
@@ -16,6 +17,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class KakuroFactory {
@@ -203,22 +205,24 @@ public class KakuroFactory {
 
     public static Grid createGrid(int difficulty) {
         List<Cell> cells = generateCellList(difficulty);
-        GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
+        GridRuleManager ruleManager = createKakuroRuleManager(
+                ListHelper.buildMatrixWithCastedElementsFromFlattenList(cells, ROWS, COLUMNS, Container.class)
+        );
         return returnGrid(cells,ruleManager);
     }
 
-    public static Grid returnGrid(List<Cell> cells,GridRuleManager ruleManager) {
+    public static Grid returnGrid(List<Cell> cells, GridRuleManager ruleManager) {
         Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
         ruleManager.addObserver(grid);
         return grid;
     }
 
-    private static GridRuleManager createKakuroRuleManager(List<List<Cell>> grid) {
+    private static GridRuleManager createKakuroRuleManager(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = buildKakuroRules(grid);
         return new GridRuleManager(kakuroRules);
     }
 
-    private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid) {
+    private static Collection<GridRule> buildKakuroRules(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = new ArrayList<>();
 
         String[] upperTag = {"CompareToRight"};
@@ -234,13 +238,13 @@ public class KakuroFactory {
         return kakuroRules;
     }
 
-    private static void iterateRowKakuroRules(List<List<Cell>> grid, List<String> upperCellTag,
+    private static void iterateRowKakuroRules(List<List<Container>> grid, List<String> upperCellTag,
                                               Collection<GridRule> kakuroRules) {
         for (int i = 0; i < ROWS; i++) {
-            List<Cell> row = grid.get(i);
+            List<Container> row = grid.get(i);
             Integer columnIndex = 0;
             while (columnIndex < COLUMNS) {
-                Cell element = row.get(columnIndex);
+                Container element = row.get(columnIndex);
                 int startPos;
                 if (element.getContents(upperCellTag).isEmpty()) {
                     columnIndex++;
@@ -263,20 +267,20 @@ public class KakuroFactory {
         }
     }
 
-    private static void iterateColumnKakuroRules(List<List<Cell>> grid, List<String> downCellTag,
+    private static void iterateColumnKakuroRules(List<List<Container>> grid, List<String> downCellTag,
                                                  Collection<GridRule> kakuroRules) {
         for (int j = 0; j < COLUMNS; j++) {
             Integer rowIndex = 0;
             while (rowIndex < ROWS) {
                 int startPos;
                 //List<Cell> row = grid.get(rowIndex);
-                Cell element = grid.get(rowIndex).get(j);
+                Container element = grid.get(rowIndex).get(j);
                 if (element.getContents(downCellTag).isEmpty()) {
                     rowIndex++;
                 } else {
                     rowIndex++;
                     startPos = rowIndex;
-                    List<Cell> row = grid.get(rowIndex);
+                    List<Container> row = grid.get(rowIndex);
                     int goalValue = (int) element.getContent("CompareToDown").getValue();
                     element = row.get(j);
                     while (rowIndex < ROWS - 1 && element.isContentEditable()) {
@@ -295,7 +299,7 @@ public class KakuroFactory {
     }
 
 
-    private static void generateKakuroRules(List<List<Cell>> grid, int columnIndex, int startPos, int endPos,
+    private static void generateKakuroRules(List<List<Container>> grid, int columnIndex, int startPos, int endPos,
                                             Collection<GridRule> kakuroRules, int goalValue, List<String> tag,
                                             GridRuleIterator anIterator) {
 
