@@ -9,7 +9,6 @@ public abstract class EnabledCellView extends CellView {
     public EnabledCellView() {
         super();
         setEnabled(false);
-        setEditable(false);
     }
 
     @Override
@@ -23,7 +22,6 @@ public abstract class EnabledCellView extends CellView {
         setBackground(Color.white);
         //FIXME Class should be renamed since enabled is false now
         setEnabled(false);
-        setEditable(false);
     }
 
 }

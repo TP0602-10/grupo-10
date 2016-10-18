@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters.GridAdapter;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellViewFactory;
@@ -14,9 +16,11 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 public class GridView extends JTable {
 
     private GameEnum gameEnum;
+    private GridAdapter adapter;
 
-    public GridView(GridAdapter grid, GameEnum gameEnum) {
-        super(grid);
+    public GridView(GridAdapter adapter, GameEnum gameEnum) {
+        super(adapter);
+        this.adapter = adapter;
         this.gameEnum = gameEnum;
         this.setRowHeight(ROW_HEIGHT_DEFAULT);
         this.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -36,15 +40,15 @@ public class GridView extends JTable {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = GridView.this.rowAtPoint(evt.getPoint());
                 int col = GridView.this.columnAtPoint(evt.getPoint());
-                Object currentValue = GridView.this.getModel().getValueAt(row, col);
-                boolean editableCell = GridView.this.getModel().isCellEditable(row, col);
+                Cell cell = (Cell) GridView.this.getModel().getValueAt(row, col);
+                boolean editableCell = adapter.getValueAt(row, col) instanceof MutableCell;
                 if (editableCell && row >= 0 && col >= 0) {
                     Object newValue;
                     if (SwingUtilities.isLeftMouseButton(evt)) {
-                        newValue = gameEnum.getNextValue(currentValue);
+                        newValue = gameEnum.getNextValue(cell.getValue());
                         updateValue(newValue, row, col);
                     } else if (SwingUtilities.isRightMouseButton(evt)) {
-                        newValue = gameEnum.getPrevValue(currentValue);
+                        newValue = gameEnum.getPrevValue(cell.getValue());
                         updateValue(newValue, row, col);
                     }
 

@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
 import java.awt.*;
@@ -15,8 +16,19 @@ public class KakuroDisabledCellView extends DisabledCellView {
 
     @Override
     public void paintComponent(Graphics graphics) {
-        Cell cell = (Cell) getValue();
         super.paintComponent(graphics);
+        Cell cell = (Cell) getValue();
+
+        if (cell instanceof MutableCell) {
+            graphics.setColor(Color.BLUE);
+            Object content = cell.getValue("Number");
+            if (content != null) {
+                graphics.drawString(content.toString(), (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
+            }
+        } else {
+            graphics.setColor(Color.black);
+        }
+
         drawLines(cell, graphics);
     }
 

@@ -15,7 +15,7 @@ public abstract class DisabledCellView extends CellView {
         super.setCustomRender(value);
         setEnabled(false);
         setBackground(Color.lightGray);
-        setDisabledTextColor(Color.black);
+//        setDisabledTextColor(Color.black);
     }
 
 }
