@@ -3,7 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers;
 public class LessThanIntegerMatcher<T extends Integer> implements GridRuleMatcher<T> {
     @Override
     public boolean matches(T value, T goal) {
-        return value.compareTo(goal) < 0;
+        return Integer.compare(value, goal) < 0;
     }
 
     @Override
