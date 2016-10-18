@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
@@ -6,11 +6,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
 import java.awt.*;
 
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.MARGIN_CELL;
+public class SudokuCellView extends CellView {
 
-public class SudokuDisabledCellView extends DisabledCellView {
-
-    public SudokuDisabledCellView() {
+    public SudokuCellView() {
         super();
     }
 

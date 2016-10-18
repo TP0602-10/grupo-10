@@ -25,7 +25,6 @@ public abstract class GridAdapter extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-//        return this.grid.getCellAt(row, col).isContentEditable();
         return false;
     }
 

@@ -21,6 +21,8 @@ public abstract class CellView extends JTextField implements TableCellRenderer {
     protected void setCustomRender(Object value) {
         setHorizontalAlignment(SwingConstants.CENTER);
         setForeground(Color.black);
+        setEnabled(false);
+        setBackground(Color.lightGray);
         this.value = value;
     }
 

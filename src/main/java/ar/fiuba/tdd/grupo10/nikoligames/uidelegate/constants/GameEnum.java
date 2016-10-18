@@ -1,30 +1,25 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.DisabledCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.KakuroDisabledCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.disabled.SudokuDisabledCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.EnabledCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.KakuroEnabledCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.enabled.SudokuEnabledCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.KakuroCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.SudokuCellView;
 
 public enum GameEnum {
 
-    SUDOKU("Sudoku", new Integer[]{null, 1, 2, 3, 4, 5, 6, 7, 8, 9}, SudokuDisabledCellView.class, SudokuEnabledCellView.class),
-    KAKURO("Kakuro", new Integer[]{null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, KakuroDisabledCellView.class, KakuroEnabledCellView.class),
-    COUNTRY_ROAD("Country Road", null, null, null),
-    GOKIGEN_NANAME("Gokigen Naname", null, null, null),
-    SLITHERLINK("Slitherlink", null, null, null);
+    SUDOKU("Sudoku", new Integer[]{null, 1, 2, 3, 4, 5, 6, 7, 8, 9}, SudokuCellView.class),
+    KAKURO("Kakuro", new Integer[]{null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, KakuroCellView.class),
+    COUNTRY_ROAD("Country Road", null, null),
+    GOKIGEN_NANAME("Gokigen Naname", null, null),
+    SLITHERLINK("Slitherlink", null, null);
 
     private String description;
     private Object[] possibleValues;
-    private Class<? extends DisabledCellView> disabledCellClass;
-    private Class<? extends EnabledCellView> enabledCellClass;
+    private Class<? extends CellView> cellClass;
 
-    GameEnum(String description, Object[] possibleValues, Class<? extends DisabledCellView> disabledCellClass, Class<? extends EnabledCellView> enabledCellClass) {
+    GameEnum(String description, Object[] possibleValues, Class<? extends CellView> cellClass) {
         this.description = description;
         this.possibleValues = possibleValues;
-        this.disabledCellClass = disabledCellClass;
-        this.enabledCellClass = enabledCellClass;
+        this.cellClass = cellClass;
     }
 
     @Override
@@ -32,12 +27,9 @@ public enum GameEnum {
         return description;
     }
 
-    public Class<? extends DisabledCellView> getDisabledCellClass() {
-        return disabledCellClass;
-    }
-
-    public Class<? extends EnabledCellView> getEnabledCellClass() {
-        return enabledCellClass;
+    public Class<? extends CellView> getCellClass()
+    {
+        return cellClass;
     }
 
     public Object getNextValue(Object currentValue) {

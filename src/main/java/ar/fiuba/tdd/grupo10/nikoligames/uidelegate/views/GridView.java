@@ -30,7 +30,7 @@ public class GridView extends JTable {
 
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-        return CellViewFactory.createCellView(gameEnum, this.getModel().isCellEditable(row, column));
+        return CellViewFactory.createCellView(gameEnum);
     }
 
 
