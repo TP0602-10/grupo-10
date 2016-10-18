@@ -1,16 +1,14 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.CellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.KakuroCellView;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.SudokuCellView;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.*;
 
 public enum GameEnum {
 
     SUDOKU("Sudoku", new Integer[]{null, 1, 2, 3, 4, 5, 6, 7, 8, 9}, SudokuCellView.class),
     KAKURO("Kakuro", new Integer[]{null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, KakuroCellView.class),
-    COUNTRY_ROAD("Country Road", null, null),
-    GOKIGEN_NANAME("Gokigen Naname", null, null),
-    SLITHERLINK("Slitherlink", null, null);
+    COUNTRY_ROAD("Country Road", new String[]{null, "1", "2", "3", "4", "5", "6"}, CountryRoadCellView.class),
+    GOKIGEN_NANAME("Gokigen Naname", new String[]{null, "1", "2"}, GokigenCellView.class),
+    SLITHERLINK("Slitherlink", new String[]{null, "1", "2", "3", "4"}, SlitherlinkCellView.class);
 
     private String description;
     private Object[] possibleValues;
