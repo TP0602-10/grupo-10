@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleCondition;
@@ -52,14 +53,14 @@ public class LineCircuitOperationTests {
     private void setTopNeighbour(int index) {
         if (index > 2) {
             Cell actualCell = (Cell)theCells.get(index);
-            actualCell.setTopNeighbour( theCells.get( index - 3 ) );
+            actualCell.setNeighbourAt( theCells.get( index - 3 ), NeighbourPosition.TOP );
         }
     }
 
     private void setBottomNeighbour(int index) {
         if (index < 6) {
             Cell actualCell = (Cell)theCells.get(index);
-            actualCell.setBottomNeighbour( theCells.get( index + 3 ) );
+            actualCell.setNeighbourAt( theCells.get( index + 3 ), NeighbourPosition.BOTTOM );
         }
     }
 
@@ -70,7 +71,7 @@ public class LineCircuitOperationTests {
         notLeftNeighbour.add(6);
         if (!notLeftNeighbour.contains(index)) {
             Cell actualCell = (Cell)theCells.get(index);
-            actualCell.setLeftNeighbour( theCells.get( index - 1 ) );
+            actualCell.setNeighbourAt( theCells.get( index - 1 ), NeighbourPosition.LEFT );
         }
     }
 
@@ -81,7 +82,7 @@ public class LineCircuitOperationTests {
         notRighNeighbour.add(8);
         if ( !notRighNeighbour.contains(index) ) {
             Cell actualCell = (Cell)theCells.get(index);
-            actualCell.setRightNeighbour( theCells.get( index + 1 ) );
+            actualCell.setNeighbourAt( theCells.get( index + 1 ), NeighbourPosition.RIGHT );
         }
     }
 

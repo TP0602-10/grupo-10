@@ -64,7 +64,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     }
 
     private Cell searchNeighbourCellToContinue(Cell fromCell, Cell previous) {
-        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighboursCells();
+        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours();
         for (NeighbourContainer neighbour : neighboursOfCell) {
             if ( neighbour != null ) {
                 Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();

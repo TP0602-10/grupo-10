@@ -42,13 +42,8 @@ public class Cell extends Container {
         boundaries.setLimitAt(limit, position);
     }
 
-    public List<NeighbourContainer> getNeighboursCells() {
-        List<NeighbourContainer> neighbourCells = new ArrayList<>();
-        neighbourCells.add( leftNeighbour );
-        neighbourCells.add( topNeighbour );
-        neighbourCells.add( rightNeighbour );
-        neighbourCells.add( bottomNeighbour );
-        return neighbourCells;
+    public List<NeighbourContainer> getNeighbours() {
+        return boundaries.getNeighbours();
     }
 
 }

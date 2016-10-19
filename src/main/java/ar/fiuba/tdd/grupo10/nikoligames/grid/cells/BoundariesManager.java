@@ -4,6 +4,10 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class BoundariesManager {
 
     // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
@@ -31,6 +35,12 @@ public class BoundariesManager {
             }
         }
         return new InvalidNeighbour();
+    }
+
+    public List<NeighbourContainer> getNeighbours() {
+        List<NeighbourContainer> allNeighbours = new ArrayList<>();
+        Collections.addAll(allNeighbours, neighbours);
+        return allNeighbours;
     }
 
     public Container getNeighbourAt(NeighbourPosition position) {
