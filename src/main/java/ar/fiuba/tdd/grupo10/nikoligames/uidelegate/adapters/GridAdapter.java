@@ -5,7 +5,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 
 import javax.swing.table.AbstractTableModel;
 
-public abstract class GridAdapter extends AbstractTableModel {
+public class GridAdapter extends AbstractTableModel {
     private Grid grid;
 
     public GridAdapter(Grid grid) {
@@ -43,7 +43,7 @@ public abstract class GridAdapter extends AbstractTableModel {
         try {
             String stringValue = String.valueOf(value);
             Cell cell = grid.getCellAt(row, column);
-            if (value != null && stringValue.matches(getGridValueRegex())) {
+            if (value != null) {
                 cell.setValue(Integer.valueOf(stringValue));
             } else {
                 cell.setValue(null);
@@ -58,7 +58,5 @@ public abstract class GridAdapter extends AbstractTableModel {
     protected Grid getGrid() {
         return grid;
     }
-
-    protected abstract String getGridValueRegex();
 
 }

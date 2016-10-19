@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.TITLE;
 
-public class GameView extends JFrame {
+public class GameWindowView extends JFrame {
 
     private GridView table;
     private JPanel panel;
@@ -18,7 +18,7 @@ public class GameView extends JFrame {
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
-    public GameView(GridView gridView) {
+    public GameWindowView(GridView gridView) {
 
         super(TITLE);
         setWindowPreferences();
