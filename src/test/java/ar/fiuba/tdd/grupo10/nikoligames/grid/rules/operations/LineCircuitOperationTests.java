@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operation;
+package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
