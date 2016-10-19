@@ -19,7 +19,6 @@ public class InshiNoHeyaTests implements GameRulesObserver {
 
     private List<Map<String, Integer>> theGoalsValues;
     private boolean usePositionToIndex = true;
-    private List<Map<String, Integer>> solution;
     private List<Map<String, Integer>> plays;
     private Map<String, String> playsInvalidity;
     private String boardValidity = "valid";
@@ -30,7 +29,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
         for (BoardValue boardValue : initialBoard.getBoard().getValues()) {
             int row = boardValue.getPosition().get(0);
             int col = boardValue.getPosition().get(1);
-            int value = Integer.valueOf(boardValue.getValue());
+            int value = Integer.parseInt(boardValue.getValue());
             Map<String, Integer> goalMap = new HashMap<>();
             goalMap.put(InshiNoHeyaFactory.EXTERN_MAP_ROW, row);
             goalMap.put(InshiNoHeyaFactory.EXTERN_MAP_COL, col);

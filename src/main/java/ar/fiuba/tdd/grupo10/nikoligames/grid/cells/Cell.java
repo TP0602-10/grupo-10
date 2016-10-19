@@ -28,6 +28,10 @@ public class Cell extends Container {
         super(state);
     }
 
+    private Container getNeighbour( NeighbourContainer neighbourContainer ) {
+        return (neighbourContainer != null) ? neighbourContainer.getNeighbourContainer() : null;
+    }
+
     public NeighbourContainer getTopLeftNeighbour() {
         return topLeftNeighbour;
     }
@@ -61,7 +65,7 @@ public class Cell extends Container {
     }
 
     public Container getLeftNeighbour() {
-        return leftNeighbour.getNeighbourContainer();
+        return getNeighbour(leftNeighbour);
     }
 
     public void setLeftNeighbour(Container leftNeighbour) {
@@ -69,7 +73,7 @@ public class Cell extends Container {
     }
 
     public Container getTopNeighbour() {
-        return topNeighbour.getNeighbourContainer();
+        return getNeighbour(topNeighbour);
     }
 
     public void setTopNeighbour(Container topNeighbour) {
@@ -77,7 +81,7 @@ public class Cell extends Container {
     }
 
     public Container getRightNeighbour() {
-        return this.rightNeighbour.getNeighbourContainer();
+        return getNeighbour(rightNeighbour);
     }
 
     public void setRightNeighbour(Container rightNeighbour) {
@@ -85,7 +89,7 @@ public class Cell extends Container {
     }
 
     public Container getBottomNeighbour() {
-        return this.bottomNeighbour.getNeighbourContainer();
+        return getNeighbour(bottomNeighbour);
     }
 
     public void setBottomNeighbour(Container bottomNeighbour) {
@@ -100,7 +104,7 @@ public class Cell extends Container {
         return this.corners;
     }
 
-    public NeighbourType getNeighbourFrom(Cell otherCell ) {
+    public NeighbourType getNeighbourFrom(Cell otherCell) {
         NeighbourContainer[] neighbours = {
                 topLeftNeighbour,
                 topNeighbour,
@@ -112,9 +116,11 @@ public class Cell extends Container {
                 leftNeighbour
         };
         for (NeighbourContainer neighbour : neighbours) {
-            Cell neighbourCell = (Cell)neighbour.getNeighbourContainer();
-            if (neighbourCell == otherCell) {
-                return neighbour.getNeighbourType();
+            if ( neighbour != null ) {
+                Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();
+                if (neighbourCell == otherCell) {
+                    return neighbour.getNeighbourType();
+                }
             }
         }
         return new InvalidNeighbour();

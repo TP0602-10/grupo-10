@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu;
 
 
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GameEnum;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain.GamesChain;
 
 import java.awt.*;
@@ -14,14 +14,15 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 public class MainMenuView extends JFrame {
     private JComboBox gameCombo;
     private GamesChain chain;
+    private JTextField filePathTextField;
 
     public MainMenuView() {
-        gameCombo = createGameCombo();
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setContentPane(createMainPanel());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setTitle(TITLE);
+        setSize(800, 200);
         setVisible(true);
         setResizable(false);
         chain = new GamesChain(this);
@@ -32,8 +33,10 @@ public class MainMenuView extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel,
                 BoxLayout.PAGE_AXIS));
         mainPanel.add(createComboPanel());
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        mainPanel.add(createButtonPanel());
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(createFileChooserPanel());
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(createPlayButtonPanel());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         return mainPanel;
     }
@@ -41,14 +44,39 @@ public class MainMenuView extends JFrame {
     private JPanel createComboPanel() {
         JPanel comboPanel = new JPanel();
         comboPanel.setLayout(new BoxLayout(comboPanel,
-                BoxLayout.PAGE_AXIS));
+                BoxLayout.X_AXIS));
         comboPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboPanel.add(new JLabel("Choose game:"));
+        comboPanel.add(new JLabel("Choose game:   "));
+        comboPanel.add(Box.createHorizontalStrut(10));
+        gameCombo = createGameCombo();
         comboPanel.add(gameCombo);
         return comboPanel;
     }
 
-    private JPanel createButtonPanel() {
+    private JPanel createFileChooserPanel() {
+        JPanel fileChooserPanel = new JPanel();
+        fileChooserPanel.setLayout(new BoxLayout(fileChooserPanel,
+                BoxLayout.X_AXIS));
+        fileChooserPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JButton chooseFileBtn = new JButton("Choose file");
+        fileChooserPanel.add(chooseFileBtn);
+        fileChooserPanel.add(Box.createHorizontalStrut(10));
+        filePathTextField = new JTextField();
+        fileChooserPanel.add(filePathTextField);
+        chooseFileBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                final JFileChooser fileChooser = new JFileChooser();
+                int returnVal = fileChooser.showOpenDialog(MainMenuView.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    filePathTextField.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            }
+        });
+        return fileChooserPanel;
+    }
+
+    private JPanel createPlayButtonPanel() {
         JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
         buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         buttonPanel.add(createStartButton());
@@ -68,7 +96,7 @@ public class MainMenuView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 GameEnum game = (GameEnum) gameCombo.getSelectedItem();
-                chain.execute(game);
+                chain.execute(game, filePathTextField.getText());
             }
         });
         return startButton;

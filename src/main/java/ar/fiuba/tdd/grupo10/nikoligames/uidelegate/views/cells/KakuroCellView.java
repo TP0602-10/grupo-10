@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
@@ -7,39 +7,26 @@ import java.awt.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.MARGIN_CELL;
 
-class DisabledCellView extends CellView {
+public class KakuroCellView extends CellView {
 
-    private Object value;
-
-    DisabledCellView() {
+    public KakuroCellView() {
         super();
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    @Override
-    protected void setCustomRender(Object value) {
-
-        super.setCustomRender(value);
-
-        setValue(value);
-        setEnabled(false);
-        setBackground(Color.lightGray);
     }
 
     @Override
     public void paintComponent(Graphics graphics) {
-
-        Cell cell = (Cell) this.value;
-
-        Content content = cell.getContent("Tag");
-        if (content != null) {
-            setText(content.getValue().toString());
-        }
-
         super.paintComponent(graphics);
+        Cell cell = (Cell) getValue();
+
+        if (cell.isContentEditable()) {
+            graphics.setColor(Color.BLUE);
+            Object content = cell.getValue("Number");
+            if (content != null) {
+                graphics.drawString(content.toString(), (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
+            }
+        } else {
+            graphics.setColor(Color.black);
+        }
 
         drawLines(cell, graphics);
     }

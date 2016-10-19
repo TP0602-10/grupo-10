@@ -5,6 +5,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeig
 
 public interface NeighbourType {
 
-    boolean isValid(ComparableNeighbour neighbour1, ComparableNeighbour neighbout2);
+    boolean isValid(ComparableNeighbour fromNeighbour, ComparableNeighbour toNeighbour);
 
 }

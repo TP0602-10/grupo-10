@@ -1,10 +1,12 @@
-package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views;
+package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
-class CellView extends JLabel implements TableCellRenderer {
+public abstract class CellView extends JLabel implements TableCellRenderer {
+
+    private Object value;
 
     public CellView() {
         setOpaque(true);
@@ -19,5 +21,12 @@ class CellView extends JLabel implements TableCellRenderer {
     protected void setCustomRender(Object value) {
         setHorizontalAlignment(SwingConstants.CENTER);
         setForeground(Color.black);
+        setEnabled(false);
+        setBackground(Color.lightGray);
+        this.value = value;
+    }
+
+    protected Object getValue() {
+        return value;
     }
 }
