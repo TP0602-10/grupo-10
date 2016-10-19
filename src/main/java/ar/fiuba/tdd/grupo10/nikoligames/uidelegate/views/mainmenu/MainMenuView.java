@@ -22,7 +22,7 @@ public class MainMenuView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setTitle(TITLE);
-        setSize(400, 400);
+        setSize(800, 200);
         setVisible(true);
         setResizable(false);
         chain = new GamesChain(this);
@@ -31,7 +31,7 @@ public class MainMenuView extends JFrame {
     private JPanel createMainPanel() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel,
-                BoxLayout.Y_AXIS));
+                BoxLayout.PAGE_AXIS));
         mainPanel.add(createComboPanel());
         mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(createFileChooserPanel());
@@ -44,9 +44,10 @@ public class MainMenuView extends JFrame {
     private JPanel createComboPanel() {
         JPanel comboPanel = new JPanel();
         comboPanel.setLayout(new BoxLayout(comboPanel,
-                BoxLayout.PAGE_AXIS));
+                BoxLayout.X_AXIS));
         comboPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        comboPanel.add(new JLabel("Choose game:"));
+        comboPanel.add(new JLabel("Choose game:   "));
+        comboPanel.add(Box.createHorizontalStrut(10));
         gameCombo = createGameCombo();
         comboPanel.add(gameCombo);
         return comboPanel;
