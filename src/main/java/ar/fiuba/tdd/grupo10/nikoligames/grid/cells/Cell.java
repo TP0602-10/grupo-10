@@ -21,8 +21,7 @@ public class Cell extends Container {
     private NeighbourContainer bottomRightNeighbour;
     private NeighbourContainer bottomLeftNeighbour;
 
-    private List<Container> borders = new ArrayList<>();
-    private List<Container> corners = new ArrayList<>();
+    private BoundariesManager boundaries;
 
     public Cell(ContainerState state) {
         super(state);
@@ -32,36 +31,36 @@ public class Cell extends Container {
         return (neighbourContainer != null) ? neighbourContainer.getNeighbourContainer() : null;
     }
 
-    public NeighbourContainer getTopLeftNeighbour() {
-        return topLeftNeighbour;
+    public Container getTopLeftNeighbour() {
+        return getNeighbour(topLeftNeighbour);
     }
 
-    public void setTopLeftNeighbour(NeighbourContainer topLeftNeighbour) {
-        this.topLeftNeighbour = topLeftNeighbour;
+    public void setTopLeftNeighbour(Container topLeftNeighbour) {
+        this.topLeftNeighbour = new NeighbourContainer(topLeftNeighbour, new TopLeftNeighbour());
     }
 
-    public NeighbourContainer getTopRightNeighbour() {
-        return topRightNeighbour;
+    public Container getTopRightNeighbour() {
+        return getNeighbour(topRightNeighbour);
     }
 
-    public void setTopRightNeighbour(NeighbourContainer topRightNeighbour) {
-        this.topRightNeighbour = topRightNeighbour;
+    public void setTopRightNeighbour(Container topRightNeighbour) {
+        this.topRightNeighbour = new NeighbourContainer(topRightNeighbour,new TopRightNeighbour());
     }
 
-    public NeighbourContainer getBottomRightNeighbour() {
-        return bottomRightNeighbour;
+    public Container getBottomRightNeighbour() {
+        return getNeighbour(bottomRightNeighbour);
     }
 
-    public void setBottomRightNeighbour(NeighbourContainer bottomRightNeighbour) {
-        this.bottomRightNeighbour = bottomRightNeighbour;
+    public void setBottomRightNeighbour(Container bottomRightNeighbour) {
+        this.bottomRightNeighbour = new NeighbourContainer(bottomRightNeighbour, new BottomRightNeighbour());
     }
 
-    public NeighbourContainer getBottomLeftNeighbour() {
-        return bottomLeftNeighbour;
+    public Container getBottomLeftNeighbour() {
+        return getNeighbour(bottomLeftNeighbour);
     }
 
-    public void setBottomLeftNeighbour(NeighbourContainer bottomLeftNeighbour) {
-        this.bottomLeftNeighbour = bottomLeftNeighbour;
+    public void setBottomLeftNeighbour(Container bottomLeftNeighbour) {
+        this.bottomLeftNeighbour = new NeighbourContainer(bottomLeftNeighbour, new BottomLeftNeighbour());
     }
 
     public Container getLeftNeighbour() {
@@ -96,14 +95,6 @@ public class Cell extends Container {
         this.bottomNeighbour = new NeighbourContainer(bottomNeighbour,new BottomNeighbour());
     }
 
-    public List<Container> getBorders() {
-        return this.borders;
-    }
-
-    public List<Container> getCorners() {
-        return this.corners;
-    }
-
     public NeighbourType getNeighbourFrom(Cell otherCell) {
         NeighbourContainer[] neighbours = {
                 topLeftNeighbour,
@@ -124,6 +115,10 @@ public class Cell extends Container {
             }
         }
         return new InvalidNeighbour();
+    }
+
+    public NeighbourType getBoundaryFrom(Container boundary) {
+        return boundaries.getBoundaryFrom(boundary);
     }
 
 }
