@@ -3,7 +3,6 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 import ar.fiuba.tdd.grupo10.nikoligames.KakuroFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GameController;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.KakuroController;
 
 class KakuroLink extends GameLink {
 
@@ -11,7 +10,7 @@ class KakuroLink extends GameLink {
     public void execute(GameEnum gameEnum, String filePath) {
         if (GameEnum.KAKURO.equals(gameEnum)) {
             try {
-                new KakuroController(KakuroFactory.createGrid(2));
+                new GameController(KakuroFactory.createGrid(2), gameEnum);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
