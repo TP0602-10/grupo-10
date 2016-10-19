@@ -12,7 +12,7 @@ public enum NeighbourPosition {
     LEFT(6, new LeftNeighbour()),
     TOP_LEFT(7, new TopLeftNeighbour());
 
-    public static final int ALLOWED_POSITIONS = 7;
+    public static final int ALLOWED_POSITIONS = 8;
 
     private int index;
     private NeighbourType type;

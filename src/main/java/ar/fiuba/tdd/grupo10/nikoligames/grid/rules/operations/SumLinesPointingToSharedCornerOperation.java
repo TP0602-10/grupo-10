@@ -8,6 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.NeighbourType;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<Integer> {
@@ -41,7 +42,7 @@ public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<I
         NeighbourType boundaryType = cell.getLimitFrom(corner);
         return boundaryType.isValid(
                 (Line) cell.getValue(),
-                (Point) corner.getValue()
+                (Point) corner.getContents(getContentTags()).get(0).getValue()
         );
     }
 
