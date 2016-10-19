@@ -101,4 +101,10 @@ public class SumLinesPointingToSharedCornerOperationTest {
         sumLinesPointingToSharedCornerRule.verifyRule();
     }
 
+    @Test(expected = RuleNotSatisfiedException.class)
+    public void testSumLinesPointingToSharedCornerRuleWith3LinesAndInvalidCorner() {
+        createRule( generateFourCellsWithThreeLinesMeetingCentralCorner(4) );
+        sumLinesPointingToSharedCornerRule.verifyRule();
+    }
+
 }
