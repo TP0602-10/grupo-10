@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operation;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GridRuleWorkWithOnTagException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class ListContinousRuleTests {
+public class LineContinousRuleTests {
     private GridRule<Boolean> lineContinousRule;
     private Cell cell1;
     private Cell cell2;
@@ -73,7 +74,7 @@ public class ListContinousRuleTests {
 
         GridRuleIterator iterator = new GridRuleIterator(
                 containersList,
-                "Iterator for ListContinousRuleTests"
+                "Iterator for LineContinousRuleTests"
         );
 
         GridRuleOperation<Boolean> continousOperation = new LineContinousOperation("line");
@@ -117,6 +118,15 @@ public class ListContinousRuleTests {
 
         createRule( cells );
         lineContinousRule.verifyRule();
+    }
+
+    @Test(expected = GridRuleWorkWithOnTagException.class)
+    public void initializeRuleWithMoreThanOneTag() {
+        List<String> tags = new ArrayList<String>();
+        tags.add("tag1");
+        tags.add("tag2");
+        GridRuleOperation<Boolean> continousOperation = new LineContinousOperation(tags);
+
     }
 
 

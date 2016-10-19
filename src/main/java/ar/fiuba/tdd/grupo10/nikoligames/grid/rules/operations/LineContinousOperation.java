@@ -12,6 +12,11 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.List;
 
+/*
+ * Rule operation that checks whether the contents of cells in the iterator form a contiguous line.
+ * Also this rule implicitly checks if a cell is a neighbor of the next and previous in the iterator.
+ * Incluided the first and the last.
+ */
 public class LineContinousOperation extends GridRuleOperation<Boolean> {
     public LineContinousOperation(List<String> contentTags) throws GridRuleWorkWithOnTagException {
         super(contentTags.get(0));
@@ -29,7 +34,7 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
         }
         Cell actualCell = (Cell)iterator.next();
         Cell firstCell = actualCell;
-        Cell nextCell = null;
+        Cell nextCell;
         while (iterator.hasNext()) {
             nextCell = (Cell)iterator.next();
 
@@ -58,7 +63,7 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
         return false;
     }
 
-    public boolean isApplicableOn(Content[] contents) {
+    private boolean isApplicableOn(Content[] contents) {
         for (Content content : contents) {
             if (!isApplicableOn(content)) {
                 return false;

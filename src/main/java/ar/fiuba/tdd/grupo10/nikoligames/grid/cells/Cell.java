@@ -86,4 +86,13 @@ public class Cell extends Container {
         return new InvalidNeighbour();
     }
 
+    public List<NeighbourContainer> getNeighboursCells() {
+        List<NeighbourContainer> neighbourCells = new ArrayList<>();
+        neighbourCells.add( leftNeighbour );
+        neighbourCells.add( topNeighbour );
+        neighbourCells.add( rightNeighbour );
+        neighbourCells.add( bottomNeighbour );
+        return neighbourCells;
+    }
+
 }

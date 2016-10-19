@@ -13,6 +13,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.RandomHelper;
 
@@ -149,6 +150,9 @@ public final class SudokuFactory {
                         iteratorsForAllCellBlocks
                 );
         allIterators.forEach(i -> sudokuRules.add(new AlwaysVerifiableRule<>(i, distinctOperation, ruleCondition)));
+
+        FileHelper.writeToFile( sudokuRules, "/home/tomi/parafacu.json" );
+
         return sudokuRules;
     }
 
