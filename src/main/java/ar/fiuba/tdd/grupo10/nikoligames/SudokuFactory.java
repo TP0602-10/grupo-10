@@ -151,8 +151,6 @@ public final class SudokuFactory {
                 );
         allIterators.forEach(i -> sudokuRules.add(new AlwaysVerifiableRule<>(i, distinctOperation, ruleCondition)));
 
-        FileHelper.writeToFile( sudokuRules, "/home/tomi/parafacu.json" );
-
         return sudokuRules;
     }
 
