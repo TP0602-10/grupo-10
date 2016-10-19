@@ -18,10 +18,9 @@ public class CountryRoadCellView extends CellView {
         Cell cell = (Cell) getValue();
         String cellValue = String.valueOf(cell.getValue());
 
-        if(!cellValue.isEmpty() && !cellValue.equals("null")){
+        if (!cellValue.isEmpty() && !cellValue.equals("null")) {
             graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
-
         drawLines(cellValue, graphics);
 
         graphics.fillRect(0, 0, 3, this.getHeight());
@@ -30,24 +29,32 @@ public class CountryRoadCellView extends CellView {
         graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
     }
 
-    private void drawLines(String cellValue, Graphics graphics){
+    private void drawLines(String cellValue, Graphics graphics) {
 
-        if (VERTICAL_LINE.equals(cellValue)){
+        if (VERTICAL_LINE.equals(cellValue)) {
             graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
-        } else if (HORIZONTAL_LINE.equals(cellValue)){
+        } else if (HORIZONTAL_LINE.equals(cellValue)) {
             graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-        } else if (UPPER_LEFT.equals(cellValue)){
-            graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, 0);
+        } else if (UPPER_LEFT.equals(cellValue)) {
+            drawUpperLine(graphics);
             graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_LEFT.equals(cellValue)){
-            graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, this.getHeight());
+        } else if (BOTTOM_LEFT.equals(cellValue)) {
+            drawBottomLine(graphics);
             graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (UPPER_RIGHT.equals(cellValue)){
-            graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, 0);
+        } else if (UPPER_RIGHT.equals(cellValue)) {
+            drawUpperLine(graphics);
             graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_RIGHT.equals(cellValue)){
-            graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, this.getHeight());
+        } else if (BOTTOM_RIGHT.equals(cellValue)) {
+            drawBottomLine(graphics);
             graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
         }
+    }
+
+    private void drawUpperLine(Graphics graphics) {
+        graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, 0);
+    }
+
+    private void drawBottomLine(Graphics graphics) {
+        graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, this.getHeight());
     }
 }

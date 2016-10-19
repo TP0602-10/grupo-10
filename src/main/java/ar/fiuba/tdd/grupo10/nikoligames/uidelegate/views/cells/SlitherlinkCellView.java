@@ -15,12 +15,12 @@ public class SlitherlinkCellView extends CellView {
     @Override
     public void paintComponent(Graphics graphics) {
 
-        Cell cell = (Cell) getValue();
+        Cell cell = (Cell)getValue();
 
-        String cellValue = String.valueOf(cell.getValue());
+        String value = (cell.getValue() != null) ? String.valueOf(cell.getValue()) : "";
 
-        if(!cellValue.isEmpty() && !cellValue.equals("null")){
-            graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
+        if (!value.isEmpty() ) {
+            graphics.drawString(value, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
 
         graphics.fillOval(0,0,1,5);
@@ -28,18 +28,18 @@ public class SlitherlinkCellView extends CellView {
         graphics.fillOval(0,this.getX(),5,5);
         graphics.fillOval(this.getX(),0,5,5);
 
-        drawBorder(cellValue, graphics);
+        drawBorder(value, graphics);
     }
 
-    private void drawBorder(String cellValue, Graphics graphics){
+    private void drawBorder(String cellValue, Graphics graphics) {
 
-        if (UPPER_BORDER.equals(cellValue)){
+        if (UPPER_BORDER.equals(cellValue)) {
             graphics.fillRect(0, 0, this.getWidth(), 3);
-        } else if (BOTTOM_BORDER.equals(cellValue)){
+        } else if (BOTTOM_BORDER.equals(cellValue)) {
             graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
-        } else if (LEFT_BORDER.equals(cellValue)){
+        } else if (LEFT_BORDER.equals(cellValue)) {
             graphics.fillRect(0, 0, 3, this.getHeight());
-        } else if (RIGHT_BORDER.equals(cellValue)){
+        } else if (RIGHT_BORDER.equals(cellValue)) {
             graphics.fillRect(this.getWidth() - 3, 0, 3, this.getHeight());
         }
     }

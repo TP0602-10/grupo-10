@@ -21,9 +21,9 @@ public class GokigenCellView extends CellView {
         graphics.drawOval(-4, -4, 20, 20);
         graphics.drawString(cellValue, 0, 10);
 
-        if (VERTICAL_LINE.equals(cellValue)){
+        if (VERTICAL_LINE.equals(cellValue)) {
             graphics.drawLine(this.getWidth(), 0, 0, this.getHeight());
-        } else if (HORIZONTAL_LINE.equals(cellValue)){
+        } else if (HORIZONTAL_LINE.equals(cellValue)) {
             graphics.drawLine(0, 0, this.getWidth(), this.getHeight());
         }
     }
