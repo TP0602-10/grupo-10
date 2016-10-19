@@ -14,7 +14,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineContinousOperation;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -50,32 +49,48 @@ public class LineCircuitOperationTests {
         return new Cell( new MutableContainer( new MutableContent<>(contentValue,TAG) ) );
     }
 
-    private void generateNeighbours() {
+    private void setTopNeighbour(int index) {
+        if (index > 2) {
+            Cell actualCell = (Cell)theCells.get(index);
+            actualCell.setTopNeighbour( theCells.get( index - 3 ) );
+        }
+    }
+
+    private void setBottomNeighbour(int index) {
+        if (index < 6) {
+            Cell actualCell = (Cell)theCells.get(index);
+            actualCell.setBottomNeighbour( theCells.get( index + 3 ) );
+        }
+    }
+
+    private void setLeftNeighbour(int index) {
         List<Integer> notLeftNeighbour = new ArrayList<>();
         notLeftNeighbour.add(0);
         notLeftNeighbour.add(3);
         notLeftNeighbour.add(6);
+        if (!notLeftNeighbour.contains(index)) {
+            Cell actualCell = (Cell)theCells.get(index);
+            actualCell.setLeftNeighbour( theCells.get( index - 1 ) );
+        }
+    }
 
+    private void setRightNeighbour(int index) {
         List<Integer> notRighNeighbour = new ArrayList<>();
         notRighNeighbour.add(2);
         notRighNeighbour.add(5);
         notRighNeighbour.add(8);
+        if ( !notRighNeighbour.contains(index) ) {
+            Cell actualCell = (Cell)theCells.get(index);
+            actualCell.setRightNeighbour( theCells.get( index + 1 ) );
+        }
+    }
 
+    private void generateNeighbours() {
         for (int i = 0; i < theCells.size(); i++) {
-            Cell actualCell = (Cell)theCells.get(i);
-
-            if ( !notLeftNeighbour.contains(i) ) {
-                actualCell.setLeftNeighbour( theCells.get( i - 1 ) );
-            }
-            if ( i > 2 ) {
-                actualCell.setTopNeighbour( theCells.get( i - 3 ) );
-            }
-            if ( i < 6 ) {
-                actualCell.setBottomNeighbour( theCells.get( i + 3 ) );
-            }
-            if ( !notRighNeighbour.contains(i) ) {
-                actualCell.setRightNeighbour( theCells.get( i + 1) );
-            }
+            setLeftNeighbour(i);
+            setTopNeighbour(i);
+            setBottomNeighbour(i);
+            setRightNeighbour(i);
         }
     }
 

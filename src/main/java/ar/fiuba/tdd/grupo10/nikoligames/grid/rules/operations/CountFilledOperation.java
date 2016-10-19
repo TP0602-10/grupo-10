@@ -8,9 +8,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 /**
  * This rule count the filed containers in the iterator.
  */
-public class CountFilled extends GridRuleOperation<Integer> {
+public class CountFilledOperation extends GridRuleOperation<Integer> {
 
-    CountFilled( String tag ) {
+    public CountFilledOperation(String tag ) {
         super(tag);
     }
 
@@ -41,7 +41,7 @@ public class CountFilled extends GridRuleOperation<Integer> {
 
     @Override
     public boolean isApplicableOn(Content content) {
-        return !content.isEmpty();
+        return ((content != null) && !content.isEmpty());
     }
 
     @Override
