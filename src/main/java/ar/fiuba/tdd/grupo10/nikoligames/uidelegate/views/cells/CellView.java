@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
-public abstract class CellView extends JTextField implements TableCellRenderer {
+public abstract class CellView extends JLabel implements TableCellRenderer {
 
     private Object value;
 
