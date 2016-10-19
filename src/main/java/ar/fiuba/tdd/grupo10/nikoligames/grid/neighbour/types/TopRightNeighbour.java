@@ -4,7 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeig
 
 public class TopRightNeighbour implements NeighbourType {
     @Override
-    public boolean isValid(ComparableNeighbour neighbour1, ComparableNeighbour neighbour2) {
-        return neighbour2.isValidOnBottomLeft();
+    public boolean isValid(ComparableNeighbour fromNeighbour, ComparableNeighbour toNeighbour) {
+        return fromNeighbour.isValidOnTopRight() && toNeighbour.isValidOnBottomLeft();
     }
 }

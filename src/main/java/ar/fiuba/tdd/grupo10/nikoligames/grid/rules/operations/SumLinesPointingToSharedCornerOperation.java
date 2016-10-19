@@ -19,8 +19,7 @@ public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<I
 
     @Override
     public Integer perform(GridRuleIterator iterator, Object... params) {
-        // TODO: 18/10/16 Think how to implement this!
-        return null;
+
     }
 
     @Override
