@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -43,10 +44,10 @@ public class ListContinousRuleTests {
         //Simple square
         createCells();
 
-        cell1.setRightNeighbour( cell2 );
-        cell2.setBottomNeighbour( cell3 );
-        cell3.setLeftNeighbour( cell4 );
-        cell4.setTopNeighbour( cell1 );
+        cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
+        cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
+        cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
+        cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 
         Container[] cells = { cell1, cell2, cell3, cell4 };
         return cells;
@@ -56,12 +57,12 @@ public class ListContinousRuleTests {
         //Simple square but las line is modified to do open circuit
         createCells();
 
-        cell1.setRightNeighbour( cell2 );
-        cell2.setBottomNeighbour( cell3 );
+        cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
+        cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
 
         cell4 = createCell( new HorizontalLine() );
-        cell3.setLeftNeighbour( cell4 );
-        cell4.setTopNeighbour( cell1 );
+        cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
+        cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 
         Container[] cells = { cell1, cell2, cell3, cell4 };
         return cells;

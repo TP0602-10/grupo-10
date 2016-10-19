@@ -1,31 +1,29 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 
 public class BoundariesManager {
-    private NeighbourContainer topBorder;
-    private NeighbourContainer rightBorder;
-    private NeighbourContainer bottomBorder;
-    private NeighbourContainer leftBorder;
 
-    private NeighbourContainer topLeftCorner;
-    private NeighbourContainer topRightCorner;
-    private NeighbourContainer bottomRightCorner;
-    private NeighbourContainer bottomLeftCorner;
+    // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
+    private NeighbourContainer[] neighbours = new NeighbourContainer[NeighbourPosition.ALLOWED_POSITIONS];
+    private NeighbourContainer[] limits = new NeighbourContainer[NeighbourPosition.ALLOWED_POSITIONS];
 
-    public NeighbourType getBoundaryFrom(Container otherBoundary) {
-        NeighbourContainer[] boundaries = {
-                topLeftCorner,
-                topBorder,
-                topRightCorner,
-                rightBorder,
-                bottomRightCorner,
-                bottomBorder,
-                bottomLeftCorner,
-                leftBorder
-        };
-        for (NeighbourContainer boundary : boundaries) {
+    public NeighbourType getNeighbourFrom(Cell otherCell) {
+        for (NeighbourContainer neighbour : neighbours) {
+            if ( neighbour != null ) {
+                Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();
+                if (neighbourCell == otherCell) {
+                    return neighbour.getNeighbourType();
+                }
+            }
+        }
+        return new InvalidNeighbour();
+    }
+
+    public NeighbourType getLimitFrom(Container otherBoundary) {
+        for (NeighbourContainer boundary : limits) {
             if ( boundary != null ) {
                 if (boundary.getNeighbourContainer() == otherBoundary) {
                     return boundary.getNeighbourType();
@@ -35,71 +33,23 @@ public class BoundariesManager {
         return new InvalidNeighbour();
     }
 
+    public Container getNeighbourAt(NeighbourPosition position) {
+        return getNeighbour(neighbours[position.getIndex()]);
+    }
+
+    public void setNeighbourAt(Container neighbour, NeighbourPosition position) {
+        this.neighbours[position.getIndex()] = new NeighbourContainer(neighbour, position.getType());
+    }
+
+    public Container getLimitAt(NeighbourPosition position) {
+        return getNeighbour(limits[position.getIndex()]);
+    }
+
+    public void setLimitAt(Container limit, NeighbourPosition position) {
+        this.limits[position.getIndex()] = new NeighbourContainer(limit, position.getType());
+    }
+
     private Container getNeighbour(NeighbourContainer neighbourContainer) {
         return (neighbourContainer != null) ? neighbourContainer.getNeighbourContainer() : null;
-    }
-
-    public Container getTopBorder() {
-        return getNeighbour(topBorder);
-    }
-
-    public void setTopBorder(Container topBorder) {
-        this.topBorder = new NeighbourContainer(topBorder, new TopNeighbour());
-    }
-
-    public Container getRightBorder() {
-        return getNeighbour(rightBorder);
-    }
-
-    public void setRightBorder(Container rightBorder) {
-        this.rightBorder = new NeighbourContainer(rightBorder, new RightNeighbour());
-    }
-
-    public Container getBottomBorder() {
-        return getNeighbour(bottomBorder);
-    }
-
-    public void setBottomBorder(Container bottomBorder) {
-        this.bottomBorder = new NeighbourContainer(bottomBorder, new BottomNeighbour());
-    }
-
-    public Container getLeftBorder() {
-        return getNeighbour(leftBorder);
-    }
-
-    public void setLeftBorder(Container leftBorder) {
-        this.leftBorder = new NeighbourContainer(leftBorder, new LeftNeighbour());
-    }
-
-    public Container getTopLeftCorner() {
-        return getNeighbour(topLeftCorner);
-    }
-
-    public void setTopLeftCorner(Container topLeftCorner) {
-        this.topLeftCorner = new NeighbourContainer(topLeftCorner, new TopLeftNeighbour());
-    }
-
-    public Container getBottomRightCorner() {
-        return getNeighbour(bottomRightCorner);
-    }
-
-    public void setBottomRightCorner(Container bottomRightCorner) {
-        this.bottomRightCorner = new NeighbourContainer(bottomRightCorner, new BottomRightNeighbour());
-    }
-
-    public Container getTopRightCorner() {
-        return getNeighbour(topRightCorner);
-    }
-
-    public void setTopRightCorner(Container topRightCorner) {
-        this.topRightCorner = new NeighbourContainer(topRightCorner, new TopRightNeighbour());
-    }
-
-    public Container getBottomLeftCorner() {
-        return getNeighbour(bottomLeftCorner);
-    }
-
-    public void setBottomLeftCorner(Container bottomLeftCorner) {
-        this.bottomLeftCorner = new NeighbourContainer(bottomLeftCorner, new BottomLeftNeighbour());
     }
 }

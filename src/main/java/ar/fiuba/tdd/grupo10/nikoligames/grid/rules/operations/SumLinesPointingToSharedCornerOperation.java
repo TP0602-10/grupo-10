@@ -38,7 +38,7 @@ public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<I
     }
 
     private boolean doesCellLineMeetTargetCorner(Cell cell, Container corner) {
-        NeighbourType boundaryType = cell.getBoundaryFrom(corner);
+        NeighbourType boundaryType = cell.getLimitFrom(corner);
         return boundaryType.isValid(
                 (Line) cell.getValue(),
                 (Point) corner.getValue()
