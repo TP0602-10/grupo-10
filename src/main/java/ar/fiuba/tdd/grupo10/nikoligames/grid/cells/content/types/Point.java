@@ -1,48 +1,45 @@
-package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line;
-
+package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeighbour;
 
-public class Line implements ComparableNeighbour {
-
-
+public class Point implements ComparableNeighbour {
     @Override
     public boolean isValidOnTop() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnBottom() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnLeft() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnRight() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnTopRight() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnBottomRight() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnBottomLeft() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isValidOnTopLeft() {
-        return false;
+        return true;
     }
 }

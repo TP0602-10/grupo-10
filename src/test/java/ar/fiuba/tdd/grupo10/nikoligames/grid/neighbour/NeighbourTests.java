@@ -23,16 +23,16 @@ public class NeighbourTests {
         cellTwo     = new Cell(new MutableContainer(new MutableContent<>(2, TEST_TAG)));
         cellThree   = new Cell(new MutableContainer(new MutableContent<>(3, TEST_TAG)));
 
-        cellOne.setRightNeighbour( cellTwo );
-        cellTwo.setLeftNeighbour( cellOne );
+        cellOne.setNeighbourAt( cellTwo, NeighbourPosition.RIGHT );
+        cellTwo.setNeighbourAt( cellOne, NeighbourPosition.LEFT );
     }
 
     @Test
     public void cellOneNeighbours() {
-        Assert.assertEquals( cellOne.getRightNeighbour(), cellTwo );
-        Assert.assertEquals( cellOne.getLeftNeighbour(), null );
-        Assert.assertEquals( cellOne.getTopNeighbour(), null );
-        Assert.assertEquals( cellOne.getBottomNeighbour(), null );
+        Assert.assertEquals( cellOne.getNeighbourAt(NeighbourPosition.RIGHT), cellTwo );
+        Assert.assertEquals( cellOne.getNeighbourAt(NeighbourPosition.LEFT), null );
+        Assert.assertEquals( cellOne.getNeighbourAt(NeighbourPosition.TOP), null );
+        Assert.assertEquals( cellOne.getNeighbourAt(NeighbourPosition.BOTTOM), null );
 
         Assert.assertTrue( cellOne.getNeighbourFrom( cellTwo ) instanceof RightNeighbour);
         Assert.assertTrue( cellOne.getNeighbourFrom( cellThree ) instanceof InvalidNeighbour);
@@ -42,8 +42,8 @@ public class NeighbourTests {
     @Test
     public void cellOneAndcellTwoAreNeighbour() {
 
-        Assert.assertEquals( cellOne.getRightNeighbour(), cellTwo );
-        Assert.assertEquals( cellTwo.getLeftNeighbour(), cellOne );
+        Assert.assertEquals( cellOne.getNeighbourAt(NeighbourPosition.RIGHT), cellTwo );
+        Assert.assertEquals( cellTwo.getNeighbourAt(NeighbourPosition.LEFT), cellOne );
 
     }
 
