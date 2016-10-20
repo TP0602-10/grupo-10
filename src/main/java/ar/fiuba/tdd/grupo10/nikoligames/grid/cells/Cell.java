@@ -30,8 +30,8 @@ public class Cell extends Container {
         return boundaries.getNeighbourAt(position);
     }
 
-    public void setNeighbourAt(Container neighbour, NeighbourPosition position) {
-        boundaries.setNeighbourAt(neighbour, position);
+    public void setNeighbourAt(Cell neighbour, NeighbourPosition position) {
+        boundaries.setNeighbourAt(this, neighbour, position);
     }
 
     public Container getLimitAt(NeighbourPosition position) {
@@ -46,4 +46,7 @@ public class Cell extends Container {
         return boundaries.getNeighbours();
     }
 
+    public List<NeighbourContainer> getLimits() {
+        return boundaries.getLimits();
+    }
 }

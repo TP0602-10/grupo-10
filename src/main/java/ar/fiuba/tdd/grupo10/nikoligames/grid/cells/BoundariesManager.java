@@ -3,13 +3,11 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BoundariesManager {
-
     // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
     private NeighbourContainer[] neighbours = new NeighbourContainer[NeighbourPosition.ALLOWED_POSITIONS];
     private NeighbourContainer[] limits = new NeighbourContainer[NeighbourPosition.ALLOWED_POSITIONS];
@@ -38,17 +36,37 @@ public class BoundariesManager {
     }
 
     public List<NeighbourContainer> getNeighbours() {
-        List<NeighbourContainer> allNeighbours = new ArrayList<>();
-        Collections.addAll(allNeighbours, neighbours);
-        return allNeighbours;
+        return ListHelper.createListFromArray(neighbours);
     }
 
     public Container getNeighbourAt(NeighbourPosition position) {
         return getNeighbour(neighbours[position.getIndex()]);
     }
 
-    public void setNeighbourAt(Container neighbour, NeighbourPosition position) {
-        this.neighbours[position.getIndex()] = new NeighbourContainer(neighbour, position.getType());
+    public void setNeighbourAt(Cell actual, Cell neighbour, NeighbourPosition position) {
+        NeighbourContainer neighbourContainer = new NeighbourContainer(neighbour, position.getType());
+        if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
+            this.neighbours[position.getIndex()] = neighbourContainer;
+            setSharedLimitsWithNeighbour(actual, neighbour, position);
+            neighbour.setNeighbourAt(actual, position.getOposite());
+        }
+    }
+
+    private boolean isNeighbourAlreadyAssigned(NeighbourContainer neighbour) {
+        return getNeighbours().contains(neighbour);
+    }
+
+    private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
+        for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
+            actual.setLimitAt(
+                    neighbour.getLimitAt(associatedLimitPosition.getOposite()),
+                    position
+            );
+        }
+    }
+
+    public List<NeighbourContainer> getLimits() {
+        return ListHelper.createListFromArray(limits);
     }
 
     public Container getLimitAt(NeighbourPosition position) {

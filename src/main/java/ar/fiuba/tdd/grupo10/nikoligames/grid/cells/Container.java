@@ -8,7 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import java.util.List;
 
 public class Container {
-    protected ContainerState state;
+    private ContainerState state;
 
     public Container(ContainerState state) {
         this.state = state;

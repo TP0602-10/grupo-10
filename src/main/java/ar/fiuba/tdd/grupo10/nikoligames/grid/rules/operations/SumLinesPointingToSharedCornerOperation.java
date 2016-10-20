@@ -11,8 +11,12 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The operation sums all the lines from cells that point to the target corner.
+ * The corner must be shared by them all.
+ */
 public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<Integer> {
-    private Container cornerToEvaluate;
+    private final Container cornerToEvaluate;
 
     public SumLinesPointingToSharedCornerOperation(List<String> contentTags, Container cornerToEvaluate) {
         super(contentTags);
