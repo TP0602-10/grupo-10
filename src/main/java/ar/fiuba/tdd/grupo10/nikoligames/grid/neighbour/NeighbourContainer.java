@@ -4,6 +4,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.InvalidNeighbour;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.NeighbourType;
 
+import java.util.Objects;
+
 public class NeighbourContainer {
     private Container neighbour;
     private NeighbourType type;
@@ -26,4 +28,21 @@ public class NeighbourContainer {
         return neighbour;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        NeighbourContainer that = (NeighbourContainer) other;
+        return Objects.equals(neighbour, that.neighbour) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(neighbour, type);
+    }
 }
