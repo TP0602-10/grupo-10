@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 
 import java.awt.*;
 
@@ -22,31 +24,39 @@ public class CountryRoadCellView extends CellView {
         setBorders(cell);
         drawBorders(graphics);
 
-        drawLines(cellValue, graphics);
+        drawLines(cell, graphics);
     }
 
-    private void drawLines(String cellValue, Graphics graphics) {
+    private void drawLines(Cell cell, Graphics graphics) {
 
-        if (VERTICAL_LINE.equals(cellValue)) {
-            graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
-        } else if (HORIZONTAL_LINE.equals(cellValue)) {
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-        } else if (UPPER_LEFT.equals(cellValue)) {
-            drawUpperLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_LEFT.equals(cellValue)) {
-            drawBottomLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (UPPER_RIGHT.equals(cellValue)) {
-            drawUpperLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_RIGHT.equals(cellValue)) {
-            drawBottomLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        Content content = cell.getContent("LINE");
+
+        if(content != null) {
+            // TODO:
+            Line line = (Line)content.getValue();
+
+            if (VERTICAL_LINE.equals(line)) {
+                graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
+            } else if (HORIZONTAL_LINE.equals(line)) {
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
+            } else if (UPPER_LEFT.equals(line)) {
+                drawTopLine(graphics);
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (BOTTOM_LEFT.equals(line)) {
+                drawBottomLine(graphics);
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (UPPER_RIGHT.equals(line)) {
+                drawTopLine(graphics);
+                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (BOTTOM_RIGHT.equals(line)) {
+                drawBottomLine(graphics);
+                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            }
         }
+
     }
 
-    private void drawUpperLine(Graphics graphics) {
+    private void drawTopLine(Graphics graphics) {
         graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, 0);
     }
 
