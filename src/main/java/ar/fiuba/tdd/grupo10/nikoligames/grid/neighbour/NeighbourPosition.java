@@ -28,4 +28,8 @@ public enum NeighbourPosition {
     public NeighbourType getType() {
         return type;
     }
+
+    public NeighbourPosition getOposite() {
+        return NeighbourPosition.values() [ (this.index + ALLOWED_POSITIONS/2) % ALLOWED_POSITIONS ];
+    }
 }
