@@ -1,5 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -7,6 +11,10 @@ import javax.swing.table.TableCellRenderer;
 public abstract class CellView extends JLabel implements TableCellRenderer {
 
     private Object value;
+    protected boolean hasTopBorder;
+    protected boolean hasBottomBorder;
+    protected boolean hasLeftBorder;
+    protected boolean hasRightBorder;
 
     public CellView() {
         setOpaque(true);
@@ -29,4 +37,76 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
     protected Object getValue() {
         return value;
     }
+
+    protected String getTextValue(Object text) {
+        return (text != null ? String.valueOf(text) : "" );
+    }
+
+    protected void setBorders(Cell cell) {
+
+        setTopBorder(cell);
+        setBottomBorder(cell);
+        setLeftBorder(cell);
+        setRightBorder(cell);
+    }
+
+    protected void setTopBorder(Cell cell) {
+        Container container = cell.getLimitAt(NeighbourPosition.TOP);
+        hasTopBorder = (container != null) ? true : false;
+    }
+
+    protected void setBottomBorder(Cell cell) {
+
+        Container container = cell.getLimitAt(NeighbourPosition.BOTTOM);
+        hasBottomBorder = (container != null) ? true : false;
+    }
+
+    protected void setLeftBorder(Cell cell) {
+
+        Container container = cell.getLimitAt(NeighbourPosition.LEFT);
+        hasLeftBorder = (container != null) ? true : false;
+    }
+
+    protected void setRightBorder(Cell cell) {
+
+        Container container = cell.getLimitAt(NeighbourPosition.RIGHT);
+        hasRightBorder = (container != null) ? true : false;
+    }
+
+
+    protected void drawBorders(Graphics graphics) {
+
+        drawTopBorder(graphics);
+        drawBottomBorder(graphics);
+        drawLeftBorder(graphics);
+        drawRightBorder(graphics);
+    }
+
+    private void drawTopBorder(Graphics graphics) {
+        if (hasTopBorder) {
+            graphics.fillRect(0, 0, this.getWidth(), 3);
+        }
+    }
+
+    private void drawBottomBorder(Graphics graphics) {
+
+        if (hasBottomBorder) {
+            graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
+        }
+    }
+
+    private void drawLeftBorder(Graphics graphics) {
+
+        if (hasLeftBorder) {
+            graphics.fillRect(0, 0, 3, this.getHeight());
+        }
+    }
+
+    private void drawRightBorder(Graphics graphics) {
+
+        if (hasRightBorder) {
+            graphics.fillRect(0, 0, 3, this.getHeight());
+        }
+    }
+
 }

@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 
 import java.awt.*;
 
@@ -16,41 +18,45 @@ public class CountryRoadCellView extends CellView {
     public void paintComponent(Graphics graphics) {
 
         Cell cell = (Cell) getValue();
-        String cellValue = String.valueOf(cell.getValue());
+        String cellValue = getTextValue(cell.getValue());
+        graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
 
-        if (!cellValue.isEmpty() && !cellValue.equals("null")) {
-            graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
-        }
-        drawLines(cellValue, graphics);
+        setBorders(cell);
+        drawBorders(graphics);
 
-        graphics.fillRect(0, 0, 3, this.getHeight());
-        graphics.fillRect(this.getWidth() - 3, 0, 3, this.getHeight());
-        graphics.fillRect(0, 0, this.getWidth(), 3);
-        graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
+        drawLines(cell, graphics);
     }
 
-    private void drawLines(String cellValue, Graphics graphics) {
+    private void drawLines(Cell cell, Graphics graphics) {
 
-        if (VERTICAL_LINE.equals(cellValue)) {
-            graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
-        } else if (HORIZONTAL_LINE.equals(cellValue)) {
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-        } else if (UPPER_LEFT.equals(cellValue)) {
-            drawUpperLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_LEFT.equals(cellValue)) {
-            drawBottomLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (UPPER_RIGHT.equals(cellValue)) {
-            drawUpperLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (BOTTOM_RIGHT.equals(cellValue)) {
-            drawBottomLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        Content content = cell.getContent("LINE");
+
+        if(content != null) {
+            // TODO:
+            Line line = (Line)content.getValue();
+
+            if (VERTICAL_LINE.equals(line)) {
+                graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
+            } else if (HORIZONTAL_LINE.equals(line)) {
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
+            } else if (UPPER_LEFT.equals(line)) {
+                drawTopLine(graphics);
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (BOTTOM_LEFT.equals(line)) {
+                drawBottomLine(graphics);
+                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (UPPER_RIGHT.equals(line)) {
+                drawTopLine(graphics);
+                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            } else if (BOTTOM_RIGHT.equals(line)) {
+                drawBottomLine(graphics);
+                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+            }
         }
+
     }
 
-    private void drawUpperLine(Graphics graphics) {
+    private void drawTopLine(Graphics graphics) {
         graphics.drawLine(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2, 0);
     }
 
