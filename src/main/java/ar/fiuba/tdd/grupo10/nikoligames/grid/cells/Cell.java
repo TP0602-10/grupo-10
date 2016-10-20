@@ -46,4 +46,7 @@ public class Cell extends Container {
         return boundaries.getNeighbours();
     }
 
+    public List<NeighbourContainer> getLimits() {
+        return boundaries.getLimits();
+    }
 }

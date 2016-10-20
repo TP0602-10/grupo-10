@@ -51,6 +51,12 @@ public class BoundariesManager {
         this.neighbours[position.getIndex()] = new NeighbourContainer(neighbour, position.getType());
     }
 
+    public List<NeighbourContainer> getLimits() {
+        List<NeighbourContainer> allLimits = new ArrayList<>();
+        Collections.addAll(allLimits, limits);
+        return allLimits;
+    }
+
     public Container getLimitAt(NeighbourPosition position) {
         return getNeighbour(limits[position.getIndex()]);
     }
