@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -41,9 +42,10 @@ public class GridAdapter extends AbstractTableModel {
     public void setValueAt(Object value, int row, int column) {
 
         try {
-            String stringValue = String.valueOf(value);
+            PossibleValue possibleValue = (PossibleValue) value;
             Cell cell = grid.getCellAt(row, column);
-            if (value != null) {
+            if (possibleValue.getValue() != null) {
+                String stringValue = String.valueOf(possibleValue.getValue());
                 cell.setValue(Integer.valueOf(stringValue));
             } else {
                 cell.setValue(null);

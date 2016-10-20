@@ -76,16 +76,20 @@ public enum GameEnum {
     }
 
     public Object getNextValue(Object currentValue) {
+        return getNextPossibleValue(currentValue).getValue();
+    }
+
+    public PossibleValue getNextPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
             if (currentValue == null && possibleValues.get(index).getValue() == null && index == (possibleValues.size() - 1)) {
-                return possibleValues.get(0).getValue();
+                return possibleValues.get(0);
             } else if (currentValue == null && possibleValues.get(index).getValue() == null) {
-                return possibleValues.get(index + 1).getValue();
+                return possibleValues.get(index + 1);
             } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)
                     && index == (possibleValues.size() - 1)) {
-                return possibleValues.get(0).getValue();
+                return possibleValues.get(0);
             } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)) {
-                return possibleValues.get(index + 1).getValue();
+                return possibleValues.get(index + 1);
             }
         }
         throw new RuntimeException("GameEnum:getNextValue not found for game: " + toString()
@@ -93,15 +97,19 @@ public enum GameEnum {
     }
 
     public Object getPrevValue(Object currentValue) {
+        return getPrevPossibleValue(currentValue).getValue();
+    }
+
+    public PossibleValue getPrevPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
             if (currentValue == null && possibleValues.get(index).getValue() == null && index == 0) {
-                return possibleValues.get(possibleValues.size() - 1).getValue();
+                return possibleValues.get(possibleValues.size() - 1);
             } else if (currentValue == null && possibleValues.get(index).getValue() == null) {
-                return possibleValues.get(index - 1).getValue();
+                return possibleValues.get(index - 1);
             } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue) && index == 0) {
-                return possibleValues.get(possibleValues.size() - 1).getValue();
+                return possibleValues.get(possibleValues.size() - 1);
             } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)) {
-                return possibleValues.get(index - 1).getValue();
+                return possibleValues.get(index - 1);
             }
         }
         throw new RuntimeException("GameEnum:getPrevValue not found for game: " + toString()
