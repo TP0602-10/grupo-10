@@ -9,11 +9,17 @@ public class GamesChain {
     private GameLink firstLink;
 
     public GamesChain(Component context) {
-        firstLink = new SudokuLink();
-        GameLink kakuroLink = new KakuroLink();
+        firstLink = new SudokuLink(context);
+        GameLink kakuroLink = new KakuroLink(context);
         firstLink.setNext(kakuroLink);
+        GameLink countryRoadLink = new CountryRoadLink(context);
+        kakuroLink.setNext(countryRoadLink);
+        GameLink gokigenNanameLink = new GokigenNanameLink(context);
+        countryRoadLink.setNext(gokigenNanameLink);
+        GameLink slitherlinkLink = new SlitherlinkLink(context);
+        gokigenNanameLink.setNext(slitherlinkLink);
         GameLink unavailableGameLink = new UnavailableGameLink(context);
-        kakuroLink.setNext(unavailableGameLink);
+        slitherlinkLink.setNext(unavailableGameLink);
     }
 
     public void execute(GameEnum gameEnum, String filePath) {

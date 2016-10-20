@@ -5,9 +5,15 @@ import ar.fiuba.tdd.grupo10.nikoligames.SudokuFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GameController;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.SudokuController;
+
+import java.awt.*;
 
 class SudokuLink extends GameLink {
+
+    SudokuLink(Component context) {
+        super(context);
+        this.gameEnum = GameEnum.SUDOKU;
+    }
 
     @Override
     public void execute(GameEnum gameEnum, String filePath) {

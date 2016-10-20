@@ -150,6 +150,7 @@ public final class SudokuFactory {
                         iteratorsForAllCellBlocks
                 );
         allIterators.forEach(i -> sudokuRules.add(new AlwaysVerifiableRule<>(i, distinctOperation, ruleCondition)));
+
         return sudokuRules;
     }
 

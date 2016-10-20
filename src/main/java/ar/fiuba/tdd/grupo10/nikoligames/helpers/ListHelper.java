@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,12 @@ public final class ListHelper {
                 rows,
                 columns
         );
+    }
+
+    public static <T> List<T> createListFromArray(T[] array) {
+        List<T> allElements = new ArrayList<>();
+        Collections.addAll(allElements, array);
+        return allElements;
     }
 
     public static <T> List<Integer> createFromRange(int initialValue, int endValue) {

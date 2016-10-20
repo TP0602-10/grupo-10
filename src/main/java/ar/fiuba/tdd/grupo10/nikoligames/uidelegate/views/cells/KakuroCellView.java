@@ -32,6 +32,7 @@ public class KakuroCellView extends CellView {
     }
 
     private void drawLines(Cell cell, Graphics graphics) {
+
         Content content = cell.getContent("CompareToRight");
         if (content != null) {
             graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);

@@ -2,10 +2,11 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
 
 import javax.swing.table.AbstractTableModel;
 
-public abstract class GridAdapter extends AbstractTableModel {
+public class GridAdapter extends AbstractTableModel {
     private Grid grid;
 
     public GridAdapter(Grid grid) {
@@ -41,13 +42,9 @@ public abstract class GridAdapter extends AbstractTableModel {
     public void setValueAt(Object value, int row, int column) {
 
         try {
-            String stringValue = String.valueOf(value);
+            PossibleValue possibleValue = (PossibleValue) value;
             Cell cell = grid.getCellAt(row, column);
-            if (value != null && stringValue.matches(getGridValueRegex())) {
-                cell.setValue(Integer.valueOf(stringValue));
-            } else {
-                cell.setValue(null);
-            }
+            possibleValue.setValueInCell(cell);
             fireTableCellUpdated(row, column);
             grid.notifyGridUpdated(null);
         } catch (Exception e) {
@@ -58,7 +55,5 @@ public abstract class GridAdapter extends AbstractTableModel {
     protected Grid getGrid() {
         return grid;
     }
-
-    protected abstract String getGridValueRegex();
 
 }

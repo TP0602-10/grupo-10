@@ -1,12 +1,14 @@
-package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operation;
+package ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GridRuleWorkWithOnTagException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.RuleNotSatisfiedException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -19,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class ListContinousRuleTests {
+public class LineContinousRuleTests {
     private GridRule<Boolean> lineContinousRule;
     private Cell cell1;
     private Cell cell2;
@@ -43,10 +45,10 @@ public class ListContinousRuleTests {
         //Simple square
         createCells();
 
-        cell1.setRightNeighbour( cell2 );
-        cell2.setBottomNeighbour( cell3 );
-        cell3.setLeftNeighbour( cell4 );
-        cell4.setTopNeighbour( cell1 );
+        cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
+        cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
+        cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
+        cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 
         Container[] cells = { cell1, cell2, cell3, cell4 };
         return cells;
@@ -56,12 +58,12 @@ public class ListContinousRuleTests {
         //Simple square but las line is modified to do open circuit
         createCells();
 
-        cell1.setRightNeighbour( cell2 );
-        cell2.setBottomNeighbour( cell3 );
+        cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
+        cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
 
         cell4 = createCell( new HorizontalLine() );
-        cell3.setLeftNeighbour( cell4 );
-        cell4.setTopNeighbour( cell1 );
+        cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
+        cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 
         Container[] cells = { cell1, cell2, cell3, cell4 };
         return cells;
@@ -73,7 +75,7 @@ public class ListContinousRuleTests {
 
         GridRuleIterator iterator = new GridRuleIterator(
                 containersList,
-                "Iterator for ListContinousRuleTests"
+                "Iterator for LineContinousRuleTests"
         );
 
         GridRuleOperation<Boolean> continousOperation = new LineContinousOperation("line");
@@ -117,6 +119,15 @@ public class ListContinousRuleTests {
 
         createRule( cells );
         lineContinousRule.verifyRule();
+    }
+
+    @Test(expected = GridRuleWorkWithOnTagException.class)
+    public void initializeRuleWithMoreThanOneTag() {
+        List<String> tags = new ArrayList<String>();
+        tags.add("tag1");
+        tags.add("tag2");
+        GridRuleOperation<Boolean> continousOperation = new LineContinousOperation(tags);
+
     }
 
 

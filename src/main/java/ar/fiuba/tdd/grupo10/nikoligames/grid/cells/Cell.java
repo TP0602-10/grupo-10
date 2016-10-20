@@ -11,79 +11,51 @@ import java.util.List;
  */
 public class Cell extends Container {
 
-    // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
-    private NeighbourContainer leftNeighbour;
-    private NeighbourContainer topNeighbour;
-    private NeighbourContainer rightNeighbour;
-    private NeighbourContainer bottomNeighbour;
-
-    private List<Container> borders = new ArrayList<>();
-    private List<Container> corners = new ArrayList<>();
+    private final BoundariesManager boundaries;
 
     public Cell(ContainerState state) {
         super(state);
-    }
-
-    private Container getNeighbour( NeighbourContainer neighbourContainer ) {
-        return (neighbourContainer != null) ? neighbourContainer.getNeighbourContainer() : null;
-    }
-
-    public Container getLeftNeighbour() {
-        return getNeighbour(leftNeighbour);
-    }
-
-    public void setLeftNeighbour(Container leftNeighbour) {
-        this.leftNeighbour = new NeighbourContainer(leftNeighbour,new LeftNeighbour());
-    }
-
-    public Container getTopNeighbour() {
-        return getNeighbour(topNeighbour);
-    }
-
-    public void setTopNeighbour(Container topNeighbour) {
-        this.topNeighbour = new NeighbourContainer(topNeighbour,new TopNeighbour());
-    }
-
-    public Container getRightNeighbour() {
-        return getNeighbour(rightNeighbour);
-    }
-
-    public void setRightNeighbour(Container rightNeighbour) {
-        this.rightNeighbour = new NeighbourContainer(rightNeighbour,new RightNeighbour());
-    }
-
-    public Container getBottomNeighbour() {
-        return getNeighbour(bottomNeighbour);
-    }
-
-    public void setBottomNeighbour(Container bottomNeighbour) {
-        this.bottomNeighbour = new NeighbourContainer(bottomNeighbour,new BottomNeighbour());
-    }
-
-    public List<Container> getBorders() {
-        return this.borders;
-    }
-
-    public List<Container> getCorners() {
-        return this.corners;
+        this.boundaries = new BoundariesManager();
     }
 
     public NeighbourType getNeighbourFrom(Cell otherCell) {
-        NeighbourContainer[] neighbours = {
-                topNeighbour,
-                bottomNeighbour,
-                leftNeighbour,
-                rightNeighbour
-        };
-        for (NeighbourContainer neighbour : neighbours) {
-            if ( neighbour != null ) {
-                Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();
-                if (neighbourCell == otherCell) {
-                    return neighbour.getNeighbourType();
-                }
-            }
+        return boundaries.getNeighbourFrom(otherCell);
+    }
+
+    public NeighbourType getLimitFrom(Container limit) {
+        return boundaries.getLimitFrom(limit);
+    }
+
+    public Container getNeighbourAt(NeighbourPosition position) {
+        return boundaries.getNeighbourAt(position);
+    }
+
+    public void setNeighbourAt(Cell neighbour, NeighbourPosition position) {
+        boundaries.setNeighbourAt(this, neighbour, position);
+    }
+
+    public Container getLimitAt(NeighbourPosition position) {
+        return boundaries.getLimitAt(position);
+    }
+
+    public void setLimitAt(Container limit, NeighbourPosition position) {
+        boundaries.setLimitAt(limit, position);
+    }
+
+    public List<NeighbourContainer> getNeighbours() {
+        return boundaries.getNeighbours();
+    }
+
+    public List<NeighbourContainer> getNeighbours( NeighbourPosition[] positions ) {
+        List<NeighbourContainer> selectedNeighbours = new ArrayList<>();
+        for (NeighbourPosition position : positions) {
+            selectedNeighbours.add( boundaries.getNeighbourContainerAt(position) );
         }
-        return new InvalidNeighbour();
+        return selectedNeighbours;
+    }
+
+    public List<NeighbourContainer> getLimits() {
+        return boundaries.getLimits();
     }
 
 }
