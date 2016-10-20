@@ -30,7 +30,7 @@ public class Cell extends Container {
         return boundaries.getNeighbourAt(position);
     }
 
-    public void setNeighbourAt(Container neighbour, NeighbourPosition position) {
+    public void setNeighbourAt(Cell neighbour, NeighbourPosition position) {
         boundaries.setNeighbourAt(this, neighbour, position);
     }
 

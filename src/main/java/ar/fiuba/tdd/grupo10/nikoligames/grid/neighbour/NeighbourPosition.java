@@ -30,6 +30,6 @@ public enum NeighbourPosition {
     }
 
     public NeighbourPosition getOposite() {
-        return NeighbourPosition.values() [ (this.index + ALLOWED_POSITIONS/2) % ALLOWED_POSITIONS ];
+        return NeighbourPosition.values() [ (this.index + ALLOWED_POSITIONS / 2) % ALLOWED_POSITIONS ];
     }
 }

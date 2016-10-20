@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.*;
 
@@ -35,20 +36,18 @@ public class BoundariesManager {
     }
 
     public List<NeighbourContainer> getNeighbours() {
-        List<NeighbourContainer> allNeighbours = new ArrayList<>();
-        Collections.addAll(allNeighbours, neighbours);
-        return allNeighbours;
+        return ListHelper.createListFromArray(neighbours);
     }
 
     public Container getNeighbourAt(NeighbourPosition position) {
         return getNeighbour(neighbours[position.getIndex()]);
     }
 
-    public void setNeighbourAt(Container actual, Container neighbour, NeighbourPosition position) {
+    public void setNeighbourAt(Cell actual, Cell neighbour, NeighbourPosition position) {
         NeighbourContainer neighbourContainer = new NeighbourContainer(neighbour, position.getType());
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
-            this.neighbours[position.getIndex()] =neighbourContainer;
-            ((Cell) neighbour).setNeighbourAt(actual, position.getOposite());
+            this.neighbours[position.getIndex()] = neighbourContainer;
+            neighbour.setNeighbourAt(actual, position.getOposite());
         }
     }
 
@@ -57,9 +56,7 @@ public class BoundariesManager {
     }
 
     public List<NeighbourContainer> getLimits() {
-        List<NeighbourContainer> allLimits = new ArrayList<>();
-        Collections.addAll(allLimits, limits);
-        return allLimits;
+        return ListHelper.createListFromArray(limits);
     }
 
     public Container getLimitAt(NeighbourPosition position) {

@@ -15,20 +15,22 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LineCircuitOperationTests {
-    private List<Container> theCells;
+    private List<Cell> theCells;
     private GridRule<Boolean> ruleWithLineCircuitOperation;
 
     private static final String TAG = "tag";
 
     private void createRule() {
         GridRuleIterator iterator = new GridRuleIterator(
-                theCells,
+                theCells.stream().map(c -> (Container) c).collect(Collectors.toList()),
                 "Iterator for LineCircuitOperationTests"
         );
 
@@ -52,14 +54,14 @@ public class LineCircuitOperationTests {
 
     private void setTopNeighbour(int index) {
         if (index > 2) {
-            Cell actualCell = (Cell)theCells.get(index);
+            Cell actualCell = theCells.get(index);
             actualCell.setNeighbourAt( theCells.get( index - 3 ), NeighbourPosition.TOP );
         }
     }
 
     private void setBottomNeighbour(int index) {
         if (index < 6) {
-            Cell actualCell = (Cell)theCells.get(index);
+            Cell actualCell = theCells.get(index);
             actualCell.setNeighbourAt( theCells.get( index + 3 ), NeighbourPosition.BOTTOM );
         }
     }
@@ -70,7 +72,7 @@ public class LineCircuitOperationTests {
         notLeftNeighbour.add(3);
         notLeftNeighbour.add(6);
         if (!notLeftNeighbour.contains(index)) {
-            Cell actualCell = (Cell)theCells.get(index);
+            Cell actualCell = theCells.get(index);
             actualCell.setNeighbourAt( theCells.get( index - 1 ), NeighbourPosition.LEFT );
         }
     }
@@ -81,7 +83,7 @@ public class LineCircuitOperationTests {
         notRighNeighbour.add(5);
         notRighNeighbour.add(8);
         if ( !notRighNeighbour.contains(index) ) {
-            Cell actualCell = (Cell)theCells.get(index);
+            Cell actualCell = theCells.get(index);
             actualCell.setNeighbourAt( theCells.get( index + 1 ), NeighbourPosition.RIGHT );
         }
     }

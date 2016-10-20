@@ -26,9 +26,9 @@ import static ar.fiuba.tdd.grupo10.nikoligames.grid.cells.CellFactory.newMutable
 import static org.junit.Assert.*;
 
 public class SumLinesPointingToSharedCornerOperationTest {
-    private final static String lineTag = "line";
-    private final static String pointTag = "point";
-    private final static String numberTag = "number";
+    private static final String lineTag = "line";
+    private static final String pointTag = "point";
+    private static final String numberTag = "number";
 
     private GridRule<Integer> sumLinesPointingToSharedCornerRule;
     private Container centralCorner;
