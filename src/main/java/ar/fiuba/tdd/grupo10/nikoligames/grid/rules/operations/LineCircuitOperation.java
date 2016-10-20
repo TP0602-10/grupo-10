@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.NeighbourType;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
@@ -20,6 +21,13 @@ import java.util.List;
 
 public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     private String onlyTag;
+    private static final NeighbourPosition[] AvailablePositions = {
+            NeighbourPosition.TOP,
+            NeighbourPosition.RIGHT,
+            NeighbourPosition.BOTTOM,
+            NeighbourPosition.LEFT
+    };
+
 
     public LineCircuitOperation( String tag ) {
         super(tag);
@@ -64,7 +72,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     }
 
     private Cell searchNeighbourCellToContinue(Cell fromCell, Cell previous) {
-        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours();
+        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours(AvailablePositions);
         for (NeighbourContainer neighbour : neighboursOfCell) {
             if ( neighbour != null ) {
                 Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();

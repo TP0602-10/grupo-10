@@ -40,7 +40,11 @@ public class BoundariesManager {
     }
 
     public Container getNeighbourAt(NeighbourPosition position) {
-        return getNeighbour(neighbours[position.getIndex()]);
+        return getNeighbour( getNeighbourContainerAt(position) );
+    }
+
+    public NeighbourContainer getNeighbourContainerAt(NeighbourPosition position) {
+        return neighbours[position.getIndex()];
     }
 
     public void setNeighbourAt(Cell actual, Cell neighbour, NeighbourPosition position) {
@@ -58,8 +62,8 @@ public class BoundariesManager {
 
     private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
         for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
-            actual.setLimitAt(
-                    neighbour.getLimitAt(associatedLimitPosition.getOposite()),
+            neighbour.setLimitAt(
+                    actual.getLimitAt(associatedLimitPosition.getOposite()),
                     position
             );
         }

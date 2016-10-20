@@ -13,9 +13,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleCondition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import org.junit.Test;
 
 import java.util.ArrayList;

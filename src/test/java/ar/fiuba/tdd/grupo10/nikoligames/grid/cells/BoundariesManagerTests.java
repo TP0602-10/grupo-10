@@ -51,8 +51,8 @@ public class BoundariesManagerTests {
         Assert.assertEquals( cell1, cell2.getNeighbourAt(NeighbourPosition.LEFT) );
 
         Container rightBoundaryFromCell1 = cell1.getLimitAt(NeighbourPosition.RIGHT);
-        Container leftBpundaryFromCell2 = cell2.getLimitAt(NeighbourPosition.LEFT);
-        Assert.assertEquals( rightBoundaryFromCell1, leftBpundaryFromCell2 );
+        Container leftBoundaryFromCell2 = cell2.getLimitAt(NeighbourPosition.LEFT);
+        Assert.assertEquals( rightBoundaryFromCell1.getValue(), leftBoundaryFromCell2.getValue() );
 
     }
 
