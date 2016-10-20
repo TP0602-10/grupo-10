@@ -1,6 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.FromBottomLeftToTopRightDiagonal;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.FromTopLeftToBottomRightDiagonal;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 
 import java.awt.*;
 
@@ -21,9 +24,14 @@ public class GokigenCellView extends CellView {
         graphics.drawOval(-4, -4, 20, 20);
         graphics.drawString(cellValue, 0, 10);
 
-        if (VERTICAL_LINE.equals(cellValue)) {
+        Line line = (Line) cell.getValue(LINE);
+        if (line == null) {
+            return;
+        }
+
+        if (line instanceof FromBottomLeftToTopRightDiagonal) {
             graphics.drawLine(this.getWidth(), 0, 0, this.getHeight());
-        } else if (HORIZONTAL_LINE.equals(cellValue)) {
+        } else if (line instanceof FromTopLeftToBottomRightDiagonal) {
             graphics.drawLine(0, 0, this.getWidth(), this.getHeight());
         }
     }

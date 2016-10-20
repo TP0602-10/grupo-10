@@ -2,6 +2,11 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
 public class ViewConstants {
 
+    //Keys
+    public static final String NUMBER = "NUMBER";
+    public static final String LINE = "LINE";
+    public static final String BORDER = "BORDER";
+
     public static final String TITLE = "Nikoli Games";
     public static final String NO_FILE_ERROR_MSG = "A configuration file must be specified";
     public static final String UNAVAILABLE_GAME_ERROR_MSG = "The selected game is not available";
