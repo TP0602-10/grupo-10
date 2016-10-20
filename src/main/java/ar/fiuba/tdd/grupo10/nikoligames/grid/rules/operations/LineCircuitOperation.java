@@ -90,7 +90,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
 
         while (doDeepSearch) {
             next = searchNeighbourCellToContinue( actual, previous );
-            doDeepSearch = continueSearch(firstAplicable, next);
+            doDeepSearch = ( continueSearch(firstAplicable, next) && cells.contains(next) );
             previous = actual;
             actual = next;
         }
