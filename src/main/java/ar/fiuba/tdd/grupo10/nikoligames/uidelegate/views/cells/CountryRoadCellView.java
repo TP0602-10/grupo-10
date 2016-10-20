@@ -16,17 +16,13 @@ public class CountryRoadCellView extends CellView {
     public void paintComponent(Graphics graphics) {
 
         Cell cell = (Cell) getValue();
-        String cellValue = String.valueOf(cell.getValue());
+        String cellValue = getTextValue(cell.getValue());
+        graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
 
-        if (!cellValue.isEmpty() && !cellValue.equals("null")) {
-            graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
-        }
+        setBorders(cell);
+        drawBorders(graphics);
+
         drawLines(cellValue, graphics);
-
-        graphics.fillRect(0, 0, 3, this.getHeight());
-        graphics.fillRect(this.getWidth() - 3, 0, 3, this.getHeight());
-        graphics.fillRect(0, 0, this.getWidth(), 3);
-        graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
     }
 
     private void drawLines(String cellValue, Graphics graphics) {

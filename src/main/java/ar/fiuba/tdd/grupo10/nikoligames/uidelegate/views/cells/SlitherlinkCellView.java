@@ -1,10 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
 
 import java.awt.*;
-
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.*;
 
 public class SlitherlinkCellView extends CellView {
 
@@ -17,31 +15,20 @@ public class SlitherlinkCellView extends CellView {
 
         Cell cell = (Cell)getValue();
 
-        String value = (cell.getValue() != null) ? String.valueOf(cell.getValue()) : "";
+        drawNumber(cell, graphics);
 
-        if (!value.isEmpty() ) {
-            graphics.drawString(value, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
-        }
+        setBorders(cell);
+        drawBorders(graphics);
 
         graphics.fillOval(0,0,1,5);
         graphics.fillOval(this.getY(),0,5,5);
         graphics.fillOval(0,this.getX(),5,5);
         graphics.fillOval(this.getX(),0,5,5);
-
-        drawBorder(value, graphics);
     }
 
-    private void drawBorder(String cellValue, Graphics graphics) {
+    protected void drawNumber(Cell cell, Graphics graphics) {
 
-        if (UPPER_BORDER.equals(cellValue)) {
-            graphics.fillRect(0, 0, this.getWidth(), 3);
-        } else if (BOTTOM_BORDER.equals(cellValue)) {
-            graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
-        } else if (LEFT_BORDER.equals(cellValue)) {
-            graphics.fillRect(0, 0, 3, this.getHeight());
-        } else if (RIGHT_BORDER.equals(cellValue)) {
-            graphics.fillRect(this.getWidth() - 3, 0, 3, this.getHeight());
-        }
+        String number = getTextValue(cell.getValue());
+        graphics.drawString(number, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
     }
-
 }
