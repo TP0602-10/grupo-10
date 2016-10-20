@@ -8,6 +8,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.BORDER;
+
 public abstract class CellView extends JLabel implements TableCellRenderer {
 
     private Object value;
@@ -58,19 +60,19 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
     protected void setBottomBorder(Cell cell) {
 
         Container container = cell.getLimitAt(NeighbourPosition.BOTTOM);
-        hasBottomBorder = (container != null) ? true : false;
+        hasBottomBorder = (container != null && container.getValue(BORDER) != null);
     }
 
     protected void setLeftBorder(Cell cell) {
 
         Container container = cell.getLimitAt(NeighbourPosition.LEFT);
-        hasLeftBorder = (container != null) ? true : false;
+        hasLeftBorder = (container != null && container.getValue(BORDER) != null);
     }
 
     protected void setRightBorder(Cell cell) {
 
         Container container = cell.getLimitAt(NeighbourPosition.RIGHT);
-        hasRightBorder = (container != null) ? true : false;
+        hasRightBorder = (container != null && container.getValue(BORDER) != null);
     }
 
 
