@@ -29,29 +29,24 @@ public class CountryRoadCellView extends CellView {
 
     private void drawLines(Cell cell, Graphics graphics) {
 
-        Content content = cell.getContent("LINE");
+        String line = getTextValue(cell.getValue());
 
-        if(content != null) {
-            // TODO:
-            Line line = (Line)content.getValue();
-
-            if (VERTICAL_LINE.equals(line)) {
-                graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
-            } else if (HORIZONTAL_LINE.equals(line)) {
-                graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-            } else if (UPPER_LEFT.equals(line)) {
-                drawTopLine(graphics);
-                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-            } else if (BOTTOM_LEFT.equals(line)) {
-                drawBottomLine(graphics);
-                graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-            } else if (UPPER_RIGHT.equals(line)) {
-                drawTopLine(graphics);
-                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-            } else if (BOTTOM_RIGHT.equals(line)) {
-                drawBottomLine(graphics);
-                graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-            }
+        if (VERTICAL_LINE.equals(line)) {
+            graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
+        } else if (HORIZONTAL_LINE.equals(line)) {
+            graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
+        } else if (UPPER_LEFT.equals(line)) {
+            drawTopLine(graphics);
+            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        } else if (BOTTOM_LEFT.equals(line)) {
+            drawBottomLine(graphics);
+            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        } else if (UPPER_RIGHT.equals(line)) {
+            drawTopLine(graphics);
+            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        } else if (BOTTOM_RIGHT.equals(line)) {
+            drawBottomLine(graphics);
+            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
         }
 
     }
