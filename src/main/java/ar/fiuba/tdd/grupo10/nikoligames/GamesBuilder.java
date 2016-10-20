@@ -5,16 +5,13 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ContainerState;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.json.structures.*;
-import com.google.gson.GsonBuilder;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -27,14 +24,11 @@ public final class GamesBuilder {
 
     public static Grid createUsingJson(String location) throws GameBuilderErrorException {
 
-        GameStructure gameStructure;
+        GameStructure gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
 
-        //open json
-        try (Reader reader = new InputStreamReader(GamesBuilder.class.getResourceAsStream(location), "UTF-8")) {
-            Gson gson = new GsonBuilder().create();
-            gameStructure = gson.fromJson(reader, GameStructure.class);
-        } catch (IOException e) {
-            throw new GameBuilderErrorException("Can't open file");
+        if (gameStructure == null || gameStructure.getInitialBoard() == null
+                || gameStructure.getBoard() == null || gameStructure.getRules() == null){
+            throw new GameBuilderErrorException("can't open file");
         }
 
         BoardStructure board = gameStructure.getBoard();
@@ -43,14 +37,83 @@ public final class GamesBuilder {
             throw new GameBuilderErrorException("Board with wrong size");
         }
 
-        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gameStructure.getInitialBoard());
+        List<Cell> gridCell = createGridCell(gameStructure.getInitialBoard());
+
+        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
 
         GridRuleManager gridRuleManager = new GridRuleManager(gridRules);
         Grid grid = new GridBuilder().setRows(board.getRows()).setColumns(board.getColumns())
-                .addCells(gameStructure.getInitialBoard()).addObserver(gridRuleManager).buildGrid();
+                .addCells(gridCell).addObserver(gridRuleManager).buildGrid();
         gridRuleManager.addObserver(grid);
 
         return grid;
+    }
+
+    private static List<Cell> createGridCell(List<ContainerStructure> initialBoard) {
+        List<Cell> cells = new ArrayList<>();
+
+        initialBoard.forEach(container -> {
+                    Cell cell = null;
+                    try {
+                        cell = createCell(container);
+                    } catch (GameBuilderErrorException e) {
+                        e.printStackTrace();
+                    }
+                    cells.add(cell);
+        }
+        );
+        return cells;
+    }
+
+    private static Cell createCell(ContainerStructure container) throws GameBuilderErrorException {
+        try {
+            Class cl = Class.forName(getCompleteClassName(container.getType()));
+            Constructor con = cl.getConstructor(ContainerState.class);
+            ContainerState containerState = createContainerState(container.getState());
+            return (Cell) con.newInstance(containerState);
+        } catch (InstantiationException | InvocationTargetException
+                    | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+            throw new GameBuilderErrorException("Error on create Cell.");
+        }
+    }
+
+    private static ContainerState createContainerState(StateStructure state) throws GameBuilderErrorException {
+        try {
+            Class cl = Class.forName(getCompleteClassName(state.getType()));
+            Constructor con = cl.getConstructor(List.class);
+            List<Content> contents = createContents(state.getContents());
+            return (ContainerState) con.newInstance(contents);
+        } catch (InstantiationException | InvocationTargetException
+                | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+            throw new GameBuilderErrorException("Error on create container state");
+        }
+    }
+
+    private static List<Content> createContents(List<ContentStructure> contents) {
+
+        List<Content> listContents = new ArrayList<>();
+
+        contents.forEach(conten -> {
+            try {
+                listContents.add(createContent(conten));
+            } catch (GameBuilderErrorException e) {
+                e.printStackTrace();
+            }
+        });
+
+        return listContents;
+    }
+
+    private static Content createContent(ContentStructure content) throws GameBuilderErrorException {
+        try {
+            Class cl = Class.forName(getCompleteClassName(content.getType()));
+            Constructor con = cl.getConstructor(Object.class,String.class);
+            return (Content) con.newInstance(content.getValue(),content.getTag());
+        } catch (InstantiationException | InvocationTargetException
+                | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+            throw new GameBuilderErrorException("Error on create content");
+        }
+
     }
 
     private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
@@ -67,7 +130,7 @@ public final class GamesBuilder {
 
             GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
 
-            gridRules.add(createRule(rule.getTypeGridRule(),iterator,operation,condition));
+            gridRules.add(createRule(rule.getType(),iterator,operation,condition));
         }
         return gridRules;
     }
@@ -77,7 +140,7 @@ public final class GamesBuilder {
                                        GridRuleOperation operation,
                                        GridRuleCondition condition) throws GameBuilderErrorException {
         try {
-            Class cl = Class.forName(typeGridRule);
+            Class cl = Class.forName(getCompleteClassName(typeGridRule));
             Constructor con = cl.getConstructor(GridRuleIterator.class, GridRuleOperation.class, GridRuleCondition.class);
 
             return (GridRule) con.newInstance(iterator, operation, condition);
@@ -99,7 +162,7 @@ public final class GamesBuilder {
             throws GameBuilderErrorException {
         try {
 
-            Class matcherClass = Class.forName(condition.getMatcher());
+            Class matcherClass = Class.forName(getCompleteClassName(condition.getMatcher()));
             GridRuleMatcher<Object> matcher = (GridRuleMatcher<Object>) matcherClass.newInstance();
             return new GridRuleCondition<>(matcher, condition.getGoal());
         } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
@@ -109,15 +172,46 @@ public final class GamesBuilder {
 
     private static GridRuleOperation createOperation(OperationStructure operationStructure)
             throws GameBuilderErrorException {
-
         try {
-            Class cl = Class.forName(operationStructure.getType());
-            Constructor con = cl.getConstructor(List.class);
+            return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),List.class,operationStructure.getContentTags());
+        } catch (Exception e) {
+            throw new GameBuilderErrorException("Error on create operation");
+        }
+    }
 
-            return (GridRuleOperation) con.newInstance(operationStructure.getContentTags());
+
+    private static Object createObject(String nameClass,Class constructorClases, Object... parameters ) throws Exception {
+        try {
+            Class cl = Class.forName(nameClass);
+            Constructor con = cl.getConstructor(constructorClases);
+            return con.newInstance(parameters);
         } catch (InstantiationException | InvocationTargetException
                 | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
-            throw new GameBuilderErrorException("Error on create operation");
+            throw new Exception("Error on create Object.");
+        }
+    }
+
+    private static String getCompleteClassName(String className){
+        switch (className){
+            case "Cell":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
+            case "ImmutableContainer":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
+            case "MutableContainer":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
+            case "ImmutableContent":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content." + className;
+            case "MutableContent":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content." + className;
+            case "DistinctOperation":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations." + className;
+            case "EqualsMatcher":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers." + className;
+            case "AlwaysVerifiableRule":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules." + className;
+            default:
+                return "ar.fiuba.tdd.grupo10.nikoligames." + className;
+
         }
     }
 }

@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.grupo10.nikoligames.json.structures;
 
-import java.util.List;
-
 public class RuleStructure {
 
     @SuppressWarnings("UWF_UNWRITTEN_FIELD")
@@ -13,7 +11,7 @@ public class RuleStructure {
     @SuppressWarnings("UWF_UNWRITTEN_FIELD")
     private ConditionStructure condition;
     @SuppressWarnings("UWF_UNWRITTEN_FIELD")
-    private String typeGridRule;
+    private String type;
 
     public IteratorStructure getIterator() {
         return iterator;
@@ -31,7 +29,7 @@ public class RuleStructure {
         return condition;
     }
 
-    public String getTypeGridRule() {
-        return typeGridRule;
+    public String getType() {
+        return type;
     }
 }
