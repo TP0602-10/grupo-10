@@ -43,7 +43,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
                 cellsInIterator.add( (Cell)theContainter );
             }
         }
-        return deepCircuitSearch( cellsInIterator );
+        return cellsInIterator.size() > 0 ? deepCircuitSearch( cellsInIterator ) : false;
     }
 
     private String getTag() {

@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
@@ -24,22 +25,25 @@ public class CountryRoadFactory {
     private static final int COLUMNS = 7;
     private static final Integer[][] roomsIndex = {
             {0,1,7,8},
-            {14},
-            {21,28,35},
-            {42},
             {2,3,4,5,11,18},
             {6},
             {9,10,17},
             {12,19},
             {13,20,27},
+            {14},
             {15,16,22,23},
             {24},
-            {25,26,32,33},
+            {25,26},
+            {32,33},
             {34},
-            {36,43},
-            {38,45,46},
-            {54,55,47,48},
-            {50,51,52,53,44,37}
+            {40,41},
+            {47,48},
+            {31,38,39},
+            {29,36},
+            {21,28,35},
+            {30,37,44,45,46,43},
+            {47,48,40,41},
+            {42}
     };
 
     private static final Integer[][] goalRoomsIndexValues = {
@@ -94,15 +98,16 @@ public class CountryRoadFactory {
             GridRuleCondition<Integer> condition;
 
             int goalIndexSearched = goalRoomsIndexFromRoom(cellsIndex);
-            int goalCellIndex = goalRoomsIndexValues[goalIndexSearched][goalIndex];
-            int goalCellValue = goalRoomsIndexValues[goalIndexSearched][goalValue];
+
             if (goalIndexSearched == -1) {
                 condition = new GridRuleCondition<>(
                         new GreaterThanIntegerMatcher<>(),
                         0
                 );
             } else {
-                cells.get(goalCellIndex).setValue(goalCellValue,GOALTAG);
+                int goalCellIndex = goalRoomsIndexValues[goalIndexSearched][goalIndex];
+                int goalCellValue = goalRoomsIndexValues[goalIndexSearched][goalValue];
+                cells.get(goalCellIndex).setContent(new ImmutableContent<>(goalCellValue,GOALTAG));
                 condition = new GridRuleCondition<>(
                         new EqualsMatcher<>(),
                         goalCellValue
