@@ -44,12 +44,7 @@ public class GridAdapter extends AbstractTableModel {
         try {
             PossibleValue possibleValue = (PossibleValue) value;
             Cell cell = grid.getCellAt(row, column);
-            if (possibleValue.getValue() != null) {
-                String stringValue = String.valueOf(possibleValue.getValue());
-                cell.setValue(Integer.valueOf(stringValue));
-            } else {
-                cell.setValue(null);
-            }
+            possibleValue.setValueInCell(cell);
             fireTableCellUpdated(row, column);
             grid.notifyGridUpdated(null);
         } catch (Exception e) {

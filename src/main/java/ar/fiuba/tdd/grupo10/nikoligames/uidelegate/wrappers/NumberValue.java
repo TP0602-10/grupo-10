@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+
 public class NumberValue implements PossibleValue {
 
     private Integer value;
@@ -22,6 +24,16 @@ public class NumberValue implements PossibleValue {
             return this.value == null;
         } else {
             return otherValue.equals(this.value);
+        }
+    }
+
+    @Override
+    public void setValueInCell(Cell cell) {
+        if (value != null) {
+            String stringValue = String.valueOf(value);
+            cell.setValue(Integer.valueOf(stringValue));
+        } else {
+            cell.setValue(null);
         }
     }
 

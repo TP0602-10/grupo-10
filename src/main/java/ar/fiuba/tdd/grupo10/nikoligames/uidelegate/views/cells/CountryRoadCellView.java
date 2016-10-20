@@ -30,30 +30,40 @@ public class CountryRoadCellView extends CellView {
     }
 
     private void drawLines(Cell cell, Graphics graphics) {
-
         Line line = (Line) cell.getValue(LINE);
-        if (line == null) {
-            return;
-        }
-
-        if (line instanceof VerticalLine) {
+        if (line != null && line instanceof VerticalLine) {
             graphics.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
-        } else if (line instanceof HorizontalLine) {
+        } else if (line != null && line instanceof HorizontalLine) {
             graphics.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-        } else if (line instanceof FromTopToLeftLine) {
-            drawTopLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (line instanceof FromBottomToLeftLine) {
-            drawBottomLine(graphics);
-            graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (line instanceof FromTopToRightLine) {
-            drawTopLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
-        } else if (line instanceof FromBottomToRightLine) {
-            drawBottomLine(graphics);
-            graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+        } else if (line != null && line instanceof FromTopToLeftLine) {
+            drawTopLeftLine(graphics);
+        } else if (line != null && line instanceof FromBottomToLeftLine) {
+            drawBottomLeftLine(graphics);
+        } else if (line != null && line instanceof FromTopToRightLine) {
+            drawTopRightLine(graphics);
+        } else if (line != null && line instanceof FromBottomToRightLine) {
+            drawBottomRightLine(graphics);
         }
+    }
 
+    private void drawTopLeftLine(Graphics graphics) {
+        drawTopLine(graphics);
+        graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+    }
+
+    private void drawBottomLeftLine(Graphics graphics) {
+        drawBottomLine(graphics);
+        graphics.drawLine(0, this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+    }
+
+    private void drawTopRightLine(Graphics graphics) {
+        drawTopLine(graphics);
+        graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
+    }
+
+    private void drawBottomRightLine(Graphics graphics) {
+        drawBottomLine(graphics);
+        graphics.drawLine(this.getWidth(), this.getHeight() / 2, this.getWidth() / 2, this.getHeight() / 2);
     }
 
     private void drawTopLine(Graphics graphics) {

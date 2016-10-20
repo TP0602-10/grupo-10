@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 
@@ -23,7 +23,12 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
     }
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+    public Component getTableCellRendererComponent(JTable table,
+                                                   Object value,
+                                                   boolean isSelected,
+                                                   boolean hasFocus,
+                                                   int row,
+                                                   int column) {
         setCustomRender(value);
         return this;
     }
@@ -40,44 +45,31 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
         return value;
     }
 
-    protected String getTextValue(Object text) {
-        return (text != null ? String.valueOf(text) : "" );
-    }
-
     protected void setBorders(Cell cell) {
 
-        setTopBorder(cell);
-        setBottomBorder(cell);
-        setLeftBorder(cell);
-        setRightBorder(cell);
+        setBorder(cell, NeighbourPosition.TOP);
+        setBorder(cell, NeighbourPosition.BOTTOM);
+        setBorder(cell, NeighbourPosition.LEFT);
+        setBorder(cell, NeighbourPosition.RIGHT);
     }
 
-    protected void setTopBorder(Cell cell) {
-        Container container = cell.getLimitAt(NeighbourPosition.TOP);
-        hasTopBorder = (container != null) ? true : false;
-    }
-
-    protected void setBottomBorder(Cell cell) {
-
-        Container container = cell.getLimitAt(NeighbourPosition.BOTTOM);
-        hasBottomBorder = (container != null && container.getValue(BORDER) != null);
-    }
-
-    protected void setLeftBorder(Cell cell) {
-
-        Container container = cell.getLimitAt(NeighbourPosition.LEFT);
-        hasLeftBorder = (container != null && container.getValue(BORDER) != null);
-    }
-
-    protected void setRightBorder(Cell cell) {
-
-        Container container = cell.getLimitAt(NeighbourPosition.RIGHT);
-        hasRightBorder = (container != null && container.getValue(BORDER) != null);
+    void setBorder(Cell cell, NeighbourPosition neighbourPosition) {
+        Container container = cell.getLimitAt(neighbourPosition);
+        boolean hasBorder = (container != null && container.getValue(BORDER) != null
+                && Boolean.valueOf(container.getValue(BORDER).toString()));
+        if (NeighbourPosition.TOP.equals(neighbourPosition)) {
+            hasTopBorder = hasBorder;
+        } else if (NeighbourPosition.BOTTOM.equals(neighbourPosition)) {
+            hasBottomBorder = hasBorder;
+        } else if (NeighbourPosition.LEFT.equals(neighbourPosition)) {
+            hasLeftBorder = hasBorder;
+        } else if (NeighbourPosition.RIGHT.equals(neighbourPosition)) {
+            hasRightBorder = hasBorder;
+        }
     }
 
 
     protected void drawBorders(Graphics graphics) {
-
         drawTopBorder(graphics);
         drawBottomBorder(graphics);
         drawLeftBorder(graphics);

@@ -40,9 +40,19 @@ public enum GameEnum {
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
         List<PossibleValue> slitherlinkValues = new ArrayList<>();
         slitherlinkValues.add(new SlitherlinkValue(null));
-        for (int i = 1; i <= 12; i++) {
-            slitherlinkValues.add(new SlitherlinkValue(i));
-        }
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
         return slitherlinkValues;
     }
 
@@ -93,14 +103,17 @@ public enum GameEnum {
 
     public PossibleValue getNextPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
-            if (currentValue == null && possibleValues.get(index).getValue() == null && index == (possibleValues.size() - 1)) {
+            if (currentValue == null && possibleValues.get(index).getValue() == null
+                    && index == (possibleValues.size() - 1)) {
                 return possibleValues.get(0);
             } else if (currentValue == null && possibleValues.get(index).getValue() == null) {
                 return possibleValues.get(index + 1);
-            } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)
+            } else if (currentValue != null && possibleValues.get(index).getValue() != null
+                    && possibleValues.get(index).isEquivalentTo(currentValue)
                     && index == (possibleValues.size() - 1)) {
                 return possibleValues.get(0);
-            } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)) {
+            } else if (currentValue != null && possibleValues.get(index).getValue() != null
+                    && possibleValues.get(index).isEquivalentTo(currentValue)) {
                 return possibleValues.get(index + 1);
             }
         }
@@ -118,9 +131,11 @@ public enum GameEnum {
                 return possibleValues.get(possibleValues.size() - 1);
             } else if (currentValue == null && possibleValues.get(index).getValue() == null) {
                 return possibleValues.get(index - 1);
-            } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue) && index == 0) {
+            } else if (currentValue != null && possibleValues.get(index).getValue() != null
+                    && possibleValues.get(index).isEquivalentTo(currentValue) && index == 0) {
                 return possibleValues.get(possibleValues.size() - 1);
-            } else if (currentValue != null && possibleValues.get(index).getValue() != null && possibleValues.get(index).isEquivalentTo(currentValue)) {
+            } else if (currentValue != null && possibleValues.get(index).getValue() != null
+                    && possibleValues.get(index).isEquivalentTo(currentValue)) {
                 return possibleValues.get(index - 1);
             }
         }

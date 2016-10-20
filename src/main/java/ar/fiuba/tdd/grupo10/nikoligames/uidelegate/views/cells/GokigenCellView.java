@@ -34,25 +34,47 @@ public class GokigenCellView extends CellView {
         }
     }
 
+    private boolean hasOval(Cell cell, NeighbourPosition neighbourPosition) {
+        return cell.getLimitAt(neighbourPosition) != null
+                && cell.getLimitAt(neighbourPosition).getValue(NUMBER) != null;
+    }
+
     private void drawOvals(Graphics graphics, Cell cell) {
-        if (cell.getLimitAt(NeighbourPosition.TOP_LEFT) != null && cell.getLimitAt(NeighbourPosition.TOP_LEFT).getValue(NUMBER) != null) {
+        drawTopLeftOval(graphics, cell);
+        drawTopRightOval(graphics, cell);
+        drawBottomLeftOval(graphics, cell);
+        drawBottomRightOval(graphics, cell);
+    }
+
+    private void drawTopLeftOval(Graphics graphics, Cell cell) {
+        if (hasOval(cell, NeighbourPosition.TOP_LEFT)) {
             graphics.drawOval(-4, -4, 20, 20);
-            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_LEFT).getValue(NUMBER)), 0, 10);
+            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_LEFT)
+                    .getValue(NUMBER)), 0, 10);
         }
+    }
 
-        if (cell.getLimitAt(NeighbourPosition.TOP_RIGHT) != null && cell.getLimitAt(NeighbourPosition.TOP_RIGHT).getValue(NUMBER) != null) {
+    private void drawTopRightOval(Graphics graphics, Cell cell) {
+        if (hasOval(cell, NeighbourPosition.TOP_RIGHT)) {
             graphics.drawOval(getWidth() + 4, -4, 20, 20);
-            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_RIGHT).getValue(NUMBER)), getWidth() - 6, 10);
+            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_RIGHT)
+                    .getValue(NUMBER)), getWidth() - 6, 10);
         }
+    }
 
-        if (cell.getLimitAt(NeighbourPosition.BOTTOM_RIGHT) != null && cell.getLimitAt(NeighbourPosition.BOTTOM_RIGHT).getValue(NUMBER) != null) {
+    private void drawBottomRightOval(Graphics graphics, Cell cell) {
+        if (hasOval(cell, NeighbourPosition.BOTTOM_RIGHT)) {
             graphics.drawOval(getWidth() + 4, getHeight() + 4, 20, 20);
-            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.BOTTOM_RIGHT).getValue(NUMBER)), getWidth() - 6, getHeight() - 6);
+            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.BOTTOM_RIGHT)
+                    .getValue(NUMBER)), getWidth() - 6, getHeight() - 6);
         }
+    }
 
-        if (cell.getLimitAt(NeighbourPosition.BOTTOM_LEFT) != null && cell.getLimitAt(NeighbourPosition.BOTTOM_LEFT).getValue(NUMBER) != null) {
+    private void drawBottomLeftOval(Graphics graphics, Cell cell) {
+        if (hasOval(cell, NeighbourPosition.BOTTOM_LEFT)) {
             graphics.drawOval(-4, getHeight() + 4, 20, 20);
-            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.BOTTOM_LEFT).getValue(NUMBER)), 0, getHeight() - 6);
+            graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.BOTTOM_LEFT)
+                    .getValue(NUMBER)), 0, getHeight() - 6);
         }
     }
 
