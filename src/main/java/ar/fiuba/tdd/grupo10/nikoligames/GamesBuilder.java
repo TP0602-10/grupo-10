@@ -108,12 +108,21 @@ public final class GamesBuilder {
         try {
             Class cl = Class.forName(getCompleteClassName(content.getType()));
             Constructor con = cl.getConstructor(Object.class,String.class);
-            return (Content) con.newInstance(content.getValue(),content.getTag());
+            Value value =  createValue(content.getValue());
+            return (Content) con.newInstance(value,content.getTag());
         } catch (InstantiationException | InvocationTargetException
                 | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
             throw new GameBuilderErrorException("Error on create content");
         }
 
+    }
+
+    private static Value createValue(ValueStructure valueStructure) throws GameBuilderErrorException {
+        try {
+            return (Value) createObject(getCompleteClassName(valueStructure.getType()), String.class, valueStructure.getValue());
+        } catch (Exception e){
+            throw new GameBuilderErrorException("Error on create value.");
+        }
     }
 
     private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
@@ -209,6 +218,8 @@ public final class GamesBuilder {
                 return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers." + className;
             case "AlwaysVerifiableRule":
                 return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules." + className;
+            case "Integer":
+                return "java.lang.Integer";
             default:
                 return "ar.fiuba.tdd.grupo10.nikoligames." + className;
 

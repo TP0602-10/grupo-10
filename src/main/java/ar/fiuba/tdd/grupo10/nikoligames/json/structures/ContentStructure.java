@@ -3,9 +3,9 @@ package ar.fiuba.tdd.grupo10.nikoligames.json.structures;
 public class ContentStructure {
     private String type;
     private String tag;
-    private Object value;
+    private ValueStructure value;
 
-    public Object getValue() {
+    public ValueStructure getValue() {
         return value;
     }
 
