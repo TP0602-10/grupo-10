@@ -1,22 +1,17 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
-import org.apache.commons.lang3.StringUtils;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.*;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.UNAVAILABLE_GAME_ERROR_MSG;
 
-class UnavailableGameLink extends GameLink {
+class CountryRoadLink extends GameLink {
 
-    UnavailableGameLink(Component context) {
+    CountryRoadLink(Component context) {
         super(context);
-    }
-
-    @Override
-    void execute(GameEnum gameEnum, String filePath) {
-        createGame(gameEnum, filePath);
+        this.gameEnum = GameEnum.COUNTRY_ROAD;
     }
 
     @Override
