@@ -2,6 +2,9 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum NeighbourPosition {
     TOP(0, new TopNeighbour()),
     TOP_RIGHT(1, new TopRightNeighbour()),
@@ -31,5 +34,24 @@ public enum NeighbourPosition {
 
     public NeighbourPosition getOposite() {
         return NeighbourPosition.values() [ (this.index + ALLOWED_POSITIONS / 2) % ALLOWED_POSITIONS ];
+    }
+
+    public List<NeighbourPosition> getAssociatedLimitPositions() {
+        List<NeighbourPosition> limits = new ArrayList<>();
+        limits.add( this );
+        if (!doesPositionRepresentACorner()) {
+            int index = this.index;
+            if (index == 0) {
+                index = ALLOWED_POSITIONS - 1;
+            }
+            limits.add(NeighbourPosition.values()[index - 1]);
+            limits.add(NeighbourPosition.values()[(index + 1) % ALLOWED_POSITIONS]);
+        }
+        return limits;
+    }
+
+    private boolean doesPositionRepresentACorner() {
+        return this == TOP_LEFT || this == TOP_RIGHT
+                || this == BOTTOM_RIGHT || this == BOTTOM_LEFT;
     }
 }

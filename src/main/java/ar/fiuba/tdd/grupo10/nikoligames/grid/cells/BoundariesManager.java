@@ -47,12 +47,22 @@ public class BoundariesManager {
         NeighbourContainer neighbourContainer = new NeighbourContainer(neighbour, position.getType());
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
             this.neighbours[position.getIndex()] = neighbourContainer;
+            setSharedLimitsWithNeighbour(actual, neighbour, position);
             neighbour.setNeighbourAt(actual, position.getOposite());
         }
     }
 
     private boolean isNeighbourAlreadyAssigned(NeighbourContainer neighbour) {
         return getNeighbours().contains(neighbour);
+    }
+
+    private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
+        for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
+            actual.setLimitAt(
+                    neighbour.getLimitAt(associatedLimitPosition.getOposite()),
+                    position
+            );
+        }
     }
 
     public List<NeighbourContainer> getLimits() {
