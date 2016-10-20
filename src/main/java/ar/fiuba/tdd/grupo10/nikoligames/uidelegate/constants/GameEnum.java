@@ -2,18 +2,21 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.*;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.LineValue;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.NumberValue;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.SlitherlinkValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum GameEnum {
 
-    SUDOKU("Sudoku", createIntegerPossibleValues(1, 9), SudokuCellView.class),
-    KAKURO("Kakuro", createIntegerPossibleValues(0, 9), KakuroCellView.class),
+    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class),
+    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class),
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class),
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class),
-    SLITHERLINK("Slitherlink", createIntegerPossibleValues(1, 12), SlitherlinkCellView.class);
+    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class);
 
     private String description;
     private List<PossibleValue> possibleValues;
@@ -25,13 +28,22 @@ public enum GameEnum {
         this.cellClass = cellClass;
     }
 
-    private static List<PossibleValue> createIntegerPossibleValues(int min, int max) {
+    private static List<PossibleValue> createNumberPossibleValues(int min, int max) {
         List<PossibleValue> sudokuValues = new ArrayList<>();
-        sudokuValues.add(new PossibleValue<Integer>(null));
+        sudokuValues.add(new NumberValue(null));
         for (int i = min; i <= max; i++) {
-            sudokuValues.add(new PossibleValue<>(i));
+            sudokuValues.add(new NumberValue(i));
         }
         return sudokuValues;
+    }
+
+    private static List<PossibleValue> createSlitherlinkPossibleValues() {
+        List<PossibleValue> slitherlinkValues = new ArrayList<>();
+        slitherlinkValues.add(new SlitherlinkValue(null));
+        for (int i = 1; i <= 12; i++) {
+            slitherlinkValues.add(new SlitherlinkValue(i));
+        }
+        return slitherlinkValues;
     }
 
     private static List<PossibleValue> createCountryRoadPossibleValues() {
@@ -47,22 +59,22 @@ public enum GameEnum {
         return countryRoadValues;
     }
 
-    private static PossibleValue<Line> createLinePossibleValue(Class<? extends Line> clazz) {
+    private static LineValue createLinePossibleValue(Class<? extends Line> clazz) {
         if (clazz != null) {
             try {
-                return new PossibleValue<>(clazz.newInstance());
+                return new LineValue(clazz.newInstance());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new PossibleValue<Line>(null);
+        return new LineValue(null);
     }
 
     private static List<PossibleValue> createGokigenPossibleValues() {
         List<PossibleValue> gokigenNanameValues = new ArrayList<>();
-        gokigenNanameValues.add(new PossibleValue<Line>(null));
-        gokigenNanameValues.add(new PossibleValue<Line>(new FromBottomLeftToTopRightDiagonal()));
-        gokigenNanameValues.add(new PossibleValue<Line>(new FromTopLeftToBottomRightDiagonal()));
+        gokigenNanameValues.add(new LineValue(null));
+        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal()));
+        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal()));
         return gokigenNanameValues;
     }
 
@@ -75,9 +87,9 @@ public enum GameEnum {
         return cellClass;
     }
 
-    public Object getNextValue(Object currentValue) {
-        return getNextPossibleValue(currentValue).getValue();
-    }
+//    public Object getNextValue(Object currentValue) {
+//        return getNextPossibleValue(currentValue).getValue();
+//    }
 
     public PossibleValue getNextPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
@@ -96,9 +108,9 @@ public enum GameEnum {
                 + " currentValue: " + currentValue);
     }
 
-    public Object getPrevValue(Object currentValue) {
-        return getPrevPossibleValue(currentValue).getValue();
-    }
+//    public Object getPrevValue(Object currentValue) {
+//        return getPrevPossibleValue(currentValue).getValue();
+//    }
 
     public PossibleValue getPrevPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
