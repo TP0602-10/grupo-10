@@ -11,4 +11,12 @@ public interface ComparableNeighbour {
 
     boolean isValidOnRight();
 
+    boolean isValidOnTopRight();
+
+    boolean isValidOnBottomRight();
+
+    boolean isValidOnBottomLeft();
+
+    boolean isValidOnTopLeft();
+
 }

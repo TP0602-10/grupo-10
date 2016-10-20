@@ -11,73 +11,39 @@ import java.util.List;
  */
 public class Cell extends Container {
 
-    // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
-    private NeighbourContainer leftNeighbour;
-    private NeighbourContainer topNeighbour;
-    private NeighbourContainer rightNeighbour;
-    private NeighbourContainer bottomNeighbour;
-
-    private List<Container> borders = new ArrayList<>();
-    private List<Container> corners = new ArrayList<>();
+    private final BoundariesManager boundaries;
 
     public Cell(ContainerState state) {
         super(state);
+        this.boundaries = new BoundariesManager();
     }
 
-    public Container getLeftNeighbour() {
-        return leftNeighbour.getNeighbourContainer();
+    public NeighbourType getNeighbourFrom(Cell otherCell) {
+        return boundaries.getNeighbourFrom(otherCell);
     }
 
-    public void setLeftNeighbour(Container leftNeighbour) {
-        this.leftNeighbour = new NeighbourContainer(leftNeighbour,new LeftNeighbour());
+    public NeighbourType getLimitFrom(Container limit) {
+        return boundaries.getLimitFrom(limit);
     }
 
-    public Container getTopNeighbour() {
-        return topNeighbour.getNeighbourContainer();
+    public Container getNeighbourAt(NeighbourPosition position) {
+        return boundaries.getNeighbourAt(position);
     }
 
-    public void setTopNeighbour(Container topNeighbour) {
-        this.topNeighbour = new NeighbourContainer(topNeighbour,new TopNeighbour());
+    public void setNeighbourAt(Container neighbour, NeighbourPosition position) {
+        boundaries.setNeighbourAt(neighbour, position);
     }
 
-    public Container getRightNeighbour() {
-        return this.rightNeighbour.getNeighbourContainer();
+    public Container getLimitAt(NeighbourPosition position) {
+        return boundaries.getLimitAt(position);
     }
 
-    public void setRightNeighbour(Container rightNeighbour) {
-        this.rightNeighbour = new NeighbourContainer(rightNeighbour,new RightNeighbour());
+    public void setLimitAt(Container limit, NeighbourPosition position) {
+        boundaries.setLimitAt(limit, position);
     }
 
-    public Container getBottomNeighbour() {
-        return this.bottomNeighbour.getNeighbourContainer();
-    }
-
-    public void setBottomNeighbour(Container bottomNeighbour) {
-        this.bottomNeighbour = new NeighbourContainer(bottomNeighbour,new BottomNeighbour());
-    }
-
-    public List<Container> getBorders() {
-        return this.borders;
-    }
-
-    public List<Container> getCorners() {
-        return this.corners;
-    }
-
-    public NeighbourType getNeighbourFrom(Cell otherCell ) {
-        NeighbourContainer[] neighbours = {
-                topNeighbour,
-                bottomNeighbour,
-                leftNeighbour,
-                rightNeighbour
-        };
-        for (NeighbourContainer neighbour : neighbours) {
-            Cell neighbourCell = (Cell)neighbour.getNeighbourContainer();
-            if (neighbourCell == otherCell) {
-                return neighbour.getNeighbourType();
-            }
-        }
-        return new InvalidNeighbour();
+    public List<NeighbourContainer> getNeighbours() {
+        return boundaries.getNeighbours();
     }
 
 }

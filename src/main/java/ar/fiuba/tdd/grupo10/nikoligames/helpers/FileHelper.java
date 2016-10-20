@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -32,7 +33,7 @@ public final class FileHelper {
     }
 
     public static void writeToFile(Object output, String location) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();;
         Path path = Paths.get(location);
         String json = gson.toJson(output);
         List<String> lines = new ArrayList<>();

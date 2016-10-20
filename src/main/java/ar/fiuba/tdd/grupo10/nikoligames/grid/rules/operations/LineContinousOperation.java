@@ -12,6 +12,11 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
 import java.util.List;
 
+/*
+ * Rule operation that checks whether the contents of cells in the iterator form a contiguous line.
+ * Also this rule implicitly checks if a cell is a neighbor of the next and previous in the iterator.
+ * Incluided the first and the last.
+ */
 public class LineContinousOperation extends GridRuleOperation<Boolean> {
     public LineContinousOperation(List<String> contentTags) throws GridRuleWorkWithOnTagException {
         super(contentTags.get(0));
@@ -24,28 +29,41 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
+        if (!iterator.hasNext()) {
+            return false;
+        }
         Cell actualCell = (Cell)iterator.next();
+        Cell firstCell = actualCell;
+        Cell nextCell;
         while (iterator.hasNext()) {
-            Cell nextCell = (Cell)iterator.next();
-            NeighbourType neighbourType = actualCell.getNeighbourFrom(nextCell);
+            nextCell = (Cell)iterator.next();
 
-            Content[] contents = {actualCell.getContent(), nextCell.getContent() };
-            if (!isApplicableOn(contents)) {
+            if (!areValid(actualCell,nextCell)) {
                 return false;
             }
-
-            Line actualLine = (Line)actualCell.getValue();
-            Line nextLine = (Line)nextCell.getValue();
-            if (!neighbourType.isValid(actualLine,nextLine)) {
-                return false;
-            }
-
             actualCell = nextCell;
         }
-        return true;
+        return areValid(actualCell,firstCell);
     }
 
-    public boolean isApplicableOn(Content[] contents) {
+    private boolean areValid(Cell fromCell, Cell toCell) {
+        if (fromCell != null && toCell != null) {
+            NeighbourType neighbourType = fromCell.getNeighbourFrom(toCell);
+
+            Content[] contents = {fromCell.getContent(), toCell.getContent() };
+            if ( isApplicableOn(contents) ) {
+                Line actualLine = (Line)fromCell.getValue();
+                Line nextLine = (Line)toCell.getValue();
+                if (neighbourType.isValid(actualLine,nextLine)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isApplicableOn(Content[] contents) {
         for (Content content : contents) {
             if (!isApplicableOn(content)) {
                 return false;
