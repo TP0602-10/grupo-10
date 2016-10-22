@@ -9,6 +9,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.NullValue;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.HorizontalLine;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
@@ -79,7 +80,7 @@ public class CountryRoadFactory {
     private static final String GOALTAG = "NUMBER";
 
     private static Cell createMutableCell() {
-        return new Cell( new MutableContainer( new MutableContent<>(null,LINETAG) ) );
+        return new Cell( new MutableContainer( new MutableContent<>(new NullValue(),LINETAG) ) );
     }
 
     private static List<Cell> generateCellsInGridForm() {

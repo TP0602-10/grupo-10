@@ -11,6 +11,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Point;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.StringValue;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.CompleteIteratorRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 
@@ -30,6 +31,7 @@ public class ClassPathHelper {
             DistinctOperation.class,
             EqualsMatcher.class,
             AlwaysVerifiableRule.class,
+            CompleteIteratorRule.class,
             Number.class,
             NullValue.class,
             StringValue.class,
