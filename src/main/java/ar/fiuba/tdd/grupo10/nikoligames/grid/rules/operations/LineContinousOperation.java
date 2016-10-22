@@ -84,7 +84,9 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public String getOperationExplanation(Boolean result) {
-        return "The operation check if a the contents of the cells generate a continuous line. The result is " + result.toString() + ".";
+        return "The operation check if a the contents of the cells"
+                + " (continuously processing the iterator)"
+                + "generate a continuous line. The result is " + result.toString() + ".";
     }
 
 }

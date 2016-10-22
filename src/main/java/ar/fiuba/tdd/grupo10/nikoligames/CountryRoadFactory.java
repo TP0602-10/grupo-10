@@ -86,7 +86,7 @@ public class CountryRoadFactory {
         for (int i = 0; i < ROWS * COLUMNS; i++) {
             cells.add( createMutableCell() );
         }
-        doCellNeighbours( cells );
+        //doCellNeighbours( cells );
         //TODO: When the Boundaries fix set neighbour change this line position
         generateCellsBordersRooms( cells );
 
@@ -217,7 +217,9 @@ public class CountryRoadFactory {
     public static Grid createGrid() {
         List<Cell> cells = generateCellsInGridForm();
         GridRuleManager ruleManager = createCountryRoadRuleManager( cells );
-        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
+        Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells)
+                .doNeighborlyRelations()
+                .addObserver(ruleManager).buildGrid();
         ruleManager.addObserver(grid);
         return grid;
     }
