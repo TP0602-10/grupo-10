@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.NullValue;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
@@ -24,7 +25,7 @@ public class ClassPathHelper {
             Cell.class,
             ImmutableContainer.class,
             MutableContainer.class,
-            ImmutableContainer.class,
+            ImmutableContent.class,
             MutableContent.class,
             DistinctOperation.class,
             EqualsMatcher.class,

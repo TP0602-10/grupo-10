@@ -192,6 +192,6 @@ public final class GamesBuilder {
     }
 
     private static String getCompleteClassName(String className) {
-        return nameClass.getOrDefault(className,"ar.fiuba.tdd.grupo10.nikoligames.") + className;
+        return nameClass.getOrDefault(className,"ar.fiuba.tdd.grupo10.nikoligames") + "." + className;
     }
 }
