@@ -18,7 +18,7 @@ class CountryRoadLink extends GameLink {
 
     @Override
     void createGame(GameEnum game, String filePath) {
-        new GameController(new CountryRoadFactory().createGrid(), this.gameEnum);
+        new GameController(CountryRoadFactory.createGrid(), this.gameEnum);
     }
 
 }
