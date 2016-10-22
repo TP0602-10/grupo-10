@@ -40,11 +40,11 @@ public enum NeighbourPosition {
         List<NeighbourPosition> limits = new ArrayList<>();
         limits.add( this );
         if (!doesPositionRepresentACorner()) {
-            int index = this.index;
-            if (index == 0) {
-                index = ALLOWED_POSITIONS - 1;
+            if (this.index == 0) {
+                limits.add(NeighbourPosition.values()[ALLOWED_POSITIONS - 1]);
+            } else {
+                limits.add(NeighbourPosition.values()[index - 1]);
             }
-            limits.add(NeighbourPosition.values()[index - 1]);
             limits.add(NeighbourPosition.values()[(index + 1) % ALLOWED_POSITIONS]);
         }
         return limits;
