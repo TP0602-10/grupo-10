@@ -5,9 +5,14 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.HorizontalLine;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.VerticalLine;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GreaterThanIntegerMatcher;
@@ -56,25 +61,91 @@ public class CountryRoadFactory {
 
     };
 
+    private static final Integer[] cellsWithRightBorder = {
+            1,8,5,10,11,12,14,16,17,19,18,21,23,24,26,28,29,30,31,33,35,36,37,39,42,46
+    };
+
+    private static final Integer[] cellsWithBottomBorder = {
+            2,3,5,6,7,8,9,14,17,18,19,22,23,24,27,32,33,34,35,36,38,39
+    };
+
     private static final int goalIndex = 0;
     private static final int goalValue = 1;
 
     private static final String LINETAG = "LINE";
     private static final String GOALTAG = "NUMBER";
 
-    private Cell createMutableCell() {
+    private static Cell createMutableCell() {
         return new Cell( new MutableContainer( new MutableContent<>(null,LINETAG) ) );
     }
 
-    private List<Cell> generateCellsInGridForm() {
+    private static List<Cell> generateCellsInGridForm() {
         List<Cell> cells = new ArrayList<>();
         for (int i = 0; i < ROWS * COLUMNS; i++) {
             cells.add( createMutableCell() );
         }
+        doCellNeighbours( cells );
+        //TODO: When the Boundaries fix set neighbour change this line position
+        generateCellsBordersRooms( cells );
+
         return cells;
     }
 
-    private int goalRoomsIndexFromRoom( Integer[] cellsRoomIndex ) {
+    private static Container createBorder( Line line ) {
+        return new Container( new ImmutableContainer( new ImmutableContent<>(line,LINETAG) ) );
+    }
+
+    private static void generateCellsBordersRooms( List<Cell> cells ) {
+        addBottomBordersToCells(cells);
+        addRightBordersToCells(cells);
+    }
+
+    private static void addRightBordersToCells( List<Cell> cells ) {
+        for (int index : cellsWithRightBorder) {
+            cells.get(index).setLimitAt( createBorder( new VerticalLine() ), NeighbourPosition.RIGHT );
+        }
+    }
+
+    private static void addBottomBordersToCells( List<Cell> cells ) {
+        for (int index : cellsWithBottomBorder) {
+            cells.get(index).setLimitAt( createBorder( new HorizontalLine() ), NeighbourPosition.BOTTOM );
+        }
+    }
+
+    private static void setTopNeighbour( List<Cell> cells, int index ) {
+        if ( index >= COLUMNS ) {
+            cells.get(index).setNeighbourAt( cells.get(index - COLUMNS), NeighbourPosition.TOP );
+        }
+    }
+
+    private static void setBottomNeighbour( List<Cell> cells, int index ) {
+        if ( index < (COLUMNS * (ROWS - 1 )) ) {
+            cells.get(index).setNeighbourAt( cells.get(index + COLUMNS), NeighbourPosition.BOTTOM );
+        }
+    }
+
+    private static void setLeftNeighbour( List<Cell> cells, int index ) {
+        if ( index % COLUMNS != 0 ) {
+            cells.get(index).setNeighbourAt( cells.get(index - 1), NeighbourPosition.LEFT );
+        }
+    }
+
+    private static void setRightNeighbour( List<Cell> cells, int index ) {
+        if ( (index + 1) % COLUMNS != 0 ) {
+            cells.get(index).setNeighbourAt( cells.get(index + 1), NeighbourPosition.RIGHT );
+        }
+    }
+
+    private static void doCellNeighbours( List<Cell> cells ) {
+        for (int i = 0; i < cells.size(); i++) {
+            setTopNeighbour( cells, i );
+            setBottomNeighbour( cells, i );
+            setLeftNeighbour( cells, i );
+            setRightNeighbour( cells, i );
+        }
+    }
+
+    private static int goalRoomsIndexFromRoom( Integer[] cellsRoomIndex ) {
         int index = 0;
         for ( Integer[] goal : goalRoomsIndexValues ) {
             List<Integer> room = ListHelper.createListFromArray( cellsRoomIndex );
@@ -86,7 +157,7 @@ public class CountryRoadFactory {
         return -1;
     }
 
-    private List<GridRule> createRoomRules( List<Cell> cells ) {
+    private static List<GridRule> createRoomRules( List<Cell> cells ) {
         List<GridRule> roomRules = new ArrayList<>();
         for ( Integer[] cellsIndex : roomsIndex ) {
             List<Container> listForIterator = new ArrayList<>();
@@ -118,7 +189,7 @@ public class CountryRoadFactory {
         return roomRules;
     }
 
-    private GridRule createCircuitRule( List<Cell> cells ) {
+    private static GridRule createCircuitRule( List<Cell> cells ) {
         List<Container> cellAsContainers = new ArrayList<>();
         for (Cell cell : cells) {
             cellAsContainers.add(cell);
@@ -132,7 +203,7 @@ public class CountryRoadFactory {
         return new AlwaysVerifiableRule<>(iterator,operation,condition);
     }
 
-    private GridRuleManager createCountryRoadRuleManager( List<Cell> cells ) {
+    private static GridRuleManager createCountryRoadRuleManager( List<Cell> cells ) {
         List<GridRule> rules = new ArrayList<>();
         rules.addAll(createRoomRules(cells));
         rules.add(createCircuitRule(cells));
@@ -141,7 +212,7 @@ public class CountryRoadFactory {
 
     }
 
-    public Grid createGrid() {
+    public static Grid createGrid() {
         List<Cell> cells = generateCellsInGridForm();
         GridRuleManager ruleManager = createCountryRoadRuleManager( cells );
         Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
