@@ -51,8 +51,8 @@ public class BoundariesManager {
         NeighbourContainer neighbourContainer = new NeighbourContainer(neighbour, position.getType());
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
             this.neighbours[position.getIndex()] = neighbourContainer;
-            setSharedLimitsWithNeighbour(actual, neighbour, position);
             neighbour.setNeighbourAt(actual, position.getOposite());
+            setSharedLimitsWithNeighbour(actual, neighbour, position);
         }
     }
 
@@ -63,10 +63,14 @@ public class BoundariesManager {
     private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
         for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
             neighbour.setLimitAt(
-                    actual.getLimitAt(associatedLimitPosition.getOposite()),
-                    position
+                    actual.getLimitAt(associatedLimitPosition),
+                    associatedLimitPosition.getOposite()
             );
         }
+    }
+
+    private boolean isLimitAlreadyAssigned(NeighbourContainer limit) {
+        return getLimits().contains(limit);
     }
 
     public List<NeighbourContainer> getLimits() {

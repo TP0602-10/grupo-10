@@ -37,7 +37,7 @@ public class NeighbourContainer {
             return false;
         }
         NeighbourContainer that = (NeighbourContainer) other;
-        return Objects.equals(neighbour, that.neighbour)
+        return neighbour == that.neighbour
                 && Objects.equals(type, that.type);
     }
 

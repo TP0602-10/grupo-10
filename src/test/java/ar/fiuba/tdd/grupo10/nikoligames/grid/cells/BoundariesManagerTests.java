@@ -31,7 +31,6 @@ public class BoundariesManagerTests {
 
     }
 
-    @Ignore
     @Test
     public void rightNeighbourShareBorderAndCorner() {
         Container containerForCell1 = createContainer(1);
