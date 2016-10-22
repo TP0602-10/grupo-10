@@ -73,7 +73,8 @@ public class CountryRoadFactory {
     private static final int goalValue = 1;
 
     private static final String LINETAG = "LINE";
-    private static final String LINEBORDERTAG = "LINEBORDER";
+    private static final String LINEBORDERRIGHTTAG = "LINEBORDERRIGHT";
+    private static final String LINEBORDERBOTTOMTAG = "LINEBORDERBOTTOM";
     private static final String GOALTAG = "NUMBER";
 
     private static Cell createMutableCell() {
@@ -92,8 +93,8 @@ public class CountryRoadFactory {
         return cells;
     }
 
-    private static Container createBorder( Line line ) {
-        return new Container( new ImmutableContainer( new ImmutableContent<>(line,LINEBORDERTAG) ) );
+    private static Container createBorder( String tag, Line line ) {
+        return new Container( new ImmutableContainer( new ImmutableContent<>(line,tag) ) );
     }
 
     private static void generateCellsBordersRooms( List<Cell> cells ) {
@@ -103,13 +104,13 @@ public class CountryRoadFactory {
 
     private static void addRightBordersToCells( List<Cell> cells ) {
         for (int index : cellsWithRightBorder) {
-            cells.get(index).setLimitAt( createBorder( new VerticalLine() ), NeighbourPosition.RIGHT );
+            cells.get(index).setLimitAt( createBorder(LINEBORDERRIGHTTAG, new VerticalLine()), NeighbourPosition.RIGHT );
         }
     }
 
     private static void addBottomBordersToCells( List<Cell> cells ) {
         for (int index : cellsWithBottomBorder) {
-            cells.get(index).setLimitAt( createBorder( new HorizontalLine() ), NeighbourPosition.BOTTOM );
+            cells.get(index).setLimitAt( createBorder(LINEBORDERBOTTOMTAG,new HorizontalLine()), NeighbourPosition.BOTTOM );
         }
     }
 
