@@ -23,8 +23,7 @@ public class CountryRoadCellView extends CellView {
             graphics.drawString(String.valueOf(content.getValue()), (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
 
-        setBorders(cell);
-        drawBorders(graphics);
+        drawBorders(cell, graphics);
 
         drawLines(cell, graphics);
     }
