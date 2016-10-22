@@ -75,6 +75,7 @@ public class BoundariesManagerTests {
 
     @Test
     public void fourCellsShareSameCorner() {
+
         cell1.setLimitAt(createContainer(1), NeighbourPosition.BOTTOM_RIGHT);
         cell2.setLimitAt(createContainer(2), NeighbourPosition.BOTTOM_LEFT);
         cell3.setLimitAt(createContainer(3), NeighbourPosition.TOP_RIGHT);
@@ -95,6 +96,8 @@ public class BoundariesManagerTests {
         Assert.assertEquals(corner2,corner4);
 
         Assert.assertEquals(corner3,corner4);
+
+        Assert.assertEquals( corner1.getValue(), 1 );
     }
 
 }

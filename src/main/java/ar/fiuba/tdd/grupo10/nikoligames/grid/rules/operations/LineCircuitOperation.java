@@ -117,6 +117,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public String getOperationExplanation(Boolean result) {
-        return null;
+        return "The operation check if the selected tag content of the applicable Cells in the iterator generate"
+                + " a close circuit. The result is " + result.toString() + ".";
     }
 }
