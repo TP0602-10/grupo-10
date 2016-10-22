@@ -167,7 +167,7 @@ public class NeighbourPositionTest {
         associatedOpposites.add(NeighbourPosition.BOTTOM_RIGHT);
 
         Map<NeighbourPosition.RelativeType, List<NeighbourPosition>> topAssociatedAndOppositeFrontiersInOrder =
-        NeighbourPosition.TOP.getAssociatedAndOppositeFrontiersInOrder();
+                NeighbourPosition.TOP.getAssociatedAndOppositeFrontiersInOrder();
 
         Assert.assertTrue(
                 ListHelper.equalsAndInSameOrder(
