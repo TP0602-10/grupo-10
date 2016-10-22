@@ -73,6 +73,7 @@ public class CountryRoadFactory {
     private static final int goalValue = 1;
 
     private static final String LINETAG = "LINE";
+    private static final String LINEBORDERTAG = "LINEBORDER";
     private static final String GOALTAG = "NUMBER";
 
     private static Cell createMutableCell() {
@@ -92,7 +93,7 @@ public class CountryRoadFactory {
     }
 
     private static Container createBorder( Line line ) {
-        return new Container( new ImmutableContainer( new ImmutableContent<>(line,LINETAG) ) );
+        return new Container( new ImmutableContainer( new ImmutableContent<>(line,LINEBORDERTAG) ) );
     }
 
     private static void generateCellsBordersRooms( List<Cell> cells ) {
