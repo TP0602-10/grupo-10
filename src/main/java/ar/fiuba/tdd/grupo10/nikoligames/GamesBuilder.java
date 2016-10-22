@@ -130,7 +130,7 @@ public final class GamesBuilder {
 
             GridRuleOperation operation = createOperation(rule.getOperation());
 
-            GridRuleCondition condition = createCondition(rule.getCondition());
+            GridRuleCondition condition = createCondition(rule.getCondition(),rule.getOperation().getType());
 
             GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
 
@@ -162,14 +162,25 @@ public final class GamesBuilder {
         return new GridRuleIterator(cells ,iterator.getExplanation());
     }
 
-    private static GridRuleCondition createCondition(ConditionStructure condition)
+    private static GridRuleCondition createCondition(ConditionStructure condition,String typeGoal)
             throws GameBuilderErrorException {
         try {
             Class matcherClass = Class.forName(getCompleteClassName(condition.getMatcher()));
             GridRuleMatcher<Object> matcher = (GridRuleMatcher<Object>) matcherClass.newInstance();
-            return new GridRuleCondition<>(matcher, condition.getGoal());
+            Object goal = createGoal(typeGoal,condition.getGoal());
+            return new GridRuleCondition<>(matcher, goal);
         } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             throw new GameBuilderErrorException("Error on create rule condition");
+        }
+    }
+
+    private static Object createGoal(String typeGoal, String goal) throws GameBuilderErrorException {
+        if (typeGoal.equals("Boolean")) {
+            return Boolean.valueOf(goal);
+        } else if (typeGoal.equals("Integer")) {
+            return Integer.parseInt(goal);
+        } else {
+            throw new GameBuilderErrorException("Error on create goal");
         }
     }
 
