@@ -9,6 +9,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
@@ -114,7 +115,7 @@ public final class InshiNoHeyaFactory {
             int indexInRoomsPositions = searchIndexInRoomsPosition(positionToSearch);
 
 
-            CELLS.get(positionToSearch).setContent( new ImmutableContent<>(value,"GOAL") );
+            CELLS.get(positionToSearch).setContent( new ImmutableContent<>(new Number(Integer.toString(value)),"GOAL") );
 
 
 
@@ -214,7 +215,7 @@ public final class InshiNoHeyaFactory {
     private static void createCells() {
         CELLS = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
-            CELLS.add( new Cell(new MutableContainer(new MutableContent<Integer>(null,DEFAULT_TAG))) );
+            CELLS.add( new Cell(new MutableContainer(new MutableContent<>(new Number(null), DEFAULT_TAG))) );
         }
     }
 

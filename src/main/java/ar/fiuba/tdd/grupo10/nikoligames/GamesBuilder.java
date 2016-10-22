@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ContainerState;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -105,24 +106,14 @@ public final class GamesBuilder {
     }
 
     private static Content createContent(ContentStructure content) throws GameBuilderErrorException {
-        try {
-            Class cl = Class.forName(getCompleteClassName(content.getType()));
-            Constructor con = cl.getConstructor(Object.class,String.class);
-            Value value =  createValue(content.getValue());
-            return (Content) con.newInstance(value,content.getTag());
-        } catch (InstantiationException | InvocationTargetException
-                | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
-            throw new GameBuilderErrorException("Error on create content");
-        }
-
+        Value value =  createValue(content.getValue());
+        return (Content) createObject(getCompleteClassName(content.getType()),
+                Object.class,String.class,value,content.getTag());
     }
 
     private static Value createValue(ValueStructure valueStructure) throws GameBuilderErrorException {
-        try {
-            return (Value) createObject(getCompleteClassName(valueStructure.getType()), String.class, valueStructure.getValue());
-        } catch (Exception e){
-            throw new GameBuilderErrorException("Error on create value.");
-        }
+        return (Value) createObject(getCompleteClassName(valueStructure.getType()),
+                String.class, valueStructure.getValue());
     }
 
     private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
@@ -181,22 +172,19 @@ public final class GamesBuilder {
 
     private static GridRuleOperation createOperation(OperationStructure operationStructure)
             throws GameBuilderErrorException {
-        try {
-            return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),List.class,operationStructure.getContentTags());
-        } catch (Exception e) {
-            throw new GameBuilderErrorException("Error on create operation");
-        }
+        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),
+                List.class,operationStructure.getContentTags());
     }
 
-
-    private static Object createObject(String nameClass,Class constructorClases, Object... parameters ) throws Exception {
+    private static Object createObject(String nameClass,Class constructorClasses, Object... parameters )
+            throws GameBuilderErrorException {
         try {
             Class cl = Class.forName(nameClass);
-            Constructor con = cl.getConstructor(constructorClases);
+            Constructor con = cl.getConstructor(constructorClasses);
             return con.newInstance(parameters);
         } catch (InstantiationException | InvocationTargetException
                 | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
-            throw new Exception("Error on create Object.");
+            throw new GameBuilderErrorException("Error on create " + nameClass + ".");
         }
     }
 
@@ -218,8 +206,8 @@ public final class GamesBuilder {
                 return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers." + className;
             case "AlwaysVerifiableRule":
                 return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules." + className;
-            case "Integer":
-                return "java.lang.Integer";
+            case "Number":
+                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types." + className;
             default:
                 return "ar.fiuba.tdd.grupo10.nikoligames." + className;
 

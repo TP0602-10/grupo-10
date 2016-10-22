@@ -15,9 +15,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToInteger
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
-
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class KakuroFactory {
@@ -318,29 +317,29 @@ public class KakuroFactory {
     }
 
     private static Cell createMutableCell() {
-        return new Cell(new MutableContainer(new MutableContent<>(null, "Number")));
+        return new Cell(new MutableContainer(new MutableContent<>(new Number(null), "Number")));
     }
 
-    private static Cell createSingleValuedImmutableCell(int result, String tag) {
-        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, tag)));
+    public static Cell createSingleValuedImmutableCell(int result, String tag) {
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), tag)));
     }
 
     private static Cell createImmutableCell() {
-        return new Cell(new ImmutableContainer(new ImmutableContent<>(null, "BlackBLock")));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(null), "BlackBLock")));
     }
 
     private static Cell createUpSidedImmutableCell(int result) {
-        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, "CompareToRight")));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), "CompareToRight")));
     }
 
     private static Cell createDownSidedImmutableCell(int result) {
-        return new Cell(new ImmutableContainer(new ImmutableContent<>(result, "CompareToDown")));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), "CompareToDown")));
     }
 
     private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult) {
         List<Content> contentList = new ArrayList<>();
-        contentList.add(new ImmutableContent<>(upperResult, "CompareToRight"));
-        contentList.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
+        contentList.add(new ImmutableContent<>(new Number(Integer.toString(upperResult)), "CompareToRight"));
+        contentList.add(new ImmutableContent<>(new Number(Integer.toString(bottomResult)), "CompareToDown"));
         return new Cell(new ImmutableContainer(contentList));
     }
 }

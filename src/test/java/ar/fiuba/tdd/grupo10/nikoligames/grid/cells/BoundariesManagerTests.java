@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,11 +16,11 @@ public class BoundariesManagerTests {
     private Cell cell4;
 
     private Cell createCell(int value) {
-        return new Cell( new MutableContainer( new MutableContent<>(value,"CELL")) );
+        return new Cell( new MutableContainer( new MutableContent<>(new Number(Integer.toString(value)),"CELL")) );
     }
 
     private Container createContainer(int value) {
-        return new Container( new MutableContainer( new MutableContent<>(value,"CONTAINER")) );
+        return new Container( new MutableContainer( new MutableContent<>(new Number(Integer.toString(value)),"CONTAINER")) );
     }
 
     @Before

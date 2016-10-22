@@ -7,7 +7,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Point;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
@@ -37,36 +39,35 @@ public class SumLinesPointingToSharedCornerOperationTest {
     private Cell cell3;
     private Cell cell4;
 
-    private Container createCornerWithNumber(Object contentValue, Integer number) {
+    private Container createCornerWithNumber(Value<Point> contentValue, Integer number) {
         List<Content> contents = Arrays.asList(
                 new ImmutableContent<>(contentValue, pointTag),
-                new ImmutableContent<>(number, numberTag)
+                new ImmutableContent<>(new Number(Integer.toString(number)), numberTag)
         );
         return newImmutableCell(contents);
     }
 
-    private Cell createCell(Object contentValue) {
+    private Cell createCell(Value<Line> contentValue) {
         return newMutableCell(new MutableContent<>(contentValue, lineTag));
     }
 
     private void createCells() {
-        cell1 = createCell( new FromTopLeftToBottomRightDiagonal() );
-        cell2 = createCell( new FromBottomLeftToTopRightDiagonal() );
-        cell3 = createCell( new FromTopLeftToBottomRightDiagonal() );
-        cell4 = createCell( new FromTopLeftToBottomRightDiagonal() );
+        cell1 = createCell( new FromTopLeftToBottomRightDiagonal("") );
+        cell2 = createCell( new FromBottomLeftToTopRightDiagonal("") );
+        cell3 = createCell( new FromTopLeftToBottomRightDiagonal("") );
+        cell4 = createCell( new FromTopLeftToBottomRightDiagonal("") );
     }
 
     private Container[] generateFourCellsWithThreeLinesMeetingCentralCorner(Integer cornerNumber) {
         createCells();
-        centralCorner = createCornerWithNumber(new Point(), cornerNumber);
+        centralCorner = createCornerWithNumber(new Point(""), cornerNumber);
 
         cell1.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_RIGHT );
         cell2.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_LEFT );
         cell3.setLimitAt( centralCorner, NeighbourPosition.TOP_RIGHT );
         cell4.setLimitAt( centralCorner, NeighbourPosition.TOP_LEFT );
 
-        Container[] cells = { cell1, cell2, cell3, cell4 };
-        return cells;
+        return new Container[]{ cell1, cell2, cell3, cell4 };
     }
 
     private void createRule( Container[] containers ) {

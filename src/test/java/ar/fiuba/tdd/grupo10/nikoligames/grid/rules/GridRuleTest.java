@@ -8,6 +8,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.StringValue;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -43,10 +45,10 @@ public class GridRuleTest {
 
     private static List<Cell> createCellWithOneTags() {
         Cell[] theCells = {
-                newMutableCell(new MutableContent<>(1, ONLY_TAG)),
-                newMutableCell(new MutableContent<>(2, ONLY_TAG)),
-                newMutableCell(new MutableContent<>(3, ONLY_TAG)),
-                newMutableCell(new MutableContent<>(4, ONLY_TAG)),
+                newMutableCell(new MutableContent<>(new Number("1"), ONLY_TAG)),
+                newMutableCell(new MutableContent<>(new Number("2"), ONLY_TAG)),
+                newMutableCell(new MutableContent<>(new Number("3"), ONLY_TAG)),
+                newMutableCell(new MutableContent<>(new Number("4"), ONLY_TAG)),
         };
         return new ArrayList<>(Arrays.asList(theCells));
     }
@@ -56,7 +58,7 @@ public class GridRuleTest {
         for (int i = 0; i < NUMBER_OF_CONTENT; i++) {
             List<Content> contents = new ArrayList<>();
             for (int j = 0; j < NUMBER_OF_CONTENT; j++) {
-                contents.add(new MutableContent<>(i + 1, TAGS_FOR_MANY_CONTENTS[j]) );
+                contents.add(new MutableContent<>(new Number(Integer.toString(i + 1)), TAGS_FOR_MANY_CONTENTS[j]) );
             }
             theCells.add(new Cell(new MutableContainer(contents)));
         }
@@ -80,7 +82,7 @@ public class GridRuleTest {
 
     private GridRule<Boolean> createRuleFirstRowOnlyTagAreDistinct() {
         final GridRuleOperation<Boolean> operation = new DistinctOperation(ONLY_TAG);
-        assertTrue(!operation.isApplicableOn(newMutableCell(new MutableContent<>(1,"value"))));
+        assertTrue(!operation.isApplicableOn(newMutableCell(new MutableContent<>(new Number("1"),"value"))));
         final GridRuleCondition<Boolean> condition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
                 Boolean.TRUE
@@ -267,11 +269,11 @@ public class GridRuleTest {
     @Test(expected = Test.None.class)
     public void gridOfStringAndSumEqualGoal() throws WrongNumberOfGridCellsException, RuleNotSatisfiedException {
         List<Cell> allCells = new ArrayList<>();
-        Cell celltest = newMutableCell( new MutableContent<>("M", ONLY_TAG) );
+        Cell celltest = newMutableCell( new MutableContent<>(new StringValue("M"), ONLY_TAG) );
         allCells.add(celltest);
-        allCells.add(newMutableCell( new MutableContent<>("A", ONLY_TAG) ));
-        allCells.add(newMutableCell( new MutableContent<>("N", ONLY_TAG) ));
-        allCells.add(newMutableCell( new MutableContent<>("Y", ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("A"), ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("N"), ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("Y"), ONLY_TAG) ));
         new GridBuilder().setColumns(2).setRows(2).addCells( allCells ).buildGrid();
 
         final GridRuleOperation<Boolean> operation = new DistinctOperation(ONLY_TAG);
@@ -297,10 +299,10 @@ public class GridRuleTest {
     @Test
     public void getIterator() {
         List<Cell> allCells = new ArrayList<>();
-        allCells.add(newMutableCell( new MutableContent<>("M", ONLY_TAG) ));
-        allCells.add(newMutableCell( new MutableContent<>("A", ONLY_TAG) ));
-        allCells.add(newMutableCell( new MutableContent<>("N", ONLY_TAG) ));
-        allCells.add(newMutableCell( new MutableContent<>("Y", ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("M"), ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("A"), ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("N"), ONLY_TAG) ));
+        allCells.add(newMutableCell( new MutableContent<>(new StringValue("Y"), ONLY_TAG) ));
         new GridBuilder().setColumns(2).setRows(2).addCells( allCells ).buildGrid();
 
         final GridRuleOperation<Boolean> operation = new DistinctOperation(ONLY_TAG);

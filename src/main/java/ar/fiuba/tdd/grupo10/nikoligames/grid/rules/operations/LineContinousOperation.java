@@ -46,14 +46,18 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
         return areValid(actualCell,firstCell);
     }
 
+    private String getTag(){
+        return getContentTags().get(0);
+    }
+
     private boolean areValid(Cell fromCell, Cell toCell) {
         if (fromCell != null && toCell != null) {
             NeighbourType neighbourType = fromCell.getNeighbourFrom(toCell);
 
             Content[] contents = {fromCell.getContent(), toCell.getContent() };
             if ( isApplicableOn(contents) ) {
-                Line actualLine = (Line)fromCell.getValue();
-                Line nextLine = (Line)toCell.getValue();
+                Line actualLine = (Line)fromCell.getContent(getTag()).getValueObject();
+                Line nextLine = (Line)toCell.getContent(getTag()).getValueObject();
                 if (neighbourType.isValid(actualLine,nextLine)) {
                     return true;
                 }
@@ -74,7 +78,7 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public boolean isApplicableOn(Container container) {
-        return !container.getContent( getContentTags().get(0) ).isEmpty();
+        return !container.getContent( getTag()).isEmpty();
     }
 
     @Override

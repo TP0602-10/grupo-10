@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.InvalidNeighbour;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.RightNeighbour;
 
@@ -19,9 +20,9 @@ public class NeighbourTests {
 
     @Before
     public void setUp() {
-        cellOne     = new Cell(new MutableContainer(new MutableContent<>(1, TEST_TAG)));
-        cellTwo     = new Cell(new MutableContainer(new MutableContent<>(2, TEST_TAG)));
-        cellThree   = new Cell(new MutableContainer(new MutableContent<>(3, TEST_TAG)));
+        cellOne     = new Cell(new MutableContainer(new MutableContent<>(new Number("1"), TEST_TAG)));
+        cellTwo     = new Cell(new MutableContainer(new MutableContent<>(new Number("2"), TEST_TAG)));
+        cellThree   = new Cell(new MutableContainer(new MutableContent<>(new Number("3"), TEST_TAG)));
 
         cellOne.setNeighbourAt( cellTwo, NeighbourPosition.RIGHT );
         cellTwo.setNeighbourAt( cellOne, NeighbourPosition.LEFT );

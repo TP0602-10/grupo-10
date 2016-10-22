@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
@@ -106,19 +107,19 @@ public class LineCircuitOperationTests {
         theCells = new ArrayList<>();
 
         //First Row
-        theCells.add( new Cell(new MutableContainer( new MutableContent<>(4,TAG) )) );
-        theCells.add( createCell( new FromBottomToRightLine() ));
-        theCells.add( createCell( new FromBottomToLeftLine() ));
+        theCells.add( new Cell(new MutableContainer( new MutableContent<>(new Number("4"),TAG) )) );
+        theCells.add( createCell( new FromBottomToRightLine("") ));
+        theCells.add( createCell( new FromBottomToLeftLine("") ));
 
         //Second Row
-        theCells.add(createCell( new FromBottomToRightLine() ));
-        theCells.add(createCell( new FromTopToLeftLine() ));
-        theCells.add(createCell( new VerticalLine() ));
+        theCells.add(createCell( new FromBottomToRightLine("") ));
+        theCells.add(createCell( new FromTopToLeftLine("") ));
+        theCells.add(createCell( new VerticalLine("") ));
 
         //Third Row
-        theCells.add(createCell( new FromTopToRightLine() ));
-        theCells.add(createCell( new HorizontalLine() ));
-        theCells.add(createCell( new FromTopToLeftLine() ));
+        theCells.add(createCell( new FromTopToRightLine("") ));
+        theCells.add(createCell( new HorizontalLine("") ));
+        theCells.add(createCell( new FromTopToLeftLine("") ));
     }
 
     private void createCellsWithoutCircuit() {
@@ -137,7 +138,7 @@ public class LineCircuitOperationTests {
          =============
          */
 
-        theCells.set(7, createCell( new VerticalLine() ));
+        theCells.set(7, createCell( new VerticalLine("") ));
     }
 
     @Test(expected = Test.None.class)

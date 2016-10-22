@@ -1,10 +1,24 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeighbour;
 
-public class Line implements ComparableNeighbour {
+public class Line extends Value<Line> implements ComparableNeighbour {
 
+    public Line(String name){
+        super(name);
+    }
+
+    @Override
+    protected void construct(String name) {
+        value = null;
+    }
+
+    @Override
+    public Line getValue(){
+        return this;
+    }
 
     @Override
     public boolean isValidOnTop() {
