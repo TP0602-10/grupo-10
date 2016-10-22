@@ -7,8 +7,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GameController;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 class SudokuLink extends GameLink {
 
