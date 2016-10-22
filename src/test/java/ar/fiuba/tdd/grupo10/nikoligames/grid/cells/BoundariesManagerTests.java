@@ -23,6 +23,23 @@ public class BoundariesManagerTests {
         return new Container( new MutableContainer( new MutableContent<>(new Number(Integer.toString(value)),"CONTAINER")) );
     }
 
+    private void generateNeighbours() {
+        /*
+            c1   c2
+               .
+            c3   c4
+         */
+
+        cell1.setNeighbourAt(cell2, NeighbourPosition.RIGHT);
+        cell1.setNeighbourAt(cell3, NeighbourPosition.BOTTOM);
+        cell1.setNeighbourAt(cell4, NeighbourPosition.BOTTOM_RIGHT);
+
+        cell2.setNeighbourAt(cell3, NeighbourPosition.BOTTOM_LEFT);
+        cell2.setNeighbourAt(cell4, NeighbourPosition.BOTTOM);
+
+        cell3.setNeighbourAt(cell4,NeighbourPosition.RIGHT);
+    }
+
     @Before
     public void setUp() {
         cell1 = createCell(1);
@@ -32,7 +49,6 @@ public class BoundariesManagerTests {
 
     }
 
-    @Ignore
     @Test
     public void rightNeighbourShareBorderAndCorner() {
         Container containerForCell1 = createContainer(1);
@@ -57,29 +73,14 @@ public class BoundariesManagerTests {
 
     }
 
-    private void genereteNeighbours() {
-        /*
-            c1   c2
-               .
-            c3   c4
-         */
-        cell1.setNeighbourAt(cell2,NeighbourPosition.RIGHT);
-        cell1.setNeighbourAt(cell3,NeighbourPosition.BOTTOM);
-        cell3.setNeighbourAt(cell4,NeighbourPosition.BOTTOM_RIGHT);
-
-        cell2.setNeighbourAt(cell3,NeighbourPosition.BOTTOM_LEFT);
-        cell2.setNeighbourAt(cell4,NeighbourPosition.BOTTOM);
-
-        cell3.setNeighbourAt(cell4,NeighbourPosition.RIGHT);
-    }
-
-    @Ignore
     @Test
     public void fourCellsShareSameCorner() {
         cell1.setLimitAt(createContainer(1), NeighbourPosition.BOTTOM_RIGHT);
         cell2.setLimitAt(createContainer(2), NeighbourPosition.BOTTOM_LEFT);
         cell3.setLimitAt(createContainer(3), NeighbourPosition.TOP_RIGHT);
         cell4.setLimitAt(createContainer(4), NeighbourPosition.TOP_LEFT);
+
+        generateNeighbours();
 
         Container corner1 = cell1.getLimitAt(NeighbourPosition.BOTTOM_RIGHT);
         Container corner2 = cell2.getLimitAt(NeighbourPosition.BOTTOM_LEFT);
@@ -95,6 +96,5 @@ public class BoundariesManagerTests {
 
         Assert.assertEquals(corner3,corner4);
     }
-
 
 }

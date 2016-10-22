@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.mainmenu.chain;
 
+import ar.fiuba.tdd.grupo10.nikoligames.CountryRoadFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.controllers.GameController;
 
 import java.awt.*;
 import javax.swing.*;
@@ -16,7 +18,7 @@ class CountryRoadLink extends GameLink {
 
     @Override
     void createGame(GameEnum game, String filePath) {
-        showMessage(JOptionPane.INFORMATION_MESSAGE, UNAVAILABLE_GAME_ERROR_MSG);
+        new GameController(new CountryRoadFactory().createGrid(), this.gameEnum);
     }
 
 }

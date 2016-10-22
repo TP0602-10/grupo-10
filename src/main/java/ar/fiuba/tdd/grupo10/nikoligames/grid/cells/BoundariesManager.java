@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BoundariesManager {
     // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
@@ -52,7 +53,7 @@ public class BoundariesManager {
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
             this.neighbours[position.getIndex()] = neighbourContainer;
             setSharedLimitsWithNeighbour(actual, neighbour, position);
-            neighbour.setNeighbourAt(actual, position.getOposite());
+            neighbour.setNeighbourAt(actual, position.getOpposite());
         }
     }
 
@@ -61,10 +62,17 @@ public class BoundariesManager {
     }
 
     private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
-        for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
+        Map<NeighbourPosition.RelativeType, List<NeighbourPosition>> frontiers
+                = position.getAssociatedAndOppositeFrontiersInOrder();
+
+        List<NeighbourPosition> associatedFrontier = frontiers.get(NeighbourPosition.RelativeType.ASSOCIATED);
+        List<NeighbourPosition> oppositeFrontier = frontiers.get(NeighbourPosition.RelativeType.OPPOSITE);
+
+        for (int i = 0; i < associatedFrontier.size(); i++) {
+            Container limitToSet = actual.getLimitAt(associatedFrontier.get(i));
             neighbour.setLimitAt(
-                    actual.getLimitAt(associatedLimitPosition.getOposite()),
-                    position
+                    limitToSet,
+                    oppositeFrontier.get(i)
             );
         }
     }

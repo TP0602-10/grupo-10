@@ -2,8 +2,10 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers;
 
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.NUMBER;
 
 public class LineValue implements PossibleValue {
@@ -29,7 +31,11 @@ public class LineValue implements PossibleValue {
 
     @Override
     public void setValueInCell(Cell cell) {
-        cell.setValue(value, NUMBER);
+        Content content = cell.getContent(NUMBER);
+        if (content != null) {
+            cell.setValue(value, NUMBER);
+        }
+        cell.setValue(value, LINE);
     }
 
 }
