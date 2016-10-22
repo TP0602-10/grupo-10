@@ -6,6 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BoundariesManager {
     // TODO: 16/10/16 Set borders and corners when new neighbour is setted.
@@ -51,8 +52,8 @@ public class BoundariesManager {
         NeighbourContainer neighbourContainer = new NeighbourContainer(neighbour, position.getType());
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
             this.neighbours[position.getIndex()] = neighbourContainer;
-            neighbour.setNeighbourAt(actual, position.getOposite());
             setSharedLimitsWithNeighbour(actual, neighbour, position);
+            neighbour.setNeighbourAt(actual, position.getOposite());
         }
     }
 
@@ -62,15 +63,20 @@ public class BoundariesManager {
 
     private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
         for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
+            Container limitToSet = actual.getLimitAt(associatedLimitPosition);
             neighbour.setLimitAt(
-                    actual.getLimitAt(associatedLimitPosition),
+                    limitToSet,
                     associatedLimitPosition.getOposite()
             );
         }
     }
 
-    private boolean isLimitAlreadyAssigned(NeighbourContainer limit) {
-        return getLimits().contains(limit);
+    private boolean isLimitAlreadyAssigned(Container limit) {
+        return getLimits().stream()
+                .filter(container -> container != null && container.getNeighbourContainer() != null)
+                .map(NeighbourContainer::getNeighbourContainer)
+                .collect(Collectors.toList())
+                .contains(limit);
     }
 
     public List<NeighbourContainer> getLimits() {

@@ -50,6 +50,10 @@ public enum NeighbourPosition {
         return limits;
     }
 
+    public List<NeighbourPosition> getAssociatedOposites() {
+        return this.getOposite().getAssociatedLimitPositions();
+    }
+
     private boolean doesPositionRepresentACorner() {
         return this == TOP_LEFT || this == TOP_RIGHT
                 || this == BOTTOM_RIGHT || this == BOTTOM_LEFT;
