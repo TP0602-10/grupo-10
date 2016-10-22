@@ -2,7 +2,6 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
@@ -103,7 +102,7 @@ public class GridBuilder {
         }
     }
 
-    private void setBottomRightNeighbout(int index) {
+    private void setBottomRightNeighbour(int index) {
         if ( isValidToBottom(index) && isValidToRight(index) ) {
             cells.get(index).setNeighbourAt( cells.get(index + columns + 1), NeighbourPosition.BOTTOM_RIGHT );
         }
@@ -115,7 +114,7 @@ public class GridBuilder {
         }
     }
 
-    private void setTopLeftNeighbout(int index) {
+    private void setTopLeftNeighbour(int index) {
         if ( isValidToTop(index) && isValidToLeft(index) ) {
             cells.get(index).setNeighbourAt( cells.get(index - columns - 1), NeighbourPosition.TOP_LEFT );
         }
@@ -123,9 +122,9 @@ public class GridBuilder {
 
     private void setCornerNeighbours(int index) {
         setTopRightNeighbour(index);
-        setBottomRightNeighbout(index);
+        setBottomRightNeighbour(index);
         setBottomLeftNeighbour(index);
-        setTopLeftNeighbout(index);
+        setTopLeftNeighbour(index);
     }
 
 

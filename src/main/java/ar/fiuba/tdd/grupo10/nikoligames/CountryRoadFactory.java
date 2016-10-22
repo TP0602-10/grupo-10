@@ -9,6 +9,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.HorizontalLine;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.VerticalLine;
@@ -180,7 +181,7 @@ public class CountryRoadFactory {
             } else {
                 int goalCellIndex = goalRoomsIndexValues[goalIndexSearched][goalIndex];
                 int goalCellValue = goalRoomsIndexValues[goalIndexSearched][goalValue];
-                cells.get(goalCellIndex).setContent(new ImmutableContent<>(goalCellValue,GOALTAG));
+                cells.get(goalCellIndex).setContent(new ImmutableContent<>(new Number(Integer.toString(goalCellValue)),GOALTAG));
                 condition = new GridRuleCondition<>(
                         new EqualsMatcher<>(),
                         goalCellValue
