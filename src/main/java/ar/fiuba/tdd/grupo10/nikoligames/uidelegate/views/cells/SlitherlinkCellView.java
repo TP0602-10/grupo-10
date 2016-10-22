@@ -16,8 +16,7 @@ public class SlitherlinkCellView extends CellView {
     public void paintComponent(Graphics graphics) {
         Cell cell = (Cell) getValue();
         drawNumber(cell, graphics);
-        setBorders(cell);
-        drawBorders(graphics);
+        drawBorders(cell, graphics);
     }
 
     private void drawNumber(Cell cell, Graphics graphics) {
