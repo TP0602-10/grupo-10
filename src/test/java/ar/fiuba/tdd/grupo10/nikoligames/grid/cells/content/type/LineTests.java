@@ -12,8 +12,8 @@ import org.junit.Test;
 public class LineTests {
     @Test
     public void twoNeighbourLinesAreContinous() {
-        Line vertical = new VerticalLine("");
-        Line topLeft = new FromTopToLeftLine("");
+        Line vertical = new VerticalLine();
+        Line topLeft = new FromTopToLeftLine();
 
         NeighbourType topNeighbour = new TopNeighbour();
 
@@ -23,8 +23,8 @@ public class LineTests {
 
     @Test
     public void twoNeighbourLinesArentContinuos() {
-        Line vertical = new VerticalLine("");
-        Line horizontal = new HorizontalLine("");
+        Line vertical = new VerticalLine();
+        Line horizontal = new HorizontalLine();
 
         NeighbourType neighbour = new TopNeighbour();
 

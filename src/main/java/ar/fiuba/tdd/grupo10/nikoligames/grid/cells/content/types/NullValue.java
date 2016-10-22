@@ -1,13 +1,13 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types;
 
-public class StringValue extends Value{
-    public StringValue(String value) {
-        super(value);
+public class NullValue extends Value {
+
+    public NullValue(String name) {
+        super(name);
     }
 
     @Override
     protected void construct(String name) {
-        this.value = name;
+        this.value = null;
     }
-
 }

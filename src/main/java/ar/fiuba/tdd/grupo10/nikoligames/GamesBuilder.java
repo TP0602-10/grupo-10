@@ -11,13 +11,13 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.helpers.ClassPathHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.json.structures.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,29 +26,7 @@ import java.util.Map;
  */
 public final class GamesBuilder {
 
-    private static final Map<String,String> nameClass;
-
-    static {
-        nameClass = new HashMap<>();
-        nameClass.put("Cell",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
-        nameClass.put("ImmutableContainer",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
-        nameClass.put("MutableContainer",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
-        nameClass.put("ImmutableContent",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.");
-        nameClass.put("MutableContent",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.");
-        nameClass.put("DistinctOperation",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.");
-        nameClass.put("EqualsMatcher",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.");
-        nameClass.put("AlwaysVerifiableRule",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.");
-        nameClass.put("Number",
-                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.");
-    }
+    private static final Map<String,String> nameClass = ClassPathHelper.getClasesPath();
 
     public static Grid createUsingJson(String location) throws GameBuilderErrorException {
 
@@ -133,12 +111,13 @@ public final class GamesBuilder {
     private static Content createContent(ContentStructure content) throws GameBuilderErrorException {
         Value value =  createValue(content.getValue());
         return (Content) createObject(getCompleteClassName(content.getType()),
-                Object.class,String.class,value,content.getTag());
+                new Class[] {Value.class,String.class},new Object[] {value,content.getTag()});
     }
 
     private static Value createValue(ValueStructure valueStructure) throws GameBuilderErrorException {
-        return (Value) createObject(getCompleteClassName(valueStructure.getType()),
-                String.class, valueStructure.getValue());
+        Class[] classes = {String.class};
+        Object[] arguments = {valueStructure.getValue()};
+        return (Value) createObject(getCompleteClassName(valueStructure.getType()),classes,arguments);
     }
 
     private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
@@ -186,7 +165,6 @@ public final class GamesBuilder {
     private static GridRuleCondition createCondition(ConditionStructure condition)
             throws GameBuilderErrorException {
         try {
-
             Class matcherClass = Class.forName(getCompleteClassName(condition.getMatcher()));
             GridRuleMatcher<Object> matcher = (GridRuleMatcher<Object>) matcherClass.newInstance();
             return new GridRuleCondition<>(matcher, condition.getGoal());
@@ -198,10 +176,10 @@ public final class GamesBuilder {
     private static GridRuleOperation createOperation(OperationStructure operationStructure)
             throws GameBuilderErrorException {
         return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),
-                List.class,operationStructure.getContentTags());
+                new Class[] {List.class}, new Object[] {operationStructure.getContentTags()});
     }
 
-    private static Object createObject(String nameClass,Class constructorClasses, Object... parameters )
+    private static Object createObject(String nameClass,Class[] constructorClasses, Object[] parameters )
             throws GameBuilderErrorException {
         try {
             Class cl = Class.forName(nameClass);

@@ -52,15 +52,15 @@ public class SumLinesPointingToSharedCornerOperationTest {
     }
 
     private void createCells() {
-        cell1 = createCell( new FromTopLeftToBottomRightDiagonal("") );
-        cell2 = createCell( new FromBottomLeftToTopRightDiagonal("") );
-        cell3 = createCell( new FromTopLeftToBottomRightDiagonal("") );
-        cell4 = createCell( new FromTopLeftToBottomRightDiagonal("") );
+        cell1 = createCell( new FromTopLeftToBottomRightDiagonal() );
+        cell2 = createCell( new FromBottomLeftToTopRightDiagonal() );
+        cell3 = createCell( new FromTopLeftToBottomRightDiagonal() );
+        cell4 = createCell( new FromTopLeftToBottomRightDiagonal() );
     }
 
     private Container[] generateFourCellsWithThreeLinesMeetingCentralCorner(Integer cornerNumber) {
         createCells();
-        centralCorner = createCornerWithNumber(new Point(""), cornerNumber);
+        centralCorner = createCornerWithNumber(new Point(), cornerNumber);
 
         cell1.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_RIGHT );
         cell2.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_LEFT );

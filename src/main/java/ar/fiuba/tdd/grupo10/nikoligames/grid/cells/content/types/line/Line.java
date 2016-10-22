@@ -10,6 +10,10 @@ public class Line extends Value<Line> implements ComparableNeighbour {
         super(name);
     }
 
+    public Line() {
+        super("");
+    }
+
     @Override
     protected void construct(String name) {
         value = null;

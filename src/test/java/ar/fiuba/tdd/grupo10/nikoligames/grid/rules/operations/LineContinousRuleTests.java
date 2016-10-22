@@ -36,10 +36,10 @@ public class LineContinousRuleTests {
     }
 
     private void createCells() {
-        cell1 = createCell( new FromBottomToRightLine("") );
-        cell2 = createCell( new FromBottomToLeftLine("") );
-        cell3 = createCell( new FromTopToLeftLine("") );
-        cell4 = createCell( new FromTopToRightLine("") );
+        cell1 = createCell( new FromBottomToRightLine() );
+        cell2 = createCell( new FromBottomToLeftLine() );
+        cell3 = createCell( new FromTopToLeftLine() );
+        cell4 = createCell( new FromTopToRightLine() );
     }
 
     private Container[] generateFourCellsWithCloseLineCircuit() {
@@ -62,7 +62,7 @@ public class LineContinousRuleTests {
         cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
         cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
 
-        cell4 = createCell( new HorizontalLine("") );
+        cell4 = createCell( new HorizontalLine() );
         cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
         cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 

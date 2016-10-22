@@ -83,8 +83,8 @@ public enum GameEnum {
     private static List<PossibleValue> createGokigenPossibleValues() {
         List<PossibleValue> gokigenNanameValues = new ArrayList<>();
         gokigenNanameValues.add(new LineValue(null));
-        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal("_")));
-        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal("_")));
+        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal()));
+        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal()));
         return gokigenNanameValues;
     }
 
