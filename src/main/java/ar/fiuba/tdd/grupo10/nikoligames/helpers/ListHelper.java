@@ -15,6 +15,19 @@ public final class ListHelper {
                 && list2.containsAll(list1);
     }
 
+    public static <T> boolean equalsAndInSameOrder(List<T> list1, List<T> list2) {
+        if (!equals(list1, list2)) {
+            return false;
+        }
+
+        for (int i = 0; i < list1.size(); i++) {
+            if (!list1.get(i).equals(list2.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static <T> List<T> rejectDuplicateElements(List<T> list) {
         return list.stream().distinct().collect(Collectors.toList());
     }

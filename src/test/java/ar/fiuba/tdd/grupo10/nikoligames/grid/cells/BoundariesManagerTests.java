@@ -72,7 +72,6 @@ public class BoundariesManagerTests {
 
     }
 
-    @Ignore
     @Test
     public void fourCellsShareSameCorner() {
         cell1.setLimitAt(createContainer(1), NeighbourPosition.BOTTOM_RIGHT);

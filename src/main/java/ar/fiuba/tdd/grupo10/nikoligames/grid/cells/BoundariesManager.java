@@ -53,7 +53,7 @@ public class BoundariesManager {
         if (!isNeighbourAlreadyAssigned(neighbourContainer)) {
             this.neighbours[position.getIndex()] = neighbourContainer;
             setSharedLimitsWithNeighbour(actual, neighbour, position);
-            neighbour.setNeighbourAt(actual, position.getOposite());
+            neighbour.setNeighbourAt(actual, position.getOpposite());
         }
     }
 
@@ -62,21 +62,19 @@ public class BoundariesManager {
     }
 
     private void setSharedLimitsWithNeighbour(Cell actual, Cell neighbour, NeighbourPosition position) {
-        for (NeighbourPosition associatedLimitPosition : position.getAssociatedLimitPositions()) {
-            Container limitToSet = actual.getLimitAt(associatedLimitPosition);
+        Map<NeighbourPosition.RelativeType, List<NeighbourPosition>> frontiers
+                = position.getAssociatedAndOppositeFrontiersInOrder();
+
+        List<NeighbourPosition> associatedFrontier = frontiers.get(NeighbourPosition.RelativeType.ASSOCIATED);
+        List<NeighbourPosition> oppositeFrontier = frontiers.get(NeighbourPosition.RelativeType.OPPOSITE);
+
+        for (int i = 0; i < associatedFrontier.size(); i++) {
+            Container limitToSet = actual.getLimitAt(associatedFrontier.get(i));
             neighbour.setLimitAt(
                     limitToSet,
-                    associatedLimitPosition.getOposite()
+                    oppositeFrontier.get(i)
             );
         }
-    }
-
-    private boolean isLimitAlreadyAssigned(Container limit) {
-        return getLimits().stream()
-                .filter(container -> container != null && container.getNeighbourContainer() != null)
-                .map(NeighbourContainer::getNeighbourContainer)
-                .collect(Collectors.toList())
-                .contains(limit);
     }
 
     public List<NeighbourContainer> getLimits() {
