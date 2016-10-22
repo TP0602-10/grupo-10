@@ -46,7 +46,7 @@ public class LineContinousOperation extends GridRuleOperation<Boolean> {
         return areValid(actualCell,firstCell);
     }
 
-    private String getTag(){
+    private String getTag() {
         return getContentTags().get(0);
     }
 

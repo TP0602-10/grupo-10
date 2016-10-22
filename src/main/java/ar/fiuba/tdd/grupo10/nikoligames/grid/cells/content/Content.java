@@ -54,15 +54,8 @@ public abstract class Content<T> {
             return false;
         }
         Content<?> content = (Content<?>) obj;
-        if (Objects.equals(tag, content.getTag())) {
-            if (value != null ) {
-                return value.equals(content.getValueObject());
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+
+        return (Objects.equals(tag, content.getTag()) && value != null) && value.equals(content.getValueObject());
     }
 
     @Override

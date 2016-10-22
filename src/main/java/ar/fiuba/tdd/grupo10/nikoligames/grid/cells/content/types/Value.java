@@ -12,19 +12,18 @@ public abstract class Value<T> {
 
     protected abstract void construct(String name);
 
-    public T getValue(){
+    public T getValue() {
         return value;
     }
 
-    public void setValue(T value){
+    public void setValue(T value) {
         this.value = value;
     }
 
-    public boolean clearValue(){
-        if (value == null){
+    public boolean clearValue() {
+        if (value == null) {
             return false;
-        }
-        else{
+        } else {
             value = null;
             return true;
         }

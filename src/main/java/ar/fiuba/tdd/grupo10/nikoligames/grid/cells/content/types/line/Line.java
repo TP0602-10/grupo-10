@@ -6,7 +6,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeig
 
 public class Line extends Value<Line> implements ComparableNeighbour {
 
-    public Line(String name){
+    public Line(String name) {
         super(name);
     }
 
@@ -16,7 +16,7 @@ public class Line extends Value<Line> implements ComparableNeighbour {
     }
 
     @Override
-    public Line getValue(){
+    public Line getValue() {
         return this;
     }
 

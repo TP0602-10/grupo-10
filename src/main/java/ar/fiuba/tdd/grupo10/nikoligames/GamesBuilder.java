@@ -13,22 +13,49 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper;
 import ar.fiuba.tdd.grupo10.nikoligames.json.structures.*;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Create a game using a json file.
  */
 public final class GamesBuilder {
 
+    private static final Map<String,String> nameClass;
+
+    static {
+        nameClass = new HashMap<>();
+        nameClass.put("Cell",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
+        nameClass.put("ImmutableContainer",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
+        nameClass.put("MutableContainer",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.");
+        nameClass.put("ImmutableContent",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.");
+        nameClass.put("MutableContent",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.");
+        nameClass.put("DistinctOperation",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.");
+        nameClass.put("EqualsMatcher",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.");
+        nameClass.put("AlwaysVerifiableRule",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.");
+        nameClass.put("Number",
+                "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.");
+    }
+
     public static Grid createUsingJson(String location) throws GameBuilderErrorException {
 
         GameStructure gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
 
         if (gameStructure == null || gameStructure.getInitialBoard() == null
-                || gameStructure.getBoard() == null || gameStructure.getRules() == null){
+                || gameStructure.getBoard() == null || gameStructure.getRules() == null) {
             throw new GameBuilderErrorException("can't open file");
         }
 
@@ -52,17 +79,15 @@ public final class GamesBuilder {
 
     private static List<Cell> createGridCell(List<ContainerStructure> initialBoard) {
         List<Cell> cells = new ArrayList<>();
-
-        initialBoard.forEach(container -> {
-                    Cell cell = null;
-                    try {
-                        cell = createCell(container);
-                    } catch (GameBuilderErrorException e) {
-                        e.printStackTrace();
-                    }
-                    cells.add(cell);
-        }
-        );
+        initialBoard.forEach( container -> {
+                Cell cell = null;
+                try {
+                    cell = createCell(container);
+                } catch (GameBuilderErrorException e) {
+                    e.printStackTrace();
+                }
+                cells.add(cell);
+            });
         return cells;
     }
 
@@ -95,12 +120,12 @@ public final class GamesBuilder {
         List<Content> listContents = new ArrayList<>();
 
         contents.forEach(conten -> {
-            try {
-                listContents.add(createContent(conten));
-            } catch (GameBuilderErrorException e) {
-                e.printStackTrace();
-            }
-        });
+                try {
+                    listContents.add(createContent(conten));
+                } catch (GameBuilderErrorException e) {
+                    e.printStackTrace();
+                }
+            });
 
         return listContents;
     }
@@ -188,29 +213,7 @@ public final class GamesBuilder {
         }
     }
 
-    private static String getCompleteClassName(String className){
-        switch (className){
-            case "Cell":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
-            case "ImmutableContainer":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
-            case "MutableContainer":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells." + className;
-            case "ImmutableContent":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content." + className;
-            case "MutableContent":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content." + className;
-            case "DistinctOperation":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations." + className;
-            case "EqualsMatcher":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers." + className;
-            case "AlwaysVerifiableRule":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.rules." + className;
-            case "Number":
-                return "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types." + className;
-            default:
-                return "ar.fiuba.tdd.grupo10.nikoligames." + className;
-
-        }
+    private static String getCompleteClassName(String className) {
+        return nameClass.getOrDefault(className,"ar.fiuba.tdd.grupo10.nikoligames.") + className;
     }
 }
