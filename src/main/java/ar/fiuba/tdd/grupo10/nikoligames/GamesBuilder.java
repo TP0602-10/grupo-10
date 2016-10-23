@@ -205,8 +205,10 @@ public final class GamesBuilder {
 
     private static GridRuleOperation createOperation(OperationStructure operationStructure)
             throws GameBuilderErrorException {
-        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),
-                new Class[] {List.class}, new Object[] {operationStructure.getContentTags()});
+        Class[] classes = { operationStructure.getContentTags().size() > 1 ? List.class : String.class };
+        Object[] tags = { operationStructure.getContentTags().size() > 1
+                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0) };
+        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()), classes, tags);
     }
 
     private static Object createObject(String nameClass,Class[] constructorClasses, Object[] parameters )

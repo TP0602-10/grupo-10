@@ -16,6 +16,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GreaterThanIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.CountFilledOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class ClassPathHelper {
             ImmutableContent.class,
             MutableContent.class,
             DistinctOperation.class,
+            LineCircuitOperation.class,
             EqualsMatcher.class,
             AlwaysVerifiableRule.class,
             CompleteIteratorRule.class,
