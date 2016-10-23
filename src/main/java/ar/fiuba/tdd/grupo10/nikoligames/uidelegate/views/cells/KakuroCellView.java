@@ -20,9 +20,11 @@ public class KakuroCellView extends CellView {
 
         if (cell.isContentEditable()) {
             graphics.setColor(Color.BLUE);
-            Object content = cell.getValue("Number");
+            Content content = cell.getContent("Number");
             if (content != null) {
-                graphics.drawString(content.toString(), (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
+                Object value = content.getValue() != null ? content.getValue() : "";
+                String contentValue = String.valueOf(value);
+                graphics.drawString(contentValue, (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
             }
         } else {
             graphics.setColor(Color.black);
