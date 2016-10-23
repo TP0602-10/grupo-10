@@ -1,8 +1,9 @@
 package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
-import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
