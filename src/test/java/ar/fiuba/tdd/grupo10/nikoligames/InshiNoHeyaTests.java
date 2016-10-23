@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
@@ -23,7 +24,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
     private Map<String, String> playsInvalidity;
     private String boardValidity = "valid";
 
-    private void loadBoard() {
+    private void loadBoard() throws FileReadException {
         theGoalsValues = new ArrayList<>();
         InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/inshi_board.json", InputBoard.class);
         for (BoardValue boardValue : initialBoard.getBoard().getValues()) {
@@ -38,7 +39,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
         }
     }
 
-    private void loadPlays() {
+    private void loadPlays() throws FileReadException {
         InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/inshi_play.json", InshiNoHeyaInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
@@ -51,7 +52,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws FileReadException {
         loadBoard();
         loadPlays();
         playsInvalidity = new HashMap<>();

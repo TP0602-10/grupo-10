@@ -7,6 +7,7 @@ public class GameStructure {
     private BoardStructure board;
     private List<ContainerStructure> initialBoard;
     private List<RuleStructure> rules;
+    private List<CellLimit> cellLimits;
 
     public List<RuleStructure> getRules() {
         return rules;
@@ -18,5 +19,9 @@ public class GameStructure {
 
     public BoardStructure getBoard() {
         return board;
+    }
+
+    public List<CellLimit> getCellLimits() {
+        return cellLimits;
     }
 }

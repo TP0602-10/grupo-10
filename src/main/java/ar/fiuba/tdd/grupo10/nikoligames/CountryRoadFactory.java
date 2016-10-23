@@ -106,13 +106,13 @@ public class CountryRoadFactory {
 
     private static void addRightBordersToCells( List<Cell> cells ) {
         for (int index : cellsWithRightBorder) {
-            cells.get(index).setLimitAt( createBorder(LINEBORDERRIGHTTAG, new VerticalLine()), NeighbourPosition.RIGHT );
+            cells.get(index).setLimitAt( createBorder(LINEBORDERRIGHTTAG, new VerticalLine("")), NeighbourPosition.RIGHT );
         }
     }
 
     private static void addBottomBordersToCells( List<Cell> cells ) {
         for (int index : cellsWithBottomBorder) {
-            cells.get(index).setLimitAt( createBorder(LINEBORDERBOTTOMTAG,new HorizontalLine()), NeighbourPosition.BOTTOM );
+            cells.get(index).setLimitAt( createBorder(LINEBORDERBOTTOMTAG,new HorizontalLine("")), NeighbourPosition.BOTTOM );
         }
     }
 

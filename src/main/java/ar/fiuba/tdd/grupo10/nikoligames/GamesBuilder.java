@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameBuilderErrorException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
@@ -8,6 +9,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ContainerState;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -30,7 +32,12 @@ public final class GamesBuilder {
 
     public static Grid createUsingJson(String location) throws GameBuilderErrorException {
 
-        GameStructure gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
+        GameStructure gameStructure = null;
+        try {
+            gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
+        } catch (FileReadException e) {
+            throw new GameBuilderErrorException("Error on create game by json file: " + location);
+        }
 
         if (gameStructure == null || gameStructure.getInitialBoard() == null
                 || gameStructure.getBoard() == null || gameStructure.getRules() == null) {
@@ -39,20 +46,32 @@ public final class GamesBuilder {
 
         BoardStructure board = gameStructure.getBoard();
 
-        if (gameStructure.getInitialBoard().size() != (board.getRows() * board.getColumns())) {
-            throw new GameBuilderErrorException("Board with wrong size");
-        }
+        checkCorrectInitialBoardSize(gameStructure.getInitialBoard().size(), board);
 
         List<Cell> gridCell = createGridCell(gameStructure.getInitialBoard());
+
+        setLimitsOfBoard(gridCell,gameStructure.getCellLimits());
 
         List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
 
         GridRuleManager gridRuleManager = new GridRuleManager(gridRules);
         Grid grid = new GridBuilder().setRows(board.getRows()).setColumns(board.getColumns())
-                .addCells(gridCell).addObserver(gridRuleManager).buildGrid();
+                .addCells(gridCell).doNeighborlyRelations().addObserver(gridRuleManager).buildGrid();
         gridRuleManager.addObserver(grid);
 
         return grid;
+    }
+
+    private static void checkCorrectInitialBoardSize(int size, BoardStructure board) throws GameBuilderErrorException {
+        if (size != (board.getRows() * board.getColumns())) {
+            throw new GameBuilderErrorException("Board with wrong size");
+        }
+    }
+
+    private static void setLimitsOfBoard(List<Cell> gridCell, List<CellLimit> cellLimits) {
+        if (cellLimits != null && !cellLimits.isEmpty())  {
+            setCellLimits(cellLimits,gridCell);
+        }
     }
 
     private static List<Cell> createGridCell(List<ContainerStructure> initialBoard) {
@@ -204,5 +223,28 @@ public final class GamesBuilder {
 
     private static String getCompleteClassName(String className) {
         return nameClass.getOrDefault(className,"ar.fiuba.tdd.grupo10.nikoligames") + "." + className;
+    }
+
+    public static void setCellLimits(List<CellLimit> cellLimits, List<Cell> grid) {
+        cellLimits.forEach( cellLimit -> {
+                Cell cell = grid.get(cellLimit.getIndex());
+                Container cont = null;
+                try {
+                    cont = createContainer(cellLimit);
+                } catch (GameBuilderErrorException e) {
+                    e.printStackTrace();
+                }
+                cell.setLimitAt(cont, NeighbourPosition.valueOf(cellLimit.getNeighbourPosition()));
+            });
+    }
+
+    private static Container createContainer(CellLimit cellLimit) throws GameBuilderErrorException {
+
+        ValueStructure valueStructure = new ValueStructure(cellLimit.getType(),cellLimit.getTag());
+        Content content = createContent(new ContentStructure(cellLimit.getContent(),cellLimit.getTag(),valueStructure));
+        ContainerState containerState = (ContainerState) createObject(getCompleteClassName(cellLimit.getContainer()),
+                new Class[] {Content.class},new Object[] {content});
+
+        return new Container(containerState);
     }
 }

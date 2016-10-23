@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.NumberValue;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.SlitherlinkValue;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +73,8 @@ public enum GameEnum {
     private static LineValue createLinePossibleValue(Class<? extends Line> clazz) {
         if (clazz != null) {
             try {
-                return new LineValue(clazz.newInstance());
+                Constructor constructor = clazz.getConstructor(String.class);
+                return new LineValue((Line) constructor.newInstance(""));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,8 +85,8 @@ public enum GameEnum {
     private static List<PossibleValue> createGokigenPossibleValues() {
         List<PossibleValue> gokigenNanameValues = new ArrayList<>();
         gokigenNanameValues.add(new LineValue(null));
-        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal()));
-        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal()));
+        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal("")));
+        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal("")));
         return gokigenNanameValues;
     }
 
