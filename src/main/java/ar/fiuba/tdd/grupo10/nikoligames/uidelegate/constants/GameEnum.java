@@ -13,20 +13,25 @@ import java.util.List;
 
 public enum GameEnum {
 
-    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class),
-    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class),
-    COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class),
-    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class),
-    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class);
+    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class,
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuEasy.json"),
+    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class, null),
+    COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json"),
+    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, null),
+    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null);
 
     private String description;
     private List<PossibleValue> possibleValues;
     private Class<? extends CellView> cellClass;
+    private String defaultJsonPath;
 
-    GameEnum(String description, List<PossibleValue> possibleValues, Class<? extends CellView> cellClass) {
+    GameEnum(String description, List<PossibleValue> possibleValues,
+             Class<? extends CellView> cellClass, String defaultJsonPath) {
         this.description = description;
         this.possibleValues = possibleValues;
         this.cellClass = cellClass;
+        this.defaultJsonPath = defaultJsonPath;
     }
 
     private static List<PossibleValue> createNumberPossibleValues(int min, int max) {
@@ -99,9 +104,9 @@ public enum GameEnum {
         return cellClass;
     }
 
-//    public Object getNextValue(Object currentValue) {
-//        return getNextPossibleValue(currentValue).getValue();
-//    }
+    public String getDefaultJsonPath() {
+        return defaultJsonPath;
+    }
 
     public PossibleValue getNextPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
@@ -122,10 +127,6 @@ public enum GameEnum {
         throw new RuntimeException("GameEnum:getNextValue not found for game: " + toString()
                 + " currentValue: " + currentValue);
     }
-
-//    public Object getPrevValue(Object currentValue) {
-//        return getPrevPossibleValue(currentValue).getValue();
-//    }
 
     public PossibleValue getPrevPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {

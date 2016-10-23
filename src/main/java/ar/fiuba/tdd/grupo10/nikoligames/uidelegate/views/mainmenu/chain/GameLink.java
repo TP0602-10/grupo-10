@@ -38,14 +38,13 @@ abstract class GameLink {
     void execute(GameEnum gameEnum, String filePath) {
         if (this.gameEnum.equals(gameEnum)) {
             if (StringUtils.isEmpty(filePath)) {
-                showMessage(JOptionPane.ERROR_MESSAGE, NO_FILE_ERROR_MSG);
-            } else {
-                try {
-                    createGame(gameEnum, filePath);
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                    showMessage(JOptionPane.ERROR_MESSAGE, FILE_ERROR_MSG);
-                }
+                filePath = gameEnum.getDefaultJsonPath();
+            }
+            try {
+                createGame(gameEnum, filePath);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                showMessage(JOptionPane.ERROR_MESSAGE, FILE_ERROR_MSG);
             }
         } else {
             next.execute(gameEnum, filePath);
