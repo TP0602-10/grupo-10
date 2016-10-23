@@ -90,7 +90,7 @@ public class MainMenuView extends JFrame {
         gameCombo.setAlignmentX(Component.LEFT_ALIGNMENT);
         gameCombo.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 setFilePathTextFieldValue();
             }
         });
