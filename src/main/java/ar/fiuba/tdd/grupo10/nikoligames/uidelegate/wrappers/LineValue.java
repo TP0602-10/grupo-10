@@ -31,10 +31,6 @@ public class LineValue implements PossibleValue {
 
     @Override
     public void setValueInCell(Cell cell) {
-        Content content = cell.getContent(NUMBER);
-        if (content != null) {
-            cell.setValue(value, NUMBER);
-        }
         cell.setValue(value, LINE);
     }
 

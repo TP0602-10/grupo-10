@@ -11,27 +11,32 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
+
 public enum GameEnum {
 
     SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuEasy.json"),
-    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class, null),
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuEasy.json", "Tag"),
+    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class, null, "Number"),
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json"),
-    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, null),
-    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null);
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json", LINE),
+    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, null, null),
+    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null, null);
 
     private String description;
     private List<PossibleValue> possibleValues;
     private Class<? extends CellView> cellClass;
     private String defaultJsonPath;
+    private String mutableContentTag;
 
     GameEnum(String description, List<PossibleValue> possibleValues,
-             Class<? extends CellView> cellClass, String defaultJsonPath) {
+             Class<? extends CellView> cellClass, String defaultJsonPath,
+             String mutableContentTag) {
         this.description = description;
         this.possibleValues = possibleValues;
         this.cellClass = cellClass;
         this.defaultJsonPath = defaultJsonPath;
+        this.mutableContentTag = mutableContentTag;
     }
 
     private static List<PossibleValue> createNumberPossibleValues(int min, int max) {
@@ -106,6 +111,10 @@ public enum GameEnum {
 
     public String getDefaultJsonPath() {
         return defaultJsonPath;
+    }
+
+    public String getMutableContentTag() {
+        return mutableContentTag;
     }
 
     public PossibleValue getNextPossibleValue(Object currentValue) {
