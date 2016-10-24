@@ -16,10 +16,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GreaterThanIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessThanIntegerMatcher;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.CountFilledOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +33,7 @@ public class ClassPathHelper {
             MutableContent.class,
             DistinctOperation.class,
             LineCircuitOperation.class,
+            SumLinesPointingToSharedCornerOperation.class,
             EqualsMatcher.class,
             LessOrEqualToIntegerMatcher.class,
             LessThanIntegerMatcher.class,
@@ -46,15 +44,15 @@ public class ClassPathHelper {
             GreaterThanIntegerMatcher.class,
             Number.class,
             NullValue.class,
-            StringValue.class,
+            //StringValue.class,
             VerticalLine.class,
             HorizontalLine.class,
             FromTopToRightLine.class,
             FromBottomToLeftLine.class,
-            FromTopLeftToBottomRightDiagonal.class,
+            //FromTopLeftToBottomRightDiagonal.class,
             FromBottomToRightLine.class,
             FromTopToLeftLine.class,
-            FromBottomLeftToTopRightDiagonal.class,
+            //FromBottomLeftToTopRightDiagonal.class,
             Point.class
     };
 

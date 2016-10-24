@@ -168,7 +168,7 @@ public final class GamesBuilder {
             return (GridRule) con.newInstance(iterator, operation, condition);
         } catch (InstantiationException | InvocationTargetException
                 | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
-            throw new GameBuilderErrorException("Error on create operation");
+            throw new GameBuilderErrorException("Error on create rule");
         }
     }
 
@@ -213,13 +213,14 @@ public final class GamesBuilder {
     }
 
     private static Class[] getClassesToOperation(OperationStructure operationStructure) {
-        Class[] classes = {operationStructure.getContentTags().size() > 1 ? List.class : String.class };
+        List<Class> classes = new ArrayList<>( Arrays.asList(operationStructure.getContentTags().size() > 1 ? List.class : String.class));
 
         if (operationStructure.getCorner() != null) {
-            classes = new Class[classes.length + 1];
-            classes[classes.length - 1] = Container.class;
+            classes.add(Container.class);
         }
-        return classes;
+        Class[] classesArray = new Class[classes.size()];
+        classes.toArray(classesArray);
+        return classesArray;
     }
 
     private static Container findCorner(CornerStructure corner, List<Cell> cells) {
@@ -265,14 +266,14 @@ public final class GamesBuilder {
     }
 
     private static Object[] getArgumentsToOperation(OperationStructure operationStructure, List<Cell> cells) {
-        Object[] arguments = { operationStructure.getContentTags().size() > 1
-                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0)};
+        List<Object> arguments = new ArrayList<>(Arrays.asList(operationStructure.getContentTags().size() > 1
+                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0)));
 
         if (operationStructure.getCorner() != null) {
-            arguments = new Object[arguments.length + 1];
-            arguments[arguments.length - 1] = findCorner(operationStructure.getCorner(),cells);
+            arguments.add(findCorner(operationStructure.getCorner(),cells));
         }
-
-        return arguments;
+        Object[] argumentsArray = new Object[arguments.size()];
+        arguments.toArray(argumentsArray);
+        return argumentsArray;
     }
 }
