@@ -206,17 +206,21 @@ public final class GamesBuilder {
 
     private static GridRuleOperation createOperation(OperationStructure operationStructure, List<Cell> cells)
             throws GameBuilderErrorException {
-        List<Object> arguments = Arrays.asList(operationStructure.getContentTags().size() > 1
-                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0));
-        List<Class> classes = Arrays.asList(operationStructure.getContentTags().size() > 1 ? List.class : String.class);
+
+        Class[] classes = getClassesToOperation(operationStructure);
+        Object[] arguments = getArgumentsToOperation(operationStructure,cells);
+
+        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),classes, arguments);
+    }
+
+    private static Class[] getClassesToOperation(OperationStructure operationStructure) {
+        Class[] classes = {operationStructure.getContentTags().size() > 1 ? List.class : String.class };
 
         if (operationStructure.getCorner() != null) {
-            classes.add(Container.class);
-            arguments.add(findCorner(operationStructure.getCorner(),cells));
+            classes = new Class[classes.length + 1];
+            classes[classes.length - 1] = Container.class;
         }
-
-        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),
-                (Class[]) classes.toArray(), arguments.toArray());
+        return classes;
     }
 
     private static Container findCorner(CornerStructure corner, List<Cell> cells) {
@@ -259,5 +263,17 @@ public final class GamesBuilder {
                 new Class[] {List.class},new Object[] {contents});
 
         return new Container(containerState);
+    }
+
+    public static Object[] getArgumentsToOperation(OperationStructure operationStructure, List<Cell> cells) {
+        Object[] arguments = { operationStructure.getContentTags().size() > 1
+                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0)};
+
+        if (operationStructure.getCorner() != null) {
+            arguments = new Object[arguments.length + 1];
+            arguments[arguments.length - 1] = findCorner(operationStructure.getCorner(),cells);
+        }
+
+        return arguments;
     }
 }
