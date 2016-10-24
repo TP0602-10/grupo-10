@@ -20,6 +20,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.json.structures.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -147,7 +148,7 @@ public final class GamesBuilder {
         for (int i = 0; i < rules.size(); i++) {
             RuleStructure rule = rules.get(i);
 
-            GridRuleOperation operation = createOperation(rule.getOperation());
+            GridRuleOperation operation = createOperation(rule.getOperation(),initialBoard);
 
             GridRuleCondition condition = createCondition(rule.getCondition(),rule.getOperation().getType());
 
@@ -203,12 +204,26 @@ public final class GamesBuilder {
         }
     }
 
-    private static GridRuleOperation createOperation(OperationStructure operationStructure)
+    private static GridRuleOperation createOperation(OperationStructure operationStructure, List<Cell> cells)
             throws GameBuilderErrorException {
-        Class[] classes = { operationStructure.getContentTags().size() > 1 ? List.class : String.class };
-        Object[] tags = { operationStructure.getContentTags().size() > 1
+        Object[] arguments = { operationStructure.getContentTags().size() > 1
                 ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0) };
-        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()), classes, tags);
+        Class[] classes = { operationStructure.getContentTags().size() > 1 ? List.class : String.class };
+
+        if (operationStructure.getCorner() != null) {
+            classes = Arrays.copyOf(classes, classes.length + 1);
+            classes[classes.length - 1] = Container.class;
+            arguments = Arrays.copyOf(arguments, arguments.length + 1);
+            Container container = findCorner(operationStructure.getCorner(),cells);
+            arguments[arguments.length - 1] = container;
+        }
+
+        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()), classes, arguments);
+    }
+
+    private static Container findCorner(CornerStructure corner, List<Cell> cells) {
+        Cell cell = cells.get(corner.getCellIndex());
+        return cell.getNeighbourAt( NeighbourPosition.valueOf(corner.getNeighbourPosition()));
     }
 
     private static Object createObject(String nameClass,Class[] constructorClasses, Object[] parameters )

@@ -10,6 +10,8 @@ public class OperationStructure {
     @SuppressWarnings("UWF_UNWRITTEN_FIELD")
     private String type;
 
+    private CornerStructure corner;
+
     public String getName() {
         return name;
     }
@@ -20,5 +22,9 @@ public class OperationStructure {
 
     public String getType() {
         return type;
+    }
+
+    public CornerStructure getCorner() {
+        return corner;
     }
 }
