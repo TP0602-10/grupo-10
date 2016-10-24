@@ -60,7 +60,7 @@ public class SumLinesPointingToSharedCornerOperationTest {
 
     private Container[] generateFourCellsWithThreeLinesMeetingCentralCorner(Integer cornerNumber) {
         createCells();
-        centralCorner = createCornerWithNumber(new Point(), cornerNumber);
+        centralCorner = createCornerWithNumber(new Point(""), cornerNumber);
 
         cell1.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_RIGHT );
         cell2.setLimitAt( centralCorner, NeighbourPosition.BOTTOM_LEFT );
