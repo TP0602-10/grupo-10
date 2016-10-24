@@ -33,50 +33,89 @@
 			
 	],
 	"cellLimits": [
-		//Deberia ser asi (Sabes que los limites son siempre containers).
-		{ "neighbourPosition":"TOP_RIGHT","index":0, "state": {"type":"ImmutableContainer", "contents": [
-			{"type":"ImmutableContainer","tag":"GOALPOINT","value":{"type":"PointValue","value":"Point"} }, //Nose como pone un point como value
-			{"type":"ImmutableContainer","tag":"GOALVALUE","value":{"type":"Number","value":"2"} }
-		] }}
 
+		{"container":"ImmutableContainer","neighbourPosition":"TOP_RIGHT","index":0,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"2"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
+		{"container":"ImmutableContainer","neighbourPosition":"TOP_RIGHT","index":1,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"1"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":1,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"TOP_RIGHT","index":0,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"TOP_RIGHT","index":0,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"2"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":2,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"TOP_RIGHT","index":1,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"TOP_RIGHT","index":1,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"1"}},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":1,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":1,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":4,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"0"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":2,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":2,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":11,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":4,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":4,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"0"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":12,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":11,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":11,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_LEFT","index":15,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"0"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":12,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":12,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":17,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_LEFT","index":15,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_LEFT","index":15,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"0"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":18,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"3"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":17,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":17,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":23,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"1"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		},
 
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":18,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":18,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"3"}},
-
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":23,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":23,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"1"}},
-
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Point","neighbourPosition":"BOTTOM_RIGHT","index":24,"tag":"GOALPOINT"},
-		{"container":"ImmutableContainer","content":"ImmutableContent","type":"Integer","neighbourPosition":"BOTTOM_RIGHT","index":24,"tag":"GOALVALUE","value":{"type":"IntegerValue","value":"1"}},
-
-		
+		{"container":"ImmutableContainer","neighbourPosition":"BOTTOM_RIGHT","index":24,
+			"contents":[
+				{"type": "ImmutableContent","tag":"GOALPOINT","value":{"type":"Number","value":"1"}},
+				{"type": "ImmutableContent","tag":"GOALVALUE","value":{"type":"Point","value":""}}
+			]
+		}
 	],
 	"rules":[
 		{	"iterator": {"indexes":[0,1],"explanation":"Iterate cells (1,1) and (1,2)" },
