@@ -145,16 +145,14 @@ public final class GamesBuilder {
 
         List<GridRule> gridRules = new ArrayList<>();
 
-        for (int i = 0; i < rules.size(); i++) {
-            RuleStructure rule = rules.get(i);
+        for (RuleStructure rule : rules) {
+            GridRuleOperation operation = createOperation(rule.getOperation(), initialBoard);
 
-            GridRuleOperation operation = createOperation(rule.getOperation(),initialBoard);
-
-            GridRuleCondition condition = createCondition(rule.getCondition(),rule.getOperation().getType());
+            GridRuleCondition condition = createCondition(rule.getCondition(), rule.getOperation().getType());
 
             GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
 
-            gridRules.add(createRule(rule.getType(),iterator,operation,condition));
+            gridRules.add(createRule(rule.getType(), iterator, operation, condition));
         }
         return gridRules;
     }
@@ -195,12 +193,13 @@ public final class GamesBuilder {
     }
 
     private static Object createGoal(String typeGoal, String goal) throws GameBuilderErrorException {
-        if (typeGoal.equals("Boolean")) {
-            return Boolean.valueOf(goal);
-        } else if (typeGoal.equals("Integer")) {
-            return Integer.parseInt(goal);
-        } else {
-            throw new GameBuilderErrorException("Error on create goal");
+        switch (typeGoal) {
+            case "Boolean":
+                return Boolean.valueOf(goal);
+            case "Integer":
+                return Integer.parseInt(goal);
+            default:
+                throw new GameBuilderErrorException("Error on create goal");
         }
     }
 
@@ -265,7 +264,7 @@ public final class GamesBuilder {
         return new Container(containerState);
     }
 
-    public static Object[] getArgumentsToOperation(OperationStructure operationStructure, List<Cell> cells) {
+    private static Object[] getArgumentsToOperation(OperationStructure operationStructure, List<Cell> cells) {
         Object[] arguments = { operationStructure.getContentTags().size() > 1
                 ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0)};
 

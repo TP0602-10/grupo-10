@@ -14,9 +14,12 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.CompleteIteratorRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GreaterThanIntegerMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessThanIntegerMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.CountFilledOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.SumOperation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +37,12 @@ public class ClassPathHelper {
             DistinctOperation.class,
             LineCircuitOperation.class,
             EqualsMatcher.class,
+            LessOrEqualToIntegerMatcher.class,
+            LessThanIntegerMatcher.class,
             AlwaysVerifiableRule.class,
             CompleteIteratorRule.class,
             CountFilledOperation.class,
+            SumOperation.class,
             GreaterThanIntegerMatcher.class,
             Number.class,
             NullValue.class,
