@@ -272,7 +272,7 @@
 			"explanation":"Rule who detect if all Cells are filled",
 			"operation":{"name" : "CountFilledOperation","contentTags":["Tag"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"81"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		}
 	]
 
