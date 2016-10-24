@@ -206,19 +206,17 @@ public final class GamesBuilder {
 
     private static GridRuleOperation createOperation(OperationStructure operationStructure, List<Cell> cells)
             throws GameBuilderErrorException {
-        Object[] arguments = { operationStructure.getContentTags().size() > 1
-                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0) };
-        Class[] classes = { operationStructure.getContentTags().size() > 1 ? List.class : String.class };
+        List<Object> arguments = Arrays.asList(operationStructure.getContentTags().size() > 1
+                ? operationStructure.getContentTags() : operationStructure.getContentTags().get(0));
+        List<Class> classes = Arrays.asList(operationStructure.getContentTags().size() > 1 ? List.class : String.class);
 
         if (operationStructure.getCorner() != null) {
-            classes = Arrays.copyOf(classes, classes.length + 1);
-            classes[classes.length - 1] = Container.class;
-            arguments = Arrays.copyOf(arguments, arguments.length + 1);
-            Container container = findCorner(operationStructure.getCorner(),cells);
-            arguments[arguments.length - 1] = container;
+            classes.add(Container.class);
+            arguments.add(findCorner(operationStructure.getCorner(),cells));
         }
 
-        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()), classes, arguments);
+        return (GridRuleOperation) createObject(getCompleteClassName(operationStructure.getName()),
+                (Class[]) classes.toArray(), arguments.toArray());
     }
 
     private static Container findCorner(CornerStructure corner, List<Cell> cells) {

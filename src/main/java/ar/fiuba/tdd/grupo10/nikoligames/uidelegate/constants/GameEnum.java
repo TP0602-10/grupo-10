@@ -16,11 +16,13 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 public enum GameEnum {
 
     SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuEasy.json", "Tag"),
-    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class, null, "Number"),
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuNormal.json", "Tag"),
+    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class,
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/Kakuro.json", "Number"),
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
             "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json", LINE),
-    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/GokigenNaname.json", null),
+    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
+            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/GokigenNaname.json", null),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null, null);
 
     private String description;

@@ -4,8 +4,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.comparable.ComparableNeig
 
 public class Point extends Value<Point> implements ComparableNeighbour {
 
-    public Point() {
-        super("");
+    public Point(String name) {
+        super(name);
     }
 
     @Override
