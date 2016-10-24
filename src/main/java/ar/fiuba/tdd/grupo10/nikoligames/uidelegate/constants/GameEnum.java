@@ -20,7 +20,7 @@ public enum GameEnum {
     KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class, null, "Number"),
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
             "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json", LINE),
-    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, null, null),
+    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class, "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/GokigenNaname.json", null),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null, null);
 
     private String description;

@@ -13,10 +13,4 @@ class GokigenNanameLink extends GameLink {
         super(context);
         this.gameEnum = GameEnum.GOKIGEN_NANAME;
     }
-
-    @Override
-    void createGame(GameEnum game, String filePath) {
-        showMessage(JOptionPane.INFORMATION_MESSAGE, UNAVAILABLE_GAME_ERROR_MSG);
-    }
-
 }
