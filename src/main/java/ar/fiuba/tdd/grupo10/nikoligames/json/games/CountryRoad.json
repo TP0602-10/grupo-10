@@ -134,13 +134,13 @@
 			"explanation":"Rule for a Room 2.",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"1"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		},
 		{	"iterator": {"indexes":[13,20,27],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"3"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		},
 		{	"iterator": {"indexes":[14],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",
@@ -152,7 +152,7 @@
 			"explanation":"Rule for a Room 2.",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"2"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		},
 		{	"iterator": {"indexes":[24],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",
@@ -160,17 +160,11 @@
 			"condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
 			"type":"AlwaysVerifiableRule"
 		},
-		{	"iterator": {"indexes":[25,26],"explanation":"iterator for a Room 2." },
+		{	"iterator": {"indexes":[25,26,32,33],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"4"},
 			"type":"CompleteIteratorRule"
-		},
-		{	"iterator": {"indexes":[32,33],"explanation":"iterator for a Room 2." },
-			"explanation":"Rule for a Room 2.",
-			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
-			"condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
-			"type":"AlwaysVerifiableRule"
 		},
 		{	"iterator": {"indexes":[34],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",
@@ -206,7 +200,7 @@
 			"explanation":"Rule for a Room 2.",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"1"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		},
 		{	"iterator": {"indexes":[30,37,44,45,46,43],"explanation":"iterator for a Room 2." },
 			"explanation":"Rule for a Room 2.",

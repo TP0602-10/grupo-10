@@ -52,6 +52,6 @@ public class CountFilledOperation extends GridRuleOperation<Integer> {
 
     @Override
     public String getOperationExplanation(Integer result) {
-        return null;
+        return "The operation count the filled contents for the assigned tag on the iterator. The result is " + result + ".";
     }
 }
