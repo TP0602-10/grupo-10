@@ -256,11 +256,9 @@ public final class GamesBuilder {
     }
 
     private static Container createContainer(CellLimit cellLimit) throws GameBuilderErrorException {
-
-        ValueStructure valueStructure = new ValueStructure(cellLimit.getType(),cellLimit.getTag());
-        Content content = createContent(new ContentStructure(cellLimit.getContent(),cellLimit.getTag(),valueStructure));
+        List<Content> contents = createContents(cellLimit.getContents());
         ContainerState containerState = (ContainerState) createObject(getCompleteClassName(cellLimit.getContainer()),
-                new Class[] {Content.class},new Object[] {content});
+                new Class[] {List.class},new Object[] {contents});
 
         return new Container(containerState);
     }
