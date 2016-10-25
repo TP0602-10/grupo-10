@@ -23,7 +23,7 @@ public class GokigenCellView extends CellView {
 
         Cell cell = (Cell) getValue();
         drawOvals(graphics, cell);
-
+        graphics.setColor(Color.black);
         Line line = (Line) cell.getValue(LINE);
         if (line == null) {
             return;
@@ -51,7 +51,9 @@ public class GokigenCellView extends CellView {
 
     private void drawTopLeftOval(Graphics graphics, Cell cell) {
         if (hasOval(cell, NeighbourPosition.TOP_LEFT)) {
-            graphics.drawOval(-4, -4, 20, 20);
+            graphics.setColor(Color.red);
+            graphics.fillOval(-4, -4, 20, 20);
+            graphics.setColor(Color.white);
             graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_LEFT)
                     .getValue(OVAL_TAG)), 0, 10);
         }
@@ -59,7 +61,9 @@ public class GokigenCellView extends CellView {
 
     private void drawTopRightOval(Graphics graphics, Cell cell) {
         if (hasOval(cell, NeighbourPosition.TOP_RIGHT)) {
+            graphics.setColor(Color.red);
             graphics.drawOval(getWidth() + 4, -4, 20, 20);
+            graphics.setColor(Color.white);
             graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.TOP_RIGHT)
                     .getValue(OVAL_TAG)), getWidth() - 6, 10);
         }
@@ -67,9 +71,11 @@ public class GokigenCellView extends CellView {
 
     private void drawBottomRightOval(Graphics graphics, Cell cell) {
         if (hasOval(cell, NeighbourPosition.BOTTOM_RIGHT)) {
-            graphics.drawOval(getWidth() - 15, getHeight() - 15, 20, 20);
+            graphics.setColor(Color.red);
+            graphics.fillOval(getWidth() - 15, getHeight() - 15, 20, 20);
+            graphics.setColor(Color.white);
             graphics.drawString(String.valueOf(cell.getLimitAt(NeighbourPosition.BOTTOM_RIGHT)
-                    .getValue(OVAL_TAG)), getWidth() - 9, getHeight() - 4);
+                    .getValue(OVAL_TAG)), getWidth() - 9, getHeight() - 2);
         }
     }
 
