@@ -11,19 +11,21 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.JSON_FOLDER;
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
 
 public enum GameEnum {
 
-    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/SudokuNormal.json", "Tag"),
+
+    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class, JSON_FOLDER + "SudokuNormal.json", "Tag"),
     KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/Kakuro.json", "Number"),
+            JSON_FOLDER + "Kakuro.json", "Number"),
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/CountryRoad.json", LINE),
+            JSON_FOLDER + "CountryRoad.json", LINE),
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
-            "src/main/java/ar/fiuba/tdd/grupo10/nikoligames/json/games/GokigenNaname.json", null),
+            JSON_FOLDER + "GokigenNaname.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null, null);
+
 
     private String description;
     private List<PossibleValue> possibleValues;
@@ -53,19 +55,19 @@ public enum GameEnum {
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
         List<PossibleValue> slitherlinkValues = new ArrayList<>();
         slitherlinkValues.add(new SlitherlinkValue(null));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
         return slitherlinkValues;
     }
 

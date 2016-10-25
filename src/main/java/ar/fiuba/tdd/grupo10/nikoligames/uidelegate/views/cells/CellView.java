@@ -12,9 +12,19 @@ import javax.swing.table.TableCellRenderer;
 public abstract class CellView extends JLabel implements TableCellRenderer {
 
     private Object value;
+    private int row;
+    private int column;
 
     CellView() {
         setOpaque(true);
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
     }
 
     @Override
@@ -24,6 +34,8 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
                                                    boolean hasFocus,
                                                    int row,
                                                    int column) {
+        this.row = row;
+        this.column = column;
         setCustomRender(value);
         return this;
     }
