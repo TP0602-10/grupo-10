@@ -62,10 +62,10 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
     }
 
     void drawBorders(Cell cell, Graphics graphics) {
-        if (hasBorder(cell, NeighbourPosition.BOTTOM, "LINEBORDERBOTTOM")) {
+        if (hasBorder(cell, NeighbourPosition.BOTTOM, "LINEBORDERBOTTOM") || hasBorder(cell, NeighbourPosition.BOTTOM, "BORDER")) {
             drawBottomBorder(graphics);
         }
-        if (hasBorder(cell, NeighbourPosition.RIGHT, "LINEBORDERRIGHT")) {
+        if (hasBorder(cell, NeighbourPosition.RIGHT, "LINEBORDERRIGHT") || hasBorder(cell, NeighbourPosition.RIGHT, "BORDER")) {
             drawRightBorder(graphics);
         }
     }
