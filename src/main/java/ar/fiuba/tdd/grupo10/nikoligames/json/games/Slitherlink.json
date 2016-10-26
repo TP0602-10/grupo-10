@@ -42,5 +42,8 @@
     {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
     {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}}
   ],
+  "cellLimits": [
+
+  ],
   "rules":[]
 }
