@@ -24,7 +24,8 @@ public enum GameEnum {
             JSON_FOLDER + "CountryRoad.json", LINE),
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
             JSON_FOLDER + "GokigenNaname.json", LINE),
-    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class, null, null);
+    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
+            JSON_FOLDER + "Slitherlink.json", LINE);
 
 
     private String description;

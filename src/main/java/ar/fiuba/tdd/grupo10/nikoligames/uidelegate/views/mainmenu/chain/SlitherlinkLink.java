@@ -14,9 +14,4 @@ class SlitherlinkLink extends GameLink {
         this.gameEnum = GameEnum.SLITHERLINK;
     }
 
-    @Override
-    void createGame(GameEnum game, String filePath) {
-        showMessage(JOptionPane.INFORMATION_MESSAGE, UNAVAILABLE_GAME_ERROR_MSG);
-    }
-
 }
