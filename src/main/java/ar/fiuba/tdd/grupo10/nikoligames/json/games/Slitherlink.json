@@ -43,8 +43,10 @@
     {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}}
   ],
   "cellLimits": [
-    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":0},
-    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":0}
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"VerticalLine","value":"Line"}}],"neighbourPosition":"RIGHT","index":0},
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"HorizontalLine","value":"Line"}}],"neighbourPosition":"BOTTOM","index":0},
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"HorizontalLine","value":"Line"}}],"neighbourPosition":"TOP","index":0},
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"VerticalLine","value":"Line"}}],"neighbourPosition":"LEFT","index":0}
   ],
   "rules":[
     {	"iterator": {"indexes":[0,1,2,7,11,15,22,26,30,31,32,34],"explanation":"Iterate over the cells that should have their TOP limits set" },
