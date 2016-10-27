@@ -70,7 +70,7 @@
     },
     {	"iterator": {"indexes":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],"explanation":"iterator for all cell." },
       "explanation":"Rule for circuit.",
-      "operation":{"name" : "LineCircuitOperation","contentTags":["LINE"],"type":"Boolean"},
+      "operation":{"name" : "LineVerticalAndHorizontalCircuitOperation","contentTags":["LINE"],"type":"Boolean"},
       "condition":{"matcher":"EqualsMatcher","goal":"true"},
       "type":"AlwaysVerifiableRule"
     }

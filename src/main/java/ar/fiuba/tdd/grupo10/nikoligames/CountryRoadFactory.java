@@ -21,6 +21,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GreaterThanIntegerMa
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.CountFilledOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineCircuitOperation;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.LineVerticalAndHorizontalCircuitOperation;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 
 import java.util.ArrayList;
@@ -199,7 +200,7 @@ public class CountryRoadFactory {
             cellAsContainers.add(cell);
         }
         GridRuleIterator iterator = new GridRuleIterator(cellAsContainers, "Rule for line circuit in grid");
-        GridRuleOperation<Boolean> operation = new LineCircuitOperation(LINETAG);
+        GridRuleOperation<Boolean> operation = new LineVerticalAndHorizontalCircuitOperation(LINETAG);
         GridRuleCondition<Boolean> condition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),
                 Boolean.TRUE

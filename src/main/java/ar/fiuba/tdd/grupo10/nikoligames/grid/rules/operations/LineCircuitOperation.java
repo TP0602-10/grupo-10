@@ -14,25 +14,20 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * This rule check if all Cell elements of the iterator form a line circuit.
+/**
+ * This rule checks if all Cell elements of the iterator form a line circuit.
+ * Concrete children must know which line orientations are valid to form a circuit.
  * Only Work with Cells and one tag per Cell.
  */
-
-public class LineCircuitOperation extends GridRuleOperation<Boolean> {
+public abstract class LineCircuitOperation extends GridRuleOperation<Boolean> {
     private String onlyTag;
-    private static final NeighbourPosition[] AvailablePositions = {
-            NeighbourPosition.TOP,
-            NeighbourPosition.RIGHT,
-            NeighbourPosition.BOTTOM,
-            NeighbourPosition.LEFT
-    };
-
 
     public LineCircuitOperation( String tag ) {
         super(tag);
         onlyTag = tag;
     }
+
+    protected abstract NeighbourPosition[] getAvailablePositions();
 
     @Override
     public Boolean perform(GridRuleIterator iterator, Object... params) {
@@ -72,7 +67,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     }
 
     private Cell searchNeighbourCellToContinue(Cell fromCell, Cell previous) {
-        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours(AvailablePositions);
+        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours(getAvailablePositions());
         for (NeighbourContainer neighbour : neighboursOfCell) {
             if ( neighbour != null ) {
                 Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();
