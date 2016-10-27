@@ -16,7 +16,7 @@ public class GokigenCellView extends CellView {
         super();
     }
 
-    private static final String OVAL_TAG = "GOALPOINT";
+    private static final String OVAL_TAG = "GOALVALUE";
 
     @Override
     public void paintComponent(Graphics graphics) {

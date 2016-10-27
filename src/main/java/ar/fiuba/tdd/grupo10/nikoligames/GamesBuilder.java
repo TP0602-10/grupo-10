@@ -225,7 +225,7 @@ public final class GamesBuilder {
 
     private static Container findCorner(CornerStructure corner, List<Cell> cells) {
         Cell cell = cells.get(corner.getCellIndex());
-        return cell.getNeighbourAt( NeighbourPosition.valueOf(corner.getNeighbourPosition()));
+        return cell.getLimitAt( NeighbourPosition.valueOf(corner.getNeighbourPosition()));
     }
 
     private static Object createObject(String nameClass,Class[] constructorClasses, Object[] parameters )
