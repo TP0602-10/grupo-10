@@ -7,25 +7,41 @@ import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.NumberValue;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.SlitherlinkValue;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.JSON_FOLDER;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
+
 public enum GameEnum {
 
-    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class),
-    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class),
-    COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class),
-    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class),
-    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class);
+
+    SUDOKU("Sudoku", createNumberPossibleValues(1, 9), SudokuCellView.class, JSON_FOLDER + "SudokuNormal.json", "Tag"),
+    KAKURO("Kakuro", createNumberPossibleValues(0, 9), KakuroCellView.class,
+            JSON_FOLDER + "Kakuro.json", "Number"),
+    COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
+            JSON_FOLDER + "CountryRoad.json", LINE),
+    GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
+            JSON_FOLDER + "GokigenNaname.json", LINE),
+    SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
+            JSON_FOLDER + "Slitherlink.json", LINE);
+
 
     private String description;
     private List<PossibleValue> possibleValues;
     private Class<? extends CellView> cellClass;
+    private String defaultJsonPath;
+    private String mutableContentTag;
 
-    GameEnum(String description, List<PossibleValue> possibleValues, Class<? extends CellView> cellClass) {
+    GameEnum(String description, List<PossibleValue> possibleValues,
+             Class<? extends CellView> cellClass, String defaultJsonPath,
+             String mutableContentTag) {
         this.description = description;
         this.possibleValues = possibleValues;
         this.cellClass = cellClass;
+        this.defaultJsonPath = defaultJsonPath;
+        this.mutableContentTag = mutableContentTag;
     }
 
     private static List<PossibleValue> createNumberPossibleValues(int min, int max) {
@@ -40,19 +56,19 @@ public enum GameEnum {
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
         List<PossibleValue> slitherlinkValues = new ArrayList<>();
         slitherlinkValues.add(new SlitherlinkValue(null));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, false, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, false, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {false, true, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, false, true, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[] {true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
         return slitherlinkValues;
     }
 
@@ -72,7 +88,8 @@ public enum GameEnum {
     private static LineValue createLinePossibleValue(Class<? extends Line> clazz) {
         if (clazz != null) {
             try {
-                return new LineValue(clazz.newInstance());
+                Constructor constructor = clazz.getConstructor(String.class);
+                return new LineValue((Line) constructor.newInstance(""));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,8 +100,8 @@ public enum GameEnum {
     private static List<PossibleValue> createGokigenPossibleValues() {
         List<PossibleValue> gokigenNanameValues = new ArrayList<>();
         gokigenNanameValues.add(new LineValue(null));
-        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal()));
-        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal()));
+        gokigenNanameValues.add(new LineValue(new FromBottomLeftToTopRightDiagonal("")));
+        gokigenNanameValues.add(new LineValue(new FromTopLeftToBottomRightDiagonal("")));
         return gokigenNanameValues;
     }
 
@@ -97,9 +114,13 @@ public enum GameEnum {
         return cellClass;
     }
 
-//    public Object getNextValue(Object currentValue) {
-//        return getNextPossibleValue(currentValue).getValue();
-//    }
+    public String getDefaultJsonPath() {
+        return defaultJsonPath;
+    }
+
+    public String getMutableContentTag() {
+        return mutableContentTag;
+    }
 
     public PossibleValue getNextPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {
@@ -120,10 +141,6 @@ public enum GameEnum {
         throw new RuntimeException("GameEnum:getNextValue not found for game: " + toString()
                 + " currentValue: " + currentValue);
     }
-
-//    public Object getPrevValue(Object currentValue) {
-//        return getPrevPossibleValue(currentValue).getValue();
-//    }
 
     public PossibleValue getPrevPossibleValue(Object currentValue) {
         for (int index = 0; index < possibleValues.size(); index++) {

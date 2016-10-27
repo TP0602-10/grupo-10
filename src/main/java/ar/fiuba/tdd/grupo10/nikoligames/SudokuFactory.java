@@ -9,6 +9,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.DistinctOperation;
@@ -155,10 +156,10 @@ public final class SudokuFactory {
     }
 
     private static Cell createHintCell(Integer value) {
-        return new Cell(new ImmutableContainer(new ImmutableContent<>(value, GLOBAL_TAG)));
+        return KakuroFactory.createSingleValuedImmutableCell(value,GLOBAL_TAG);
     }
 
     private static Cell createEmptyCell() {
-        return new Cell(new MutableContainer(new MutableContent<>(null, GLOBAL_TAG)));
+        return new Cell(new MutableContainer(new MutableContent<>(new Number(null), GLOBAL_TAG)));
     }
 }

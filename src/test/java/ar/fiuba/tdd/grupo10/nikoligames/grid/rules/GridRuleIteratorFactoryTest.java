@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,7 +36,7 @@ public class GridRuleIteratorFactoryTest {
         List<Container> allCells = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
             allCells.add( newMutableCell(
-                    new MutableContent<>(i,"tag")
+                    new MutableContent<>(new Number(Integer.toString(i)),"tag")
             ));
         }
         theGridToTest = ListHelper.buildMatrixFromFlattenList(allCells,ROWS,COLS);

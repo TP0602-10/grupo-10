@@ -47,7 +47,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
             }
         }
 
-        if (rulesOK && grid.isComplete()) {
+        if (rulesOK) {
             notifyGameWon("The player has won the game!");
         }
     }

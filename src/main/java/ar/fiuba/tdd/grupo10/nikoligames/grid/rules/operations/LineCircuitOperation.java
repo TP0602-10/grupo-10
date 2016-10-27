@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.NeighbourType;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
@@ -20,6 +21,13 @@ import java.util.List;
 
 public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     private String onlyTag;
+    private static final NeighbourPosition[] AvailablePositions = {
+            NeighbourPosition.TOP,
+            NeighbourPosition.RIGHT,
+            NeighbourPosition.BOTTOM,
+            NeighbourPosition.LEFT
+    };
+
 
     public LineCircuitOperation( String tag ) {
         super(tag);
@@ -35,7 +43,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
                 cellsInIterator.add( (Cell)theContainter );
             }
         }
-        return deepCircuitSearch( cellsInIterator );
+        return cellsInIterator.size() > 0 ? deepCircuitSearch( cellsInIterator ) : false;
     }
 
     private String getTag() {
@@ -64,7 +72,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
     }
 
     private Cell searchNeighbourCellToContinue(Cell fromCell, Cell previous) {
-        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours();
+        List<NeighbourContainer> neighboursOfCell = fromCell.getNeighbours(AvailablePositions);
         for (NeighbourContainer neighbour : neighboursOfCell) {
             if ( neighbour != null ) {
                 Cell neighbourCell = (Cell) neighbour.getNeighbourContainer();
@@ -90,7 +98,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
 
         while (doDeepSearch) {
             next = searchNeighbourCellToContinue( actual, previous );
-            doDeepSearch = continueSearch(firstAplicable, next);
+            doDeepSearch = ( continueSearch(firstAplicable, next) && cells.contains(next) );
             previous = actual;
             actual = next;
         }
@@ -109,6 +117,7 @@ public class LineCircuitOperation extends GridRuleOperation<Boolean> {
 
     @Override
     public String getOperationExplanation(Boolean result) {
-        return null;
+        return "The operation check if the selected tag content of the applicable Cells in the iterator generate"
+                + " a close circuit. The result is " + result.toString() + ".";
     }
 }

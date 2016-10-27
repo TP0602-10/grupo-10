@@ -2,6 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.grid.rules;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,9 +16,9 @@ public class GridRuleIteratorTest {
 
     private GridRuleIterator createIterator() {
         List<Container> list = new ArrayList<>();
-        list.add(newMutableCell(new MutableContent<>(1,"number")));
-        list.add(newMutableCell(new MutableContent<>(2,"number")));
-        list.add(newMutableCell(new MutableContent<>(3,"number")));
+        list.add(newMutableCell(new MutableContent<>(new Number("1"),"number")));
+        list.add(newMutableCell(new MutableContent<>(new Number("2"),"number")));
+        list.add(newMutableCell(new MutableContent<>(new Number("3"),"number")));
 
         return new GridRuleIterator(list,"test");
     }

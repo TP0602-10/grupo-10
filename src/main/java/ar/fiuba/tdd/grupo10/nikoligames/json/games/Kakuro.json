@@ -1,0 +1,596 @@
+{
+  "board":{
+    "columns": 9,
+    "rows": 9,
+    "values": [1,2,3,4,5,6,7,8,9]
+  },
+  "initialBoard":[
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"17"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"16"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"12"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"6"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"16"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"23"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"4"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"26"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"23"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"23"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"29"}},{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"29"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"18"}},{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"17"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"23"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"17"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"27"}},{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"27"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"23"}},{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"8"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"9"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"24"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"4"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"8"}},{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"21"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"17"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToDown","value":{"type":"Number","value":"16"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"22"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"23"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"24"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"BlackBlock","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"CompareToRight","value":{"type":"Number","value":"16"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"Number","value":{"type":"Number","value":null}}]}}
+  ],
+  "rules":[
+    { "iterator": {"indexes":[10,11],"explanation":"Iterate over the row 2. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[10,11],"explanation":"Iterate over the row 2. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[10,11],"explanation":"Iterate over the row 2. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[14,15],"explanation":"Iterate over the row 2. From position 6 to position 7" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[14,15],"explanation":"Iterate over the row 2. From position 6 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"4"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[14,15],"explanation":"Iterate over the row 2. From position 6 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"4"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[19,20,21],"explanation":"Iterate over the row 3. From position 2 to position 4" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[19,20,21],"explanation":"Iterate over the row 3. From position 2 to position 4" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[19,20,21],"explanation":"Iterate over the row 3. From position 2 to position 4" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"29"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[23,24,25,26],"explanation":"Iterate over the row 3. From position 6 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[23,24,25,26],"explanation":"Iterate over the row 3. From position 6 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"29"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[23,24,25,26],"explanation":"Iterate over the row 3. From position 6 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"29"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[30,31],"explanation":"Iterate over the row 4. From position 4 to position 5" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[30,31],"explanation":"Iterate over the row 4. From position 4 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[30,31],"explanation":"Iterate over the row 4. From position 4 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[34,35],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[34,35],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[34,35],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[38,39,40,41],"explanation":"Iterate over the row 5. From position 3 to position 6" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[38,39,40,41],"explanation":"Iterate over the row 5. From position 3 to position 6" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"27"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[38,39,40,41],"explanation":"Iterate over the row 5. From position 3 to position 6" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"27"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[43,44],"explanation":"Iterate over the row 5. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[43,44],"explanation":"Iterate over the row 5. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[43,44],"explanation":"Iterate over the row 5. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[46,47],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[46,47],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"9"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[46,47],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"9"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[49,50,51,52],"explanation":"Iterate over the row 6. From position 5 to position 8" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[49,50,51,52],"explanation":"Iterate over the row 6. From position 5 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"24"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[49,50,51,52],"explanation":"Iterate over the row 6. From position 5 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"24"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[55,56],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[55,56],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"4"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[55,56],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"4"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[58,59,60],"explanation":"Iterate over the row 7. From position 5 to position 7" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[58,59,60],"explanation":"Iterate over the row 7. From position 5 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"21"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[58,59,60],"explanation":"Iterate over the row 7. From position 5 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"21"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[64,65,66,67],"explanation":"Iterate over the row 8. From position 2 to position 5" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[64,65,66,67],"explanation":"Iterate over the row 8. From position 2 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"22"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[64,65,66,67],"explanation":"Iterate over the row 8. From position 2 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"22"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[69,70,71],"explanation":"Iterate over the row 8. From position 7 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[69,70,71],"explanation":"Iterate over the row 8. From position 7 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[69,70,71],"explanation":"Iterate over the row 8. From position 7 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[73,74,75],"explanation":"Iterate over the row 9. From position 2 to position 4" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[73,74,75],"explanation":"Iterate over the row 9. From position 2 to position 4" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"24"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[73,74,75],"explanation":"Iterate over the row 9. From position 2 to position 4" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"24"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[79,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[79,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[79,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+
+
+    { "iterator": {"indexes":[10,19],"explanation":"Iterate over the column 2. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[10,19],"explanation":"Iterate over the column 2. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[10,19],"explanation":"Iterate over the column 2. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[46,66,64,73],"explanation":"Iterate over the row 2. From position 6 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[46,66,64,73],"explanation":"Iterate over the row 2. From position 6 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"27"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[46,66,64,73],"explanation":"Iterate over the row 2. From position 6 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"27"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[11,20],"explanation":"Iterate over the row 3. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[11,20],"explanation":"Iterate over the row 3. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[11,20],"explanation":"Iterate over the row 3. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[38,47,56,65,74],"explanation":"Iterate over the row 3. From position 5 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[38,47,56,65,74],"explanation":"Iterate over the row 3. From position 5 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"18"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[38,47,56,65,74],"explanation":"Iterate over the row 3. From position 5 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"18"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[21,30,39],"explanation":"Iterate over the row 4. From position 3 to position 5" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[21,30,39],"explanation":"Iterate over the row 4. From position 3 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[21,30,39],"explanation":"Iterate over the row 4. From position 3 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[66,75],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[66,75],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[66,75],"explanation":"Iterate over the row 4. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[31,40,49,58,67],"explanation":"Iterate over the row 5. From position 4 to position 8" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[31,40,49,58,67],"explanation":"Iterate over the row 5. From position 4 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"29"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[31,40,49,58,67],"explanation":"Iterate over the row 5. From position 4 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"29"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[14,23],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[14,23],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"12"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[14,23],"explanation":"Iterate over the row 6. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"12"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[41,50,59],"explanation":"Iterate over the row 6. From position 5 to position 7" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[41,50,59],"explanation":"Iterate over the row 6. From position 5 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[41,50,59],"explanation":"Iterate over the row 6. From position 5 to position 7" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[15,24],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    {	"iterator": {"indexes":[15,24],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"6"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[15,24],"explanation":"Iterate over the row 7. From position 2 to position 3" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"6"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[51,60,69],"explanation":"Iterate over the row 7. From position 6 to position 8" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[51,60,69],"explanation":"Iterate over the row 7. From position 6 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[51,60,69],"explanation":"Iterate over the row 7. From position 6 to position 8" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[25,34,43,52],"explanation":"Iterate over the row 8. From position 3 to position 6" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[25,34,43,52],"explanation":"Iterate over the row 8. From position 3 to position 6" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"26"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[25,34,43,52],"explanation":"Iterate over the row 8. From position 3 to position 6" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"26"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[70,79],"explanation":"Iterate over the row 8. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[70,79],"explanation":"Iterate over the row 8. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[70,79],"explanation":"Iterate over the row 8. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"17"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[26,35,44],"explanation":"Iterate over the row 9. From position 3 to position 5" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[26,35,44],"explanation":"Iterate over the row 9. From position 3 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[26,35,44],"explanation":"Iterate over the row 9. From position 3 to position 5" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"23"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[71,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "DistinctOperation","contentTags":["Number"],"type":"Boolean"},
+      "condition":{"matcher":"EqualsMatcher","goal":true},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[71,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[71,80],"explanation":"Iterate over the row 9. From position 8 to position 9" },
+      "operation":{"name" : "SumOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    {	"iterator": {"indexes":[10, 11, 14, 15, 19, 20, 21, 23, 24, 25, 26, 30, 31, 34, 35, 38, 39, 40, 41, 43, 44, 46, 47, 49, 50, 51, 52, 55, 56, 58, 59, 60, 64, 65, 66, 67, 69, 70, 71, 73, 74, 75, 79, 80],"explanation":"Iterator for all cells that have to be completed." },
+      "explanation":"Rule who detect if all Cells are filled",
+      "operation":{"name" : "CountFilledOperation","contentTags":["Number"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"44"},
+      "type":"AlwaysVerifiableRule"
+    }
+
+  ]
+
+}

@@ -1,0 +1,50 @@
+{
+  "board":{
+    "columns": 6,
+    "rows": 6,
+    "values": ["VerticalLine","FromTopToRightLine","FromBottomToLeftLine","FromBottomToRightLine","FromTopToLeftLine"]
+  },
+  "initialBoard":[
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"0"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"3"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"3"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"1"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"1"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"2"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"2"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"0"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"1"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"1"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"1"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"2"}},{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"LINE","value":{"type":"NullValue","value":"invalid"}}]}}
+  ],
+  "cellLimits": [
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":0},
+    {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":0}
+  ],
+  "rules":[]
+}

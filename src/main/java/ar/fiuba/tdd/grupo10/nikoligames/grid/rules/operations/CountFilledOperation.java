@@ -5,6 +5,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
+import java.util.List;
+
 /**
  * This rule count the filed containers in the iterator.
  */
@@ -12,6 +14,10 @@ public class CountFilledOperation extends GridRuleOperation<Integer> {
 
     public CountFilledOperation(String tag ) {
         super(tag);
+    }
+
+    public CountFilledOperation(List<String> tags ) {
+        super(tags);
     }
 
     @Override
@@ -46,6 +52,6 @@ public class CountFilledOperation extends GridRuleOperation<Integer> {
 
     @Override
     public String getOperationExplanation(Integer result) {
-        return null;
+        return "The operation count the filled contents for the assigned tag on the iterator. The result is " + result + ".";
     }
 }

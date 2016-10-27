@@ -8,6 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.operations.GridRuleOperation;
@@ -33,10 +34,10 @@ public class GridBuilderTests {
     @Before
     public void setUp() {
         Cell[] theCells = {
-                newImmutableCell(new ImmutableContent<>(1,"_")),
-                newImmutableCell(new ImmutableContent<>(2,"_")),
-                newImmutableCell(new ImmutableContent<>(3,"_")),
-                newImmutableCell(new ImmutableContent<>(4,"_"))
+                newImmutableCell(new ImmutableContent<>(new Number("1"),"_")),
+                newImmutableCell(new ImmutableContent<>(new Number("2"),"_")),
+                newImmutableCell(new ImmutableContent<>(new Number("3"),"_")),
+                newImmutableCell(new ImmutableContent<>(new Number("4"),"_"))
         };
         this.flattenCells = new ArrayList<>(Arrays.asList(theCells));
     }
@@ -66,7 +67,7 @@ public class GridBuilderTests {
     @Test
     public void addCell() {
         GridBuilder gridBuilder = new GridBuilder();
-        assertNotNull(gridBuilder.addCell(new Cell(new ImmutableContainer(new ImmutableContent<>(1,"_")))));
+        assertNotNull(gridBuilder.addCell(new Cell(new ImmutableContainer(new ImmutableContent<>(new Number("1"),"_")))));
     }
 
     @Test
@@ -84,9 +85,9 @@ public class GridBuilderTests {
         );
 
         List<Cell> allCells = new ArrayList<>();
-        allCells.add(newMutableCell(new MutableContent<>(1, "TAG")));
-        allCells.add(newMutableCell(new MutableContent<>(2, "TAG")));
-        allCells.add(newMutableCell(new MutableContent<>(3, "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(new Number("1"), "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(new Number("2"), "TAG")));
+        allCells.add(newMutableCell(new MutableContent<>(new Number("3"), "TAG")));
 
         GridRuleIterator simpleIterator = new GridRuleIterator(
                 allCells.stream().map(c -> (Container) c).collect(Collectors.toList()),

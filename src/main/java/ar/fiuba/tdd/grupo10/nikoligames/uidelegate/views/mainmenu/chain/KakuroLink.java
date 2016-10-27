@@ -12,10 +12,4 @@ class KakuroLink extends GameLink {
         super(context);
         this.gameEnum = GameEnum.KAKURO;
     }
-
-    @Override
-    void createGame(GameEnum game, String filePath) {
-        new GameController(KakuroFactory.createGrid(2), gameEnum);
-    }
-
 }

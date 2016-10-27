@@ -42,7 +42,7 @@ public class GameWindowView extends JFrame {
         panel.add(createClearConsoleButton(), gbc);
 
         getContentPane().add(panel);
-        setResizable(false);
+        setResizable(true);
         table.updateUI();
 
     }

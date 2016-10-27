@@ -18,13 +18,12 @@ public class CountryRoadCellView extends CellView {
     public void paintComponent(Graphics graphics) {
 
         Cell cell = (Cell) getValue();
-        if (cell.getValue(NUMBER) != null) {
-            String cellValue = (String) cell.getValue(NUMBER);
-            graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
+        Content content = cell.getContent(NUMBER);
+        if (content != null) {
+            graphics.drawString(String.valueOf(content.getValue()), (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
 
-        setBorders(cell);
-        drawBorders(graphics);
+        drawBorders(cell, graphics);
 
         drawLines(cell, graphics);
     }

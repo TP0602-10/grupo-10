@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 
 import java.awt.*;
 
@@ -16,15 +17,23 @@ public class SlitherlinkCellView extends CellView {
     public void paintComponent(Graphics graphics) {
         Cell cell = (Cell) getValue();
         drawNumber(cell, graphics);
-        setBorders(cell);
-        drawBorders(graphics);
+        drawBorders(cell, graphics);
+        drawPoints(graphics);
     }
 
     private void drawNumber(Cell cell, Graphics graphics) {
-        if (cell.getValue(NUMBER) != null) {
-            String cellValue = (String) cell.getValue(NUMBER);
-            cellValue.toString();
-            graphics.drawString(cellValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
+
+        Content content = cell.getContent(NUMBER);
+        if (content != null) {
+            String numberValue = String.valueOf(content.getValue());
+            graphics.drawString( numberValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
+    }
+
+    private void drawPoints(Graphics graphics){
+        graphics.fillOval(0,1,1,5);
+        /*graphics.fillOval(this.getY(),0,5,5);
+        graphics.fillOval(0,this.getX(),5,5);
+        graphics.fillOval(this.getX(),0,5,5);*/
     }
 }

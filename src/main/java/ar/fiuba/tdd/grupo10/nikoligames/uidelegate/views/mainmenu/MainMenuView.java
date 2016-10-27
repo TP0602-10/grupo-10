@@ -38,6 +38,7 @@ public class MainMenuView extends JFrame {
         mainPanel.add(Box.createVerticalStrut(10));
         mainPanel.add(createPlayButtonPanel());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        setFilePathTextFieldValue();
         return mainPanel;
     }
 
@@ -87,7 +88,18 @@ public class MainMenuView extends JFrame {
         JComboBox gameCombo = new JComboBox(GameEnum.values());
         gameCombo.setEditable(false);
         gameCombo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        gameCombo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                setFilePathTextFieldValue();
+            }
+        });
         return gameCombo;
+    }
+
+    private void setFilePathTextFieldValue() {
+        String jsonPath = ((GameEnum) gameCombo.getSelectedItem()).getDefaultJsonPath();
+        filePathTextField.setText(String.valueOf(jsonPath));
     }
 
     private JButton createStartButton() {

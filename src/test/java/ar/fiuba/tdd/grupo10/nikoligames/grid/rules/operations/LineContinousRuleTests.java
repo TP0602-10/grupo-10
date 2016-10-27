@@ -7,6 +7,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
@@ -27,18 +28,18 @@ public class LineContinousRuleTests {
     private Cell cell2;
     private Cell cell3;
     private Cell cell4;
+    private static final String TAG = "line";
 
-
-    private Cell createCell(Object contentValue) {
-        String dummyTag = "_";
+    private Cell createCell(Value contentValue) {
+        String dummyTag = TAG;
         return new Cell( new MutableContainer( new MutableContent<>(contentValue, dummyTag)) );
     }
 
     private void createCells() {
-        cell1 = createCell( new FromBottomToRightLine() );
-        cell2 = createCell( new FromBottomToLeftLine() );
-        cell3 = createCell( new FromTopToLeftLine() );
-        cell4 = createCell( new FromTopToRightLine() );
+        cell1 = createCell( new FromBottomToRightLine("") );
+        cell2 = createCell( new FromBottomToLeftLine("") );
+        cell3 = createCell( new FromTopToLeftLine("") );
+        cell4 = createCell( new FromTopToRightLine("") );
     }
 
     private Container[] generateFourCellsWithCloseLineCircuit() {
@@ -61,7 +62,7 @@ public class LineContinousRuleTests {
         cell1.setNeighbourAt( cell2, NeighbourPosition.RIGHT );
         cell2.setNeighbourAt( cell3, NeighbourPosition.BOTTOM );
 
-        cell4 = createCell( new HorizontalLine() );
+        cell4 = createCell( new HorizontalLine("") );
         cell3.setNeighbourAt( cell4, NeighbourPosition.LEFT );
         cell4.setNeighbourAt( cell1, NeighbourPosition.TOP );
 
@@ -78,7 +79,7 @@ public class LineContinousRuleTests {
                 "Iterator for LineContinousRuleTests"
         );
 
-        GridRuleOperation<Boolean> continousOperation = new LineContinousOperation("line");
+        GridRuleOperation<Boolean> continousOperation = new LineContinousOperation(TAG);
 
         GridRuleCondition<Boolean> condition = new GridRuleCondition<>(
                 new EqualsMatcher<>(),

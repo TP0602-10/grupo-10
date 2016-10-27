@@ -20,9 +20,11 @@ public class KakuroCellView extends CellView {
 
         if (cell.isContentEditable()) {
             graphics.setColor(Color.BLUE);
-            Object content = cell.getValue("Number");
+            Content content = cell.getContent("Number");
             if (content != null) {
-                graphics.drawString(content.toString(), (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
+                Object value = content.getValue() != null ? content.getValue() : "";
+                String contentValue = String.valueOf(value);
+                graphics.drawString(contentValue, (this.getWidth() / 2) - 5, (this.getHeight() / 2) + 5);
             }
         } else {
             graphics.setColor(Color.black);
@@ -32,18 +34,40 @@ public class KakuroCellView extends CellView {
     }
 
     private void drawLines(Cell cell, Graphics graphics) {
+        drawCompareToRight(cell, graphics);
+        drawCompareToBottom(cell, graphics);
+    }
 
+    private void drawCompareToRight(Cell cell, Graphics graphics) {
         Content content = cell.getContent("CompareToRight");
         if (content != null) {
-            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            drawDiagonal(graphics);
             graphics.drawString(content.getValue().toString(), (this.getWidth() / 2) + MARGIN_CELL, this.getHeight() / 2);
+        } else if (!cell.isContentEditable()) {
+            drawTopRectangle(graphics);
         }
+    }
 
-        content = cell.getContent("CompareToDown");
+    private void drawTopRectangle(Graphics graphics) {
+        graphics.fillPolygon(new int[]{0, this.getWidth(), this.getWidth()}, new int[]{0, 0, this.getHeight()}, 3);
+    }
+
+    private void drawCompareToBottom(Cell cell, Graphics graphics) {
+        Content content = cell.getContent("CompareToDown");
         if (content != null) {
-            graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
+            drawDiagonal(graphics);
             graphics.drawString(content.getValue().toString(), 6, (this.getHeight() / 2) + +MARGIN_CELL);
+        } else if (!cell.isContentEditable()) {
+            drawBottomRectangle(graphics);
         }
+    }
+
+    private void drawBottomRectangle(Graphics graphics) {
+        graphics.fillPolygon(new int[]{0, 0, this.getWidth()}, new int[]{0, this.getHeight(), this.getHeight()}, 3);
+    }
+
+    private void drawDiagonal(Graphics graphics) {
+        graphics.drawLine(this.getWidth(), this.getHeight(), 0, 0);
     }
 
 }

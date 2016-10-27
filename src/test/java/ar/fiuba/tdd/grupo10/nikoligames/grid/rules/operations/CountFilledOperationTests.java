@@ -5,6 +5,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.AlwaysVerifiableRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRule;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleCondition;
@@ -22,7 +23,7 @@ public class CountFilledOperationTests {
     GridRule<Integer> theRule;
 
     private Cell createCell(int value, String tag) {
-        return new Cell( new MutableContainer( new MutableContent<>(value,tag) ) );
+        return new Cell( new MutableContainer( new MutableContent<>(new Number(Integer.toString(value)),tag) ) );
     }
 
 

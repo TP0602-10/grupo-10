@@ -43,10 +43,10 @@ public class GridView extends JTable {
                 if (cell.isContentEditable() && row >= 0 && col >= 0) {
                     Object newValue;
                     if (SwingUtilities.isLeftMouseButton(evt)) {
-                        newValue = gameEnum.getNextPossibleValue(cell.getValue());
+                        newValue = gameEnum.getNextPossibleValue(cell.getValue(gameEnum.getMutableContentTag()));
                         updateValue(newValue, row, col);
                     } else if (SwingUtilities.isRightMouseButton(evt)) {
-                        newValue = gameEnum.getPrevPossibleValue(cell.getValue());
+                        newValue = gameEnum.getPrevPossibleValue(cell.getValue(gameEnum.getMutableContentTag()));
                         updateValue(newValue, row, col);
                     }
 

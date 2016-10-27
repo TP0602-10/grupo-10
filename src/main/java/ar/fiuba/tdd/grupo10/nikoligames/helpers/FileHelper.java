@@ -3,6 +3,9 @@ package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
+
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +18,7 @@ import java.util.List;
  */
 public final class FileHelper {
 
-    public static Object getFileContent(String location, Class inputType) {
+    public static Object getFileContent(String location, Class inputType) throws FileReadException {
 
         Gson gson = new Gson();
         Path path = Paths.get(location);
@@ -26,10 +29,9 @@ public final class FileHelper {
                 buffer.append(line);
             }
             return gson.fromJson(buffer.toString(), inputType);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new FileReadException("Error on load " + location);
         }
-        return null;
     }
 
     public static void writeToFile(Object output, String location) {

@@ -46,7 +46,16 @@ public class Cell extends Container {
         return boundaries.getNeighbours();
     }
 
+    public List<NeighbourContainer> getNeighbours( NeighbourPosition[] positions ) {
+        List<NeighbourContainer> selectedNeighbours = new ArrayList<>();
+        for (NeighbourPosition position : positions) {
+            selectedNeighbours.add( boundaries.getNeighbourContainerAt(position) );
+        }
+        return selectedNeighbours;
+    }
+
     public List<NeighbourContainer> getLimits() {
         return boundaries.getLimits();
     }
+
 }
