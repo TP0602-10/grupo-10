@@ -4,7 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 
 /**
  * This rule checks if all Cell elements of the iterator form a line circuit.
- * Only diagonal line orientations are allowed.
+ * All line orientations are allowed.
  */
 public class LineAnyCircuitOperation extends LineCircuitOperation {
 
