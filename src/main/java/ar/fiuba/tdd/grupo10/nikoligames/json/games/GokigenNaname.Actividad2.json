@@ -145,7 +145,7 @@
 		{	"iterator": {"indexes":[4,9],"explanation":"Iterate cells (1,5) and (2,5)" },
 			"explanation":"Rule for the corner between cells of the iterators",
 			"operation":{"name" : "SumLinesPointingToSharedCornerOperation","contentTags":["GOALPOINT", "LINE"],"type":"Integer", "corner" : {"neighbourPosition":"TOP_RIGHT","cellIndex":9} },
-			"condition":{"matcher":"EqualsMatcher","goal":"2"},
+			"condition":{"matcher":"EqualsMatcher","goal":"0"},
 			"type":"CompleteIteratorRule"
 		},
 		{	"iterator": {"indexes":[11,12,16,17],"explanation":"Iterate cells (3,2), (3,3), (4,2) and (4,3)" },
