@@ -70,19 +70,19 @@ public abstract class CellView extends JLabel implements TableCellRenderer {
         }
     }
 
-    private void drawTopBorder(Graphics graphics) {
+    protected void drawTopBorder(Graphics graphics) {
         graphics.fillRect(0, 0, this.getWidth(), 3);
     }
 
-    private void drawBottomBorder(Graphics graphics) {
+    protected void drawBottomBorder(Graphics graphics) {
         graphics.fillRect(0, this.getHeight() - 3, this.getWidth(), this.getHeight());
     }
 
-    private void drawLeftBorder(Graphics graphics) {
+    protected void drawLeftBorder(Graphics graphics) {
         graphics.fillRect(0, 0, 3, this.getHeight());
     }
 
-    private void drawRightBorder(Graphics graphics) {
+    protected void drawRightBorder(Graphics graphics) {
         graphics.fillRect(this.getWidth() - 3, 0, 3, this.getHeight());
     }
 

@@ -5,6 +5,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 
+import java.util.Arrays;
+
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.BORDER;
 
 public class SlitherlinkValue implements PossibleValue {
@@ -23,9 +25,9 @@ public class SlitherlinkValue implements PossibleValue {
             return null;
         }
         Boolean top = Boolean.valueOf(String.valueOf(this.value[0]));
-        Boolean bottom = Boolean.valueOf(String.valueOf(this.value[0]));
-        Boolean left = Boolean.valueOf(String.valueOf(this.value[0]));
-        Boolean right = Boolean.valueOf(String.valueOf(this.value[0]));
+        Boolean bottom = Boolean.valueOf(String.valueOf(this.value[1]));
+        Boolean left = Boolean.valueOf(String.valueOf(this.value[2]));
+        Boolean right = Boolean.valueOf(String.valueOf(this.value[3]));
         return new Boolean[] {top, bottom, left, right};
     }
 
@@ -34,11 +36,12 @@ public class SlitherlinkValue implements PossibleValue {
         if (otherValue == null) {
             return this.value == null;
         } else  {
+            Boolean[] booleanArray = Arrays.copyOf(((Object[]) otherValue), ((Object[]) otherValue).length, Boolean[].class);
             return this.value != null
-                    && (this.value[0] ^ ((Boolean[]) otherValue)[0])
-                    && (this.value[1] ^ ((Boolean[]) otherValue)[1])
-                    && (this.value[2] ^ ((Boolean[]) otherValue)[2])
-                    && (this.value[3] ^ ((Boolean[]) otherValue)[3]);
+                    && (this.value[0].booleanValue() == booleanArray[0].booleanValue())
+                    && (this.value[1].booleanValue() == booleanArray[1].booleanValue())
+                    && (this.value[2].booleanValue() == booleanArray[2].booleanValue())
+                    && (this.value[3].booleanValue() == booleanArray[3].booleanValue());
         }
     }
 
