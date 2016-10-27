@@ -52,7 +52,11 @@ public class SumLinesPointingToSharedCornerOperation extends GridRuleOperation<I
 
     @Override
     public boolean isApplicableOn(Container container) {
-        return ! container.getContents(getContentTags()).isEmpty();
+        return (!container.getContents(getContentTags()).isEmpty())
+                && (cornerToEvaluate != null
+                    && !cornerToEvaluate.getContents(getContentTags()).isEmpty()
+                    && !cornerToEvaluate.getContents(getContentTags()).get(0).isEmpty()
+                    && cornerToEvaluate.getContents(getContentTags()).get(0).getValue() instanceof Point);
     }
 
     @Override
