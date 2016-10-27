@@ -53,12 +53,15 @@ public final class GamesBuilder {
 
         setLimitsOfBoard(gridCell,gameStructure.getCellLimits());
 
-        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
+        Grid grid = new GridBuilder()
+                .setRows(board.getRows()).setColumns(board.getColumns())
+                .addCells(gridCell).doNeighborlyRelations()
+                .buildGrid();
 
+        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
         GridRuleManager gridRuleManager = new GridRuleManager(gridRules);
-        Grid grid = new GridBuilder().setRows(board.getRows()).setColumns(board.getColumns())
-                .addCells(gridCell).doNeighborlyRelations().addObserver(gridRuleManager).buildGrid();
         gridRuleManager.addObserver(grid);
+        grid.addObserver(gridRuleManager);
 
         return grid;
     }
