@@ -37,7 +37,7 @@ public class LineCircuitOperationTests {
                 Boolean.TRUE
         );
 
-        GridRuleOperation<Boolean> operation = new LineCircuitOperation(TAG);
+        GridRuleOperation<Boolean> operation = new LineAnyCircuitOperation(TAG);
 
         ruleWithLineCircuitOperation = new AlwaysVerifiableRule<>(
                 iterator,
