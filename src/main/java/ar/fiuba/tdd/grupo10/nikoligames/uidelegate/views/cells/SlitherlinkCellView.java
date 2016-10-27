@@ -30,7 +30,7 @@ public class SlitherlinkCellView extends CellView {
         }
     }
 
-    private void drawPoints(Graphics graphics){
+    private void drawPoints(Graphics graphics) {
         graphics.fillOval(0,1,1,5);
         /*graphics.fillOval(this.getY(),0,5,5);
         graphics.fillOval(0,this.getX(),5,5);

@@ -35,12 +35,13 @@ public class SlitherlinkValue implements PossibleValue {
             return this.value == null;
         } else  {
             return this.value != null
-                    && this.value[0] == ((Boolean[]) otherValue)[0]
-                    && this.value[1] == ((Boolean[]) otherValue)[1]
-                    && this.value[2] == ((Boolean[]) otherValue)[2]
-                    && this.value[3] == ((Boolean[]) otherValue)[3];
+                    && (this.value[0] ^ ((Boolean[]) otherValue)[0])
+                    && (this.value[1] ^ ((Boolean[]) otherValue)[1])
+                    && (this.value[2] ^ ((Boolean[]) otherValue)[2])
+                    && (this.value[3] ^ ((Boolean[]) otherValue)[3]);
         }
     }
+
 
     @Override
     public void setValueInCell(Cell cell) {
