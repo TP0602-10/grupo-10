@@ -8,6 +8,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.HorizontalLine;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.VerticalLine;
@@ -41,11 +42,11 @@ public class CheckBottomBorderOperationTests {
 
         List<Cell> cellToVerify = new ArrayList<>();
         List<Content> lines = new ArrayList<>();
-        Line theLine = new HorizontalLine();
+        Line theLine = new HorizontalLine("HorizontalLine");
         Content theContent = new MutableContent(theLine, tag);
         lines.add(theContent);
         Container theContainer = new Container(new ImmutableContainer(lines));
-        Cell theCell = new Cell(new MutableContainer(new MutableContent(1, tag)));
+        Cell theCell = new Cell(new MutableContainer(new MutableContent(new Number("1"), tag)));
         theCell.setLimitAt(theContainer, NeighbourPosition.BOTTOM);
         cellToVerify.add(theCell);
         createRule(cellToVerify);
@@ -55,12 +56,12 @@ public class CheckBottomBorderOperationTests {
     @Test(expected = RuleNotSatisfiedException.class)
     public void ruleVerifiesBordersNotCorrectlySet() {
         List<Content> lines = new ArrayList<>();
-        Line theLine = new HorizontalLine();
+        Line theLine = new HorizontalLine("HorizontalLine");
         Content theContent = new MutableContent(theLine, tag);
         lines.add(theContent);
         Container theContainer = new Container(new ImmutableContainer(lines));
-        Cell theCell = new Cell(new MutableContainer(new MutableContent(1, tag)));
-        Cell anotherCell = new Cell(new MutableContainer(new MutableContent(1, tag)));
+        Cell theCell = new Cell(new MutableContainer(new MutableContent(new Number("1"), tag)));
+        Cell anotherCell = new Cell(new MutableContainer(new MutableContent(new Number("1"), tag)));
         anotherCell.setLimitAt(theContainer, NeighbourPosition.BOTTOM);
         theCell.setLimitAt(theContainer, NeighbourPosition.TOP);
         List<Cell> cellToVerify = new ArrayList<>();
