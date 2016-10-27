@@ -26,12 +26,12 @@ public class SlitherlinkCellView extends CellView {
         Content content = cell.getContent(NUMBER);
         if (content != null) {
             String numberValue = String.valueOf(content.getValue());
-            graphics.drawString( numberValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
+            graphics.drawString(numberValue, (this.getWidth() / 2) - 4, (this.getHeight() / 2) + 4);
         }
     }
 
     private void drawPoints(Graphics graphics) {
-        graphics.fillOval(0,1,1,5);
+        graphics.fillOval(0, 1, 1, 5);
         /*graphics.fillOval(this.getY(),0,5,5);
         graphics.fillOval(0,this.getX(),5,5);
         graphics.fillOval(this.getX(),0,5,5);*/
