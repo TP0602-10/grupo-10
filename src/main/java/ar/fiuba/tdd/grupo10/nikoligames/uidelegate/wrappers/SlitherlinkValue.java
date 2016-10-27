@@ -3,9 +3,19 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.NullValue;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.HorizontalLine;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.VerticalLine;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.BORDER;
 
@@ -57,10 +67,40 @@ public class SlitherlinkValue implements PossibleValue {
     }
 
     private void setValueInCell(Cell cell, NeighbourPosition neighbourPosition, int arrayIndex) {
-        Container container = cell.getLimitAt(neighbourPosition);
-        if (container != null) {
-            container.setValue(this.value[arrayIndex], BORDER);
+        if (this.value != null && this.value[arrayIndex]) {
+            if (isVertical(neighbourPosition)) {
+                cell.setLimitAt(createVerticalContainer(), neighbourPosition);
+            } else {
+                cell.setLimitAt(createHorizontalContainer(), neighbourPosition);
+            }
+        } else {
+            Container container = cell.getLimitAt(neighbourPosition);
+            if (container != null) {
+                container.setValue(new NullValue(),"BORDER");
+            }
         }
+    }
+
+    private boolean isVertical(NeighbourPosition neighbourPosition) {
+        return NeighbourPosition.RIGHT.equals(neighbourPosition) || NeighbourPosition.LEFT.equals(neighbourPosition);
+    }
+
+    private Container createVerticalContainer() {
+        List<Content> lines = new ArrayList<>();
+        Line theLine = new VerticalLine("VerticalLine");
+        Content theContent = new MutableContent(theLine, "BORDER");
+        lines.add(theContent);
+        Container theContainer = new Container(new MutableContainer(lines));
+        return theContainer;
+    }
+
+    private Container createHorizontalContainer() {
+        List<Content> lines = new ArrayList<>();
+        Line theLine = new HorizontalLine("HorizontalLine");
+        Content theContent = new MutableContent(theLine, "BORDER");
+        lines.add(theContent);
+        Container theContainer = new Container(new MutableContainer(lines));
+        return theContainer;
     }
 
 }

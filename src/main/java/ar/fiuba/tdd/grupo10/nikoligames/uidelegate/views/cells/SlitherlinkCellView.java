@@ -3,6 +3,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.NullValue;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.NeighbourPosition;
 
@@ -36,14 +37,29 @@ public class SlitherlinkCellView extends CellView {
 
     private boolean hasBorder(Cell cell, NeighbourPosition neighbourPosition) {
         Container container = cell.getLimitAt(neighbourPosition);
-        return container != null && container.getValue(BORDER) instanceof Boolean && (Boolean) container.getValue(BORDER);
+        return container != null && container.getValue(BORDER) != null
+                && !(container.getValue(BORDER) instanceof NullValue);
     }
 
     @Override
     void drawBorders(Cell cell, Graphics graphics) {
+        checkAndRenderBottomBorder(cell, graphics);
+        checkAndRenderRightBorder(cell, graphics);
+        if (hasBorder(cell, NeighbourPosition.LEFT)) {
+            drawLeftBorder(graphics);
+        }
+        if (hasBorder(cell, NeighbourPosition.TOP)) {
+            drawTopBorder(graphics);
+        }
+    }
+
+    private void checkAndRenderBottomBorder(Cell cell, Graphics graphics) {
         if (hasBorder(cell, NeighbourPosition.BOTTOM)) {
             drawBottomBorder(graphics);
         }
+    }
+
+    private void checkAndRenderRightBorder(Cell cell, Graphics graphics) {
         if (hasBorder(cell, NeighbourPosition.RIGHT)) {
             drawRightBorder(graphics);
         }
