@@ -53,7 +53,11 @@ public class ClassPathHelper {
             FromBottomToRightLine.class,
             FromTopToLeftLine.class,
             //FromBottomLeftToTopRightDiagonal.class,
-            Point.class
+            Point.class,
+            CheckTopBorderOperation.class,
+            CheckBottomBorderOperation.class,
+            CheckLeftBorderOperation.class,
+            CheckRightBorderOperation.class
     };
 
     static {
