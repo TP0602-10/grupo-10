@@ -58,7 +58,7 @@ public class SlitherlinkValue implements PossibleValue {
 
     @Override
     public void setValueInCell(Cell cell) {
-        cell.setValue(this.value, "LINE");
+        cell.setValue(this.value, "BORDER");
         setValueInCell(cell, NeighbourPosition.TOP, 0);
         setValueInCell(cell, NeighbourPosition.BOTTOM, 1);
         setValueInCell(cell, NeighbourPosition.LEFT, 2);
@@ -74,15 +74,24 @@ public class SlitherlinkValue implements PossibleValue {
                 cell.setLimitAt(createHorizontalContainer(), neighbourPosition);
             }
         } else {
-            Container container = cell.getLimitAt(neighbourPosition);
+            cell.setLimitAt(createEmptyContainer(), neighbourPosition);
+            /*Container container = cell.getLimitAt(neighbourPosition);
             if (container != null) {
                 container.setValue(new NullValue(),"BORDER");
-            }
+            }*/
         }
     }
 
     private boolean isVertical(NeighbourPosition neighbourPosition) {
         return NeighbourPosition.RIGHT.equals(neighbourPosition) || NeighbourPosition.LEFT.equals(neighbourPosition);
+    }
+
+    private Container createEmptyContainer() {
+        List<Content> lines = new ArrayList<>();
+        Content theContent = new MutableContent(new NullValue(), "BORDER");
+        lines.add(theContent);
+        Container theContainer = new Container(new MutableContainer(lines));
+        return theContainer;
     }
 
     private Container createVerticalContainer() {

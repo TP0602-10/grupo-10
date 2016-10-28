@@ -25,7 +25,7 @@ public enum GameEnum {
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
             JSON_FOLDER + "GokigenNaname.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
-            JSON_FOLDER + "Slitherlink.json", LINE);
+            JSON_FOLDER + "Slitherlink.json", "BORDER");
 
 
     private String description;
@@ -56,11 +56,11 @@ public enum GameEnum {
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
         List<PossibleValue> slitherlinkValues = new ArrayList<>();
         slitherlinkValues.add(new SlitherlinkValue(null));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, true}));
