@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
@@ -19,18 +20,17 @@ public class InshiNoHeyaTests implements GameRulesObserver {
 
     private List<Map<String, Integer>> theGoalsValues;
     private boolean usePositionToIndex = true;
-    private List<Map<String, Integer>> solution;
     private List<Map<String, Integer>> plays;
     private Map<String, String> playsInvalidity;
     private String boardValidity = "valid";
 
-    private void loadBoard() {
+    private void loadBoard() throws FileReadException {
         theGoalsValues = new ArrayList<>();
         InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/inshi_board.json", InputBoard.class);
         for (BoardValue boardValue : initialBoard.getBoard().getValues()) {
             int row = boardValue.getPosition().get(0);
             int col = boardValue.getPosition().get(1);
-            int value = Integer.valueOf(boardValue.getValue());
+            int value = Integer.parseInt(boardValue.getValue());
             Map<String, Integer> goalMap = new HashMap<>();
             goalMap.put(InshiNoHeyaFactory.EXTERN_MAP_ROW, row);
             goalMap.put(InshiNoHeyaFactory.EXTERN_MAP_COL, col);
@@ -39,7 +39,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
         }
     }
 
-    private void loadPlays() {
+    private void loadPlays() throws FileReadException {
         InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/inshi_play.json", InshiNoHeyaInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
@@ -52,7 +52,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws FileReadException {
         loadBoard();
         loadPlays();
         playsInvalidity = new HashMap<>();

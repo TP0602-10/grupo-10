@@ -49,7 +49,6 @@ public class SudokuTest {
 
     }
 
-    @Ignore
     @Test
     public void createGridAndWin() {
         Grid sudokuGrid = SudokuFactory.createGridFromScratch(80);
@@ -63,5 +62,4 @@ public class SudokuTest {
             sudokuGrid.notifyGridUpdated(null);
         }
     }
-
 }

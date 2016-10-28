@@ -1,88 +1,61 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells;
 
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableCellException;
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
-import ar.fiuba.tdd.grupo10.nikoligames.exceptions.NoFindContentbyTagException;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.neighbour.types.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Basic structure of the cell.
  */
-public abstract class Cell {
+public class Cell extends Container {
 
-    protected Map<String,Content> contents = new HashMap<>();
+    private final BoundariesManager boundaries;
 
-    public Cell(List<Content> contentsList) {
-        for (Content content : contentsList) {
-            contents.put(content.getTag(), content);
+    public Cell(ContainerState state) {
+        super(state);
+        this.boundaries = new BoundariesManager();
+    }
+
+    public NeighbourType getNeighbourFrom(Cell otherCell) {
+        return boundaries.getNeighbourFrom(otherCell);
+    }
+
+    public NeighbourType getLimitFrom(Container limit) {
+        return boundaries.getLimitFrom(limit);
+    }
+
+    public Container getNeighbourAt(NeighbourPosition position) {
+        return boundaries.getNeighbourAt(position);
+    }
+
+    public void setNeighbourAt(Cell neighbour, NeighbourPosition position) {
+        boundaries.setNeighbourAt(this, neighbour, position);
+    }
+
+    public Container getLimitAt(NeighbourPosition position) {
+        return boundaries.getLimitAt(position);
+    }
+
+    public void setLimitAt(Container limit, NeighbourPosition position) {
+        boundaries.setLimitAt(limit, position);
+    }
+
+    public List<NeighbourContainer> getNeighbours() {
+        return boundaries.getNeighbours();
+    }
+
+    public List<NeighbourContainer> getNeighbours( NeighbourPosition[] positions ) {
+        List<NeighbourContainer> selectedNeighbours = new ArrayList<>();
+        for (NeighbourPosition position : positions) {
+            selectedNeighbours.add( boundaries.getNeighbourContainerAt(position) );
         }
+        return selectedNeighbours;
     }
 
-    public Cell(Content content) {
-        this.contents.put(content.getTag(),content);
+    public List<NeighbourContainer> getLimits() {
+        return boundaries.getLimits();
     }
 
-    public List<Content> getAllContent() {
-        return new ArrayList<>(contents.values());
-    }
-
-    public abstract void setContent(Content content) throws ImmutableCellException;
-
-    public abstract void setValue(Object value,String contentTag) throws ImmutableContentValueException,
-            ImmutableCellException,
-            NoFindContentbyTagException;
-
-    public abstract void setValue(Object value) throws ImmutableContentValueException,ImmutableCellException,NoFindContentbyTagException;
-
-    public Content getContent(String tag) {
-        return contents.get(tag);
-    }
-
-    public Content getContent() throws NoFindContentbyTagException {
-        if (contents.size() > 1) {
-            throw new NoFindContentbyTagException("Not specified tag, cell contain more than one content.");
-        }
-        return contents.entrySet().iterator().next().getValue();
-    }
-
-    public List<Content> getContents(List<String> tagsList) {
-        List<Content> contentsList = new ArrayList<>();
-        for (String tag : tagsList) {
-            Content content = contents.get(tag);
-            if (content == null) {
-                continue;
-            }
-            contentsList.add(content);
-        }
-        return contentsList;
-    }
-
-    public abstract boolean isContentEditable();
-
-    public boolean isEmpty() {
-        return contents.isEmpty();
-    }
-
-    public boolean isCompletelyFilled() {
-        return contents.keySet().stream()
-                .filter( k -> contents.get(k).isValueEditable() )
-                .allMatch( k -> ! contents.get(k).isEmpty() );
-    }
-
-    public Object getValue(String tag) throws NoFindContentbyTagException {
-        if (!contents.containsKey(tag)) {
-            throw new NoFindContentbyTagException("no find content by tag:" + tag);
-        }
-        Content content = contents.get(tag);
-        return content.getValue();
-    }
-
-    public Object getValue() throws NoFindContentbyTagException {
-        return this.getContent().getValue();
-    }
 }

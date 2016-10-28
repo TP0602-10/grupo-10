@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.ImmutableContentValueException;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Value;
 
 import java.util.Objects;
 
@@ -11,19 +12,26 @@ import java.util.Objects;
  */
 public abstract class Content<T> {
 
-    protected T value;
+    protected Value<T> value;
     protected String tag;
 
-    public Content(T value, String tag) {
+    public Content(Value<T> value, String tag) {
         this.value = value;
         this.tag = tag;
     }
 
     public T getValue() {
+        return value.getValue();
+    }
+
+    public Value<T> getValueObject() {
         return value;
     }
 
     public abstract void setValue(T value) throws ImmutableContentValueException;
+
+    public abstract void setValue(Value<T> value) throws ImmutableContentValueException;
+
 
     public String getTag() {
         return tag;
@@ -34,7 +42,7 @@ public abstract class Content<T> {
     public abstract boolean clearValue();
 
     public boolean isEmpty() {
-        return value == null;
+        return value == null || value.getValue() == null;
     }
 
     @Override
@@ -46,8 +54,8 @@ public abstract class Content<T> {
             return false;
         }
         Content<?> content = (Content<?>) obj;
-        return Objects.equals(value, content.value)
-                && Objects.equals(tag, content.tag);
+
+        return (Objects.equals(tag, content.getTag()) && value != null) && value.equals(content.getValueObject());
     }
 
     @Override

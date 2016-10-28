@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.grupo10.nikoligames.helpers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,19 @@ public final class ListHelper {
         return list1.size() == list2.size()
                 && list1.containsAll(list2)
                 && list2.containsAll(list1);
+    }
+
+    public static <T> boolean equalsAndInSameOrder(List<T> list1, List<T> list2) {
+        if (!equals(list1, list2)) {
+            return false;
+        }
+
+        for (int i = 0; i < list1.size(); i++) {
+            if (!list1.get(i).equals(list2.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static <T> List<T> rejectDuplicateElements(List<T> list) {
@@ -40,8 +54,23 @@ public final class ListHelper {
         return matrix;
     }
 
+    public static <S extends T, T> List<List<T>> buildMatrixWithCastedElementsFromFlattenList(
+            List<S> subclassList, int rows, int columns, Class<T> superclassToCastTo) {
+        return buildMatrixFromFlattenList(
+                subclassList.stream().map(e -> (T) e).collect(Collectors.toList()),
+                rows,
+                columns
+        );
+    }
+
+    public static <T> List<T> createListFromArray(T[] array) {
+        List<T> allElements = new ArrayList<>();
+        Collections.addAll(allElements, array);
+        return allElements;
+    }
+
     public static <T> List<Integer> createFromRange(int initialValue, int endValue) {
-        List<Integer> theList = new ArrayList<Integer>();
+        List<Integer> theList = new ArrayList<>();
         for (int i = initialValue; i <= endValue; i++) {
             theList.add(i);
         }

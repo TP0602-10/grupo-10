@@ -3,11 +3,13 @@ package ar.fiuba.tdd.grupo10.nikoligames;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableCell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.ImmutableContainer;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.LessOrEqualToIntegerMatcher;
@@ -203,22 +205,24 @@ public class KakuroFactory {
 
     public static Grid createGrid(int difficulty) {
         List<Cell> cells = generateCellList(difficulty);
-        GridRuleManager ruleManager = createKakuroRuleManager(ListHelper.buildMatrixFromFlattenList(cells, ROWS, COLUMNS));
+        GridRuleManager ruleManager = createKakuroRuleManager(
+                ListHelper.buildMatrixWithCastedElementsFromFlattenList(cells, ROWS, COLUMNS, Container.class)
+        );
         return returnGrid(cells,ruleManager);
     }
 
-    public static Grid returnGrid(List<Cell> cells,GridRuleManager ruleManager) {
+    public static Grid returnGrid(List<Cell> cells, GridRuleManager ruleManager) {
         Grid grid = new GridBuilder().setRows(ROWS).setColumns(COLUMNS).addCells(cells).addObserver(ruleManager).buildGrid();
         ruleManager.addObserver(grid);
         return grid;
     }
 
-    private static GridRuleManager createKakuroRuleManager(List<List<Cell>> grid) {
+    private static GridRuleManager createKakuroRuleManager(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = buildKakuroRules(grid);
         return new GridRuleManager(kakuroRules);
     }
 
-    private static Collection<GridRule> buildKakuroRules(List<List<Cell>> grid) {
+    private static Collection<GridRule> buildKakuroRules(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = new ArrayList<>();
 
         String[] upperTag = {"CompareToRight"};
@@ -234,13 +238,13 @@ public class KakuroFactory {
         return kakuroRules;
     }
 
-    private static void iterateRowKakuroRules(List<List<Cell>> grid, List<String> upperCellTag,
+    private static void iterateRowKakuroRules(List<List<Container>> grid, List<String> upperCellTag,
                                               Collection<GridRule> kakuroRules) {
         for (int i = 0; i < ROWS; i++) {
-            List<Cell> row = grid.get(i);
+            List<Container> row = grid.get(i);
             Integer columnIndex = 0;
             while (columnIndex < COLUMNS) {
-                Cell element = row.get(columnIndex);
+                Container element = row.get(columnIndex);
                 int startPos;
                 if (element.getContents(upperCellTag).isEmpty()) {
                     columnIndex++;
@@ -263,20 +267,20 @@ public class KakuroFactory {
         }
     }
 
-    private static void iterateColumnKakuroRules(List<List<Cell>> grid, List<String> downCellTag,
+    private static void iterateColumnKakuroRules(List<List<Container>> grid, List<String> downCellTag,
                                                  Collection<GridRule> kakuroRules) {
         for (int j = 0; j < COLUMNS; j++) {
             Integer rowIndex = 0;
             while (rowIndex < ROWS) {
                 int startPos;
                 //List<Cell> row = grid.get(rowIndex);
-                Cell element = grid.get(rowIndex).get(j);
+                Container element = grid.get(rowIndex).get(j);
                 if (element.getContents(downCellTag).isEmpty()) {
                     rowIndex++;
                 } else {
                     rowIndex++;
                     startPos = rowIndex;
-                    List<Cell> row = grid.get(rowIndex);
+                    List<Container> row = grid.get(rowIndex);
                     int goalValue = (int) element.getContent("CompareToDown").getValue();
                     element = row.get(j);
                     while (rowIndex < ROWS - 1 && element.isContentEditable()) {
@@ -295,7 +299,7 @@ public class KakuroFactory {
     }
 
 
-    private static void generateKakuroRules(List<List<Cell>> grid, int columnIndex, int startPos, int endPos,
+    private static void generateKakuroRules(List<List<Container>> grid, int columnIndex, int startPos, int endPos,
                                             Collection<GridRule> kakuroRules, int goalValue, List<String> tag,
                                             GridRuleIterator anIterator) {
 
@@ -314,30 +318,30 @@ public class KakuroFactory {
     }
 
     private static Cell createMutableCell() {
-        return new MutableCell(new MutableContent<>(null, "Number"));
+        return new Cell(new MutableContainer(new MutableContent<>(new Number(null), "Number")));
     }
 
-    private static Cell createSingleValuedImmutableCell(int result, String tag) {
-        return new ImmutableCell(new ImmutableContent<>(result, tag));
+    public static Cell createSingleValuedImmutableCell(int result, String tag) {
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), tag)));
     }
 
     private static Cell createImmutableCell() {
-        return new ImmutableCell(new ImmutableContent<>(null, "BlackBLock"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(null), "BlackBLock")));
     }
 
     private static Cell createUpSidedImmutableCell(int result) {
-        return new ImmutableCell(new ImmutableContent<>(result, "CompareToRight"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), "CompareToRight")));
     }
 
     private static Cell createDownSidedImmutableCell(int result) {
-        return new ImmutableCell(new ImmutableContent<>(result, "CompareToDown"));
+        return new Cell(new ImmutableContainer(new ImmutableContent<>(new Number(Integer.toString(result)), "CompareToDown")));
     }
 
     private static Cell createDoubleSidedImmutableCell(int upperResult, int bottomResult) {
         List<Content> contentList = new ArrayList<>();
-        contentList.add(new ImmutableContent<>(upperResult, "CompareToRight"));
-        contentList.add(new ImmutableContent<>(bottomResult, "CompareToDown"));
-        return new ImmutableCell(contentList);
+        contentList.add(new ImmutableContent<>(new Number(Integer.toString(upperResult)), "CompareToRight"));
+        contentList.add(new ImmutableContent<>(new Number(Integer.toString(bottomResult)), "CompareToDown"));
+        return new Cell(new ImmutableContainer(contentList));
     }
 }
 

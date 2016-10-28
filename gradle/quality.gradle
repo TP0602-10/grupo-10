@@ -9,6 +9,10 @@ findbugs {
     effort = "max"
 }
 
+tasks.withType(FindBugs) {
+    excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
+}
+
 pmd {
     toolVersion = '4.3'
     sourceSets = [sourceSets.main]

@@ -5,9 +5,11 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.WrongNumberOfGridCellsExcepti
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.GridBuilder;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableCell;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.MutableContainer;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.ImmutableContent;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.MutableContent;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.Number;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.EqualsMatcher;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.matchers.GridRuleMatcher;
@@ -21,6 +23,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.helpers.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -87,8 +90,8 @@ public final class InshiNoHeyaFactory {
         return -1;
     }
 
-    private static List<Cell> getCellsFromPositions( int[] positions ) {
-        List<Cell> cells = new ArrayList<>();
+    private static List<Container> getCellsFromPositions(int[] positions ) {
+        List<Container> cells = new ArrayList<>();
         for (int position : positions) {
             cells.add( CELLS.get(position) );
         }
@@ -112,7 +115,7 @@ public final class InshiNoHeyaFactory {
             int indexInRoomsPositions = searchIndexInRoomsPosition(positionToSearch);
 
 
-            CELLS.get(positionToSearch).setContent( new ImmutableContent(value,"GOAL") );
+            CELLS.get(positionToSearch).setContent( new ImmutableContent<>(new Number(Integer.toString(value)),"GOAL") );
 
 
 
@@ -148,7 +151,7 @@ public final class InshiNoHeyaFactory {
     }
 
     private static String toStringPostionsRoom(int[] roomIndexs) {
-        StringBuffer stringMsgBuf = new StringBuffer();
+        StringBuilder stringMsgBuf = new StringBuilder();
         for ( int indexGrid : roomIndexs) {
             int[] rowAndCol = getPositionFromIndex(indexGrid);
             stringMsgBuf.append("(" + rowAndCol[0] + "," + rowAndCol[1] + "),");
@@ -184,7 +187,11 @@ public final class InshiNoHeyaFactory {
                 sumGoal
         );
 
-        List<List<Cell>> grid = ListHelper.buildMatrixFromFlattenList(CELLS,ROWS,COLS);
+        List<List<Container>> grid = ListHelper.buildMatrixFromFlattenList(
+                CELLS.stream().map(c -> (Container) c).collect(Collectors.toList()),
+                ROWS,
+                COLS
+        );
 
         List<GridRuleIterator> iterators = GridRuleIteratorFactory.iteratorsForAllColumns(grid);
 
@@ -208,7 +215,7 @@ public final class InshiNoHeyaFactory {
     private static void createCells() {
         CELLS = new ArrayList<>();
         for (int i = 0; i < ROWS * COLS; i++) {
-            CELLS.add( new MutableCell( new MutableContent<Integer>(null,DEFAULT_TAG)) );
+            CELLS.add( new Cell(new MutableContainer(new MutableContent<>(new Number(null), DEFAULT_TAG))) );
         }
     }
 
