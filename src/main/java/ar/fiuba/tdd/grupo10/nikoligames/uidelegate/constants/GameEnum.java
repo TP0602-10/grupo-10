@@ -23,7 +23,7 @@ public enum GameEnum {
     COUNTRY_ROAD("Country Road", createCountryRoadPossibleValues(), CountryRoadCellView.class,
             JSON_FOLDER + "CountryRoad.json", LINE),
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
-            JSON_FOLDER + "GokigenNaname.json", LINE),
+            JSON_FOLDER + "GokigenNaname.Actividad2.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
             JSON_FOLDER + "Slitherlink.json", "BORDER");
 
