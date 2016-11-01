@@ -1,6 +1,7 @@
-package ar.fiuba.tdd.grupo10.nikoligames;
+package ar.fiuba.tdd.grupo10.nikoligames.act1;
 
 
+import ar.fiuba.tdd.grupo10.nikoligames.InshiNoHeyaFactory;
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
@@ -16,7 +17,7 @@ import java.util.*;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.getFileContent;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.writeToFile;
 
-public class InshiNoHeyaTests implements GameRulesObserver {
+public class InshiNoHeyaTestsAct1 implements GameRulesObserver {
 
     private List<Map<String, Integer>> theGoalsValues;
     private boolean usePositionToIndex = true;
@@ -26,7 +27,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
 
     private void loadBoard() throws FileReadException {
         theGoalsValues = new ArrayList<>();
-        InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/inshi_board.json", InputBoard.class);
+        InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/act1/inshi_board.json", InputBoard.class);
         for (BoardValue boardValue : initialBoard.getBoard().getValues()) {
             int row = boardValue.getPosition().get(0);
             int col = boardValue.getPosition().get(1);
@@ -40,7 +41,8 @@ public class InshiNoHeyaTests implements GameRulesObserver {
     }
 
     private void loadPlays() throws FileReadException {
-        InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/inshi_play.json", InshiNoHeyaInput.class);
+        InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/act1/inshi_play.json",
+                InshiNoHeyaInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
             Map<String, Integer> cellPlay = new HashMap<>();
@@ -109,7 +111,7 @@ public class InshiNoHeyaTests implements GameRulesObserver {
         InshiNoHeyaOutput output = new InshiNoHeyaOutput();
         output.setBoard(createOutputBoard(inshiGrid));
         output.setPlays(outputPlays);
-        writeToFile(output, "src/test/resources/inshi_output.json");
+        writeToFile(output, "src/test/resources/act1/inshi_output.json");
     }
 
     private void setPlaysValidity(List<OutputPlay> outputPlays) {

@@ -12,10 +12,16 @@ public class InshiTest {
 
     @Test
     public void readFiles() throws FileReadException {
-        InputBoard initialBoard = (InputBoard) getFileContent("src/test/resources/inshi_board.json", InputBoard.class);
-        Assert.assertTrue(initialBoard != null);
-        InshiNoHeyaInput inputFile = (InshiNoHeyaInput) getFileContent("src/test/resources/inshi_play.json", InshiNoHeyaInput.class);
-        Assert.assertTrue(inputFile != null);
+        InputBoard initialBoardAct1 = (InputBoard) getFileContent("src/test/resources/act1/inshi_board.json", InputBoard.class);
+        Assert.assertTrue(initialBoardAct1 != null);
+        InshiNoHeyaInput inputFileAct1 = (InshiNoHeyaInput) getFileContent("src/test/resources/act1/inshi_play.json",
+                InshiNoHeyaInput.class);
+        Assert.assertTrue(inputFileAct1 != null);
+        InputBoard initialBoardAct2 = (InputBoard) getFileContent("src/test/resources/act2/inshi_board.json",
+                InputBoard.class);
+        Assert.assertTrue(initialBoardAct2 != null);
+        InshiNoHeyaInput inputFileAct2 = (InshiNoHeyaInput) getFileContent("src/test/resources/act2/inshi_play.json", InshiNoHeyaInput.class);
+        Assert.assertTrue(inputFileAct2 != null);
     }
 
 }
