@@ -20,7 +20,8 @@ public class InshiTest {
         InputBoard initialBoardAct2 = (InputBoard) getFileContent("src/test/resources/act2/inshi_board.json",
                 InputBoard.class);
         Assert.assertTrue(initialBoardAct2 != null);
-        InshiNoHeyaInput inputFileAct2 = (InshiNoHeyaInput) getFileContent("src/test/resources/act2/inshi_play.json", InshiNoHeyaInput.class);
+        InshiNoHeyaInput inputFileAct2 = (InshiNoHeyaInput)
+                getFileContent("src/test/resources/act2/inshi_play.json", InshiNoHeyaInput.class);
         Assert.assertTrue(inputFileAct2 != null);
     }
 
