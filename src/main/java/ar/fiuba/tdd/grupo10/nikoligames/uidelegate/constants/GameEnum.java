@@ -26,8 +26,8 @@ public enum GameEnum {
             JSON_FOLDER + "GokigenNaname.Actividad2.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
             JSON_FOLDER + "Slitherlink.json", "BORDER"),
-    WORD_SEARCH("Word Search", null, null, null, null),
-    TOTORO("Totoro", null, null, null, null);
+    WORD_SEARCH("Word Search", createWordSearchPossibleValues(), null, null, null),
+    TOTORO("Totoro", createNumberPossibleValues(1, 9), null, null, null);
 
 
     private String description;
@@ -53,6 +53,13 @@ public enum GameEnum {
             sudokuValues.add(new NumberValue(i));
         }
         return sudokuValues;
+    }
+
+    private static List<PossibleValue> createWordSearchPossibleValues() {
+        List<PossibleValue> wordSearchValues = createGokigenPossibleValues();
+        wordSearchValues.add(createLinePossibleValue(VerticalLine.class));
+        wordSearchValues.add(createLinePossibleValue(HorizontalLine.class));
+        return wordSearchValues;
     }
 
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
