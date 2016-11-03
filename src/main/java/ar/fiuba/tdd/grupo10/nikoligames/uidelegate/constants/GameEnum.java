@@ -25,7 +25,9 @@ public enum GameEnum {
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
             JSON_FOLDER + "GokigenNaname.Actividad2.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
-            JSON_FOLDER + "Slitherlink.json", "BORDER");
+            JSON_FOLDER + "Slitherlink.json", "BORDER"),
+    WORD_SEARCH("Word Search", null, null, null, null),
+    TOTORO("Totoro", null, null, null, null);
 
 
     private String description;
