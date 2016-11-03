@@ -60,14 +60,13 @@ public enum GameEnum {
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
         return slitherlinkValues;
     }

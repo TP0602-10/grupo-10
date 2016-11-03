@@ -75,10 +75,6 @@ public class SlitherlinkValue implements PossibleValue {
             }
         } else {
             cell.setLimitAt(createEmptyContainer(), neighbourPosition);
-            /*Container container = cell.getLimitAt(neighbourPosition);
-            if (container != null) {
-                container.setValue(new NullValue(),"BORDER");
-            }*/
         }
     }
 
