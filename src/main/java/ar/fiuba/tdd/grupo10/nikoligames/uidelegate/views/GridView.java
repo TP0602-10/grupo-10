@@ -31,4 +31,7 @@ public class GridView extends JTable {
         return CellViewFactory.createCellView(gameEnum);
     }
 
+    public String undo() {
+        return adapter.undo();
+    }
 }

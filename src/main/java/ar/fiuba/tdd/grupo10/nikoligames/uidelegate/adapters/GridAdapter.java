@@ -2,16 +2,24 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.adapters;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PreviousPlay;
 
+import java.util.Stack;
 import javax.swing.table.AbstractTableModel;
 
 public class GridAdapter extends AbstractTableModel {
-    private Grid grid;
 
-    public GridAdapter(Grid grid) {
+    private Stack<PreviousPlay> previousPlays;
+    private Grid grid;
+    private GameEnum gameEnum;
+
+    public GridAdapter(Grid grid, GameEnum gameEnum) {
         super();
         this.grid = grid;
+        this.previousPlays = new Stack<>();
+        this.gameEnum = gameEnum;
     }
 
     @Override
@@ -42,8 +50,10 @@ public class GridAdapter extends AbstractTableModel {
     public void setValueAt(Object value, int row, int column) {
 
         try {
-            PossibleValue possibleValue = (PossibleValue) value;
             Cell cell = grid.getCellAt(row, column);
+            previousPlays.push(new PreviousPlay(row, column,
+                    cell.getValue(gameEnum.getMutableContentTag())));
+            PossibleValue possibleValue = (PossibleValue) value;
             possibleValue.setValueInCell(cell);
             fireTableCellUpdated(row, column);
             grid.notifyGridUpdated(null);
@@ -54,6 +64,19 @@ public class GridAdapter extends AbstractTableModel {
 
     protected Grid getGrid() {
         return grid;
+    }
+
+    public String undo() {
+        if (previousPlays.isEmpty()) {
+            return "There are no moves to undo.";
+        }
+        PreviousPlay previousPlay = previousPlays.pop();
+        Cell cell = grid.getCellAt(previousPlay.getRow(), previousPlay.getColumn());
+        PossibleValue possibleValue = gameEnum.getEquivalent(previousPlay.getValue());
+        possibleValue.setValueInCell(cell);
+        fireTableCellUpdated(previousPlay.getRow(), previousPlay.getColumn());
+        grid.notifyGridUpdated(null);
+        return "Move undone successfully.";
     }
 
 }

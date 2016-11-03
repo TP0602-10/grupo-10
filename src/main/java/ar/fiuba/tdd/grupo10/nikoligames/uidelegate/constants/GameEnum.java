@@ -161,5 +161,18 @@ public enum GameEnum {
                 + " currentValue: " + currentValue);
     }
 
+    public PossibleValue getEquivalent(Object currentValue) {
+        for (PossibleValue possibleValue : possibleValues) {
+            if (currentValue == null && possibleValue.getValue() == null) {
+                return possibleValue;
+            } else if (currentValue != null && possibleValue.getValue() != null
+                    && possibleValue.isEquivalentTo(currentValue)) {
+                return possibleValue;
+            }
+        }
+        throw new RuntimeException("GameEnum:getEquivalent not found for game: " + toString()
+                + " currentValue: " + currentValue);
+    }
+
 
 }

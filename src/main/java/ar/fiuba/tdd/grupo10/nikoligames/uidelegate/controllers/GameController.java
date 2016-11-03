@@ -22,7 +22,7 @@ public class GameController implements TableModelListener, GameRulesObserver {
     public GameController(Grid grid, GameEnum gameEnum) {
         super();
         grid.addRuleObserver(this);
-        GridAdapter adapter = new GridAdapter(grid);
+        GridAdapter adapter = new GridAdapter(grid, gameEnum);
         adapter.addTableModelListener(this);
         setView(new GameWindowView(new GridView(adapter, gameEnum)));
     }
