@@ -13,6 +13,7 @@ import java.util.List;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.JSON_FOLDER;
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.NUMBER;
 
 public enum GameEnum {
 
@@ -26,8 +27,10 @@ public enum GameEnum {
             JSON_FOLDER + "GokigenNaname.Actividad2.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
             JSON_FOLDER + "Slitherlink.json", "BORDER"),
-    WORD_SEARCH("Word Search", createWordSearchPossibleValues(), null, null, null),
-    TOTORO("Totoro", createNumberPossibleValues(1, 9), null, null, null);
+    WORD_SEARCH("Word Search", createWordSearchPossibleValues(), WordSearchCellView.class,
+            JSON_FOLDER + "WordSearch.json", LINE),
+    TOTORO("Totoro", createNumberPossibleValues(1, 9), TotoroCellView.class,
+            JSON_FOLDER + "Totoro.json", NUMBER);
 
 
     private String description;
