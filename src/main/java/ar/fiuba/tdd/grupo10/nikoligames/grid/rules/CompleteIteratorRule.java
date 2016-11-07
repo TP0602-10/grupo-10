@@ -13,7 +13,7 @@ public class CompleteIteratorRule<T> extends GridRule<T> {
     }
 
     @Override
-    protected boolean shouldBeVerified() {
+    public boolean shouldBeVerified() {
         return GridRuleIteratorHelper.listAllCells(getIterator())
                 .stream()
                 .allMatch(cell -> !cell.isContentEditable() || cell.isCompletelyFilled());

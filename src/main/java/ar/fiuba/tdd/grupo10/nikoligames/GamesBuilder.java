@@ -35,14 +35,14 @@ public final class GamesBuilder {
 
         GameStructure gameStructure = null;
         try {
-            gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
+            gameStructure = (GameStructure) FileHelper.getFileContent(location, GameStructure.class);
         } catch (FileReadException e) {
             throw new GameBuilderErrorException("Error on create game by json file: " + location);
         }
 
         if (gameStructure == null || gameStructure.getInitialBoard() == null
                 || gameStructure.getBoard() == null || gameStructure.getRules() == null) {
-            throw new GameBuilderErrorException("can't open file");
+            throw new GameBuilderErrorException("Can't open file");
         }
 
         BoardStructure board = gameStructure.getBoard();
@@ -59,7 +59,10 @@ public final class GamesBuilder {
                 .buildGrid();
 
         List<GridRule> gridRules = createGridRules(gameStructure.getRules(), gridCell);
-        GridRuleManager gridRuleManager = new GridRuleManager(gridRules, null);
+        List<GridRule> winningGridRules =
+                gameStructure.getWinningRules() != null && !gameStructure.getWinningRules().isEmpty() ?
+                        createGridRules(gameStructure.getWinningRules(), gridCell) : new ArrayList<>();
+        GridRuleManager gridRuleManager = new GridRuleManager(gridRules, winningGridRules);
         gridRuleManager.addObserver(grid);
         grid.addObserver(gridRuleManager);
 
