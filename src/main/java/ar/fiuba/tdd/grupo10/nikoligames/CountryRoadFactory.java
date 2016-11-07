@@ -213,7 +213,7 @@ public class CountryRoadFactory {
         rules.addAll(createRoomRules(cells));
         rules.add(createCircuitRule(cells));
 
-        return new GridRuleManager(rules, null);
+        return new GridRuleManager(rules, new ArrayList<>());
 
     }
 
