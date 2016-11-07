@@ -59,9 +59,7 @@ public final class GamesBuilder {
                 .buildGrid();
 
         List<GridRule> gridRules = createGridRules(gameStructure.getRules(), gridCell);
-        List<GridRule> winningGridRules =
-                gameStructure.getWinningRules() != null && !gameStructure.getWinningRules().isEmpty() ?
-                        createGridRules(gameStructure.getWinningRules(), gridCell) : new ArrayList<>();
+        List<GridRule> winningGridRules = createGridRules(gameStructure.getWinningRules(), gridCell);
         GridRuleManager gridRuleManager = new GridRuleManager(gridRules, winningGridRules);
         gridRuleManager.addObserver(grid);
         grid.addObserver(gridRuleManager);
@@ -151,14 +149,16 @@ public final class GamesBuilder {
 
         List<GridRule> gridRules = new ArrayList<>();
 
-        for (RuleStructure rule : rules) {
-            GridRuleOperation operation = createOperation(rule.getOperation(), initialBoard);
+        if (rules != null) {
+            for (RuleStructure rule : rules) {
+                GridRuleOperation operation = createOperation(rule.getOperation(), initialBoard);
 
-            GridRuleCondition condition = createCondition(rule.getCondition(), rule.getOperation().getType());
+                GridRuleCondition condition = createCondition(rule.getCondition(), rule.getOperation().getType());
 
-            GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
+                GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
 
-            gridRules.add(createRule(rule.getType(), iterator, operation, condition));
+                gridRules.add(createRule(rule.getType(), iterator, operation, condition));
+            }
         }
         return gridRules;
     }

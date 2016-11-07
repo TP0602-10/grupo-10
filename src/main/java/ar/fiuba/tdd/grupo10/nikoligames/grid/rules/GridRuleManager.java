@@ -59,7 +59,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
         }
 
         if (rulesOK) {
-            checkWinningRules(extras);
+            checkWinningRules();
         }
     }
 
@@ -77,22 +77,22 @@ public class GridRuleManager implements OnGridUpdatedObserver {
         this.observers.forEach(o -> o.onRuleUnsatisfied(message, extras));
     }
 
-    private void checkWinningRules(Map<String, Object> extras) {
-        if (winningRules == null || winningRules.isEmpty()) {
-            notifyGameWon("The player has won the game!");
-        } else {
-            winningRules.forEach(winRule -> {
-                if (winRule.shouldBeVerified()) {
-                    try {
-                        winRule.verifyRule();
-                        notifyGameWon("The player has won the game!");
-                    } catch (RuleNotSatisfiedException e) {
-                        notifyRuleUnsatisfied(e.getMessage(), extras);
-                    } finally {
-                        winRule.getRuleIterator().restart();
-                    }
+    private void checkWinningRules() {
+        boolean winningRulesOK = false;
+        for (GridRule winningRule : winningRules) {
+            if (winningRule.shouldBeVerified()) {
+                try {
+                    winningRule.verifyRule();
+                    winningRulesOK = true;
+                } catch (RuleNotSatisfiedException e) {
+                    winningRulesOK = false;
+                } finally {
+                    winningRule.getRuleIterator().restart();
                 }
-            });
+            }
+        }
+        if (winningRulesOK) {
+            notifyGameWon("The player has won the game!");
         }
     }
 
