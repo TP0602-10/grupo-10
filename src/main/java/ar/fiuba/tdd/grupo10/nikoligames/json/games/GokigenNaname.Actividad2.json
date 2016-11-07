@@ -132,7 +132,7 @@
 		},
 		{	"iterator": {"indexes":[1,2,6,7],"explanation":"Iterate cells (1,2), (1,3), (2,2), (2,3)" },
 			"explanation":"Rule for the corner between cells of the iterators",
-			"operation":{"name" : "SumLinesPointingToSharedCornerOperation","contentTags":["GOALPOINT", "LINE"],"type":"Integer", "corner" : {"neighbourPosition":"TOP_RIGHT","cellIndex":6} },
+			"operation":{"name" : "SumLinesPointingToSharedCornerOperation","contentTags":["GOALPOINT", "LINE"],"type":"Integer", "corner" : {"neighbourPosition":"BOTTOM_RIGHT","cellIndex":1} },
 			"condition":{"matcher":"EqualsMatcher","goal":"3"},
 			"type":"CompleteIteratorRule"
 		},

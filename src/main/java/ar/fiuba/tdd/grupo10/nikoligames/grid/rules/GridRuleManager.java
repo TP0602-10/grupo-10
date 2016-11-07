@@ -86,9 +86,13 @@ public class GridRuleManager implements OnGridUpdatedObserver {
                     winningRulesOK = true;
                 } catch (RuleNotSatisfiedException e) {
                     winningRulesOK = false;
+                    break;
                 } finally {
                     winningRule.getRuleIterator().restart();
                 }
+            } else {
+                winningRulesOK = false;
+                break;
             }
         }
         if (winningRulesOK) {
