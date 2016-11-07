@@ -219,7 +219,7 @@ public class KakuroFactory {
 
     private static GridRuleManager createKakuroRuleManager(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = buildKakuroRules(grid);
-        return new GridRuleManager(kakuroRules);
+        return new GridRuleManager(kakuroRules, null);
     }
 
     private static Collection<GridRule> buildKakuroRules(List<List<Container>> grid) {

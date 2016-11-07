@@ -58,8 +58,8 @@ public final class GamesBuilder {
                 .addCells(gridCell).doNeighborlyRelations()
                 .buildGrid();
 
-        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
-        GridRuleManager gridRuleManager = new GridRuleManager(gridRules);
+        List<GridRule> gridRules = createGridRules(gameStructure.getRules(), gridCell);
+        GridRuleManager gridRuleManager = new GridRuleManager(gridRules, null);
         gridRuleManager.addObserver(grid);
         grid.addObserver(gridRuleManager);
 
@@ -143,7 +143,7 @@ public final class GamesBuilder {
         return (Value) createObject(getCompleteClassName(valueStructure.getType()),classes,arguments);
     }
 
-    private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
+    private static List<GridRule> createGridRules(List<RuleStructure> rules, List<Cell> initialBoard)
             throws GameBuilderErrorException {
 
         List<GridRule> gridRules = new ArrayList<>();
