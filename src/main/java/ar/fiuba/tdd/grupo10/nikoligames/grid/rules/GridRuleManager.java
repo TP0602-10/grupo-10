@@ -80,19 +80,14 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     private void checkWinningRules() {
         boolean winningRulesOK = false;
         for (GridRule winningRule : winningRules) {
-            if (winningRule.shouldBeVerified()) {
-                try {
-                    winningRule.verifyRule();
-                    winningRulesOK = true;
-                } catch (RuleNotSatisfiedException e) {
-                    winningRulesOK = false;
-                    break;
-                } finally {
-                    winningRule.getRuleIterator().restart();
-                }
-            } else {
+            try {
+                winningRule.verifyRule();
+                winningRulesOK = true;
+            } catch (RuleNotSatisfiedException e) {
                 winningRulesOK = false;
                 break;
+            } finally {
+                winningRule.getRuleIterator().restart();
             }
         }
         if (winningRulesOK) {
