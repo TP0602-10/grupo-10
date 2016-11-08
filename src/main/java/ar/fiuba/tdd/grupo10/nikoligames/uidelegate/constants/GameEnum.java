@@ -2,18 +2,13 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.*;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.LineValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.NumberValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.SlitherlinkValue;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.*;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.JSON_FOLDER;
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.NUMBER;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.*;
 
 public enum GameEnum {
 
@@ -28,7 +23,7 @@ public enum GameEnum {
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
             JSON_FOLDER + "Slitherlink.json", "BORDER"),
     WORD_SEARCH("Word Search", createWordSearchPossibleValues(), WordSearchCellView.class,
-            JSON_FOLDER + "WordSearch.json", LINE),
+            JSON_FOLDER + "WordSearch.json", SELECT),
     TOTORO("Totoro", createNumberPossibleValues(1, 9), TotoroCellView.class,
             JSON_FOLDER + "Totoro.json", NUMBER);
 
@@ -59,9 +54,9 @@ public enum GameEnum {
     }
 
     private static List<PossibleValue> createWordSearchPossibleValues() {
-        List<PossibleValue> wordSearchValues = createGokigenPossibleValues();
-        wordSearchValues.add(createLinePossibleValue(VerticalLine.class));
-        wordSearchValues.add(createLinePossibleValue(HorizontalLine.class));
+        List<PossibleValue> wordSearchValues = new ArrayList<>();
+        wordSearchValues.add(new WordSearchValue(false));
+        wordSearchValues.add(new WordSearchValue(true));
         return wordSearchValues;
     }
 

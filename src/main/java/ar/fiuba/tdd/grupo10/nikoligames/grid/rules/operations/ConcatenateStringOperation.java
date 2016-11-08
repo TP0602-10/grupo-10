@@ -37,6 +37,7 @@ public class ConcatenateStringOperation extends GridRuleOperation<String> {
 
     @Override
     public String getOperationExplanation(String result) {
-        return "Thee operation concatenate as string all values of the container for the assigned tag on the iterator. The result is " + result + ".";
+        return "Thee operation concatenate as string all values of the container for the assigned tag on the iterator. "
+                + "The result is " + result + ".";
     }
 }
