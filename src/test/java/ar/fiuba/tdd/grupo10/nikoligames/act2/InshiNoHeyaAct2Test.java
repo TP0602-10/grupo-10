@@ -107,7 +107,7 @@ public class InshiNoHeyaAct2Test implements GameRulesObserver {
     }
 
     private void writeOutput(Grid inshiGrid, List<OutputPlay> outputPlays) {
-        InshiNoHeyaOutput output = new InshiNoHeyaOutput();
+        GameOutput output = new GameOutput();
         output.setBoard(createOutputBoard(inshiGrid));
         output.setPlays(outputPlays);
         writeToFile(output, "src/test/resources/act2/inshi_output.json");
