@@ -194,7 +194,7 @@
 			"explanation":"Rule who detect circuit in the cells of iterator",
 			"operation":{"name" : "LineAnyCircuitOperation","contentTags":["LINE"],"type":"Boolean"},
 			"condition":{"matcher":"EqualsMatcher","goal":"false"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		}
 	],
 	"winningRules": [
@@ -203,7 +203,7 @@
 			"explanation":"Rule that detects if all the Cells are filled",
 			"operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
 			"condition":{"matcher":"EqualsMatcher","goal":"25"},
-			"type":"CompleteIteratorRule"
+			"type":"AlwaysVerifiableRule"
 		}
 	]
 }

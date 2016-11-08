@@ -32,7 +32,7 @@ public abstract class GridRule<T> {
         }
     }
 
-    public abstract boolean shouldBeVerified();
+    protected abstract boolean shouldBeVerified();
 
     public GridRuleIterator getRuleIterator() {
         return this.iterator;

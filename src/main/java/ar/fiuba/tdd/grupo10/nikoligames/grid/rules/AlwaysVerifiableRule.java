@@ -13,7 +13,7 @@ public class AlwaysVerifiableRule<T> extends GridRule<T> {
     }
 
     @Override
-    public boolean shouldBeVerified() {
+    protected boolean shouldBeVerified() {
         return true;
     }
 

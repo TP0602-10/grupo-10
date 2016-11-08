@@ -78,21 +78,16 @@ public class GridRuleManager implements OnGridUpdatedObserver {
     }
 
     private void checkWinningRules() {
-        boolean winningRulesOK = false;
         for (GridRule winningRule : winningRules) {
             try {
                 winningRule.verifyRule();
-                winningRulesOK = true;
             } catch (RuleNotSatisfiedException e) {
-                winningRulesOK = false;
-                break;
+                return;
             } finally {
                 winningRule.getRuleIterator().restart();
             }
         }
-        if (winningRulesOK) {
-            notifyGameWon("The player has won the game!");
-        }
+        notifyGameWon("The player has won the game!");
     }
 
     private void notifyGameWon(String message) {
