@@ -40,8 +40,8 @@ public class InshiNoHeyaAct2Test implements GameRulesObserver {
     }
 
     private void loadPlays() throws FileReadException {
-        InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/act2/inshi_play.json",
-                InshiNoHeyaInput.class);
+        GameInput inshiNoHeyaInput = (GameInput) getFileContent("src/test/resources/act2/inshi_play.json",
+                GameInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
             Map<String, Integer> cellPlay = new HashMap<>();

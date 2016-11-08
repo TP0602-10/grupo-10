@@ -6,7 +6,6 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.FileReadException;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,8 +40,8 @@ public class InshiNoHeyaAct1Test implements GameRulesObserver {
     }
 
     private void loadPlays() throws FileReadException {
-        InshiNoHeyaInput inshiNoHeyaInput = (InshiNoHeyaInput) getFileContent("src/test/resources/act1/inshi_play.json",
-                InshiNoHeyaInput.class);
+        GameInput inshiNoHeyaInput = (GameInput) getFileContent("src/test/resources/act1/inshi_play.json",
+                GameInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : inshiNoHeyaInput.getPlays()) {
             Map<String, Integer> cellPlay = new HashMap<>();
