@@ -14,14 +14,17 @@ import java.util.Map;
  */
 public class GridRuleManager implements OnGridUpdatedObserver {
     private Collection<GridRule> rules;
+    private Collection<GridRule> winningRules;
     private Collection<GameRulesObserver> observers = new ArrayList<>();
 
     public GridRuleManager() {
         rules = new ArrayList<>();
+        winningRules = new ArrayList<>();
     }
 
-    public GridRuleManager(Collection<GridRule> rules) {
+    public GridRuleManager(Collection<GridRule> rules, Collection<GridRule> winningRules) {
         this.rules = rules;
+        this.winningRules = winningRules;
     }
 
     public boolean addRule(GridRule<?> rule) {
@@ -30,6 +33,14 @@ public class GridRuleManager implements OnGridUpdatedObserver {
 
     public boolean removeRule(GridRule<?> rule) {
         return this.rules.remove(rule);
+    }
+
+    public boolean addWinningRule(GridRule<?> rule) {
+        return this.winningRules.add(rule);
+    }
+
+    public boolean removeWinningRule(GridRule<?> rule) {
+        return this.winningRules.remove(rule);
     }
 
     @Override
@@ -48,7 +59,7 @@ public class GridRuleManager implements OnGridUpdatedObserver {
         }
 
         if (rulesOK) {
-            notifyGameWon("The player has won the game!");
+            checkWinningRules();
         }
     }
 
@@ -64,6 +75,19 @@ public class GridRuleManager implements OnGridUpdatedObserver {
 
     private void notifyRuleUnsatisfied(String message, Map<String, Object> extras) {
         this.observers.forEach(o -> o.onRuleUnsatisfied(message, extras));
+    }
+
+    private void checkWinningRules() {
+        for (GridRule winningRule : winningRules) {
+            try {
+                winningRule.verifyRule();
+            } catch (RuleNotSatisfiedException e) {
+                return;
+            } finally {
+                winningRule.getRuleIterator().restart();
+            }
+        }
+        notifyGameWon("The player has won the game!");
     }
 
     private void notifyGameWon(String message) {
