@@ -219,7 +219,8 @@ public class KakuroFactory {
 
     private static GridRuleManager createKakuroRuleManager(List<List<Container>> grid) {
         Collection<GridRule> kakuroRules = buildKakuroRules(grid);
-        return new GridRuleManager(kakuroRules, new ArrayList<>());
+        Collection<GridRule> kakuroWinningRules = new ArrayList<>();
+        return new GridRuleManager(kakuroRules, kakuroWinningRules);
     }
 
     private static Collection<GridRule> buildKakuroRules(List<List<Container>> grid) {
