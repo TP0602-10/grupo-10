@@ -204,6 +204,8 @@ public final class GamesBuilder {
                 return Boolean.valueOf(goal);
             case "Integer":
                 return Integer.parseInt(goal);
+            case "String":
+                return goal;
             default:
                 throw new GameBuilderErrorException("Error on create goal");
         }
