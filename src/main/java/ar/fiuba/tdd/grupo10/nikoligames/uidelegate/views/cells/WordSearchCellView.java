@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.awt.*;
 
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LETTER;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.SELECT;
 
 public class WordSearchCellView extends CellView {
 
@@ -29,7 +30,7 @@ public class WordSearchCellView extends CellView {
     }
 
     private void drawBackground(Cell cell, Graphics graphics) {
-        String select = (String) cell.getValue("select");
+        String select = (String) cell.getValue(SELECT);
         if (StringUtils.isEmpty(select)) {
             graphics.setColor(Color.pink);
         } else {

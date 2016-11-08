@@ -5,7 +5,9 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import org.apache.commons.lang3.StringUtils;
 
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LETTER;
 import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.SELECT;
 
 public class WordSearchValue implements PossibleValue {
 
@@ -20,21 +22,13 @@ public class WordSearchValue implements PossibleValue {
     }
 
     public boolean isEquivalentTo(Object otherValue) {
-        if (!value && (otherValue == null || StringUtils.isEmpty(String.valueOf(otherValue)))) {
-            return true;
-        } else if (value && !StringUtils.isEmpty(String.valueOf(otherValue))) {
-            return true;
-        }
-        return false;
+        return (!value && (otherValue == null || StringUtils.isEmpty(String.valueOf(otherValue))))
+                || (value && !StringUtils.isEmpty(String.valueOf(otherValue)));
     }
 
     @Override
     public void setValueInCell(Cell cell) {
-        if (value) {
-            cell.setValue(cell.getValue("letter"), "select");
-        } else {
-            cell.setValue("", "select");
-        }
+        cell.setValue(value ? cell.getValue(LETTER) : "", SELECT);
     }
 
 }
