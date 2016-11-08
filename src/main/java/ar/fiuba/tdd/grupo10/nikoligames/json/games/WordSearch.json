@@ -244,56 +244,56 @@
       "iterator": {"indexes":[108,124,140],"explanation":"Iterate over the word BAD." },
       "explanation":"Iterate over the word BAD.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"bad"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[203,188,173,158,143,128,113,98,83,68,53],"explanation":"Iterate over the word DEVELOPMENT." },
       "explanation":"Iterate over the word DEVELOPMENT.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"development"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[161,147,133],"explanation":"Iterate over the word JOB." },
       "explanation":"Iterate over the word JOB.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"job"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[212,170,184,170,156],"explanation":"Iterate over the word SKILL." },
       "explanation":"Iterate over the word SKILL.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"skill"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[145,131,117,103,89],"explanation":"Iterate over the word QUERY." },
       "explanation":"Iterate over the word QUERY.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"query"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[82,97,112,127,142,157],"explanation":"Iterate over the word GENDER." },
       "explanation":"Iterate over the word GENDER.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"gender"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[152,137,122,107,92,77,62,47],"explanation":"Iterate over the word POSITION." },
       "explanation":"Iterate over the word POSITION.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"position"},
       "type":"CompleteIteratorRule"
     },
     {
       "iterator": {"indexes":[66,81,96,111,126,141],"explanation":"Iterate over the word RESULT." },
       "explanation":"Iterate over the word RESULT.",
       "operation":{"name" : "ConcatenateStringOperation","contentTags":["select"],"type":"String"},
-      "condition":{"matcher":"EqualsMatcher","goal":"hello"},
+      "condition":{"matcher":"EqualsMatcher","goal":"result"},
       "type":"CompleteIteratorRule"
     },
     {

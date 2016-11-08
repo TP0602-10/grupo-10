@@ -4,21 +4,17 @@ import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ConcatenateStringOperation extends GridRuleOperation<String> {
     private final String tagOfString;
 
-    ConcatenateStringOperation( String tagString ) {
+    public ConcatenateStringOperation( String tagString ) {
         super( tagString );
         tagOfString = tagString;
     }
 
     @Override
     public String perform(GridRuleIterator iterator, Object... params) {
-        StringBuffer bufferWord = new StringBuffer();
+        StringBuilder bufferWord = new StringBuilder();
         while ( iterator.hasNext() ) {
             Container container = iterator.next();
             if ( isApplicableOn( container ) ) {
@@ -41,6 +37,6 @@ public class ConcatenateStringOperation extends GridRuleOperation<String> {
 
     @Override
     public String getOperationExplanation(String result) {
-        return null;
+        return "Thee operation concatenate as string all values of the container for the assigned tag on the iterator. The result is " + result + ".";
     }
 }
