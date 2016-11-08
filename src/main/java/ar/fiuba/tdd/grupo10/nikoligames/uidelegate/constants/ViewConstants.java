@@ -4,7 +4,8 @@ public class ViewConstants {
 
     //Keys
     public static final String NUMBER = "NUMBER";
-    public static final String LETTER = "LETTER";
+    public static final String LETTER = "letter";
+    public static final String SELECT = "select";
     public static final String LINE = "LINE";
     public static final String BORDER = "BORDER";
 
