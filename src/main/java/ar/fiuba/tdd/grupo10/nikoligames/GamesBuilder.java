@@ -35,14 +35,14 @@ public final class GamesBuilder {
 
         GameStructure gameStructure = null;
         try {
-            gameStructure = (GameStructure) FileHelper.getFileContent(location,GameStructure.class);
+            gameStructure = (GameStructure) FileHelper.getFileContent(location, GameStructure.class);
         } catch (FileReadException e) {
             throw new GameBuilderErrorException("Error on create game by json file: " + location);
         }
 
         if (gameStructure == null || gameStructure.getInitialBoard() == null
                 || gameStructure.getBoard() == null || gameStructure.getRules() == null) {
-            throw new GameBuilderErrorException("can't open file");
+            throw new GameBuilderErrorException("Can't open file");
         }
 
         BoardStructure board = gameStructure.getBoard();
@@ -58,8 +58,9 @@ public final class GamesBuilder {
                 .addCells(gridCell).doNeighborlyRelations()
                 .buildGrid();
 
-        List<GridRule> gridRules = createGrideRules(gameStructure.getRules(), gridCell);
-        GridRuleManager gridRuleManager = new GridRuleManager(gridRules);
+        List<GridRule> gridRules = createGridRules(gameStructure.getRules(), gridCell);
+        List<GridRule> winningGridRules = createGridRules(gameStructure.getWinningRules(), gridCell);
+        GridRuleManager gridRuleManager = new GridRuleManager(gridRules, winningGridRules);
         gridRuleManager.addObserver(grid);
         grid.addObserver(gridRuleManager);
 
@@ -143,19 +144,21 @@ public final class GamesBuilder {
         return (Value) createObject(getCompleteClassName(valueStructure.getType()),classes,arguments);
     }
 
-    private static List<GridRule> createGrideRules(List<RuleStructure> rules, List<Cell> initialBoard)
+    private static List<GridRule> createGridRules(List<RuleStructure> rules, List<Cell> initialBoard)
             throws GameBuilderErrorException {
 
         List<GridRule> gridRules = new ArrayList<>();
 
-        for (RuleStructure rule : rules) {
-            GridRuleOperation operation = createOperation(rule.getOperation(), initialBoard);
+        if (rules != null) {
+            for (RuleStructure rule : rules) {
+                GridRuleOperation operation = createOperation(rule.getOperation(), initialBoard);
 
-            GridRuleCondition condition = createCondition(rule.getCondition(), rule.getOperation().getType());
+                GridRuleCondition condition = createCondition(rule.getCondition(), rule.getOperation().getType());
 
-            GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
+                GridRuleIterator iterator = createIterator(rule.getIterator(), initialBoard);
 
-            gridRules.add(createRule(rule.getType(), iterator, operation, condition));
+                gridRules.add(createRule(rule.getType(), iterator, operation, condition));
+            }
         }
         return gridRules;
     }

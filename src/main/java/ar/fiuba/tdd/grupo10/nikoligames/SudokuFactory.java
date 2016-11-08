@@ -121,7 +121,7 @@ public final class SudokuFactory {
 
     private static GridRuleManager createSudokuRuleManager(List<List<Container>> grid) {
         Collection<GridRule> sudokuRules = buildSudokuRules(grid);
-        return new GridRuleManager(sudokuRules);
+        return new GridRuleManager(sudokuRules, new ArrayList<>());
     }
 
     private static List<Cell> generateEmptyCells(int cant) {
