@@ -1,7 +1,7 @@
 {
   "board":{
-    "columns": 9,
-    "rows": 9,
+    "columns": 15,
+    "rows": 15,
     "values": ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]
   },
   "initialBoard":[
