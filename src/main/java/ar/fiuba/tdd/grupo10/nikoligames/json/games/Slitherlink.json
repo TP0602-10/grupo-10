@@ -49,7 +49,7 @@
     {"container":"MutableContainer","contents":[{"type":"MutableContent","tag":"BORDER","value":{"type":"NullValue","value":"BORDER"}}],"neighbourPosition":"LEFT","index":0}
   ],
   "rules":[
-    {	"iterator": {"indexes":[0,1,2,7,11,15,22,26,30,31,32,34],"explanation":"Iterate over the cells that should have their TOP limits set" },
+    {	"iterator": {"indexes":[0,1,2,7,11,12,15,22,26,30,31,32,34],"explanation":"Iterate over the cells that should have their TOP limits set" },
       "operation":{"name" : "CheckTopBorderOperation","contentTags":["BORDER"],"type":"Boolean"},
       "condition":{"matcher":"EqualsMatcher","goal":"True"},
       "type":"CompleteIteratorRule"
@@ -71,7 +71,7 @@
     }
   ],
   "winningRules": [
-    {	"iterator": {"indexes":[0,1,2,7,11,15,22,26,30,31,32,34],"explanation":"Iterate over the cells that should have their TOP limits set" },
+    {	"iterator": {"indexes":[0,1,2,7,11,12,15,22,26,30,31,32,34],"explanation":"Iterate over the cells that should have their TOP limits set" },
       "operation":{"name" : "CheckTopBorderOperation","contentTags":["BORDER"],"type":"Boolean"},
       "condition":{"matcher":"EqualsMatcher","goal":"True"},
       "type":"AlwaysVerifiableRule"
