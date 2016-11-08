@@ -2,7 +2,7 @@ package ar.fiuba.tdd.grupo10.nikoligames.game.inshi;
 
 import java.util.List;
 
-public class InshiNoHeyaOutput {
+public class GameOutput {
 
     public List<OutputPlay> getPlays() {
         return plays;
