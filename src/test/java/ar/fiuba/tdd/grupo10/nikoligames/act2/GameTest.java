@@ -6,8 +6,8 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameBuilderErrorException;
 import ar.fiuba.tdd.grupo10.nikoligames.game.inshi.*;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.Grid;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.FromBottomToRightLine;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GameRulesObserver;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,9 @@ import java.util.*;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.getFileContent;
 import static ar.fiuba.tdd.grupo10.nikoligames.helpers.FileHelper.writeToFile;
 
-public class GameAct2Test implements GameRulesObserver {
+public abstract class GameTest implements GameRulesObserver {
 
+    protected GameEnum gameEnum;
     protected static final String EXTERN_MAP_ROW = "row";
     protected static final String EXTERN_MAP_COL = "col";
     protected static final String EXTERN_MAP_VALUE = "val";
@@ -27,14 +28,15 @@ public class GameAct2Test implements GameRulesObserver {
     protected Map<String, String> playsInvalidity;
     protected String boardValidity = "valid";
 
-    // Esto deberíamos redefinirlo en cada subTest
-    protected String boardPath = "src/test/resources/act2/country_road_board.json";
-    protected String outputPath = "src/test/resources/act2/country_road_output.json";
-    protected String playsPath = "src/test/resources/act2/country_road_play.json";
+    protected String boardPath;
+    protected String outputPath;
+    protected String playsPath;
+
+    protected abstract void initializeProperties();
 
     private void loadPlays() throws FileReadException {
-        GameInput countryRoadInput = (GameInput) getFileContent(playsPath,
-                GameInput.class);
+
+        GameInput countryRoadInput = (GameInput) getFileContent(playsPath, GameInput.class);
         plays = new ArrayList<>();
         for (InputPlay play : countryRoadInput.getPlays()) {
             Map<String, String> cellPlay = new HashMap<>();
@@ -47,6 +49,7 @@ public class GameAct2Test implements GameRulesObserver {
 
     @Before
     public void setUp() throws FileReadException {
+        initializeProperties();
         loadPlays();
         playsInvalidity = new HashMap<>();
     }
@@ -58,27 +61,31 @@ public class GameAct2Test implements GameRulesObserver {
         Assert.assertFalse(gameGrid.isComplete());
     }
 
+    protected abstract String getValueFromCell(Cell cell);
 
-    // Esto deberíamos redefinirlo en cada subTest
     private OutputBoard createOutputBoard(Grid grid) {
+
         List<BoardValue> boardValues = new ArrayList<>();
         for (int rowIndex = 0; rowIndex < 4; rowIndex++) {
             for (int columnIndex = 0; columnIndex < 4; columnIndex++) {
+
                 Cell cell = grid.getCellAt(rowIndex, columnIndex);
+
                 List<Integer> position = new ArrayList<>(Arrays.asList(rowIndex + 1, columnIndex + 1));
+                String value  = getValueFromCell(cell);
+
                 BoardValue boardValue = new BoardValue();
                 boardValue.setPosition(position);
-                boardValue.setValue(cell.getValue("LINE") != null
-                        ? String.valueOf(cell.getValue("LINE")) : "");
+                boardValue.setValue(value);
                 boardValues.add(boardValue);
             }
         }
         return new OutputBoard(boardValues, boardValidity);
     }
 
+    protected abstract Object createValue(String value);
 
-    @Test
-    public void playTheGame()throws GameBuilderErrorException  {
+    protected void playTheGame()throws GameBuilderErrorException  {
 
         Grid grid = GamesBuilder.createUsingJson(boardPath);
         grid.addRuleObserver(this);
@@ -91,10 +98,8 @@ public class GameAct2Test implements GameRulesObserver {
             int row = Integer.parseInt(play.get(EXTERN_MAP_ROW));
             int col = Integer.parseInt(play.get(EXTERN_MAP_COL));
 
-            // Esto deberíamos redefinirlo en cada subTest
             Cell cell = grid.getCellAt(row, col);
-            FromBottomToRightLine line = new FromBottomToRightLine("FromBottomToRightLine");
-            cell.setValue(line, "LINE"); // TEST
+            cell.setValue(createValue(value), gameEnum.getMutableContentTag());
 
             Map<String, Object> extras = new HashMap<>();
             extras.put("playNumber", playNumber.toString());
@@ -112,7 +117,7 @@ public class GameAct2Test implements GameRulesObserver {
         GameOutput output = new GameOutput();
         output.setBoard(createOutputBoard(gameGrid));
         output.setPlays(outputPlays);
-        writeToFile(output, outputPath );
+        writeToFile(output, outputPath);
     }
 
     private void setPlaysValidity(List<OutputPlay> outputPlays) {
@@ -134,5 +139,4 @@ public class GameAct2Test implements GameRulesObserver {
     public void onGameWon(String message) {
 
     }
-
 }
