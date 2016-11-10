@@ -69,12 +69,12 @@ public class SlitherlinkValue implements PossibleValue {
     private void setValueInCell(Cell cell, NeighbourPosition neighbourPosition, int arrayIndex) {
         if (this.value != null && this.value[arrayIndex]) {
             if (isVertical(neighbourPosition)) {
-                cell.setLimitAt(createVerticalContainer(), neighbourPosition);
+                cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new VerticalLine("VerticalLine"),"BORDER"));
             } else {
-                cell.setLimitAt(createHorizontalContainer(), neighbourPosition);
+                cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new HorizontalLine("HorizontalLine"),"BORDER"));
             }
         } else {
-            cell.setLimitAt(createEmptyContainer(), neighbourPosition);
+            cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new NullValue(),"BORDER"));
         }
     }
 
