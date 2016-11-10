@@ -64,10 +64,9 @@ public abstract class GameTest implements GameRulesObserver {
     protected abstract String getValueFromCell(Cell cell);
 
     private OutputBoard createOutputBoard(Grid grid) {
-
         List<BoardValue> boardValues = new ArrayList<>();
-        for (int rowIndex = 0; rowIndex < 4; rowIndex++) {
-            for (int columnIndex = 0; columnIndex < 4; columnIndex++) {
+        for (int rowIndex = 0; rowIndex < grid.getCells().size(); rowIndex++) {
+            for (int columnIndex = 0; columnIndex < grid.getCells().size(); columnIndex++) {
 
                 Cell cell = grid.getCellAt(rowIndex, columnIndex);
 

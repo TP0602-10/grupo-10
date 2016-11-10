@@ -39,7 +39,7 @@ public class CountryRoadTest extends GameTest {
             e.printStackTrace();
         }
         return lineValue;
-   }
+    }
 
     @Test
     public void gameCountryRoad() throws GameBuilderErrorException {
