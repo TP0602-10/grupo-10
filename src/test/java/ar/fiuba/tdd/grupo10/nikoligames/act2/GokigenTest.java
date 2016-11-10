@@ -2,22 +2,21 @@ package ar.fiuba.tdd.grupo10.nikoligames.act2;
 
 import ar.fiuba.tdd.grupo10.nikoligames.exceptions.GameBuilderErrorException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Cell;
-import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
+import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.Line;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.GameEnum;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.LineValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 
-public class CountryRoadTest extends GameTest {
+public class GokigenTest extends GameTest {
 
     @Override
     protected void initializeProperties() {
-        this.gameEnum = GameEnum.COUNTRY_ROAD;
-        this.boardPath = "src/test/resources/act2/country_road_board.json";
-        this.outputPath = "src/test/resources/act2/country_road_output.json";
-        this.playsPath = "src/test/resources/act2/country_road_play.json";
+        this.gameEnum = GameEnum.GOKIGEN_NANAME;
+        this.boardPath = "src/test/resources/act2/gokigen_board.json";
+        this.outputPath = "src/test/resources/act2/gokigen_output.json";
+        this.playsPath = "src/test/resources/act2/gokigen_play.json";
     }
 
     @Override
@@ -28,7 +27,7 @@ public class CountryRoadTest extends GameTest {
     }
 
     @Override
-    protected void setValueInCell(Cell cell, String value) {
+    protected void  setValueInCell(Cell cell, String value) {
         LineValue lineValue = new LineValue(null);
         try {
             String packageName = "ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.";
@@ -42,7 +41,7 @@ public class CountryRoadTest extends GameTest {
     }
 
     @Test
-    public void gameCountryRoad() throws GameBuilderErrorException {
+    public void gameGokigen() throws GameBuilderErrorException {
         playTheGame();
     }
 

@@ -82,7 +82,7 @@ public abstract class GameTest implements GameRulesObserver {
         return new OutputBoard(boardValues, boardValidity);
     }
 
-    protected abstract Object createValue(String value);
+    protected abstract void setValueInCell(Cell cell, String value);
 
     protected void playTheGame()throws GameBuilderErrorException  {
 
@@ -98,7 +98,7 @@ public abstract class GameTest implements GameRulesObserver {
             int col = Integer.parseInt(play.get(EXTERN_MAP_COL));
 
             Cell cell = grid.getCellAt(row, col);
-            cell.setValue(createValue(value), gameEnum.getMutableContentTag());
+            setValueInCell(cell, value);
 
             Map<String, Object> extras = new HashMap<>();
             extras.put("playNumber", playNumber.toString());
