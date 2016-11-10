@@ -19,7 +19,7 @@ public class TotoroCellView extends CellView {
         super.paintComponent(graphics);
         Cell cell = (Cell) getValue();
 
-        this.setBackgroundColor(cell.isContentEditable());
+        this.setBackgroundColor(cell.isContentEditable(), graphics);
         Content content = cell.getContent(NUMBER);
         drawCentralNumber(cell.isContentEditable(), content, graphics);
         drawBorder(graphics);
@@ -46,21 +46,28 @@ public class TotoroCellView extends CellView {
         }
     }
 
-    private void setBackgroundColor(boolean isEditable) {
-        if (isEditable) {
-            setBackground(Color.white);
-        } else {
-            setBackground(Color.black);
-        }
+    private void setBackgroundColor(boolean isEditable, Graphics graphics) {
+        graphics.setColor(isEditable ? Color.white : Color.black);
+        graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
     }
 
     private void drawCentralNumber(boolean editableContent, Content content, Graphics graphics) {
+        setCentralNumberColor(editableContent, graphics);
+        DrawingHelper.drawCentralChar(
+                (content.getValue() == null) ? null : content,
+                graphics, this.getWidth(),
+                this.getHeight()
+        );
+    }
+
+    private void setCentralNumberColor(boolean editableContent, Graphics graphics) {
         if (editableContent) {
             graphics.setColor(Color.black);
-        } else {
-            graphics.setColor(Color.white);
+        } else if (getRow() == 0 || getRow() == 7) {
+            graphics.setColor(Color.orange);
+        } else if (getColumn() == 0 || getColumn() == 7) {
+            graphics.setColor(Color.green);
         }
-        DrawingHelper.drawCentralChar(content, graphics, this.getWidth(), this.getHeight());
     }
 
 }

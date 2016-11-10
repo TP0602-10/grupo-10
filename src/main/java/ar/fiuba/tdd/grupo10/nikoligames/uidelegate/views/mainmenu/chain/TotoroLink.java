@@ -8,6 +8,6 @@ class TotoroLink extends GameLink {
 
     TotoroLink(Component context) {
         super(context);
-        this.gameEnum = GameEnum.WORD_SEARCH;
+        this.gameEnum = GameEnum.TOTORO;
     }
 }
