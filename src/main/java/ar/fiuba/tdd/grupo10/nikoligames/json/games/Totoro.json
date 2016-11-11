@@ -1,0 +1,322 @@
+{
+  "board":{
+    "columns": 8,
+    "rows": 8,
+    "values": [1,2,3,4,5,6,7,8,9]
+  },
+  "initialBoard":[
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":null}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"45"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"96"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"18"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"14"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"16"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"54"}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":null}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"6"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"9"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"18"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"12"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"15"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"13"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"13"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"8"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"18"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"8"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"12"}}]}},
+
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+    {"type": "Cell","state":{"type":"MutableContainer","contents":[{"type":"MutableContent","tag":"NUMBER","value":{"type":"NullValue","value":""}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"13"}}]}},
+
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":null}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"72"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"48"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"84"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"24"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"70"}}]}},
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":"6"}}]}},
+
+    {"type": "Cell","state":{"type":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"NUMBER","value":{"type":"Number","value":null}}]}}
+  ],
+
+  "cellLimits": [
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":11},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":19},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":27},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":35},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":43},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERRIGHT","value":{"type":"VerticalLine","value":""}}],"neighbourPosition":"RIGHT","index":51},
+
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":25},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":26},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":27},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":28},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":29},
+    {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":30}
+  ],
+
+  "rules":[
+
+    {
+      "iterator": {"indexes":[9,10,11],"explanation":"Iterate over the block 1 and row 2." },
+      "explanation":"Iterate over the block 1 and row 2.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"6"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[17,18,19],"explanation":"Iterate over the block 1 and row 3." },
+      "explanation":"Iterate over the block 1 and row 3.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"18"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[25,26,27],"explanation":"Iterate over the block 1 and row 4." },
+      "explanation":"Iterate over the block 1 and col 4.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"15"},
+      "type":"CompleteIteratorRule"
+    },
+
+    {
+      "iterator": {"indexes":[9,17,25],"explanation":"Iterate over the block 1 and col 2." },
+      "explanation":"Iterate over the block 1 and col 3.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"45"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[10,18,26],"explanation":"Iterate over the block 1 and col 3." },
+      "explanation":"Iterate over the block 1 and row 2.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"96"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[11,19,27],"explanation":"Iterate over the block 1 and col 4." },
+      "explanation":"Iterate over the block 1 and col 4.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"18"},
+      "type":"CompleteIteratorRule"
+    },
+
+
+    {
+      "iterator": {"indexes":[12,13,14],"explanation":"Iterate over the block 2 and row 2." },
+      "explanation":"Iterate over the block 2 and row 2.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"9"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[20,21,22],"explanation":"Iterate over the block 2 and row 3." },
+      "explanation":"Iterate over the block 2 and row 3.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"12"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[28,29,30],"explanation":"Iterate over the block 2 and row 4." },
+      "explanation":"Iterate over the block 2 and col 4.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"13"},
+      "type":"CompleteIteratorRule"
+    },
+
+    {
+      "iterator": {"indexes":[12,20,28],"explanation":"Iterate over the block 2 and col 5." },
+      "explanation":"Iterate over the block 2 and col 5.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"14"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[13,21,29],"explanation":"Iterate over the block 2 and col 6." },
+      "explanation":"Iterate over the block 2 and row 6.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"16"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[14,22,30],"explanation":"Iterate over the block 2 and col 7." },
+      "explanation":"Iterate over the block 2 and col 7.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"54"},
+      "type":"CompleteIteratorRule"
+    },
+
+
+    {
+      "iterator": {"indexes":[33,34,35],"explanation":"Iterate over the block 3 and row 5." },
+      "explanation":"Iterate over the block 3 and row 5.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"13"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[41,42,43],"explanation":"Iterate over the block 3 and row 6." },
+      "explanation":"Iterate over the block 3 and row 6.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"18"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[49,50,51],"explanation":"Iterate over the block 3 and row 7." },
+      "explanation":"Iterate over the block 3 and col 7.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"12"},
+      "type":"CompleteIteratorRule"
+    },
+
+    {
+      "iterator": {"indexes":[33,41,49],"explanation":"Iterate over the block 3 and col 2." },
+      "explanation":"Iterate over the block 3 and col 3.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"72"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[34,42,50],"explanation":"Iterate over the block 3 and col 3." },
+      "explanation":"Iterate over the block 3 and row 2.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"48"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[35,43,51],"explanation":"Iterate over the block 3 and col 4." },
+      "explanation":"Iterate over the block 3 and col 4.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"84"},
+      "type":"CompleteIteratorRule"
+    },
+
+
+    {
+      "iterator": {"indexes":[36,37,38],"explanation":"Iterate over the block 4 and row 5." },
+      "explanation":"Iterate over the block 4 and row 5.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[44,45,46],"explanation":"Iterate over the block 4 and row 6." },
+      "explanation":"Iterate over the block 4 and row 6.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"8"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[52,53,54],"explanation":"Iterate over the block 4 and row 7." },
+      "explanation":"Iterate over the block 4 and col 7.",
+      "operation":{"name" : "SumOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"13"},
+      "type":"CompleteIteratorRule"
+    },
+
+    {
+      "iterator": {"indexes":[36,44,52],"explanation":"Iterate over the block 4 and col 5." },
+      "explanation":"Iterate over the block 4 and col 5.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"24"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[37,45,53],"explanation":"Iterate over the block 4 and col 6." },
+      "explanation":"Iterate over the block 4 and row 6.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"70"},
+      "type":"CompleteIteratorRule"
+    },
+    {
+      "iterator": {"indexes":[38,46,54],"explanation":"Iterate over the block 4 and col 7." },
+      "explanation":"Iterate over the block 4 and col 7.",
+      "operation":{"name" : "ProductOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"6"},
+      "type":"CompleteIteratorRule"
+    }
+  ],
+  "winningRules": [
+    {
+      "iterator": {
+        "indexes":[
+          9,10,11,12,13,14,
+          17,18,19,20,21,22,
+          25,26,27,28,29,30,
+          33,34,35,36,37,38,
+          41,42,43,44,45,46,
+          49,50,51,52,53,54
+        ],
+        "explanation":"Iterator for all cells that have to be completed."
+      },
+      "explanation":"Rule who detect if all Cells are filled",
+      "operation":{"name" : "CountFilledOperation","contentTags":["NUMBER"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"36"},
+      "type":"AlwaysVerifiableRule"
+    }
+
+  ]
+}
