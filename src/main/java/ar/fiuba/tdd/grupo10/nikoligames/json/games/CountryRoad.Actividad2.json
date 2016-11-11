@@ -38,36 +38,66 @@
     {"container":"ImmutableContainer","contents":[{"type":"ImmutableContent","tag":"LINEBORDERBOTTOM","value":{"type":"HorizontalLine","value":""}}],"neighbourPosition":"BOTTOM","index":11}
   ],
   "rules":[
+    { "iterator": {"indexes":[2,3],"explanation":"iterator for a Room 3." },
+      "explanation":"Rule for a Room 3.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"1"},
+      "type":"CompleteIteratorRule"
+    },
+    { "iterator": {"indexes":[12,13],"explanation":"iterator for a Room 5." },
+      "explanation":"Rule for a Room 5.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"EqualsMatcher","goal":"2"},
+      "type":"CompleteIteratorRule"
+    },
+
+    { "iterator": {"indexes":[2,3],"explanation":"iterator for a Room 3." },
+      "explanation":"Rule for a Room 3.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"1"},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[12,13],"explanation":"iterator for a Room 5." },
+      "explanation":"Rule for a Room 5.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"LessOrEqualToIntegerMatcher","goal":"2"},
+      "type":"AlwaysVerifiableRule"
+    }
+  ],
+
+  "winningRules": [
     { "iterator": {"indexes":[1,5,9,4,8],"explanation":"iterator for a Room 2." },
       "explanation":"Rule for a Room 2.",
       "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
       "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
       "type":"AlwaysVerifiableRule"
     },
+    { "iterator": {"indexes":[6,7,11],"explanation":"iterator for a Room 4." },
+      "explanation":"Rule for a Room 4.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
+      "type":"AlwaysVerifiableRule"
+    },
+    { "iterator": {"indexes":[10,14,15],"explanation":"iterator for a Room 6." },
+      "explanation":"Rule for a Room 6.",
+      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
+      "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
+      "type":"AlwaysVerifiableRule"
+    },
+
     { "iterator": {"indexes":[2,3],"explanation":"iterator for a Room 3." },
-      "explanation":"Rule for a Room 2.",
+      "explanation":"Rule for a Room 3.",
       "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
       "condition":{"matcher":"EqualsMatcher","goal":"1"},
       "type":"AlwaysVerifiableRule"
     },
-    { "iterator": {"indexes":[6,7,11],"explanation":"iterator for a Room 4." },
-      "explanation":"Rule for a Room 2.",
-      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
-      "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
-      "type":"AlwaysVerifiableRule"
-    },
     { "iterator": {"indexes":[12,13],"explanation":"iterator for a Room 5." },
-      "explanation":"Rule for a Room 2.",
+      "explanation":"Rule for a Room 5.",
       "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
       "condition":{"matcher":"EqualsMatcher","goal":"2"},
       "type":"AlwaysVerifiableRule"
     },
-    { "iterator": {"indexes":[10,14,15],"explanation":"iterator for a Room 6." },
-      "explanation":"Rule for a Room 2.",
-      "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
-      "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},
-      "type":"AlwaysVerifiableRule"
-    },
+
     {	"iterator": {"indexes":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],"explanation":"iterator for all cell." },
       "explanation":"Rule for circuit.",
       "operation":{"name" : "LineVerticalAndHorizontalCircuitOperation","contentTags":["LINE"],"type":"Boolean"},
@@ -77,7 +107,7 @@
   ],
 
   "ignored_rules" : [
-    {	"iterator": {"indexes":[0],"explanation":"iterator for a Room 2." },
+    {	"iterator": {"indexes":[0],"explanation":"iterator for a Room 1." },
       "explanation":"Rule for a Room 1.",
       "operation":{"name" : "CountFilledOperation","contentTags":["LINE"],"type":"Integer"},
       "condition":{"matcher":"GreaterThanIntegerMatcher","goal":"0"},

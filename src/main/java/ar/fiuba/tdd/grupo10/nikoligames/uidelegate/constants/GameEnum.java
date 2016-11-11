@@ -2,17 +2,13 @@ package ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants;
 
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.types.line.*;
 import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.views.cells.*;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.LineValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.NumberValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.PossibleValue;
-import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.SlitherlinkValue;
+import ar.fiuba.tdd.grupo10.nikoligames.uidelegate.wrappers.*;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.JSON_FOLDER;
-import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.LINE;
+import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstants.*;
 
 public enum GameEnum {
 
@@ -25,7 +21,11 @@ public enum GameEnum {
     GOKIGEN_NANAME("Gokigen Naname", createGokigenPossibleValues(), GokigenCellView.class,
             JSON_FOLDER + "GokigenNaname.Actividad2.json", LINE),
     SLITHERLINK("Slitherlink", createSlitherlinkPossibleValues(), SlitherlinkCellView.class,
-            JSON_FOLDER + "Slitherlink.json", "BORDER");
+            JSON_FOLDER + "Slitherlink.json", BORDER),
+    WORD_SEARCH("Word Search", createWordSearchPossibleValues(), WordSearchCellView.class,
+            JSON_FOLDER + "WordSearch.json", SELECT),
+    TOTORO("Totoro", createNumberPossibleValues(1, 9), TotoroCellView.class,
+            JSON_FOLDER + "Totoro.json", NUMBER);
 
 
     private String description;
@@ -53,6 +53,13 @@ public enum GameEnum {
         return sudokuValues;
     }
 
+    private static List<PossibleValue> createWordSearchPossibleValues() {
+        List<PossibleValue> wordSearchValues = new ArrayList<>();
+        wordSearchValues.add(new WordSearchValue(false));
+        wordSearchValues.add(new WordSearchValue(true));
+        return wordSearchValues;
+    }
+
     private static List<PossibleValue> createSlitherlinkPossibleValues() {
         List<PossibleValue> slitherlinkValues = new ArrayList<>();
         slitherlinkValues.add(new SlitherlinkValue(null));
@@ -60,14 +67,15 @@ public enum GameEnum {
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, true, false}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, false, true}));
-        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, false, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{false, true, true, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, false, true, true}));
+        slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, false, true}));
         slitherlinkValues.add(new SlitherlinkValue(new Boolean[]{true, true, true, false}));
         return slitherlinkValues;
     }
@@ -157,6 +165,19 @@ public enum GameEnum {
             }
         }
         throw new RuntimeException("GameEnum:getPrevValue not found for game: " + toString()
+                + " currentValue: " + currentValue);
+    }
+
+    public PossibleValue getEquivalent(Object currentValue) {
+        for (PossibleValue possibleValue : possibleValues) {
+            if (currentValue == null && possibleValue.getValue() == null) {
+                return possibleValue;
+            } else if (currentValue != null && possibleValue.getValue() != null
+                    && possibleValue.isEquivalentTo(currentValue)) {
+                return possibleValue;
+            }
+        }
+        throw new RuntimeException("GameEnum:getEquivalent not found for game: " + toString()
                 + " currentValue: " + currentValue);
     }
 

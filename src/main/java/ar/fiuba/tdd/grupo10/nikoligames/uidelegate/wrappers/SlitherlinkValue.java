@@ -58,7 +58,7 @@ public class SlitherlinkValue implements PossibleValue {
 
     @Override
     public void setValueInCell(Cell cell) {
-        cell.setValue(this.value, "BORDER");
+        cell.setValue(this.value, BORDER);
         setValueInCell(cell, NeighbourPosition.TOP, 0);
         setValueInCell(cell, NeighbourPosition.BOTTOM, 1);
         setValueInCell(cell, NeighbourPosition.LEFT, 2);
@@ -69,16 +69,12 @@ public class SlitherlinkValue implements PossibleValue {
     private void setValueInCell(Cell cell, NeighbourPosition neighbourPosition, int arrayIndex) {
         if (this.value != null && this.value[arrayIndex]) {
             if (isVertical(neighbourPosition)) {
-                cell.setLimitAt(createVerticalContainer(), neighbourPosition);
+                cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new VerticalLine("VerticalLine"), BORDER));
             } else {
-                cell.setLimitAt(createHorizontalContainer(), neighbourPosition);
+                cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new HorizontalLine("HorizontalLine"), BORDER));
             }
         } else {
-            cell.setLimitAt(createEmptyContainer(), neighbourPosition);
-            /*Container container = cell.getLimitAt(neighbourPosition);
-            if (container != null) {
-                container.setValue(new NullValue(),"BORDER");
-            }*/
+            cell.getLimitAt(neighbourPosition).setContent(new MutableContent(new NullValue(), BORDER));
         }
     }
 
@@ -88,7 +84,7 @@ public class SlitherlinkValue implements PossibleValue {
 
     private Container createEmptyContainer() {
         List<Content> lines = new ArrayList<>();
-        Content theContent = new MutableContent(new NullValue(), "BORDER");
+        Content theContent = new MutableContent(new NullValue(), BORDER);
         lines.add(theContent);
         Container theContainer = new Container(new MutableContainer(lines));
         return theContainer;
@@ -97,7 +93,7 @@ public class SlitherlinkValue implements PossibleValue {
     private Container createVerticalContainer() {
         List<Content> lines = new ArrayList<>();
         Line theLine = new VerticalLine("VerticalLine");
-        Content theContent = new MutableContent(theLine, "BORDER");
+        Content theContent = new MutableContent(theLine, BORDER);
         lines.add(theContent);
         Container theContainer = new Container(new MutableContainer(lines));
         return theContainer;
@@ -106,7 +102,7 @@ public class SlitherlinkValue implements PossibleValue {
     private Container createHorizontalContainer() {
         List<Content> lines = new ArrayList<>();
         Line theLine = new HorizontalLine("HorizontalLine");
-        Content theContent = new MutableContent(theLine, "BORDER");
+        Content theContent = new MutableContent(theLine, BORDER);
         lines.add(theContent);
         Container theContainer = new Container(new MutableContainer(lines));
         return theContainer;

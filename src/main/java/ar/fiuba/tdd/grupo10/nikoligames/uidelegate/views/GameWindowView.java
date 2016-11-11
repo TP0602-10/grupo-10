@@ -11,50 +11,47 @@ import static ar.fiuba.tdd.grupo10.nikoligames.uidelegate.constants.ViewConstant
 
 public class GameWindowView extends JFrame {
 
-    private GridView table;
-    private JPanel panel;
-    private GridBagConstraints gbc;
-
+    private GridView gridView;
     private JTextArea console;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy:MM:dd hh:mm:ss");
 
     public GameWindowView(GridView gridView) {
 
         super(TITLE);
+        this.gridView = gridView;
         setWindowPreferences();
 
-        table = gridView;
-        panel = new JPanel(new GridBagLayout());
-        gbc = new GridBagConstraints();
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridy = 0;//change the y location
         gbc.insets = new Insets(3, 3, 3, 3);
-        panel.add(table, gbc);
+        panel.add(gridView, gbc);
 
         console = createConsole();
         JScrollPane scrollPane = new JScrollPane(console);
-        gbc.gridy = 2;//change the y location
+        gbc.gridy = 2;
         gbc.insets = new Insets(3, 3, 3, 3);
         panel.add(scrollPane, gbc);
 
-        gbc.gridy = 4;//change the y location
+        gbc.gridy = 4;
         gbc.insets = new Insets(3, 3, 3, 3);
-        panel.add(createClearConsoleButton(), gbc);
+        panel.add(createButtonsPanel(), gbc);
 
         getContentPane().add(panel);
         setResizable(true);
-        table.updateUI();
+        gridView.updateUI();
 
     }
 
-    protected JTextArea createConsole() {
+    private JTextArea createConsole() {
         console = new JTextArea(10, 60);
         console.setEnabled(false);
         console.setDisabledTextColor(Color.black);
         return console;
     }
 
-    protected JButton createClearConsoleButton() {
+    private JButton createClearConsoleButton() {
         JButton button = new JButton("Clear console");
         button.addActionListener(new ActionListener() {
             @Override
@@ -65,7 +62,30 @@ public class GameWindowView extends JFrame {
         return button;
     }
 
-    protected void setWindowPreferences() {
+    private JButton createUndoButton() {
+        JButton button = new JButton("Undo");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                updateConsole(gridView.undo());
+            }
+        });
+        return button;
+    }
+
+    private JPanel createButtonsPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 1;//change the x location
+        gbc.insets = new Insets(3, 3, 3, 3);
+        panel.add(createUndoButton(), gbc);
+        gbc.gridx = 2;
+        gbc.insets = new Insets(3, 3, 3, 3);
+        panel.add(createClearConsoleButton(), gbc);
+        return panel;
+    }
+
+    private void setWindowPreferences() {
         setVisible(true);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }

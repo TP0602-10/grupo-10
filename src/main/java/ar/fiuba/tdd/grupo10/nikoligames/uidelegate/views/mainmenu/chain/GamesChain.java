@@ -18,8 +18,12 @@ public class GamesChain {
         countryRoadLink.setNext(gokigenNanameLink);
         GameLink slitherlinkLink = new SlitherlinkLink(context);
         gokigenNanameLink.setNext(slitherlinkLink);
+        GameLink wordSearchLink = new WordSearchLink(context);
+        slitherlinkLink.setNext(wordSearchLink);
+        GameLink totoroLink = new TotoroLink(context);
+        wordSearchLink.setNext(totoroLink);
         GameLink unavailableGameLink = new UnavailableGameLink(context);
-        slitherlinkLink.setNext(unavailableGameLink);
+        totoroLink.setNext(unavailableGameLink);
     }
 
     public void execute(GameEnum gameEnum, String filePath) {

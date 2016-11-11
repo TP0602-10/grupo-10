@@ -4,6 +4,7 @@ import ar.fiuba.tdd.grupo10.nikoligames.exceptions.NoFindContentbyTagException;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.Container;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.cells.content.Content;
 import ar.fiuba.tdd.grupo10.nikoligames.grid.rules.GridRuleIterator;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -47,7 +48,14 @@ public class CountFilledOperation extends GridRuleOperation<Integer> {
 
     @Override
     public boolean isApplicableOn(Content content) {
-        return ((content != null) && !content.isEmpty());
+        if (content != null && !content.isEmpty()) {
+            if ( content.getValue() instanceof String ) {
+                String value = (String)content.getValue();
+                return !StringUtils.isEmpty(value);
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
