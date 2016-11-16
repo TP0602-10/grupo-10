@@ -585,6 +585,7 @@
       "type":"CompleteIteratorRule"
     }
   ],
+
   "winningRules": [
     {
       "iterator": {"indexes":[10, 11, 14, 15, 19, 20, 21, 23, 24, 25, 26, 30, 31, 34, 35, 38, 39, 40, 41, 43, 44, 46, 47, 49, 50, 51, 52, 55, 56, 58, 59, 60, 64, 65, 66, 67, 69, 70, 71, 73, 74, 75, 79, 80],"explanation":"Iterator for all cells that have to be completed." },
